@@ -21,8 +21,12 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="com.dev.pleaseTakecareFiveDucks" />
-
-
-
+	<context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.anime" />
+    <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.book" />
+    <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.comic" />
+    <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.contents" />
+    <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.drama" />
+    <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.movie" />
+    <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.mp3" />
+    <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.youtube" />
 </beans:beans>
