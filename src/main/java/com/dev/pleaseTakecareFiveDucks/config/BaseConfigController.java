@@ -1,4 +1,4 @@
-package com.dev.pleaseTakecareFiveDucks;
+package com.dev.pleaseTakecareFiveDucks.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
