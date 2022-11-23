@@ -1,0 +1,19 @@
+isNull : "널일경우"
+
+isNotNull : "널이아닐경우"
+
+isEmpty : "공백일경우"
+
+isNotEmpty : "공백이아닐경우"
+
+isGreaterTan : ">"
+
+isGreaterEqual : ">="
+
+isLessThan : "<"
+
+isLessEqual : "<="
+
+isEqual : "=="
+
+isNotEqual : "!="

@@ -15,5 +15,5 @@ public class InsertAnimeInfoRequestDTO {
     String title;
     String author;
     Integer pagePerAnimeCnt;
-    Date animeRegDt;
+    String animeRegDt;
 }
