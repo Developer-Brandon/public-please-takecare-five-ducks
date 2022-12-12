@@ -12,7 +12,7 @@ public class MainController{
     @GetMapping(value = "/")
     public String goMainJsp(Locale locale, Model model) {
 
-        // 로그인 화면으로 꾸미기
+        // TODO: 로그인 화면으로 꾸미기
         //
 
 

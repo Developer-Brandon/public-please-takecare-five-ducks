@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring
@@ -42,8 +42,8 @@
     </bean>
 
     <!-- 4. mybatis 관련 annotation 처리를 위해 scan 등록을 합니다 -->
-    <mybatis-spring:scan
-            base-package="com.dev.webApp.mapper"/>
+    <mybatis:scan
+            base-package="com.dev.pleaseTakecareFiveDucks.config.db.mapper"/>
 
     <!-- 5. component를 scan할(조사하도록 할) base-package를 등록합니다 -->
     <context:component-scan
@@ -63,4 +63,13 @@
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" depends-on="flyway">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
+    <!-- 7. Transaction 설정 -->
+    <!-- 7-1. transactionManager를 등록해줍니다 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 7-2. annotation-driven을 추가하면, class와 method에 @Transactional annotation을 사용할 수 있습니다 -->
+    <!-- 즉, @Transactional 애노테이션을 이용한 트랜잭션을 관리합니다 -->
+    <tx:annotation-driven />
 </beans>
