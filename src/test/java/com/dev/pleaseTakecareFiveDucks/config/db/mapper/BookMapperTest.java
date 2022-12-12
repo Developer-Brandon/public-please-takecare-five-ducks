@@ -1,7 +1,10 @@
 package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
 import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.InsertBookInfoRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.SelectBookInfoRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
 import org.hamcrest.Matchers;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +28,25 @@ public class BookMapperTest {
     @Autowired
     private BookMapper bookMapper;
 
+    private static Integer natureNo = 0;
+
+    private static InsertBookInfoRequestDTO insertBookInfoRequestDTO;
+
+    @Before
+    public void init() {
+
+        // 공통적으로 쓰일 natureNo 입니다. 1은 한국의 natureNo 입니다.
+        natureNo = 1;
+
+        // 공통적으로 쓰일 insertBookInfoRequestDTO 입니다.
+        insertBookInfoRequestDTO = InsertBookInfoRequestDTO.builder()
+                .madeNatureNo(natureNo)
+                .title("해리포터")
+                .author("JK롤링")
+                .bookRegDt("2022-12-21")
+                .build();
+    }
+
     @Ignore
     @Test
     public void testGetBookTotalCnt() {
@@ -40,16 +62,8 @@ public class BookMapperTest {
         ////////////////////////////////////////
 
         // 2. 삽입
-        int natureNo = 1;
 
         // given
-        InsertBookInfoRequestDTO insertBookInfoRequestDTO = InsertBookInfoRequestDTO.builder()
-                .madeNatureNo(natureNo)
-                .title("해리포터")
-                .author("JK롤링")
-                .bookRegDt("2022-12-21")
-                .build();
-
         int insertedCnt = bookMapper.insertBookInfo(insertBookInfoRequestDTO);
 
         // when & then
@@ -72,11 +86,38 @@ public class BookMapperTest {
 
         // 1. 삽입
 
+        // given
+        int insertedCnt = bookMapper.insertBookInfo(insertBookInfoRequestDTO);
+
+        // when & then
+        assertThat(insertedCnt, is(1));
+        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), Matchers.greaterThanOrEqualTo(1));
+
+        ////////////////////////////////////////
+
         // 2. 확인
+
+        // given
+
+        // 공통적으로 쓰일 selectBookInfoRequestDTO 입니다.
+        SelectBookInfoRequestDTO selectBookInfoRequestDTO = SelectBookInfoRequestDTO.builder()
+                .bookNo(insertBookInfoRequestDTO.getInsertedBookNo())
+                .build();
+
+        BookVO bookVO = bookMapper.selectBookInfo(selectBookInfoRequestDTO);
+
+        logger.info("하이");
+
+        // when & then
+        assertThat(bookVO.getBookNo(), Matchers.greaterThanOrEqualTo(1));
+
+        ////////////////////////////////////////
 
         // 3. 삭제
 
-        //
+        // given
+
+        // when & then
     }
 
     @Test

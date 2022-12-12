@@ -18,6 +18,6 @@ public class BookVO {
     String bookTitle;
     String bookAuthor;
     BookUseYnEnum bookUseYnEnum;
-    Date bookRegDt;
-    Date regDt;
+    String bookRegDt;
+    String regDt;
 }
