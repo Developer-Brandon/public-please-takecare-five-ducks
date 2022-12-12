@@ -19,6 +19,6 @@ public class MovieVO {
     String directorName;
     Integer pagePerMovieCnt;
     MovieUseYnEnum movieUseYnEnum;
-    Date movieRegDt;
-    Date regDt;
+    String movieRegDt;
+    String regDt;
 }

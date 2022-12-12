@@ -17,6 +17,6 @@ public class Mp3VO {
     String mp3Title;
     String singer;
     Mp3UseYnEnum mp3UseYnEnum;
-    Date songRegDt;
-    Date regDt;
+    String songRegDt;
+    String regDt;
 }

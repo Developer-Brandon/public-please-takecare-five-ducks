@@ -19,6 +19,6 @@ public class DramaVO {
     String dramaAuthor;
     Integer pagePerDramaCnt;
     DramaUseYnEnum dramaUseYnEnum;
-    Date dramaRegDt;
-    Date regDt;
+    String dramaRegDt;
+    String regDt;
 }

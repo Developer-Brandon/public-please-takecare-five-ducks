@@ -17,5 +17,5 @@ public class ContentsVO {
     String englishName;
     String koreanName;
     ContentsMadeNatureUseYnEnum contentsMadeNatureUseYnEnum;
-    Date regDt;
+    String regDt;
 }

@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Builder
 @Data
 @NoArgsConstructor
@@ -18,6 +16,6 @@ public class ComicBookVO {
     String comicBookTitle;
     String comicBookAuthor;
     ComicBookUseYnEnum comicBookUseYnEnum;
-    Date comicBookRegDt;
-    Date regDt;
+    String comicBookRegDt;
+    String regDt;
 }
