@@ -1,6 +1,7 @@
 package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
 import com.dev.pleaseTakecareFiveDucks.mp3.domain.dto.request.InsertMp3InfoRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.mp3.domain.dto.request.SelectMp3InfoRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.mp3.domain.dto.request.UpdateMp3InfoRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.mp3.domain.dto.request.UpdateMp3StateRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.mp3.domain.vo.Mp3VO;
@@ -15,6 +16,8 @@ public interface Mp3Mapper {
     List<Mp3VO> selectAllMp3List();
 
     List<Mp3VO> selectMp3List();
+
+    Mp3VO selectMp3Info(SelectMp3InfoRequestDTO selectMp3InfoRequestDTO);
 
     Integer insertMp3Info(InsertMp3InfoRequestDTO insertMp3InfoRequestDTO);
 
