@@ -19,6 +19,6 @@ public class AnimeVO {
     String animeAuthor;
     Integer pagePerAnimeCnt;
     AnimeUseYnEnum animeUseYnEnum;
-    Date animeRegDt;
-    Date regDt;
+    String animeRegDt;
+    String regDt;
 }

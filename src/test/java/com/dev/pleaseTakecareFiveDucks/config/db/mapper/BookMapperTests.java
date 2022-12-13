@@ -7,10 +7,7 @@ import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.UpdateBookStateRe
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
 import com.dev.pleaseTakecareFiveDucks.book.util.BookUseYnEnum;
 import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
@@ -29,9 +26,9 @@ import static org.hamcrest.MatcherAssert.*;
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-public class BookMapperTest {
+public class BookMapperTests {
 
-    private static final Logger logger = LoggerFactory.getLogger(BookMapperTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(BookMapperTests.class);
 
     @Autowired
     private BookMapper bookMapper;
@@ -53,6 +50,11 @@ public class BookMapperTest {
                 .author("JK롤링")
                 .bookRegDt("2022-12-21")
                 .build();
+    }
+
+    @After
+    public void destroy() {
+        logger.debug("테스트 케이스 완료");
     }
 
     @Ignore
@@ -95,9 +97,10 @@ public class BookMapperTest {
         // 1. 삽입
 
         // given
-        int insertedCnt = bookMapper.insertBookInfo(insertBookInfoRequestDTO);
 
         // when & then
+        int insertedCnt = bookMapper.insertBookInfo(insertBookInfoRequestDTO);
+
         assertThat(insertedCnt, is(1));
         assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), Matchers.greaterThanOrEqualTo(1));
 
@@ -109,10 +112,8 @@ public class BookMapperTest {
         SelectBookInfoRequestDTO selectBookInfoRequestDTO = SelectBookInfoRequestDTO.builder()
                 .bookNo(insertBookInfoRequestDTO.getInsertedBookNo())
                 .build();
-
-        BookVO bookVO = bookMapper.selectBookInfo(selectBookInfoRequestDTO);
-
         // when & then
+        BookVO bookVO = bookMapper.selectBookInfo(selectBookInfoRequestDTO);
         assertThat(bookVO.getBookNo(), Matchers.greaterThanOrEqualTo(insertBookInfoRequestDTO.getInsertedBookNo()));
 
         ////////////////////////////////////////
@@ -153,9 +154,11 @@ public class BookMapperTest {
         // 2. 전체 조회해서, 0번째 element를 조회합니다.
 
         // given
+
+        // when
         List<BookVO> bookVOList = bookMapper.selectAllBookList();
 
-        // when & then
+        // then
         assertThat(bookVOList.size(), is(1));
         assertThat(bookVOList.get(0).getBookTitle(), is("해리포터"));
         assertThat(bookVOList.get(0).getBookAuthor(), is("JK롤링"));
