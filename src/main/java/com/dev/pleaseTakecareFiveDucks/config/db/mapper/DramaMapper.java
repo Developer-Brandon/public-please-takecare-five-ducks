@@ -17,6 +17,8 @@ public interface DramaMapper {
 
     List<DramaVO> selectDramaList(SelectDramaInfoRequestDTO selectDramaInfoRequestDTO);
 
+    DramaVO selectDramaInfo(SelectDramaInfoRequestDTO selectDramaInfoRequestDTO);
+
     Integer insertDramaInfo(InsertDramaInfoRequestDTO insertDramaInfoRequestDTO);
 
     int updateDramaInfo(UpdateDramaInfoRequestDTO updateDramaInfoRequestDTO);

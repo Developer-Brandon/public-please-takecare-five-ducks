@@ -10,6 +10,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 public class UpdateDramaInfoRequestDTO {
+    Integer dramaNo;
     Integer madeNatureNo;
     String title;
     String author;

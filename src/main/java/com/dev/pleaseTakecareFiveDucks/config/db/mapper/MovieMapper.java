@@ -1,9 +1,6 @@
 package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
-import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.InsertMovieInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.UpdateMovieInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.UpdateMovieStateRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.SelectMoviePaginationRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.movie.domain.vo.MovieVO;
 
 import java.util.List;
@@ -17,6 +14,8 @@ public interface MovieMapper {
     List<MovieVO> selectAllMovieList();
 
     List<MovieVO> selectMovieList(SelectMoviePaginationRequestDTO selectMoviePaginationRequestDTO);
+
+    MovieVO selectMovieInfo(SelectMovieInfoRequestDTO selectMovieInfoRequestDTO);
 
     Integer insertMovieInfo(InsertMovieInfoRequestDTO insertMovieInfoRequestDTO);
 
