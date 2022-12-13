@@ -1,6 +1,7 @@
 package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
 import com.dev.pleaseTakecareFiveDucks.youtube.domain.dto.request.InsertYoutubeInfoRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.youtube.domain.dto.request.SelectYoutubeInfoRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.youtube.domain.dto.request.UpdateYoutubeInfoRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.youtube.domain.dto.request.UpdateYoutubeStateRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.youtube.domain.vo.YoutubeVO;
@@ -16,6 +17,8 @@ public interface YoutubeMapper {
     List<YoutubeVO> selectAllYoutubeList();
 
     List<YoutubeVO> selectYoutubeList();
+
+    YoutubeVO selectYoutubeInfo(SelectYoutubeInfoRequestDTO selectYoutubeInfoRequestDTO);
 
     Integer insertYoutubeInfo(InsertYoutubeInfoRequestDTO insertYoutubeInfoDTO);
 

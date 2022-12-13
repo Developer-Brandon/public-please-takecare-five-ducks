@@ -87,7 +87,7 @@
                 keyProperty="insertedYoutubeNo"
                 order="AFTER"
                 resultType="Integer">
-            /* Youtube 정보 삽입 쿼리 */
+            /* YoutubeNo 반환 쿼리 */
             select max(r_youtube_no)
             from web_app_test2.tb_youtube
         </selectKey>
@@ -102,7 +102,7 @@
             youtuber_name = #{youtuberName},
             like_cnt = #{likeCnt},
             dislike_cnt = #{dislikeCnt},
-            view_cnt = #{viewCnt}
+            view_cnt = #{viewCnt},
             youtube_reg_dt = #{youtubeRegDt}
         where r_youtube_no = #{youtubeNo};
         ]]>
