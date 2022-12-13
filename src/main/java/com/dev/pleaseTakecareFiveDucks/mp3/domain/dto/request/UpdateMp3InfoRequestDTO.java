@@ -13,5 +13,5 @@ public class UpdateMp3InfoRequestDTO {
     Integer mp3No;
     String title;
     String singer;
-    Date songRegDt;
+    String songRegDt;
 }

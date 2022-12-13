@@ -16,5 +16,5 @@ public class UpdateYoutubeInfoRequestDTO {
     Integer likeCnt;
     Integer dislikeCnt;
     Integer viewCnt;
-    Date youtubeRegDt;
+    String youtubeRegDt;
 }

@@ -15,5 +15,5 @@ public class InsertMovieInfoRequestDTO {
     String title;
     String directorName;
     Integer pagePerMovieCnt;
-    Date movieRegDt;
+    String movieRegDt;
 }

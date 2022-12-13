@@ -20,6 +20,6 @@ public class YoutubeVO {
     Integer dislikeCnt;
     Integer viewCnt;
     YoutubeUseYnEnum youtubeUseYnEnum;
-    Date youtubeRegDt;
-    Date regDt;
+    String youtubeRegDt;
+    String regDt;
 }

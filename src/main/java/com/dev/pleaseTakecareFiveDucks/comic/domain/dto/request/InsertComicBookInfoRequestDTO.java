@@ -14,5 +14,5 @@ public class InsertComicBookInfoRequestDTO {
     Integer madeNatureNo;
     String title;
     String author;
-    Date comicBookRegDt;
+    String comicBookRegDt;
 }

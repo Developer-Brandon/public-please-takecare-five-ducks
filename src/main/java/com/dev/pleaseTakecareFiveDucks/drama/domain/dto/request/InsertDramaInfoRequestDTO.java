@@ -15,5 +15,5 @@ public class InsertDramaInfoRequestDTO {
     String title;
     String author;
     Integer pagePerDramaCnt;
-    Date dramaRegDt;
+    String dramaRegDt;
 }

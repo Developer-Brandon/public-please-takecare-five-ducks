@@ -14,5 +14,5 @@ public class UpdateDramaInfoRequestDTO {
     String title;
     String author;
     Integer pagePerDramaCnt;
-    Date dramaRegDt;
+    String dramaRegDt;
 }

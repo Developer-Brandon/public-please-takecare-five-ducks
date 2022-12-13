@@ -14,5 +14,5 @@ public class UpdateBookInfoRequestDTO {
     Integer madeNatureNo;
     String title;
     String author;
-    Date bookRegDt;
+    String bookRegDt;
 }

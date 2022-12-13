@@ -13,5 +13,5 @@ public class InsertMp3InfoRequestDTO {
     Integer insertedMp3No;
     String title;
     String singer;
-    Date songRegDt;
+    String songRegDt;
 }

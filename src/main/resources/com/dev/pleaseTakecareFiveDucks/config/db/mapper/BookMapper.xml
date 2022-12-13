@@ -96,7 +96,7 @@
             title = #{title},
             author = #{author},
             book_reg_dt = #{bookRegDt}
-        where r_book_no = #{bookNo};
+        where r_book_no = #{bookNo}
         ]]>
     </update>
 
