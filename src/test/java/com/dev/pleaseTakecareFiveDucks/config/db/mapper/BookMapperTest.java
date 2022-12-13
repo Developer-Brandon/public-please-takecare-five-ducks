@@ -3,12 +3,16 @@ package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.InsertBookInfoRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.SelectBookInfoRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.UpdateBookInfoRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.UpdateBookStateRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
+import com.dev.pleaseTakecareFiveDucks.book.util.BookUseYnEnum;
 import org.hamcrest.Matchers;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +20,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -32,9 +36,9 @@ public class BookMapperTest {
     @Autowired
     private BookMapper bookMapper;
 
-    private static Integer natureNo = 0;
+    private Integer natureNo = 0;
 
-    private static InsertBookInfoRequestDTO insertBookInfoRequestDTO;
+    private InsertBookInfoRequestDTO insertBookInfoRequestDTO;
 
     @Before
     public void init() {
@@ -53,7 +57,7 @@ public class BookMapperTest {
 
     @Ignore
     @Test
-    public void testGetBookTotalCnt() {
+    public void test1_GetBookTotalCnt() {
 
         // 1. 최초 조회 시 0개(테스트 데이터 삽입 전에는 0개로 나와야 합니다, 추후 테스트 데이터가 채워지면 0개로 나올수 없습니다.)
 
@@ -86,7 +90,7 @@ public class BookMapperTest {
     }
 
     @Test
-    public void testDeleteAll() {
+    public void test2_DeleteAll() {
 
         // 1. 삽입
 
@@ -133,7 +137,7 @@ public class BookMapperTest {
     }
 
     @Test
-    public void testSelectAllBookList() {
+    public void test3_SelectAllBookList() {
 
         // 1. 삽입
 
@@ -159,7 +163,7 @@ public class BookMapperTest {
 
     // Pagination Test입니다.
     @Test
-    public void testSelectBookList() {
+    public void test4_SelectBookList() {
 
         // 1. 삽입
 
@@ -181,7 +185,7 @@ public class BookMapperTest {
     }
 
     @Test
-    public void testSelectBookInfo() {
+    public void test5_SelectBookInfo() {
 
         // 1. 삽입
 
@@ -210,14 +214,14 @@ public class BookMapperTest {
     }
 
     @Test
-    public void testInsertBookInfo() {
+    public void test6_InsertBookInfo() {
 
         // 바로 위에서 실행한 testSelectBookInfo 메소드의 테스트와 일맥상통하므로 생략하겠습니다.
 
     }
 
     @Test
-    public void testUpdateBookInfo() {
+    public void test7_UpdateBookInfo() {
 
         // 1. 삽입
 
@@ -281,42 +285,120 @@ public class BookMapperTest {
     }
 
     @Test
-    public void testUpdateBookState() {
+    public void test8_UpdateBookState() {
 
         // 1. 삽입
 
         // given
+        int insertedCnt = bookMapper.insertBookInfo(insertBookInfoRequestDTO);
 
         // when & then
+        assertThat(insertedCnt, is(1));
+        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), Matchers.greaterThanOrEqualTo(1));
 
         //////////////////////////////////
 
         // 2. 조회
 
         // given
+        SelectBookInfoRequestDTO selectBookInfoRequestDTO = SelectBookInfoRequestDTO.builder()
+                .bookNo(insertBookInfoRequestDTO.getInsertedBookNo())
+                .build();
+
+        BookVO bookVO = bookMapper.selectBookInfo(selectBookInfoRequestDTO);
 
         // when & then
+        assertThat(bookVO.getBookNo(), Matchers.greaterThanOrEqualTo(insertBookInfoRequestDTO.getInsertedBookNo()));
+        // 추가로, 책의 상태도 체크합니다.
+        assertThat(bookVO.getBookUseYnEnum(), is(BookUseYnEnum.Y));
 
         //////////////////////////////////
 
         // 3. 업데이트
 
         // given
+        UpdateBookStateRequestDTO updateBookStateRequestDTO = UpdateBookStateRequestDTO.builder()
+                .bookNo(insertBookInfoRequestDTO.getInsertedBookNo())
+                .bookUseYnEnum(BookUseYnEnum.N)
+                .build();
 
-        // when & then
+        // when
+        int updatedCnt = bookMapper.updateBookState(updateBookStateRequestDTO);
+
+        // then
+        assertThat(updatedCnt, is(1));
 
         //////////////////////////////////
 
         // 4. 조회
 
         // given
+        // 상단에서 조회한 dto를 그대로 가져와서 조회합니다.
 
         // when & then
+        BookVO bookVO2 = bookMapper.selectBookInfo(selectBookInfoRequestDTO);
+
+        assertThat(bookVO2.getBookUseYnEnum(), is(BookUseYnEnum.N));
     }
 
     @Test
-    public void testDeleteBookInfo() {
+    public void test9_DeleteBookInfo() {
 
+        // 1. 삽입
 
+        // given
+        // 최상단에서 만들어진 dto를 그대로 가져와서 조회합니다.
+
+        // when
+        int insertedCnt = bookMapper.insertBookInfo(insertBookInfoRequestDTO);
+
+        // then
+        assertThat(insertedCnt, is(1));
+        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), Matchers.greaterThanOrEqualTo(1));
+
+        ////////////////////////////////
+
+        // 2. 조회
+
+        // given
+        // 상단에서 삽입한 dto를 그대로 가져와서 조회합니다.
+        SelectBookInfoRequestDTO selectBookInfoRequestDTO = SelectBookInfoRequestDTO.builder()
+                .bookNo(insertBookInfoRequestDTO.getInsertedBookNo())
+                .build();
+
+        // when
+        BookVO bookVO = bookMapper.selectBookInfo(selectBookInfoRequestDTO);
+
+        // then
+        assertThat(bookVO.getBookNo(), is(selectBookInfoRequestDTO.getBookNo()));
+
+        ////////////////////////////////
+
+        // 3. 삭제
+
+        // given
+        // 상단에서 삽입한 dto를 그대로 가져와서 조회합니다.
+
+        // when
+        int deletedCnt = bookMapper.deleteBookInfo(bookVO.getBookNo());
+
+        // then
+        assertThat(deletedCnt, is(1));
+
+        ////////////////////////////////
+
+        // 4. 다시 조회
+
+        // given
+        // 상단에서 삽입한 dto를 그대로 가져와서 조회합니다.
+        SelectBookInfoRequestDTO selectBookInfoRequestDTO2 = SelectBookInfoRequestDTO.builder()
+                .bookNo(insertBookInfoRequestDTO.getInsertedBookNo())
+                .build();
+
+        // when
+        BookVO bookVO2 = bookMapper.selectBookInfo(selectBookInfoRequestDTO2);
+
+        // then
+        assertThat(bookVO2, is(nullValue()));
     }
 }
