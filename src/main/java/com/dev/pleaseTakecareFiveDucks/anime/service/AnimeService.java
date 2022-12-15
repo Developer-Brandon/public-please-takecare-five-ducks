@@ -9,7 +9,7 @@ public interface AnimeService {
 
     Integer selectAnimeTotalCnt();
 
-    void removeAllAnimeInfoList();
+    void removeAllAnimeInfoList() throws Exception;
 
     List<AnimeVO> selectAnimeList(SelectAnimePaginationRequestDTO selectAnimePaginationRequestDTO);
 

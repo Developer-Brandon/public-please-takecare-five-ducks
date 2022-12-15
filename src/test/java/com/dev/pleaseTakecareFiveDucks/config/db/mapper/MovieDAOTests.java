@@ -29,12 +29,12 @@ import static org.hamcrest.core.Is.is;
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-public class MovieMapperTests {
+public class MovieDAOTests {
 
-    private static final Logger logger = LoggerFactory.getLogger(MovieMapperTests.class);
+    private static final Logger logger = LoggerFactory.getLogger(MovieDAOTests.class);
 
     @Autowired
-    private MovieMapper movieMapper;
+    private MovieDAO movieDAO;
 
     private Integer natureNo = 0;
 
@@ -69,7 +69,7 @@ public class MovieMapperTests {
         // given
 
         // when
-        int movieTotalCnt = movieMapper.getMovieTotalCnt();
+        int movieTotalCnt = movieDAO.getMovieTotalCnt();
 
         // then
         assertThat(movieTotalCnt, is(0));
@@ -80,7 +80,7 @@ public class MovieMapperTests {
         // given
 
         // when
-        int insertedCnt = movieMapper.insertMovieInfo(insertMovieInfoRequestDTO);
+        int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -92,7 +92,7 @@ public class MovieMapperTests {
         // given
 
         // when
-        int movieTotalCnt2 = movieMapper.getMovieTotalCnt();
+        int movieTotalCnt2 = movieDAO.getMovieTotalCnt();
 
         // then
         assertThat(movieTotalCnt2, greaterThanOrEqualTo(1));
@@ -106,7 +106,7 @@ public class MovieMapperTests {
         // given
 
         // when
-        int insertedCnt = movieMapper.insertMovieInfo(insertMovieInfoRequestDTO);
+        int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -122,7 +122,7 @@ public class MovieMapperTests {
                 .build();
 
         // when
-        MovieVO MovieVO = movieMapper.selectMovieInfo(selectMovieInfoRequestDTO);
+        MovieVO MovieVO = movieDAO.selectMovieInfo(selectMovieInfoRequestDTO);
 
         // then
         assertThat(MovieVO.getMovieNo(), greaterThanOrEqualTo(1));
@@ -134,7 +134,7 @@ public class MovieMapperTests {
         // given
 
         // when
-        int deleteAllMovieCnt = movieMapper.deleteAll();
+        int deleteAllMovieCnt = movieDAO.deleteAll();
 
         // then
         assertThat(deleteAllMovieCnt, greaterThanOrEqualTo(1));
@@ -146,7 +146,7 @@ public class MovieMapperTests {
         // given
 
         // when
-        List<MovieVO> movieVOList = movieMapper.selectAllMovieList();
+        List<MovieVO> movieVOList = movieDAO.selectAllMovieList();
 
         // then
         assertThat(movieVOList.size(), is(0));
@@ -160,7 +160,7 @@ public class MovieMapperTests {
         // given
 
         // when
-        int insertedCnt = movieMapper.insertMovieInfo(insertMovieInfoRequestDTO);
+        int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -173,7 +173,7 @@ public class MovieMapperTests {
         // given
 
         // when
-        List<MovieVO> movieVOList = movieMapper.selectAllMovieList();
+        List<MovieVO> movieVOList = movieDAO.selectAllMovieList();
 
         // then
         assertThat(movieVOList.size(), is(1));
@@ -206,7 +206,7 @@ public class MovieMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = movieMapper.insertMovieInfo(insertMovieInfoRequestDTO);
+        int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -222,7 +222,7 @@ public class MovieMapperTests {
                 .build();
 
         // when
-        MovieVO MovieVO = movieMapper.selectMovieInfo(selectMovieInfoRequestDTO);
+        MovieVO MovieVO = movieDAO.selectMovieInfo(selectMovieInfoRequestDTO);
 
         // then
         assertThat(MovieVO.getMovieTitle(), CoreMatchers.is("대부"));
@@ -241,7 +241,7 @@ public class MovieMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = movieMapper.insertMovieInfo(insertMovieInfoRequestDTO);
+        int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -256,7 +256,7 @@ public class MovieMapperTests {
                 .movieNo(insertMovieInfoRequestDTO.getInsertedMovieNo())
                 .build();
 
-        MovieVO MovieVO = movieMapper.selectMovieInfo(selectMovieInfoRequestDTO);
+        MovieVO MovieVO = movieDAO.selectMovieInfo(selectMovieInfoRequestDTO);
 
         // when & then
         assertThat(MovieVO.getMovieNo(), greaterThanOrEqualTo(insertMovieInfoRequestDTO.getInsertedMovieNo()));
@@ -276,7 +276,7 @@ public class MovieMapperTests {
                 .build();
 
         // when & then
-        int updatedCnt = movieMapper.updateMovieInfo(updateMovieInfoRequestDTO);
+        int updatedCnt = movieDAO.updateMovieInfo(updateMovieInfoRequestDTO);
 
         // 업데이트는 반드시 한번만 되어야 합니다.
         assertThat(updatedCnt, CoreMatchers.is(1));
@@ -292,7 +292,7 @@ public class MovieMapperTests {
 
         // when
         // 다시 조회했을때, 3번에서 업데이트한 정보들이 조회가 되어야 합니다.
-        MovieVO movieVO2 = movieMapper.selectMovieInfo(selectMovieInfoRequestDTO2);
+        MovieVO movieVO2 = movieDAO.selectMovieInfo(selectMovieInfoRequestDTO2);
 
         // then
         assertThat(movieVO2.getMovieNo(), is(updateMovieInfoRequestDTO.getMovieNo()));
@@ -306,7 +306,7 @@ public class MovieMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = movieMapper.insertMovieInfo(insertMovieInfoRequestDTO);
+        int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -321,7 +321,7 @@ public class MovieMapperTests {
                 .movieNo(insertMovieInfoRequestDTO.getInsertedMovieNo())
                 .build();
 
-        MovieVO movieVO = movieMapper.selectMovieInfo(selectMovieInfoRequestDTO);
+        MovieVO movieVO = movieDAO.selectMovieInfo(selectMovieInfoRequestDTO);
 
         // when & then
         assertThat(movieVO.getMovieNo(), greaterThanOrEqualTo(insertMovieInfoRequestDTO.getInsertedMovieNo()));
@@ -339,7 +339,7 @@ public class MovieMapperTests {
                 .build();
 
         // when
-        int updatedCnt = movieMapper.updateMovieState(updateMovieStateRequestDTO);
+        int updatedCnt = movieDAO.updateMovieState(updateMovieStateRequestDTO);
 
         // then
         assertThat(updatedCnt, CoreMatchers.is(1));
@@ -352,7 +352,7 @@ public class MovieMapperTests {
         // 상단에서 조회한 dto를 그대로 가져와서 조회합니다.
 
         // when & then
-        MovieVO animVO2 = movieMapper.selectMovieInfo(selectMovieInfoRequestDTO);
+        MovieVO animVO2 = movieDAO.selectMovieInfo(selectMovieInfoRequestDTO);
 
         assertThat(animVO2.getMovieUseYnEnum(), is(MovieUseYnEnum.N));
     }
@@ -366,7 +366,7 @@ public class MovieMapperTests {
         // 최상단에서 만들어진 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int insertedCnt = movieMapper.insertMovieInfo(insertMovieInfoRequestDTO);
+        int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -383,7 +383,7 @@ public class MovieMapperTests {
                 .build();
 
         // when
-        MovieVO movieVO = movieMapper.selectMovieInfo(selectMovieInfoRequestDTO);
+        MovieVO movieVO = movieDAO.selectMovieInfo(selectMovieInfoRequestDTO);
 
         // then
         assertThat(movieVO.getMovieNo(), is(selectMovieInfoRequestDTO.getMovieNo()));
@@ -396,7 +396,7 @@ public class MovieMapperTests {
         // 상단에서 삽입한 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int deletedCnt = movieMapper.deleteMovieInfo(movieVO.getMovieNo());
+        int deletedCnt = movieDAO.deleteMovieInfo(movieVO.getMovieNo());
 
         // then
         assertThat(deletedCnt, is(1));
@@ -412,7 +412,7 @@ public class MovieMapperTests {
                 .build();
 
         // when
-        MovieVO movieVO2 = movieMapper.selectMovieInfo(selectMovieInfoRequestDTO2);
+        MovieVO movieVO2 = movieDAO.selectMovieInfo(selectMovieInfoRequestDTO2);
 
         // then
         assertThat(movieVO2, is(nullValue()));

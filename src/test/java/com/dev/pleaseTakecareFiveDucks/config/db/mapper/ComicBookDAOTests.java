@@ -29,12 +29,12 @@ import static org.hamcrest.core.Is.is;
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-public class ComicBookMapperTests {
+public class ComicBookDAOTests {
 
-    private static final Logger logger = LoggerFactory.getLogger(ComicBookMapperTests.class);
+    private static final Logger logger = LoggerFactory.getLogger(ComicBookDAOTests.class);
 
     @Autowired
-    private ComicBookMapper comicBookMapper;
+    private ComicBookDAO comicBookDAO;
 
     private Integer natureNo = 0;
 
@@ -68,7 +68,7 @@ public class ComicBookMapperTests {
         // given
 
         // when
-        int comicBookTotalCnt = comicBookMapper.getComicBookTotalCnt();
+        int comicBookTotalCnt = comicBookDAO.getComicBookTotalCnt();
 
         // then
         assertThat(comicBookTotalCnt, is(0));
@@ -79,7 +79,7 @@ public class ComicBookMapperTests {
         // given
 
         // when
-        int insertedCnt = comicBookMapper.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -91,7 +91,7 @@ public class ComicBookMapperTests {
         // given
 
         // when
-        int comicBookTotalCnt2 = comicBookMapper.getComicBookTotalCnt();
+        int comicBookTotalCnt2 = comicBookDAO.getComicBookTotalCnt();
 
         // then
         assertThat(comicBookTotalCnt2, greaterThanOrEqualTo(1));
@@ -105,7 +105,7 @@ public class ComicBookMapperTests {
         // given
 
         // when
-        int insertedCnt = comicBookMapper.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -121,7 +121,7 @@ public class ComicBookMapperTests {
                 .build();
 
         // when
-        ComicBookVO ComicBookVO = comicBookMapper.selectComicBookInfo(selectComicBookInfoRequestDTO);
+        ComicBookVO ComicBookVO = comicBookDAO.selectComicBookInfo(selectComicBookInfoRequestDTO);
 
         // then
         assertThat(ComicBookVO.getComicBookNo(), greaterThanOrEqualTo(1));
@@ -133,7 +133,7 @@ public class ComicBookMapperTests {
         // given
 
         // when
-        int deleteAllComicBookCnt = comicBookMapper.deleteAll();
+        int deleteAllComicBookCnt = comicBookDAO.deleteAll();
 
         // then
         assertThat(deleteAllComicBookCnt, greaterThanOrEqualTo(1));
@@ -145,7 +145,7 @@ public class ComicBookMapperTests {
         // given
 
         // when
-        List<ComicBookVO> comicBookVOList = comicBookMapper.selectAllComicBookList();
+        List<ComicBookVO> comicBookVOList = comicBookDAO.selectAllComicBookList();
 
         // then
         assertThat(comicBookVOList.size(), is(0));
@@ -159,7 +159,7 @@ public class ComicBookMapperTests {
         // given
 
         // when
-        int insertedCnt = comicBookMapper.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -172,7 +172,7 @@ public class ComicBookMapperTests {
         // given
 
         // when
-        List<ComicBookVO> comicBookVOList = comicBookMapper.selectAllComicBookList();
+        List<ComicBookVO> comicBookVOList = comicBookDAO.selectAllComicBookList();
 
         // then
         assertThat(comicBookVOList.size(), is(1));
@@ -205,7 +205,7 @@ public class ComicBookMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = comicBookMapper.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -221,7 +221,7 @@ public class ComicBookMapperTests {
                 .build();
 
         // when
-        ComicBookVO ComicBookVO = comicBookMapper.selectComicBookInfo(selectComicBookInfoRequestDTO);
+        ComicBookVO ComicBookVO = comicBookDAO.selectComicBookInfo(selectComicBookInfoRequestDTO);
 
         // then
         assertThat(ComicBookVO.getComicBookTitle(), CoreMatchers.is("귀멸의칼날"));
@@ -240,7 +240,7 @@ public class ComicBookMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = comicBookMapper.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -255,7 +255,7 @@ public class ComicBookMapperTests {
                 .bookNo(insertComicBookInfoRequestDTO.getInsertedComicBookNo())
                 .build();
 
-        ComicBookVO ComicBookVO = comicBookMapper.selectComicBookInfo(selectComicBookInfoRequestDTO);
+        ComicBookVO ComicBookVO = comicBookDAO.selectComicBookInfo(selectComicBookInfoRequestDTO);
 
         // when & then
         assertThat(ComicBookVO.getComicBookNo(), greaterThanOrEqualTo(insertComicBookInfoRequestDTO.getInsertedComicBookNo()));
@@ -274,7 +274,7 @@ public class ComicBookMapperTests {
                 .build();
 
         // when & then
-        int updatedCnt = comicBookMapper.updateComicBookInfo(updateComicBookInfoRequestDTO);
+        int updatedCnt = comicBookDAO.updateComicBookInfo(updateComicBookInfoRequestDTO);
 
         // 업데이트는 반드시 한번만 되어야 합니다.
         assertThat(updatedCnt, CoreMatchers.is(1));
@@ -290,7 +290,7 @@ public class ComicBookMapperTests {
 
         // when
         // 다시 조회했을때, 3번에서 업데이트한 정보들이 조회가 되어야 합니다.
-        ComicBookVO comicBookVO2 = comicBookMapper.selectComicBookInfo(selectComicBookInfoRequestDTO2);
+        ComicBookVO comicBookVO2 = comicBookDAO.selectComicBookInfo(selectComicBookInfoRequestDTO2);
 
         // then
         assertThat(comicBookVO2.getComicBookNo(), is(updateComicBookInfoRequestDTO.getBookNo()));
@@ -304,7 +304,7 @@ public class ComicBookMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = comicBookMapper.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -319,7 +319,7 @@ public class ComicBookMapperTests {
                 .bookNo(insertComicBookInfoRequestDTO.getInsertedComicBookNo())
                 .build();
 
-        ComicBookVO comicBookVO = comicBookMapper.selectComicBookInfo(selectComicBookInfoRequestDTO);
+        ComicBookVO comicBookVO = comicBookDAO.selectComicBookInfo(selectComicBookInfoRequestDTO);
 
         // when & then
         assertThat(comicBookVO.getComicBookNo(), greaterThanOrEqualTo(insertComicBookInfoRequestDTO.getInsertedComicBookNo()));
@@ -337,7 +337,7 @@ public class ComicBookMapperTests {
                 .build();
 
         // when
-        int updatedCnt = comicBookMapper.updateComicBookState(updateComicBookStateRequestDTO);
+        int updatedCnt = comicBookDAO.updateComicBookState(updateComicBookStateRequestDTO);
 
         // then
         assertThat(updatedCnt, CoreMatchers.is(1));
@@ -350,7 +350,7 @@ public class ComicBookMapperTests {
         // 상단에서 조회한 dto를 그대로 가져와서 조회합니다.
 
         // when & then
-        ComicBookVO animVO2 = comicBookMapper.selectComicBookInfo(selectComicBookInfoRequestDTO);
+        ComicBookVO animVO2 = comicBookDAO.selectComicBookInfo(selectComicBookInfoRequestDTO);
 
         assertThat(animVO2.getComicBookUseYnEnum(), is(ComicBookUseYnEnum.N));
     }
@@ -364,7 +364,7 @@ public class ComicBookMapperTests {
         // 최상단에서 만들어진 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int insertedCnt = comicBookMapper.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -381,7 +381,7 @@ public class ComicBookMapperTests {
                 .build();
 
         // when
-        ComicBookVO comicBookVO = comicBookMapper.selectComicBookInfo(selectComicBookInfoRequestDTO);
+        ComicBookVO comicBookVO = comicBookDAO.selectComicBookInfo(selectComicBookInfoRequestDTO);
 
         // then
         assertThat(comicBookVO.getComicBookNo(), is(selectComicBookInfoRequestDTO.getBookNo()));
@@ -394,7 +394,7 @@ public class ComicBookMapperTests {
         // 상단에서 삽입한 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int deletedCnt = comicBookMapper.deleteComicBookInfo(comicBookVO.getComicBookNo());
+        int deletedCnt = comicBookDAO.deleteComicBookInfo(comicBookVO.getComicBookNo());
 
         // then
         assertThat(deletedCnt, is(1));
@@ -410,7 +410,7 @@ public class ComicBookMapperTests {
                 .build();
 
         // when
-        ComicBookVO comicBookVO2 = comicBookMapper.selectComicBookInfo(selectComicBookInfoRequestDTO2);
+        ComicBookVO comicBookVO2 = comicBookDAO.selectComicBookInfo(selectComicBookInfoRequestDTO2);
 
         // then
         assertThat(comicBookVO2, is(nullValue()));

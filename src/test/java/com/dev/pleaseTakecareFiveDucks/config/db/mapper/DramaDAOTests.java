@@ -29,12 +29,12 @@ import static org.hamcrest.core.Is.is;
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-public class DramaMapperTests {
+public class DramaDAOTests {
 
-    private static final Logger logger = LoggerFactory.getLogger(DramaMapperTests.class);
+    private static final Logger logger = LoggerFactory.getLogger(DramaDAOTests.class);
 
     @Autowired
-    private DramaMapper dramaMapper;
+    private DramaDAO dramaDAO;
 
     private Integer natureNo = 0;
 
@@ -69,7 +69,7 @@ public class DramaMapperTests {
         // given
 
         // when
-        int dramaTotalCnt = dramaMapper.getDramaTotalCnt();
+        int dramaTotalCnt = dramaDAO.getDramaTotalCnt();
 
         // then
         assertThat(dramaTotalCnt, is(0));
@@ -80,7 +80,7 @@ public class DramaMapperTests {
         // given
 
         // when
-        int insertedCnt = dramaMapper.insertDramaInfo(insertDramaInfoRequestDTO);
+        int insertedCnt = dramaDAO.insertDramaInfo(insertDramaInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -92,7 +92,7 @@ public class DramaMapperTests {
         // given
 
         // when
-        int dramaTotalCnt2 = dramaMapper.getDramaTotalCnt();
+        int dramaTotalCnt2 = dramaDAO.getDramaTotalCnt();
 
         // then
         assertThat(dramaTotalCnt2, greaterThanOrEqualTo(1));
@@ -106,7 +106,7 @@ public class DramaMapperTests {
         // given
 
         // when
-        int insertedCnt = dramaMapper.insertDramaInfo(insertDramaInfoRequestDTO);
+        int insertedCnt = dramaDAO.insertDramaInfo(insertDramaInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -122,7 +122,7 @@ public class DramaMapperTests {
                 .build();
 
         // when
-        DramaVO DramaVO = dramaMapper.selectDramaInfo(selectDramaInfoRequestDTO);
+        DramaVO DramaVO = dramaDAO.selectDramaInfo(selectDramaInfoRequestDTO);
 
         // then
         assertThat(DramaVO.getDramaNo(), greaterThanOrEqualTo(1));
@@ -134,7 +134,7 @@ public class DramaMapperTests {
         // given
 
         // when
-        int deleteAllDramaCnt = dramaMapper.deleteAll();
+        int deleteAllDramaCnt = dramaDAO.deleteAll();
 
         // then
         assertThat(deleteAllDramaCnt, greaterThanOrEqualTo(1));
@@ -146,7 +146,7 @@ public class DramaMapperTests {
         // given
 
         // when
-        List<DramaVO> dramaVOList = dramaMapper.selectAllDramaList();
+        List<DramaVO> dramaVOList = dramaDAO.selectAllDramaList();
 
         // then
         assertThat(dramaVOList.size(), is(0));
@@ -160,7 +160,7 @@ public class DramaMapperTests {
         // given
 
         // when
-        int insertedCnt = dramaMapper.insertDramaInfo(insertDramaInfoRequestDTO);
+        int insertedCnt = dramaDAO.insertDramaInfo(insertDramaInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -173,7 +173,7 @@ public class DramaMapperTests {
         // given
 
         // when
-        List<DramaVO> dramaVOList = dramaMapper.selectAllDramaList();
+        List<DramaVO> dramaVOList = dramaDAO.selectAllDramaList();
 
         // then
         assertThat(dramaVOList.size(), is(1));
@@ -206,7 +206,7 @@ public class DramaMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = dramaMapper.insertDramaInfo(insertDramaInfoRequestDTO);
+        int insertedCnt = dramaDAO.insertDramaInfo(insertDramaInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -222,7 +222,7 @@ public class DramaMapperTests {
                 .build();
 
         // when
-        DramaVO DramaVO = dramaMapper.selectDramaInfo(selectDramaInfoRequestDTO);
+        DramaVO DramaVO = dramaDAO.selectDramaInfo(selectDramaInfoRequestDTO);
 
         // then
         assertThat(DramaVO.getDramaTitle(), CoreMatchers.is("올인"));
@@ -241,7 +241,7 @@ public class DramaMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = dramaMapper.insertDramaInfo(insertDramaInfoRequestDTO);
+        int insertedCnt = dramaDAO.insertDramaInfo(insertDramaInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -256,7 +256,7 @@ public class DramaMapperTests {
                 .dramaNo(insertDramaInfoRequestDTO.getInsertedDramaNo())
                 .build();
 
-        DramaVO DramaVO = dramaMapper.selectDramaInfo(selectDramaInfoRequestDTO);
+        DramaVO DramaVO = dramaDAO.selectDramaInfo(selectDramaInfoRequestDTO);
 
         // when & then
         assertThat(DramaVO.getDramaNo(), greaterThanOrEqualTo(insertDramaInfoRequestDTO.getInsertedDramaNo()));
@@ -276,7 +276,7 @@ public class DramaMapperTests {
                 .build();
 
         // when & then
-        int updatedCnt = dramaMapper.updateDramaInfo(updateDramaInfoRequestDTO);
+        int updatedCnt = dramaDAO.updateDramaInfo(updateDramaInfoRequestDTO);
 
         // 업데이트는 반드시 한번만 되어야 합니다.
         assertThat(updatedCnt, CoreMatchers.is(1));
@@ -292,7 +292,7 @@ public class DramaMapperTests {
 
         // when
         // 다시 조회했을때, 3번에서 업데이트한 정보들이 조회가 되어야 합니다.
-        DramaVO dramaVO2 = dramaMapper.selectDramaInfo(selectDramaInfoRequestDTO2);
+        DramaVO dramaVO2 = dramaDAO.selectDramaInfo(selectDramaInfoRequestDTO2);
 
         // then
         assertThat(dramaVO2.getDramaNo(), is(updateDramaInfoRequestDTO.getDramaNo()));
@@ -306,7 +306,7 @@ public class DramaMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = dramaMapper.insertDramaInfo(insertDramaInfoRequestDTO);
+        int insertedCnt = dramaDAO.insertDramaInfo(insertDramaInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -321,7 +321,7 @@ public class DramaMapperTests {
                 .dramaNo(insertDramaInfoRequestDTO.getInsertedDramaNo())
                 .build();
 
-        DramaVO dramaVO = dramaMapper.selectDramaInfo(selectDramaInfoRequestDTO);
+        DramaVO dramaVO = dramaDAO.selectDramaInfo(selectDramaInfoRequestDTO);
 
         // when & then
         assertThat(dramaVO.getDramaNo(), greaterThanOrEqualTo(insertDramaInfoRequestDTO.getInsertedDramaNo()));
@@ -339,7 +339,7 @@ public class DramaMapperTests {
                 .build();
 
         // when
-        int updatedCnt = dramaMapper.updateDramaState(updateDramaStateRequestDTO);
+        int updatedCnt = dramaDAO.updateDramaState(updateDramaStateRequestDTO);
 
         // then
         assertThat(updatedCnt, CoreMatchers.is(1));
@@ -352,7 +352,7 @@ public class DramaMapperTests {
         // 상단에서 조회한 dto를 그대로 가져와서 조회합니다.
 
         // when & then
-        DramaVO animVO2 = dramaMapper.selectDramaInfo(selectDramaInfoRequestDTO);
+        DramaVO animVO2 = dramaDAO.selectDramaInfo(selectDramaInfoRequestDTO);
 
         assertThat(animVO2.getDramaUseYnEnum(), is(DramaUseYnEnum.N));
     }
@@ -366,7 +366,7 @@ public class DramaMapperTests {
         // 최상단에서 만들어진 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int insertedCnt = dramaMapper.insertDramaInfo(insertDramaInfoRequestDTO);
+        int insertedCnt = dramaDAO.insertDramaInfo(insertDramaInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -383,7 +383,7 @@ public class DramaMapperTests {
                 .build();
 
         // when
-        DramaVO dramaVO = dramaMapper.selectDramaInfo(selectDramaInfoRequestDTO);
+        DramaVO dramaVO = dramaDAO.selectDramaInfo(selectDramaInfoRequestDTO);
 
         // then
         assertThat(dramaVO.getDramaNo(), is(selectDramaInfoRequestDTO.getDramaNo()));
@@ -396,7 +396,7 @@ public class DramaMapperTests {
         // 상단에서 삽입한 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int deletedCnt = dramaMapper.deleteDramaInfo(dramaVO.getDramaNo());
+        int deletedCnt = dramaDAO.deleteDramaInfo(dramaVO.getDramaNo());
 
         // then
         assertThat(deletedCnt, is(1));
@@ -412,7 +412,7 @@ public class DramaMapperTests {
                 .build();
 
         // when
-        DramaVO dramaVO2 = dramaMapper.selectDramaInfo(selectDramaInfoRequestDTO2);
+        DramaVO dramaVO2 = dramaDAO.selectDramaInfo(selectDramaInfoRequestDTO2);
 
         // then
         assertThat(dramaVO2, is(nullValue()));

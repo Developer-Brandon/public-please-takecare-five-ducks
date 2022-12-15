@@ -5,7 +5,7 @@ import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookVO;
 
 import java.util.List;
 
-public interface ComicBookMapper {
+public interface ComicBookDAO {
 
     int getComicBookTotalCnt();
 

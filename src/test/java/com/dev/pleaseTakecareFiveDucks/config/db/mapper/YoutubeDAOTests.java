@@ -29,12 +29,12 @@ import static org.hamcrest.core.Is.is;
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-public class YoutubeMapperTests {
+public class YoutubeDAOTests {
 
-    private static final Logger logger = LoggerFactory.getLogger(YoutubeMapperTests.class);
+    private static final Logger logger = LoggerFactory.getLogger(YoutubeDAOTests.class);
 
     @Autowired
-    private YoutubeMapper youtubeMapper;
+    private YoutubeDAO youtubeDAO;
 
     private Integer natureNo = 0;
 
@@ -70,7 +70,7 @@ public class YoutubeMapperTests {
         // given
 
         // when
-        int movieTotalCnt = youtubeMapper.getYoutubeTotalCnt();
+        int movieTotalCnt = youtubeDAO.getYoutubeTotalCnt();
 
         // then
         assertThat(movieTotalCnt, is(0));
@@ -81,7 +81,7 @@ public class YoutubeMapperTests {
         // given
 
         // when
-        int insertedCnt = youtubeMapper.insertYoutubeInfo(insertYoutubeInfoRequestDTO);
+        int insertedCnt = youtubeDAO.insertYoutubeInfo(insertYoutubeInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -93,7 +93,7 @@ public class YoutubeMapperTests {
         // given
 
         // when
-        int movieTotalCnt2 = youtubeMapper.getYoutubeTotalCnt();
+        int movieTotalCnt2 = youtubeDAO.getYoutubeTotalCnt();
 
         // then
         assertThat(movieTotalCnt2, greaterThanOrEqualTo(1));
@@ -107,7 +107,7 @@ public class YoutubeMapperTests {
         // given
 
         // when
-        int insertedCnt = youtubeMapper.insertYoutubeInfo(insertYoutubeInfoRequestDTO);
+        int insertedCnt = youtubeDAO.insertYoutubeInfo(insertYoutubeInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -123,7 +123,7 @@ public class YoutubeMapperTests {
                 .build();
 
         // when
-        YoutubeVO YoutubeVO = youtubeMapper.selectYoutubeInfo(selectYoutubeInfoRequestDTO);
+        YoutubeVO YoutubeVO = youtubeDAO.selectYoutubeInfo(selectYoutubeInfoRequestDTO);
 
         // then
         assertThat(YoutubeVO.getYoutubeNo(), greaterThanOrEqualTo(1));
@@ -135,7 +135,7 @@ public class YoutubeMapperTests {
         // given
 
         // when
-        int deleteAllYoutubeCnt = youtubeMapper.deleteAll();
+        int deleteAllYoutubeCnt = youtubeDAO.deleteAll();
 
         // then
         assertThat(deleteAllYoutubeCnt, greaterThanOrEqualTo(1));
@@ -147,7 +147,7 @@ public class YoutubeMapperTests {
         // given
 
         // when
-        List<YoutubeVO> movieVOList = youtubeMapper.selectAllYoutubeList();
+        List<YoutubeVO> movieVOList = youtubeDAO.selectAllYoutubeList();
 
         // then
         assertThat(movieVOList.size(), is(0));
@@ -161,7 +161,7 @@ public class YoutubeMapperTests {
         // given
 
         // when
-        int insertedCnt = youtubeMapper.insertYoutubeInfo(insertYoutubeInfoRequestDTO);
+        int insertedCnt = youtubeDAO.insertYoutubeInfo(insertYoutubeInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -174,7 +174,7 @@ public class YoutubeMapperTests {
         // given
 
         // when
-        List<YoutubeVO> movieVOList = youtubeMapper.selectAllYoutubeList();
+        List<YoutubeVO> movieVOList = youtubeDAO.selectAllYoutubeList();
 
         // then
         assertThat(movieVOList.size(), is(1));
@@ -207,7 +207,7 @@ public class YoutubeMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = youtubeMapper.insertYoutubeInfo(insertYoutubeInfoRequestDTO);
+        int insertedCnt = youtubeDAO.insertYoutubeInfo(insertYoutubeInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -223,7 +223,7 @@ public class YoutubeMapperTests {
                 .build();
 
         // when
-        YoutubeVO YoutubeVO = youtubeMapper.selectYoutubeInfo(selectYoutubeInfoRequestDTO);
+        YoutubeVO YoutubeVO = youtubeDAO.selectYoutubeInfo(selectYoutubeInfoRequestDTO);
 
         // then
         assertThat(YoutubeVO.getYoutubeTitle(), CoreMatchers.is("돈잘버는법"));
@@ -242,7 +242,7 @@ public class YoutubeMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = youtubeMapper.insertYoutubeInfo(insertYoutubeInfoRequestDTO);
+        int insertedCnt = youtubeDAO.insertYoutubeInfo(insertYoutubeInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -257,7 +257,7 @@ public class YoutubeMapperTests {
                 .youtubeNo(insertYoutubeInfoRequestDTO.getInsertedYoutubeNo())
                 .build();
 
-        YoutubeVO YoutubeVO = youtubeMapper.selectYoutubeInfo(selectYoutubeInfoRequestDTO);
+        YoutubeVO YoutubeVO = youtubeDAO.selectYoutubeInfo(selectYoutubeInfoRequestDTO);
 
         // when & then
         assertThat(YoutubeVO.getYoutubeNo(), greaterThanOrEqualTo(insertYoutubeInfoRequestDTO.getInsertedYoutubeNo()));
@@ -278,7 +278,7 @@ public class YoutubeMapperTests {
                 .build();
 
         // when & then
-        int updatedCnt = youtubeMapper.updateYoutubeInfo(updateYoutubeInfoRequestDTO);
+        int updatedCnt = youtubeDAO.updateYoutubeInfo(updateYoutubeInfoRequestDTO);
 
         // 업데이트는 반드시 한번만 되어야 합니다.
         assertThat(updatedCnt, CoreMatchers.is(1));
@@ -294,7 +294,7 @@ public class YoutubeMapperTests {
 
         // when
         // 다시 조회했을때, 3번에서 업데이트한 정보들이 조회가 되어야 합니다.
-        YoutubeVO movieVO2 = youtubeMapper.selectYoutubeInfo(selectYoutubeInfoRequestDTO2);
+        YoutubeVO movieVO2 = youtubeDAO.selectYoutubeInfo(selectYoutubeInfoRequestDTO2);
 
         // then
         assertThat(movieVO2.getYoutubeNo(), is(updateYoutubeInfoRequestDTO.getYoutubeNo()));
@@ -308,7 +308,7 @@ public class YoutubeMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = youtubeMapper.insertYoutubeInfo(insertYoutubeInfoRequestDTO);
+        int insertedCnt = youtubeDAO.insertYoutubeInfo(insertYoutubeInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -323,7 +323,7 @@ public class YoutubeMapperTests {
                 .youtubeNo(insertYoutubeInfoRequestDTO.getInsertedYoutubeNo())
                 .build();
 
-        YoutubeVO movieVO = youtubeMapper.selectYoutubeInfo(selectYoutubeInfoRequestDTO);
+        YoutubeVO movieVO = youtubeDAO.selectYoutubeInfo(selectYoutubeInfoRequestDTO);
 
         // when & then
         assertThat(movieVO.getYoutubeNo(), greaterThanOrEqualTo(insertYoutubeInfoRequestDTO.getInsertedYoutubeNo()));
@@ -341,7 +341,7 @@ public class YoutubeMapperTests {
                 .build();
 
         // when
-        int updatedCnt = youtubeMapper.updateYoutubeState(updateYoutubeStateRequestDTO);
+        int updatedCnt = youtubeDAO.updateYoutubeState(updateYoutubeStateRequestDTO);
 
         // then
         assertThat(updatedCnt, CoreMatchers.is(1));
@@ -354,7 +354,7 @@ public class YoutubeMapperTests {
         // 상단에서 조회한 dto를 그대로 가져와서 조회합니다.
 
         // when & then
-        YoutubeVO animVO2 = youtubeMapper.selectYoutubeInfo(selectYoutubeInfoRequestDTO);
+        YoutubeVO animVO2 = youtubeDAO.selectYoutubeInfo(selectYoutubeInfoRequestDTO);
 
         assertThat(animVO2.getYoutubeUseYnEnum(), is(YoutubeUseYnEnum.N));
     }
@@ -368,7 +368,7 @@ public class YoutubeMapperTests {
         // 최상단에서 만들어진 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int insertedCnt = youtubeMapper.insertYoutubeInfo(insertYoutubeInfoRequestDTO);
+        int insertedCnt = youtubeDAO.insertYoutubeInfo(insertYoutubeInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -385,7 +385,7 @@ public class YoutubeMapperTests {
                 .build();
 
         // when
-        YoutubeVO movieVO = youtubeMapper.selectYoutubeInfo(selectYoutubeInfoRequestDTO);
+        YoutubeVO movieVO = youtubeDAO.selectYoutubeInfo(selectYoutubeInfoRequestDTO);
 
         // then
         assertThat(movieVO.getYoutubeNo(), is(selectYoutubeInfoRequestDTO.getYoutubeNo()));
@@ -398,7 +398,7 @@ public class YoutubeMapperTests {
         // 상단에서 삽입한 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int deletedCnt = youtubeMapper.deleteYoutubeInfo(movieVO.getYoutubeNo());
+        int deletedCnt = youtubeDAO.deleteYoutubeInfo(movieVO.getYoutubeNo());
 
         // then
         assertThat(deletedCnt, is(1));
@@ -414,7 +414,7 @@ public class YoutubeMapperTests {
                 .build();
 
         // when
-        YoutubeVO movieVO2 = youtubeMapper.selectYoutubeInfo(selectYoutubeInfoRequestDTO2);
+        YoutubeVO movieVO2 = youtubeDAO.selectYoutubeInfo(selectYoutubeInfoRequestDTO2);
 
         // then
         assertThat(movieVO2, is(nullValue()));

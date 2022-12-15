@@ -5,7 +5,7 @@ import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
 import java.util.List;
 
-public interface BookMapper {
+public interface BookDAO {
 
     int getBookTotalCnt();
 

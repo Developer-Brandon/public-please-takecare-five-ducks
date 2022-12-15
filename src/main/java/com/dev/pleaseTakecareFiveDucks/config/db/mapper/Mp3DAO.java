@@ -7,7 +7,7 @@ import com.dev.pleaseTakecareFiveDucks.mp3.domain.dto.request.UpdateMp3StateRequ
 import com.dev.pleaseTakecareFiveDucks.mp3.domain.vo.Mp3VO;
 import java.util.List;
 
-public interface Mp3Mapper {
+public interface Mp3DAO {
 
     int getMp3TotalCnt();
 

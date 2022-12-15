@@ -6,14 +6,7 @@ import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.UpdateAnimeInfoR
 import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.UpdateAnimeStateRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
 import com.dev.pleaseTakecareFiveDucks.anime.util.AnimeUseYnEnum;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.InsertBookInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.SelectBookInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.UpdateBookInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.UpdateBookStateRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
-import com.dev.pleaseTakecareFiveDucks.book.util.BookUseYnEnum;
 import org.hamcrest.CoreMatchers;
-import org.hamcrest.Matchers;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -36,12 +29,12 @@ import static org.hamcrest.core.Is.is;
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-public class AnimeMapperTests{
+public class AnimeDAOTests {
 
-    private static final Logger logger = LoggerFactory.getLogger(AnimeMapperTests.class);
+    private static final Logger logger = LoggerFactory.getLogger(AnimeDAOTests.class);
 
     @Autowired
-    private AnimeMapper animeMapper;
+    private AnimeDAO animeDAO;
 
     private Integer natureNo = 0;
 
@@ -76,7 +69,7 @@ public class AnimeMapperTests{
         // given
 
         // when
-        int animeTotalCnt = animeMapper.getAnimeTotalCnt();
+        int animeTotalCnt = animeDAO.getAnimeTotalCnt();
 
         // then
         assertThat(animeTotalCnt, is(0));
@@ -87,7 +80,7 @@ public class AnimeMapperTests{
         // given
 
         // when
-        int insertedCnt = animeMapper.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -99,7 +92,7 @@ public class AnimeMapperTests{
         // given
 
         // when
-        int animeTotalCnt2 = animeMapper.getAnimeTotalCnt();
+        int animeTotalCnt2 = animeDAO.getAnimeTotalCnt();
 
         // then
         assertThat(animeTotalCnt2, greaterThanOrEqualTo(1));
@@ -113,7 +106,7 @@ public class AnimeMapperTests{
         // given
 
         // when
-        int insertedCnt = animeMapper.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -129,7 +122,7 @@ public class AnimeMapperTests{
                 .build();
 
         // when
-        AnimeVO animeVO = animeMapper.selectAnimeInfo(selectAnimeInfoRequestDTO);
+        AnimeVO animeVO = animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO);
 
         // then
         assertThat(animeVO.getAnimeNo(), greaterThanOrEqualTo(1));
@@ -141,7 +134,7 @@ public class AnimeMapperTests{
         // given
 
         // when
-        int deleteAllAnimeCnt = animeMapper.deleteAll();
+        int deleteAllAnimeCnt = animeDAO.deleteAll();
 
         // then
         assertThat(deleteAllAnimeCnt, greaterThanOrEqualTo(1));
@@ -153,7 +146,7 @@ public class AnimeMapperTests{
         // given
 
         // when
-        List<AnimeVO> animeVOList = animeMapper.selectAllAnimeList();
+        List<AnimeVO> animeVOList = animeDAO.selectAllAnimeList();
 
         // then
         assertThat(animeVOList.size(), is(0));
@@ -167,7 +160,7 @@ public class AnimeMapperTests{
         // given
 
         // when
-        int insertedCnt = animeMapper.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -180,7 +173,7 @@ public class AnimeMapperTests{
         // given
 
         // when
-        List<AnimeVO> animeVOList = animeMapper.selectAllAnimeList();
+        List<AnimeVO> animeVOList = animeDAO.selectAllAnimeList();
 
         // then
         assertThat(animeVOList.size(), is(1));
@@ -213,7 +206,7 @@ public class AnimeMapperTests{
         // 1. 삽입
 
         // given
-        int insertedCnt = animeMapper.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -229,7 +222,7 @@ public class AnimeMapperTests{
                 .build();
 
         // when
-        AnimeVO animeVO = animeMapper.selectAnimeInfo(selectAnimeInfoRequestDTO);
+        AnimeVO animeVO = animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO);
 
         // then
         assertThat(animeVO.getAnimeTitle(), CoreMatchers.is("귀멸의칼날"));
@@ -248,7 +241,7 @@ public class AnimeMapperTests{
         // 1. 삽입
 
         // given
-        int insertedCnt = animeMapper.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -263,7 +256,7 @@ public class AnimeMapperTests{
                 .animeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo())
                 .build();
 
-        AnimeVO animeVO = animeMapper.selectAnimeInfo(selectAnimeInfoRequestDTO);
+        AnimeVO animeVO = animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO);
 
         // when & then
         assertThat(animeVO.getAnimeNo(), greaterThanOrEqualTo(insertAnimeInfoRequestDTO.getInsertedAnimeNo()));
@@ -283,7 +276,7 @@ public class AnimeMapperTests{
                 .build();
 
         // when & then
-        int updatedCnt = animeMapper.updateAnimeInfo(updateAnimeInfoRequestDTO);
+        int updatedCnt = animeDAO.updateAnimeInfo(updateAnimeInfoRequestDTO);
 
         // 업데이트는 반드시 한번만 되어야 합니다.
         assertThat(updatedCnt, CoreMatchers.is(1));
@@ -299,7 +292,7 @@ public class AnimeMapperTests{
 
         // when
         // 다시 조회했을때, 3번에서 업데이트한 정보들이 조회가 되어야 합니다.
-        AnimeVO animeVO2 = animeMapper.selectAnimeInfo(selectAnimeInfoRequestDTO2);
+        AnimeVO animeVO2 = animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO2);
 
         // then
         assertThat(animeVO2.getAnimeNo(), is(updateAnimeInfoRequestDTO.getAnimeNo()));
@@ -313,7 +306,7 @@ public class AnimeMapperTests{
         // 1. 삽입
 
         // given
-        int insertedCnt = animeMapper.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -328,7 +321,7 @@ public class AnimeMapperTests{
                 .animeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo())
                 .build();
 
-        AnimeVO animeVO = animeMapper.selectAnimeInfo(selectAnimeInfoRequestDTO);
+        AnimeVO animeVO = animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO);
 
         // when & then
         assertThat(animeVO.getAnimeNo(), greaterThanOrEqualTo(insertAnimeInfoRequestDTO.getInsertedAnimeNo()));
@@ -346,7 +339,7 @@ public class AnimeMapperTests{
                 .build();
 
         // when
-        int updatedCnt = animeMapper.updateAnimeState(updateAnimeStateRequestDTO);
+        int updatedCnt = animeDAO.updateAnimeState(updateAnimeStateRequestDTO);
 
         // then
         assertThat(updatedCnt, CoreMatchers.is(1));
@@ -359,7 +352,7 @@ public class AnimeMapperTests{
         // 상단에서 조회한 dto를 그대로 가져와서 조회합니다.
 
         // when & then
-        AnimeVO animVO2 = animeMapper.selectAnimeInfo(selectAnimeInfoRequestDTO);
+        AnimeVO animVO2 = animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO);
 
         assertThat(animVO2.getAnimeUseYnEnum(), CoreMatchers.is(AnimeUseYnEnum.N));
     }
@@ -373,7 +366,7 @@ public class AnimeMapperTests{
         // 최상단에서 만들어진 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int insertedCnt = animeMapper.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -390,7 +383,7 @@ public class AnimeMapperTests{
                 .build();
 
         // when
-        AnimeVO animeVO = animeMapper.selectAnimeInfo(selectAnimeInfoRequestDTO);
+        AnimeVO animeVO = animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO);
 
         // then
         assertThat(animeVO.getAnimeNo(), is(selectAnimeInfoRequestDTO.getAnimeNo()));
@@ -403,7 +396,7 @@ public class AnimeMapperTests{
         // 상단에서 삽입한 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int deletedCnt = animeMapper.deleteAnimeInfo(animeVO.getAnimeNo());
+        int deletedCnt = animeDAO.deleteAnimeInfo(animeVO.getAnimeNo());
 
         // then
         assertThat(deletedCnt, is(1));
@@ -419,7 +412,7 @@ public class AnimeMapperTests{
                 .build();
 
         // when
-        AnimeVO animeVO2 = animeMapper.selectAnimeInfo(selectAnimeInfoRequestDTO2);
+        AnimeVO animeVO2 = animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO2);
 
         // then
         assertThat(animeVO2, is(nullValue()));

@@ -29,12 +29,12 @@ import static org.hamcrest.core.Is.is;
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-public class Mp3MapperTests {
+public class Mp3DAOTests {
 
-    private static final Logger logger = LoggerFactory.getLogger(Mp3MapperTests.class);
+    private static final Logger logger = LoggerFactory.getLogger(Mp3DAOTests.class);
 
     @Autowired
-    private Mp3Mapper mp3Mapper;
+    private Mp3DAO mp3DAO;
 
     private Integer natureNo = 0;
 
@@ -67,7 +67,7 @@ public class Mp3MapperTests {
         // given
 
         // when
-        int movieTotalCnt = mp3Mapper.getMp3TotalCnt();
+        int movieTotalCnt = mp3DAO.getMp3TotalCnt();
 
         // then
         assertThat(movieTotalCnt, is(0));
@@ -78,7 +78,7 @@ public class Mp3MapperTests {
         // given
 
         // when
-        int insertedCnt = mp3Mapper.insertMp3Info(insertMp3InfoRequestDTO);
+        int insertedCnt = mp3DAO.insertMp3Info(insertMp3InfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -90,7 +90,7 @@ public class Mp3MapperTests {
         // given
 
         // when
-        int movieTotalCnt2 = mp3Mapper.getMp3TotalCnt();
+        int movieTotalCnt2 = mp3DAO.getMp3TotalCnt();
 
         // then
         assertThat(movieTotalCnt2, greaterThanOrEqualTo(1));
@@ -104,7 +104,7 @@ public class Mp3MapperTests {
         // given
 
         // when
-        int insertedCnt = mp3Mapper.insertMp3Info(insertMp3InfoRequestDTO);
+        int insertedCnt = mp3DAO.insertMp3Info(insertMp3InfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -120,7 +120,7 @@ public class Mp3MapperTests {
                 .build();
 
         // when
-        Mp3VO Mp3VO = mp3Mapper.selectMp3Info(selectMp3InfoRequestDTO);
+        Mp3VO Mp3VO = mp3DAO.selectMp3Info(selectMp3InfoRequestDTO);
 
         // then
         assertThat(Mp3VO.getMp3No(), greaterThanOrEqualTo(1));
@@ -132,7 +132,7 @@ public class Mp3MapperTests {
         // given
 
         // when
-        int deleteAllMp3Cnt = mp3Mapper.deleteAll();
+        int deleteAllMp3Cnt = mp3DAO.deleteAll();
 
         // then
         assertThat(deleteAllMp3Cnt, greaterThanOrEqualTo(1));
@@ -144,7 +144,7 @@ public class Mp3MapperTests {
         // given
 
         // when
-        List<Mp3VO> movieVOList = mp3Mapper.selectAllMp3List();
+        List<Mp3VO> movieVOList = mp3DAO.selectAllMp3List();
 
         // then
         assertThat(movieVOList.size(), is(0));
@@ -158,7 +158,7 @@ public class Mp3MapperTests {
         // given
 
         // when
-        int insertedCnt = mp3Mapper.insertMp3Info(insertMp3InfoRequestDTO);
+        int insertedCnt = mp3DAO.insertMp3Info(insertMp3InfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -171,7 +171,7 @@ public class Mp3MapperTests {
         // given
 
         // when
-        List<Mp3VO> movieVOList = mp3Mapper.selectAllMp3List();
+        List<Mp3VO> movieVOList = mp3DAO.selectAllMp3List();
 
         // then
         assertThat(movieVOList.size(), is(1));
@@ -204,7 +204,7 @@ public class Mp3MapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = mp3Mapper.insertMp3Info(insertMp3InfoRequestDTO);
+        int insertedCnt = mp3DAO.insertMp3Info(insertMp3InfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -220,7 +220,7 @@ public class Mp3MapperTests {
                 .build();
 
         // when
-        Mp3VO Mp3VO = mp3Mapper.selectMp3Info(selectMp3InfoRequestDTO);
+        Mp3VO Mp3VO = mp3DAO.selectMp3Info(selectMp3InfoRequestDTO);
 
         // then
         assertThat(Mp3VO.getMp3Title(), CoreMatchers.is("대부"));
@@ -239,7 +239,7 @@ public class Mp3MapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = mp3Mapper.insertMp3Info(insertMp3InfoRequestDTO);
+        int insertedCnt = mp3DAO.insertMp3Info(insertMp3InfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -254,7 +254,7 @@ public class Mp3MapperTests {
                 .mp3No(insertMp3InfoRequestDTO.getInsertedMp3No())
                 .build();
 
-        Mp3VO Mp3VO = mp3Mapper.selectMp3Info(selectMp3InfoRequestDTO);
+        Mp3VO Mp3VO = mp3DAO.selectMp3Info(selectMp3InfoRequestDTO);
 
         // when & then
         assertThat(Mp3VO.getMp3No(), greaterThanOrEqualTo(insertMp3InfoRequestDTO.getInsertedMp3No()));
@@ -272,7 +272,7 @@ public class Mp3MapperTests {
                 .build();
 
         // when & then
-        int updatedCnt = mp3Mapper.updateMp3Info(updateMp3InfoRequestDTO);
+        int updatedCnt = mp3DAO.updateMp3Info(updateMp3InfoRequestDTO);
 
         // 업데이트는 반드시 한번만 되어야 합니다.
         assertThat(updatedCnt, CoreMatchers.is(1));
@@ -288,7 +288,7 @@ public class Mp3MapperTests {
 
         // when
         // 다시 조회했을때, 3번에서 업데이트한 정보들이 조회가 되어야 합니다.
-        Mp3VO movieVO2 = mp3Mapper.selectMp3Info(selectMp3InfoRequestDTO2);
+        Mp3VO movieVO2 = mp3DAO.selectMp3Info(selectMp3InfoRequestDTO2);
 
         // then
         assertThat(movieVO2.getMp3No(), is(updateMp3InfoRequestDTO.getMp3No()));
@@ -302,7 +302,7 @@ public class Mp3MapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = mp3Mapper.insertMp3Info(insertMp3InfoRequestDTO);
+        int insertedCnt = mp3DAO.insertMp3Info(insertMp3InfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
@@ -317,7 +317,7 @@ public class Mp3MapperTests {
                 .mp3No(insertMp3InfoRequestDTO.getInsertedMp3No())
                 .build();
 
-        Mp3VO movieVO = mp3Mapper.selectMp3Info(selectMp3InfoRequestDTO);
+        Mp3VO movieVO = mp3DAO.selectMp3Info(selectMp3InfoRequestDTO);
 
         // when & then
         assertThat(movieVO.getMp3No(), greaterThanOrEqualTo(insertMp3InfoRequestDTO.getInsertedMp3No()));
@@ -335,7 +335,7 @@ public class Mp3MapperTests {
                 .build();
 
         // when
-        int updatedCnt = mp3Mapper.updateMp3State(updateMp3StateRequestDTO);
+        int updatedCnt = mp3DAO.updateMp3State(updateMp3StateRequestDTO);
 
         // then
         assertThat(updatedCnt, CoreMatchers.is(1));
@@ -348,7 +348,7 @@ public class Mp3MapperTests {
         // 상단에서 조회한 dto를 그대로 가져와서 조회합니다.
 
         // when & then
-        Mp3VO animVO2 = mp3Mapper.selectMp3Info(selectMp3InfoRequestDTO);
+        Mp3VO animVO2 = mp3DAO.selectMp3Info(selectMp3InfoRequestDTO);
 
         assertThat(animVO2.getMp3UseYnEnum(), is(Mp3UseYnEnum.N));
     }
@@ -362,7 +362,7 @@ public class Mp3MapperTests {
         // 최상단에서 만들어진 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int insertedCnt = mp3Mapper.insertMp3Info(insertMp3InfoRequestDTO);
+        int insertedCnt = mp3DAO.insertMp3Info(insertMp3InfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -379,7 +379,7 @@ public class Mp3MapperTests {
                 .build();
 
         // when
-        Mp3VO movieVO = mp3Mapper.selectMp3Info(selectMp3InfoRequestDTO);
+        Mp3VO movieVO = mp3DAO.selectMp3Info(selectMp3InfoRequestDTO);
 
         // then
         assertThat(movieVO.getMp3No(), is(selectMp3InfoRequestDTO.getMp3No()));
@@ -392,7 +392,7 @@ public class Mp3MapperTests {
         // 상단에서 삽입한 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int deletedCnt = mp3Mapper.deleteMp3Info(movieVO.getMp3No());
+        int deletedCnt = mp3DAO.deleteMp3Info(movieVO.getMp3No());
 
         // then
         assertThat(deletedCnt, is(1));
@@ -408,7 +408,7 @@ public class Mp3MapperTests {
                 .build();
 
         // when
-        Mp3VO movieVO2 = mp3Mapper.selectMp3Info(selectMp3InfoRequestDTO2);
+        Mp3VO movieVO2 = mp3DAO.selectMp3Info(selectMp3InfoRequestDTO2);
 
         // then
         assertThat(movieVO2, is(nullValue()));

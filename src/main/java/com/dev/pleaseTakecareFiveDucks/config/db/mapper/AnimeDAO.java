@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface AnimeMapper {
+public interface AnimeDAO {
 
     int getAnimeTotalCnt();
 

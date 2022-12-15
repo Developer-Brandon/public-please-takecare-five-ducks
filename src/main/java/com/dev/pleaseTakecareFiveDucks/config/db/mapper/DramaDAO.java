@@ -7,7 +7,7 @@ import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.UpdateDramaState
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaVO;
 import java.util.List;
 
-public interface DramaMapper {
+public interface DramaDAO {
 
     int getDramaTotalCnt();
 

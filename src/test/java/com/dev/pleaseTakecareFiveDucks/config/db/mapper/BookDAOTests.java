@@ -26,12 +26,12 @@ import static org.hamcrest.MatcherAssert.*;
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-public class BookMapperTests {
+public class BookDAOTests {
 
-    private static final Logger logger = LoggerFactory.getLogger(BookMapperTests.class);
+    private static final Logger logger = LoggerFactory.getLogger(BookDAOTests.class);
 
     @Autowired
-    private BookMapper bookMapper;
+    private BookDAO bookDAO;
 
     private Integer natureNo = 0;
 
@@ -64,7 +64,7 @@ public class BookMapperTests {
         // 1. 최초 조회 시 0개(테스트 데이터 삽입 전에는 0개로 나와야 합니다, 추후 테스트 데이터가 채워지면 0개로 나올수 없습니다.)
 
         // given
-        int bookTotalCnt = bookMapper.getBookTotalCnt();
+        int bookTotalCnt = bookDAO.getBookTotalCnt();
 
         // when & then
         assertThat(bookTotalCnt, is(0));
@@ -74,7 +74,7 @@ public class BookMapperTests {
         // 2. 삽입
 
         // given
-        int insertedCnt = bookMapper.insertBookInfo(insertBookInfoRequestDTO);
+        int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, is(1));
@@ -85,7 +85,7 @@ public class BookMapperTests {
         // 3. 재조회
 
         // given
-        int bookTotalCnt2 = bookMapper.getBookTotalCnt();
+        int bookTotalCnt2 = bookDAO.getBookTotalCnt();
 
         // when & then
         assertThat(bookTotalCnt2, Matchers.greaterThanOrEqualTo(1));
@@ -99,7 +99,7 @@ public class BookMapperTests {
         // given
 
         // when & then
-        int insertedCnt = bookMapper.insertBookInfo(insertBookInfoRequestDTO);
+        int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
 
         assertThat(insertedCnt, is(1));
         assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), Matchers.greaterThanOrEqualTo(1));
@@ -113,7 +113,7 @@ public class BookMapperTests {
                 .bookNo(insertBookInfoRequestDTO.getInsertedBookNo())
                 .build();
         // when & then
-        BookVO bookVO = bookMapper.selectBookInfo(selectBookInfoRequestDTO);
+        BookVO bookVO = bookDAO.selectBookInfo(selectBookInfoRequestDTO);
         assertThat(bookVO.getBookNo(), Matchers.greaterThanOrEqualTo(insertBookInfoRequestDTO.getInsertedBookNo()));
 
         ////////////////////////////////////////
@@ -122,7 +122,7 @@ public class BookMapperTests {
         // (1개 이상 삭제외어야 합니다.)
 
         // given
-        int deletedAllBookCnt = bookMapper.deleteAll();
+        int deletedAllBookCnt = bookDAO.deleteAll();
 
         // when & then
         assertThat(deletedAllBookCnt, Matchers.greaterThanOrEqualTo(1));
@@ -131,7 +131,7 @@ public class BookMapperTests {
 
         // 4. 전체 리스트 조회
         // given
-        List<BookVO> bookVOList = bookMapper.selectAllBookList();
+        List<BookVO> bookVOList = bookDAO.selectAllBookList();
 
         // when & then
         assertThat(bookVOList.size(), is(0));
@@ -143,7 +143,7 @@ public class BookMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = bookMapper.insertBookInfo(insertBookInfoRequestDTO);
+        int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, is(1));
@@ -156,7 +156,7 @@ public class BookMapperTests {
         // given
 
         // when
-        List<BookVO> bookVOList = bookMapper.selectAllBookList();
+        List<BookVO> bookVOList = bookDAO.selectAllBookList();
 
         // then
         assertThat(bookVOList.size(), is(1));
@@ -171,7 +171,7 @@ public class BookMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = bookMapper.insertBookInfo(insertBookInfoRequestDTO);
+        int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, is(1));
@@ -193,7 +193,7 @@ public class BookMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = bookMapper.insertBookInfo(insertBookInfoRequestDTO);
+        int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, is(1));
@@ -209,7 +209,7 @@ public class BookMapperTests {
                 .build();
 
         // when
-        BookVO bookVO = bookMapper.selectBookInfo(selectBookInfoRequestDTO);
+        BookVO bookVO = bookDAO.selectBookInfo(selectBookInfoRequestDTO);
 
         // then
         assertThat(bookVO.getBookTitle(), is("해리포터"));
@@ -229,7 +229,7 @@ public class BookMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = bookMapper.insertBookInfo(insertBookInfoRequestDTO);
+        int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, is(1));
@@ -244,7 +244,7 @@ public class BookMapperTests {
                 .bookNo(insertBookInfoRequestDTO.getInsertedBookNo())
                 .build();
 
-        BookVO bookVO = bookMapper.selectBookInfo(selectBookInfoRequestDTO);
+        BookVO bookVO = bookDAO.selectBookInfo(selectBookInfoRequestDTO);
 
         // when & then
         assertThat(bookVO.getBookNo(), Matchers.greaterThanOrEqualTo(insertBookInfoRequestDTO.getInsertedBookNo()));
@@ -263,7 +263,7 @@ public class BookMapperTests {
                 .build();
 
         // when & then
-        int updatedCnt = bookMapper.updateBookInfo(updateBookInfoRequestDTO);
+        int updatedCnt = bookDAO.updateBookInfo(updateBookInfoRequestDTO);
 
         // 업데이트는 반드시 한번만 되어야 합니다.
         assertThat(updatedCnt, is(1));
@@ -279,7 +279,7 @@ public class BookMapperTests {
 
         // when
         // 다시 조회했을때, 3번에서 업데이트한 정보들이 조회가 되어야 합니다.
-        BookVO bookVO2 = bookMapper.selectBookInfo(selectBookInfoRequestDTO2);
+        BookVO bookVO2 = bookDAO.selectBookInfo(selectBookInfoRequestDTO2);
 
         // then
         assertThat(bookVO2.getBookNo(), is(insertBookInfoRequestDTO.getInsertedBookNo()));
@@ -293,7 +293,7 @@ public class BookMapperTests {
         // 1. 삽입
 
         // given
-        int insertedCnt = bookMapper.insertBookInfo(insertBookInfoRequestDTO);
+        int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, is(1));
@@ -308,7 +308,7 @@ public class BookMapperTests {
                 .bookNo(insertBookInfoRequestDTO.getInsertedBookNo())
                 .build();
 
-        BookVO bookVO = bookMapper.selectBookInfo(selectBookInfoRequestDTO);
+        BookVO bookVO = bookDAO.selectBookInfo(selectBookInfoRequestDTO);
 
         // when & then
         assertThat(bookVO.getBookNo(), Matchers.greaterThanOrEqualTo(insertBookInfoRequestDTO.getInsertedBookNo()));
@@ -326,7 +326,7 @@ public class BookMapperTests {
                 .build();
 
         // when
-        int updatedCnt = bookMapper.updateBookState(updateBookStateRequestDTO);
+        int updatedCnt = bookDAO.updateBookState(updateBookStateRequestDTO);
 
         // then
         assertThat(updatedCnt, is(1));
@@ -339,7 +339,7 @@ public class BookMapperTests {
         // 상단에서 조회한 dto를 그대로 가져와서 조회합니다.
 
         // when & then
-        BookVO bookVO2 = bookMapper.selectBookInfo(selectBookInfoRequestDTO);
+        BookVO bookVO2 = bookDAO.selectBookInfo(selectBookInfoRequestDTO);
 
         assertThat(bookVO2.getBookUseYnEnum(), is(BookUseYnEnum.N));
     }
@@ -353,7 +353,7 @@ public class BookMapperTests {
         // 최상단에서 만들어진 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int insertedCnt = bookMapper.insertBookInfo(insertBookInfoRequestDTO);
+        int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
@@ -370,7 +370,7 @@ public class BookMapperTests {
                 .build();
 
         // when
-        BookVO bookVO = bookMapper.selectBookInfo(selectBookInfoRequestDTO);
+        BookVO bookVO = bookDAO.selectBookInfo(selectBookInfoRequestDTO);
 
         // then
         assertThat(bookVO.getBookNo(), is(selectBookInfoRequestDTO.getBookNo()));
@@ -383,7 +383,7 @@ public class BookMapperTests {
         // 상단에서 삽입한 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int deletedCnt = bookMapper.deleteBookInfo(bookVO.getBookNo());
+        int deletedCnt = bookDAO.deleteBookInfo(bookVO.getBookNo());
 
         // then
         assertThat(deletedCnt, is(1));
@@ -399,7 +399,7 @@ public class BookMapperTests {
                 .build();
 
         // when
-        BookVO bookVO2 = bookMapper.selectBookInfo(selectBookInfoRequestDTO2);
+        BookVO bookVO2 = bookDAO.selectBookInfo(selectBookInfoRequestDTO2);
 
         // then
         assertThat(bookVO2, is(nullValue()));

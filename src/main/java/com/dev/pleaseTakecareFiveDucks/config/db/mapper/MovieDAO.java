@@ -5,7 +5,7 @@ import com.dev.pleaseTakecareFiveDucks.movie.domain.vo.MovieVO;
 
 import java.util.List;
 
-public interface MovieMapper {
+public interface MovieDAO {
 
     int getMovieTotalCnt();
 

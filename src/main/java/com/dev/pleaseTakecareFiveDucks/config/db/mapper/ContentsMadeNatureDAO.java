@@ -5,7 +5,7 @@ import com.dev.pleaseTakecareFiveDucks.contents.domain.vo.ContentsVO;
 
 import java.util.List;
 
-public interface ContentsMadeNatureMapper {
+public interface ContentsMadeNatureDAO {
 
     int getContentsTotalCnt();
 

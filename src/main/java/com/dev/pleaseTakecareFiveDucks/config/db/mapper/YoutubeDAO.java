@@ -8,7 +8,7 @@ import com.dev.pleaseTakecareFiveDucks.youtube.domain.vo.YoutubeVO;
 
 import java.util.List;
 
-public interface YoutubeMapper {
+public interface YoutubeDAO {
 
     int getYoutubeTotalCnt();
 
