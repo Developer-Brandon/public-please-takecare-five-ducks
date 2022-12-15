@@ -7,6 +7,7 @@ import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaVO;
 import com.dev.pleaseTakecareFiveDucks.drama.util.DramaUseYnEnum;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.InsertDramaInfoRequestDTO;
 import org.hamcrest.CoreMatchers;
+import org.hamcrest.core.StringContains;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -19,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
@@ -226,7 +226,7 @@ public class DramaDAOTests {
 
         // then
         assertThat(DramaVO.getDramaTitle(), CoreMatchers.is("올인"));
-        assertThat(DramaVO.getDramaAuthor(), containsString("최완규"));
+        assertThat(DramaVO.getDramaAuthor(), StringContains.containsString("최완규"));
     }
 
     @Test

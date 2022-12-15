@@ -7,6 +7,7 @@ import com.dev.pleaseTakecareFiveDucks.mp3.domain.dto.request.UpdateMp3StateRequ
 import com.dev.pleaseTakecareFiveDucks.mp3.domain.vo.Mp3VO;
 import com.dev.pleaseTakecareFiveDucks.mp3.util.Mp3UseYnEnum;
 import org.hamcrest.CoreMatchers;
+import org.hamcrest.core.StringContains;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -19,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
@@ -224,7 +224,7 @@ public class Mp3DAOTests {
 
         // then
         assertThat(Mp3VO.getMp3Title(), CoreMatchers.is("대부"));
-        assertThat(Mp3VO.getSinger(), containsString("돈꼴레오네"));
+        assertThat(Mp3VO.getSinger(), StringContains.containsString("돈꼴레오네"));
     }
 
     @Test

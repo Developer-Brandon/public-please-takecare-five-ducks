@@ -7,6 +7,7 @@ import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.UpdateMovieState
 import com.dev.pleaseTakecareFiveDucks.movie.domain.vo.MovieVO;
 import com.dev.pleaseTakecareFiveDucks.movie.util.MovieUseYnEnum;
 import org.hamcrest.CoreMatchers;
+import org.hamcrest.core.StringContains;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -19,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
@@ -226,7 +226,7 @@ public class MovieDAOTests {
 
         // then
         assertThat(MovieVO.getMovieTitle(), CoreMatchers.is("대부"));
-        assertThat(MovieVO.getDirectorName(), containsString("돈꼴레오네"));
+        assertThat(MovieVO.getDirectorName(), StringContains.containsString("돈꼴레오네"));
     }
 
     @Test

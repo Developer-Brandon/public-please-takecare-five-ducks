@@ -24,6 +24,5 @@ public interface AnimeDAO {
 
     int updateAnimeState(UpdateAnimeStateRequestDTO updateAnimeStateRequestDTO);
 
-    // TODO: @Param을 생략해도 test가 실행되는지 추후 test case작성 후 검증 예정입니다.
-    int deleteAnimeInfo(@Param("animeNo") Integer animeNo);
+    int deleteAnimeInfo(Integer animeNo);
 }

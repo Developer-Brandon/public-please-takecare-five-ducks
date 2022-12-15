@@ -7,6 +7,7 @@ import com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.UpdateComicBookS
 import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookVO;
 import com.dev.pleaseTakecareFiveDucks.comic.util.ComicBookUseYnEnum;
 import org.hamcrest.CoreMatchers;
+import org.hamcrest.core.StringContains;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -19,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
@@ -225,7 +225,7 @@ public class ComicBookDAOTests {
 
         // then
         assertThat(ComicBookVO.getComicBookTitle(), CoreMatchers.is("귀멸의칼날"));
-        assertThat(ComicBookVO.getComicBookAuthor(), containsString("코요게고로하루"));
+        assertThat(ComicBookVO.getComicBookAuthor(), StringContains.containsString("코요게고로하루"));
     }
 
     @Test

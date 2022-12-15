@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AnimServiceImpl implements AnimeService{
+public class AnimeServiceImpl implements AnimeService{
 
     private final AnimeDAO animeDAO;
 
@@ -23,7 +23,7 @@ public class AnimServiceImpl implements AnimeService{
     public void removeAllAnimeInfoList() throws Exception {
 
         // 만약 anime이 0개 초과로 있다면...
-        int animeCnt = animeDAO.selectAllAnimeList().size();
+        int animeCnt = animeDAO.getAnimeTotalCnt();
 
         if(animeCnt > 0) {
 
@@ -45,26 +45,39 @@ public class AnimServiceImpl implements AnimeService{
 
     @Override
     public List<AnimeVO> selectAllAnimeInfoList() {
-        return null;
+
+        return animeDAO.selectAllAnimeList();
     }
 
     @Override
     public AnimeVO selectAnimeInfo(SelectAnimeInfoRequestDTO selectAnimeInfoRequestDTO) {
-        return null;
+
+        return animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO);
     }
 
     @Override
-    public void registerAnimeInfo(InsertAnimeInfoRequestDTO insertAnimeInfoRequestDTO) {
+    public void registerAnimeInfo(InsertAnimeInfoRequestDTO insertAnimeInfoRequestDTO) throws Exception {
+
+        // 단일 insert 이므로, 한개가 insert되지 않으면 exception을 일으킵니다.
+        if(animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO) != 1) {
+            throw new Exception();
+        }
+    }
+
+    @Override
+    public void modifyAnimeInfo(UpdateAnimeInfoRequestDTO updateAnimeInfoRequestDTO) throws Exception {
+
+       if(animeDAO.updateAnimeInfo(updateAnimeInfoRequestDTO) != 1) {
+           throw new Exception();
+       }
 
     }
 
     @Override
-    public void modifyAnimeInfo(UpdateAnimeInfoRequestDTO updateAnimeInfoRequestDTO) {
+    public void removeAnimeInfo(RemoveAnimeInfoRequestDTO removeAnimeRequestDTO) throws Exception {
 
-    }
-
-    @Override
-    public void removeAnimeInfo(RemoveAnimeInfoRequestDTO removeAnimeRequestDTO) {
-
+        if(animeDAO.deleteAnimeInfo(removeAnimeRequestDTO.getAnimeNo()) != 1) {
+            throw new Exception();
+        }
     }
 }

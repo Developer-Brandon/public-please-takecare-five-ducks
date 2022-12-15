@@ -7,6 +7,7 @@ import com.dev.pleaseTakecareFiveDucks.youtube.domain.dto.request.UpdateYoutubeS
 import com.dev.pleaseTakecareFiveDucks.youtube.domain.vo.YoutubeVO;
 import com.dev.pleaseTakecareFiveDucks.youtube.util.YoutubeUseYnEnum;
 import org.hamcrest.CoreMatchers;
+import org.hamcrest.core.StringContains;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -19,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
@@ -227,7 +227,7 @@ public class YoutubeDAOTests {
 
         // then
         assertThat(YoutubeVO.getYoutubeTitle(), CoreMatchers.is("돈잘버는법"));
-        assertThat(YoutubeVO.getYoutuberName(), containsString("심사임당"));
+        assertThat(YoutubeVO.getYoutuberName(), StringContains.containsString("심사임당"));
     }
 
     @Test

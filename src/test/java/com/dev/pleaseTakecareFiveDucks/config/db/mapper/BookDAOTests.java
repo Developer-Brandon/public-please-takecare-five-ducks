@@ -7,6 +7,7 @@ import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.UpdateBookStateRe
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
 import com.dev.pleaseTakecareFiveDucks.book.util.BookUseYnEnum;
 import org.hamcrest.Matchers;
+import org.hamcrest.core.StringContains;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -213,7 +214,7 @@ public class BookDAOTests {
 
         // then
         assertThat(bookVO.getBookTitle(), is("해리포터"));
-        assertThat(bookVO.getBookAuthor(), containsString("롤링"));
+        assertThat(bookVO.getBookAuthor(), StringContains.containsString("롤링"));
     }
 
     @Test

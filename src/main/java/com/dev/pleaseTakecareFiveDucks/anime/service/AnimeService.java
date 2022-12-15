@@ -17,9 +17,9 @@ public interface AnimeService {
 
     AnimeVO selectAnimeInfo(SelectAnimeInfoRequestDTO selectAnimeInfoRequestDTO);
 
-    void registerAnimeInfo(InsertAnimeInfoRequestDTO insertAnimeInfoRequestDTO);
+    void registerAnimeInfo(InsertAnimeInfoRequestDTO insertAnimeInfoRequestDTO) throws Exception;
 
-    void modifyAnimeInfo(UpdateAnimeInfoRequestDTO updateAnimeInfoRequestDTO);
+    void modifyAnimeInfo(UpdateAnimeInfoRequestDTO updateAnimeInfoRequestDTO) throws Exception;
 
-    void removeAnimeInfo(RemoveAnimeInfoRequestDTO removeAnimeRequestDTO);
+    void removeAnimeInfo(RemoveAnimeInfoRequestDTO removeAnimeRequestDTO) throws Exception;
 }
