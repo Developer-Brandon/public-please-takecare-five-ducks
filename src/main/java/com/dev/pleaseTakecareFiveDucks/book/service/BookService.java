@@ -1,9 +1,6 @@
 package com.dev.pleaseTakecareFiveDucks.book.service;
 
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.InsertBookInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.SelectBookInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.SelectBookPaginationRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.UpdateBookInfoRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
 
 import java.util.List;
@@ -12,7 +9,7 @@ public interface BookService {
 
     Integer selectBookTotalCnt();
 
-    void removeAllBookInfoList();
+    void removeAllBookInfoList() throws Exception;
 
     List<BookVO> selectBookList(SelectBookPaginationRequestDTO selectBookPaginationRequestDTO);
 
@@ -20,9 +17,9 @@ public interface BookService {
 
     BookVO selectBookInfo(SelectBookInfoRequestDTO selectBookInfoRequestDTO);
 
-    void registerBookInfo(InsertBookInfoRequestDTO insertBookInfoRequestDTO);
+    void registerBookInfo(InsertBookInfoRequestDTO insertBookInfoRequestDTO) throws Exception;
 
-    void modifyBookInfo(UpdateBookInfoRequestDTO updateBookInfoRequestDTO);
+    void modifyBookInfo(UpdateBookInfoRequestDTO updateBookInfoRequestDTO) throws Exception;
 
-    void removeBookInfo(Integer bookNo);
+    void removeBookInfo(RemoveBookInfoRequestDTO removeBookInfoRequestDTO) throws Exception;
 }

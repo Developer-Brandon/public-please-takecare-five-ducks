@@ -70,7 +70,6 @@ public class AnimeServiceImpl implements AnimeService{
        if(animeDAO.updateAnimeInfo(updateAnimeInfoRequestDTO) != 1) {
            throw new Exception();
        }
-
     }
 
     @Override

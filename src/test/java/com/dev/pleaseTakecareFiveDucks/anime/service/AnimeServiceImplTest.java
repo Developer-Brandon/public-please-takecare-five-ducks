@@ -91,7 +91,7 @@ public class AnimeServiceImplTest extends TestCase {
 
     @Ignore
     @Test
-    public void test2_2_testRemoveAllAnimeInfoList() throws Exception {
+    public void test2_2_RemoveAllAnimeInfoList() throws Exception {
 
         //        // 1. animeCnt가 0개 초과로 존재할 경우
         //        // 2. 제대로 삭제로직이 실행 되지 않았을 경우
@@ -121,7 +121,7 @@ public class AnimeServiceImplTest extends TestCase {
     }
 
     @Test
-    public void test2_3_testRemoveAllAnimeInfoList() throws Exception {
+    public void test2_3_RemoveAllAnimeInfoList() throws Exception {
 
         // 1. animeCnt가 1개 미만으로 존재할 경우
 
