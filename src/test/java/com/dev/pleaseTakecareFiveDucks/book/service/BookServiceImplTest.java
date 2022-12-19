@@ -160,17 +160,45 @@ public class BookServiceImplTest extends TestCase {
 
     @Test
     public void test5_SelectBookInfo() {
+
+        // given
+
+        // when
+
+        // then & verify
+
     }
 
+    // todo: book을 등록하는 로직 작성을 해야하는데... exception 처리에 대해서 공부 후에 테스트케이스 추가 작성 예정
     @Test
     public void test6_RegisterBookInfo() {
+
+        // given
+
+        // when
+
+        // then & verify
     }
 
+    // todo: exception 처리에 대해서 공부 후에 테스트케이스 추가 작성 예정
     @Test
     public void test7_ModifyBookInfo() {
+
+        // given
+
+        // when
+
+        // then & verify
     }
 
+    // todo: exception 처리에 대해서 공부 후에 테스트케이스 추가 작성 예정
     @Test
     public void test8_RemoveBookInfo() {
+
+        // given
+
+        // when
+
+        // then & verify
     }
 }
