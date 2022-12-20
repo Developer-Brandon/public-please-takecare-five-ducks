@@ -1,0 +1,36 @@
+
+@font-face {
+    font-family: 'SDSamliphopangcheTTFBasic';
+    src: url('./SDSamliphopangcheTTFBasic.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  
+@font-face {
+  font-family: 'SDSamliphopangcheTTFOutline';
+  src: url('./SDSamliphopangcheTTFOutline.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BMJUA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JALNAN';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HBIOS-SYS';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
