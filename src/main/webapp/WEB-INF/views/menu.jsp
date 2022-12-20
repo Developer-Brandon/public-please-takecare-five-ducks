@@ -5,11 +5,14 @@
   Time: 오후 1:03
   To change this template use File | Settings | File Templates.
 --%>
-<div class="menu-bar">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<nav class="menu-bar">
     <div class="menu-bar__inner">
         <div class="logo-title">
             <div class="wrap-logo">
-                <img id="logo" src="/images/rubber-duck.png" alt="로고 이미지입니다" />
+                <img id="logo"
+                     src="${pageContext.request.contextPath}/resources/images/rubber-duck.png"
+                     alt="로고 이미지입니다" />
             </div>
             <div class="wrap-title">
                 <div class="wrap-title__inner">
@@ -38,4 +41,4 @@
             </ul>
         </div>
     </div>
-</div>
+</nav>
