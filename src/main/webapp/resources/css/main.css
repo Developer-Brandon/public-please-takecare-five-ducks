@@ -139,7 +139,7 @@ ul li:first-child {
 body {
   /* overflow: hidden;
   position: relative; */
-  background-image: url("./images/transparency-pattern.jpg");
+  background-image: url("../images/transparency-pattern.jpg");
 }
 
 
@@ -257,8 +257,8 @@ body {
 .misato {
   margin-top: 30px;
   margin-bottom: 30px;
-  width: 150px; 
-  height: 200px; 
+  width: 150px;
+  height: 200px;
 }
 
 p#title-content {

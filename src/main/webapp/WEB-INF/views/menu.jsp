@@ -5,7 +5,7 @@
   Time: 오후 1:03
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
 <nav class="menu-bar">
     <div class="menu-bar__inner">
         <div class="logo-title">
@@ -42,3 +42,4 @@
         </div>
     </div>
 </nav>
+
