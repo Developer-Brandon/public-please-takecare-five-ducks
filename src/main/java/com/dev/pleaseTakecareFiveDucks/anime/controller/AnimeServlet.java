@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/anime") // @Controller + @RequestMapping을 합친것이 @WebServlet 입니다.
+@WebServlet(urlPatterns = {"/anime", "/anime/*"}, loadOnStartup = 1) // @Controller + @RequestMapping을 합친것이 @WebServlet 입니다.
 public class AnimeServlet extends BaseHttpServlet {
 
     @Override
