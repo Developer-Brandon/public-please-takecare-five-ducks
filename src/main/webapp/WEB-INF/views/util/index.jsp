@@ -8,7 +8,7 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="../page_header.jsp" %>
     <!-- -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/movie/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/index.css">
 </head>
 <body>
 <%-- bootstrap은 기본 margin이 있어서 style로 margin을 0으로 지정 --%>

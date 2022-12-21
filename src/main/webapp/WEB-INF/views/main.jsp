@@ -6,13 +6,12 @@
     <%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
     <%@ page session="false" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ include file="util/page/header.jsp" %>
+    <%@ include file="page_header.jsp" %>
     <!-- -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/component/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
 </head>
-<body>
-<%-- bootstrap은 기본 margin이 있어서 style로 margin을 0으로 지정 --%>
-
+<body class="custom-body">
 <!-- 메뉴 시작 -->
 <%@ include file="menu.jsp" %>
 <!-- 메뉴 끝 -->
@@ -126,7 +125,7 @@
     <!-- 메인 끝 -->
 
     <!-- footer 시작 -->
-    <%@ include file="util/footer.jsp" %>
+    <%@ include file="footer.jsp" %>
     <!-- footer 끝 -->
 </body>
 </html>
