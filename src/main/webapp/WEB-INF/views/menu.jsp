@@ -24,19 +24,20 @@
         <div class="menu-list">
             <ul class="menu-list-ul">
                 <li class="menu-list-li">
-                    <a href="comic/index.html">Comic</a>
+<%--                    ${pageContext.request.contextPath}/WEB-INF/views/comic/index.jsp--%>
+                    <a href="">Comic</a>
                 </li>
                 <li class="menu-list-li">
-                    <a href="anime/index.html">Anime</a>
+                    <a href="\anime/index.jsp">Anime</a>
                 </li>
                 <li class="menu-list-li">
-                    <a href="movie/index.html">Movie</a>
+                    <a href="movie/index.jsp">Movie</a>
                 </li>
                 <li class="menu-list-li">
-                    <a href="game/index.html">Game</a>
+                    <a href="game/index.jsp">Game</a>
                 </li>
                 <li class="menu-list-li">
-                    <a href="util/index.html">Util</a>
+                    <a href="util/index.jsp">Util</a>
                 </li>
             </ul>
         </div>

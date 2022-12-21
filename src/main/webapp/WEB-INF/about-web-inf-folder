@@ -1,0 +1,22 @@
+https://gahui-developer123.tistory.com/16
+
+web information의 약자로 웹과 관련된 정보를 의미한다. 프로젝트의 환경 설정 파일을 배치 해야 한다.
+Web.xml 파일이 반드시 위치해야 합니다(다른 폴더에 있으면 설정파일의 역할을 하지 못합니다).
+웹 애플리케이션 용으로 만들어진 디렉토리로 웹에서 중요한 파일들이 노출되지 않도록 만든 폴더입니다.
+WEB-INF 디렉토리 하단에 jsp 파일을 넣으면, url로 해당 jsp 파일에 직접 접근할 수 없습니다. 브라우저에서 url로 jsp 파일 등을 직접 요청하는 것을 제한하는 것이 보통이기 때문에 jsp 파일들은 실무에서는 WEB-INF 폴더 안에 있다고 보면 됩니다.(정책상 jsp 파일에 직접 접근하지 못하게 할 때 자주 사용합니다.)
+반면에, jsp 파일 외에 브라우저가 반드시 참조해야 하는 css, 이미지, jQuery 등은 바로 참조가 가능하도록 Context Root 바로 하위에 static 폴더를 만들어 관리합니
+
+https://mangkyu.tistory.com/14
+https://dahyeee.tistory.com/entry/Servlet-Servlet%EC%9D%B4%EB%9E%80
+
+Java servlet이란
+client 브라우저에서 어떠한 요청
+-> Controller(servlet)에서 어떤 요청인지 확인
+-> model에서 요청을 수행 및 DB데이터 요청
+-> Model에서 수행한 결과물을 Controller에게 응답
+-> Controller에서 결과물을 View(JSP)로 넘김
+-> View에서 Client브라우저로 응답
+
+jsp, servlet project 폴더 구조(조금 다르긴한데 정리가 잘 되어있어서)
+https://sozerodev.tistory.com/159
+

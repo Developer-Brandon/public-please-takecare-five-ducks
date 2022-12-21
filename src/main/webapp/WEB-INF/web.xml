@@ -3,6 +3,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+<!--    <servlet>-->
+<!--        <servlet-name>설정 파일 내부에서 사용되는 임의의 서블릿명</servlet-name>-->
+<!--        <servlet-class>실질적으로 요청에 대해 처리될 물리적인 서블릿크래스명</servlet-class>-->
+<!--    </servlet>-->
+
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>설정파일 내부에서 사용되는 임의의 서블릿명 '<servlet>' 엘리먼트에 정의된 이름과 일치해야 함-->
+<!--        </servlet-name>-->
+<!--        <url-pattern>url 상에서 실질적으로 요청되는 서블릿명</url-pattern>-->
+<!--    </servlet-mapping>-->
+
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -39,5 +50,4 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
 </web-app>
