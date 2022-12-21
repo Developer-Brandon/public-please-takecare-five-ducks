@@ -1,13 +1,12 @@
 package com.dev.pleaseTakecareFiveDucks.anime.controller;
 
-import com.dev.pleaseTakecareFiveDucks.config.controller.BaseHttpServlet;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/*
 @WebServlet(urlPatterns = {"/anime", "/anime/*"}, loadOnStartup = 1) // @Controller + @RequestMapping을 합친것이 @WebServlet 입니다.
 public class AnimeServlet extends BaseHttpServlet {
 
@@ -42,3 +41,4 @@ public class AnimeServlet extends BaseHttpServlet {
       //  req.getRequestDispatcher("/anime/index.jsp");
     }
 }
+*/

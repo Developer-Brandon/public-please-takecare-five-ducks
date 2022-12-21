@@ -28,7 +28,7 @@
                     <a href="">Comic</a>
                 </li>
                 <li class="menu-list-li">
-                    <a href="/anime">Anime</a>
+                    <a href="/anime/main">Anime</a>
                 </li>
                 <li class="menu-list-li">
                     <a href="movie/index.jsp">Movie</a>
