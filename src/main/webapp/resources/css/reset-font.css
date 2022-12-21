@@ -1,3 +1,4 @@
+/* */
 
 @font-face {
     font-family: 'SDSamliphopangcheTTFBasic';
@@ -13,6 +14,8 @@
   font-weight: normal;
   font-style: normal;
 }
+
+/* */
 
 @font-face {
   font-family: 'BMJUA';
@@ -33,4 +36,18 @@
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ansungtangmyun-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/Ansungtangmyun-Bold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KyoboHandwriting2020A';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/KyoboHandwriting2020A.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
