@@ -27,7 +27,7 @@
 
 
 .menu-bar>.menu-bar__inner>.menu-list {
-    width: calc(100% - 180px);
+    width: calc(100% - 200px);
     align-items: flex-end;
     display: flex;
     flex-direction: column;
@@ -39,6 +39,13 @@
 }
 
 .menu-bar>.menu-bar__inner>.menu-list>.menu-list-ul:hover {
+}
+
+.menu-bar>.menu-bar__inner>.menu-list>.menu-list-ul>.menu-list-li{
+}
+
+.menu-bar>.menu-bar__inner>.menu-list>.menu-list-ul>.menu-list-li>a:hover{
+    color: darkgoldenrod;
 }
 
 /* 로고 wrap */
@@ -64,9 +71,10 @@
 }
 
 .wrap-title>.wrap-title__inner>#main-title {
-    font-size: 18px;
-    line-height: 19px;
-    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 600;
+    letter-spacing: 2.0 !important;
 }
 
 .wrap-title>.wrap-title__inner>#main-description {

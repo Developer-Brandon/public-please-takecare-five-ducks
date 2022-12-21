@@ -30,19 +30,19 @@
                 <div class="menu-list">
                     <ul class="menu-list-ul">
                         <li class="menu-list-li">
-                            <a href="/comic/main">Comic</a>
+                            <a href="/comic/main">만화책</a>
                         </li>
                         <li class="menu-list-li">
-                            <a href="/anime/main">Anime</a>
+                            <a href="/anime/main">애니</a>
                         </li>
                         <li class="menu-list-li">
-                            <a href="/movie/main">Movie</a>
+                            <a href="/movie/main">영화</a>
                         </li>
                         <li class="menu-list-li">
-                            <a href="/game/main">Game</a>
+                            <a href="/game/main">게임</a>
                         </li>
                         <li class="menu-list-li">
-                            <a href="/util/main">Util</a>
+                            <a href="/util/main">유틸</a>
                         </li>
                     </ul>
                 </div>
