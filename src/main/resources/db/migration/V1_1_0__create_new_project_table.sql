@@ -116,7 +116,7 @@ create table if not exists web_app_test2.tb_user(
 
 create table if not exists web_app_test2.tb_user_type(
     user_type_no int unsigned not null auto_increment comment '유저 타입 번호' primary key,
-    type varchar(40) not null comment '유저 타입',
+    type varchar(40) not null comment '유저 타입명',
     use_yn enum('Y','N') not null default 'Y' comment '사용여부',
     reg_dt datetime not null default current_timestamp comment '등록일자',
     mod_dt datetime not null default current_timestamp comment '수정일자'
