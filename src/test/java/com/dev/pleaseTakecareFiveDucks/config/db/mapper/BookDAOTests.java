@@ -1,12 +1,8 @@
 package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.InsertBookInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.SelectBookInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.UpdateBookInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.UpdateBookStateRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
 import com.dev.pleaseTakecareFiveDucks.book.util.BookUseYnEnum;
-import org.hamcrest.Matchers;
 import org.hamcrest.core.StringContains;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -22,6 +18,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @Transactional
@@ -38,8 +35,19 @@ public class BookDAOTests {
 
     private InsertBookInfoRequestDTO insertBookInfoRequestDTO;
 
+    private InsertBookThumbnailInfoRequestDTO insertBookThumbnailInfoRequestDTO;
+
     @Before
     public void init() {
+
+        // bookType
+
+        // 1 - 스크립트
+        // 2 - 책요약본
+        // 3 - 책PDF
+        // 4 - 공부요약본
+        // 5 - 강의요약본
+        // 6 - 소설
 
         // 공통적으로 쓰일 natureNo 입니다. 1은 한국의 natureNo 입니다.
         natureNo = 1;
@@ -47,17 +55,23 @@ public class BookDAOTests {
         // 공통적으로 쓰일 insertBookInfoRequestDTO 입니다.
         insertBookInfoRequestDTO = InsertBookInfoRequestDTO.builder()
                 .madeNatureNo(natureNo)
+                .bookTypeNo(6)
                 .title("해리포터")
                 .author("JK롤링")
+                .link("https://www.naver.com")
                 .bookRegDt("2022-12-21")
+                .build();
+
+        insertBookThumbnailInfoRequestDTO = InsertBookThumbnailInfoRequestDTO.builder()
+                .filePath("book")
+                .fileName("no_name.png")
                 .build();
     }
 
     @After
-    public void destroy() {
-        logger.debug("테스트 케이스 완료");
-    }
+    public void destroy() { logger.debug("테스트 케이스 완료"); }
 
+    // 조회 -> 삽입 -> 재조회로 검증
     @Ignore
     @Test
     public void test1_GetBookTotalCnt() {
@@ -76,10 +90,13 @@ public class BookDAOTests {
 
         // given
         int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
+        insertBookThumbnailInfoRequestDTO.setBookNo(insertBookInfoRequestDTO.getInsertedBookNo());
+        int insertedCnt2 = bookDAO.insertBookThumbnailInfo(insertBookThumbnailInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, is(1));
-        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), Matchers.greaterThanOrEqualTo(1));
+        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ////////////////////////////////////////
 
@@ -89,9 +106,10 @@ public class BookDAOTests {
         int bookTotalCnt2 = bookDAO.getBookTotalCnt();
 
         // when & then
-        assertThat(bookTotalCnt2, Matchers.greaterThanOrEqualTo(1));
+        assertThat(bookTotalCnt2, greaterThanOrEqualTo(1));
     }
 
+    // 책 삽입 -> 조회 -> 전체삭제 -> 재조회로 검증
     @Test
     public void test2_DeleteAll() {
 
@@ -101,32 +119,37 @@ public class BookDAOTests {
 
         // when & then
         int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
+        insertBookThumbnailInfoRequestDTO.setBookNo(insertBookInfoRequestDTO.getInsertedBookNo());
+        int insertedCnt2 = bookDAO.insertBookThumbnailInfo(insertBookThumbnailInfoRequestDTO);
 
         assertThat(insertedCnt, is(1));
-        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), Matchers.greaterThanOrEqualTo(1));
+        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ////////////////////////////////////////
 
-        // 2. 확인
+        // 2. 조회(확인)
 
         // given
         SelectBookInfoRequestDTO selectBookInfoRequestDTO = SelectBookInfoRequestDTO.builder()
                 .bookNo(insertBookInfoRequestDTO.getInsertedBookNo())
                 .build();
+
         // when & then
         BookVO bookVO = bookDAO.selectBookInfo(selectBookInfoRequestDTO);
-        assertThat(bookVO.getBookNo(), Matchers.greaterThanOrEqualTo(insertBookInfoRequestDTO.getInsertedBookNo()));
+        assertThat(bookVO.getBookNo(), greaterThanOrEqualTo(insertBookInfoRequestDTO.getInsertedBookNo()));
+        assertThat(bookVO.getFilePullPath(), is(notNullValue()));
 
         ////////////////////////////////////////
 
         // 3. 전체 삭제
-        // (1개 이상 삭제외어야 합니다.)
+        // (1개 이상일시에만 삭제되어야 합니다.)
 
         // given
         int deletedAllBookCnt = bookDAO.deleteAll();
 
         // when & then
-        assertThat(deletedAllBookCnt, Matchers.greaterThanOrEqualTo(1));
+        assertThat(deletedAllBookCnt, greaterThanOrEqualTo(1));
 
         ////////////////////////////////////////
 
@@ -138,6 +161,7 @@ public class BookDAOTests {
         assertThat(bookVOList.size(), is(0));
     }
 
+    // 책 삽입 -> 리스트 조회(0번째 item을 조회하는 것으로..)로 검증
     @Test
     public void test3_SelectAllBookList() {
 
@@ -145,10 +169,13 @@ public class BookDAOTests {
 
         // given
         int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
+        insertBookThumbnailInfoRequestDTO.setBookNo(insertBookInfoRequestDTO.getInsertedBookNo());
+        int insertedCnt2 = bookDAO.insertBookThumbnailInfo(insertBookThumbnailInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, is(1));
-        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), Matchers.greaterThanOrEqualTo(1));
+        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ///////////////////////////////////////////////////////////
 
@@ -176,7 +203,7 @@ public class BookDAOTests {
 
         // when & then
         assertThat(insertedCnt, is(1));
-        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), Matchers.greaterThanOrEqualTo(1));
+        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), greaterThanOrEqualTo(1));
 
         ///////////////////////////////////////////////////////////
 
@@ -188,6 +215,7 @@ public class BookDAOTests {
         // when & then
     }
 
+    // 책 삽입 -> 조회로 검증
     @Test
     public void test5_SelectBookInfo() {
 
@@ -195,10 +223,13 @@ public class BookDAOTests {
 
         // given
         int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
+        insertBookThumbnailInfoRequestDTO.setBookNo(insertBookInfoRequestDTO.getInsertedBookNo());
+        int insertedCnt2 = bookDAO.insertBookThumbnailInfo(insertBookThumbnailInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, is(1));
-        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), Matchers.greaterThanOrEqualTo(1));
+        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ///////////////////////////////////////////////////////
 
@@ -215,8 +246,10 @@ public class BookDAOTests {
         // then
         assertThat(bookVO.getBookTitle(), is("해리포터"));
         assertThat(bookVO.getBookAuthor(), StringContains.containsString("롤링"));
+        assertThat(bookVO.getFilePullPath(), is(notNullValue()));
     }
 
+    // 생략
     @Test
     public void test6_InsertBookInfo() {
 
@@ -224,6 +257,7 @@ public class BookDAOTests {
 
     }
 
+    // 책 삽입 -> 조회 -> 정보 업데이트 -> 재조회로 검증
     @Test
     public void test7_UpdateBookInfo() {
 
@@ -231,10 +265,13 @@ public class BookDAOTests {
 
         // given
         int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
+        insertBookThumbnailInfoRequestDTO.setBookNo(insertBookInfoRequestDTO.getInsertedBookNo());
+        int insertedCnt2 = bookDAO.insertBookThumbnailInfo(insertBookThumbnailInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, is(1));
-        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), Matchers.greaterThanOrEqualTo(1));
+        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         //////////////////////////////////
 
@@ -248,7 +285,7 @@ public class BookDAOTests {
         BookVO bookVO = bookDAO.selectBookInfo(selectBookInfoRequestDTO);
 
         // when & then
-        assertThat(bookVO.getBookNo(), Matchers.greaterThanOrEqualTo(insertBookInfoRequestDTO.getInsertedBookNo()));
+        assertThat(bookVO.getBookNo(), greaterThanOrEqualTo(insertBookInfoRequestDTO.getInsertedBookNo()));
 
         //////////////////////////////////
 
@@ -256,10 +293,12 @@ public class BookDAOTests {
 
         // given
         UpdateBookInfoRequestDTO updateBookInfoRequestDTO = UpdateBookInfoRequestDTO.builder()
-                .madeNatureNo(natureNo)
                 .bookNo(insertBookInfoRequestDTO.getInsertedBookNo())
+                .madeNatureNo(natureNo)
+                .bookTypeNo(1)
                 .title("나미야잡화점의기적")
                 .author("히가시노게이고")
+                .link("https://www.daum.net")
                 .bookRegDt("2010-12-20")
                 .build();
 
@@ -288,6 +327,7 @@ public class BookDAOTests {
         assertThat(bookVO2.getBookAuthor(), is("히가시노게이고"));
     }
 
+    // 책 삽입 -> 조회 -> 상태 업데이트 -> 재조회로 검증
     @Test
     public void test8_UpdateBookState() {
 
@@ -295,10 +335,13 @@ public class BookDAOTests {
 
         // given
         int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
+        insertBookThumbnailInfoRequestDTO.setBookNo(insertBookInfoRequestDTO.getInsertedBookNo());
+        int insertedCnt2 = bookDAO.insertBookThumbnailInfo(insertBookThumbnailInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, is(1));
-        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), Matchers.greaterThanOrEqualTo(1));
+        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         //////////////////////////////////
 
@@ -312,13 +355,13 @@ public class BookDAOTests {
         BookVO bookVO = bookDAO.selectBookInfo(selectBookInfoRequestDTO);
 
         // when & then
-        assertThat(bookVO.getBookNo(), Matchers.greaterThanOrEqualTo(insertBookInfoRequestDTO.getInsertedBookNo()));
+        assertThat(bookVO.getBookNo(), greaterThanOrEqualTo(insertBookInfoRequestDTO.getInsertedBookNo()));
         // 추가로, 책의 상태도 체크합니다.
         assertThat(bookVO.getBookUseYnEnum(), is(BookUseYnEnum.Y));
 
         //////////////////////////////////
 
-        // 3. 업데이트
+        // 3. 상태 업데이트
 
         // given
         UpdateBookStateRequestDTO updateBookStateRequestDTO = UpdateBookStateRequestDTO.builder()
@@ -345,6 +388,7 @@ public class BookDAOTests {
         assertThat(bookVO2.getBookUseYnEnum(), is(BookUseYnEnum.N));
     }
 
+    // 책 삽입 -> 조회 -> 삭제 -> 재조회로 검증
     @Test
     public void test9_DeleteBookInfo() {
 
@@ -355,10 +399,13 @@ public class BookDAOTests {
 
         // when
         int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
+        insertBookThumbnailInfoRequestDTO.setBookNo(insertBookInfoRequestDTO.getInsertedBookNo());
+        int insertedCnt2 = bookDAO.insertBookThumbnailInfo(insertBookThumbnailInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
-        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), Matchers.greaterThanOrEqualTo(1));
+        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ////////////////////////////////
 
@@ -403,6 +450,6 @@ public class BookDAOTests {
         BookVO bookVO2 = bookDAO.selectBookInfo(selectBookInfoRequestDTO2);
 
         // then
-        assertThat(bookVO2, is(nullValue()));
+        assertThat(bookVO2.getBookNo(), is(nullValue()));
     }
 }

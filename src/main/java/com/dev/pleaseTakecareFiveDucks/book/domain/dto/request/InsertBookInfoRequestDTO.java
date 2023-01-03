@@ -8,9 +8,18 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class InsertBookInfoRequestDTO {
+
     Integer insertedBookNo;
+
     Integer madeNatureNo;
+
+    Integer bookTypeNo;
+
     String title;
+
     String author;
+
+    String link;
+
     String bookRegDt;
 }

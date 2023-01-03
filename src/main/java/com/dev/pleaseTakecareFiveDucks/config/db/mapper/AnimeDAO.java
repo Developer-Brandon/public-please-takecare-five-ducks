@@ -1,6 +1,7 @@
 package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
 import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.*;
+import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
 import org.apache.ibatis.annotations.Param;
 
@@ -25,4 +26,12 @@ public interface AnimeDAO {
     int updateAnimeState(UpdateAnimeStateRequestDTO updateAnimeStateRequestDTO);
 
     int deleteAnimeInfo(Integer animeNo);
+
+    int insertAnimeThumbnailInfo(InsertAnimeThumbnailInfoRequestDTO insertAnimeThumbnailInfoRequestDTO);
+
+    int updateAnimeThumbnailInfo(UpdateAnimeThumbnailInfoRequestDTO updateAnimeThumbnailInfoRequestDTO);
+
+    List<AnimeThumbnailVO> selectAnimeThumbnailImageListByAnimeNo(SelectAnimeThumbnailImageListRequestDTO selectAnimeThumbnailImageListRequestDTO);
+
+    int deleteAnimeThumbnailInfo(Integer animeNo);
 }

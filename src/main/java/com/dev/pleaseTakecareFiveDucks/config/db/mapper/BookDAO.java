@@ -17,11 +17,19 @@ public interface BookDAO {
 
     BookVO selectBookInfo(SelectBookInfoRequestDTO selectBookInfoRequestDTO);
 
-    Integer insertBookInfo(InsertBookInfoRequestDTO insertBookInfoRequestDTO);
+    int insertBookViewCnt(InsertBookViewCntRequestDTO insertBookViewCntRequestDTO);
+
+    int insertBookInfo(InsertBookInfoRequestDTO insertBookInfoRequestDTO);
+
+    int insertBookThumbnailInfo(InsertBookThumbnailInfoRequestDTO insertBookThumbnailInfoRequestDTO);
 
     int updateBookInfo(UpdateBookInfoRequestDTO updateBookInfoRequestDTO);
+
+    int updateBookThumbnailInfo(UpdateBookThumbnailInfoRequestDTO updateBookThumbnailInfoRequestDTO);
 
     int updateBookState(UpdateBookStateRequestDTO updateBookStateRequestDTO);
 
     int deleteBookInfo(Integer bookNo);
+
+    int deleteBookThumbnailInfo(Integer bookNo);
 }

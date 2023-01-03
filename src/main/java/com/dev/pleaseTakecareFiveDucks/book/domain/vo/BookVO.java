@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Builder
 @Data
 @NoArgsConstructor
@@ -15,9 +13,14 @@ import java.util.Date;
 public class BookVO {
     Integer bookNo;
     Integer madeNatureNo;
+    String bookTypeKorean;
+    String bookTypeEnglish;
     String bookTitle;
     String bookAuthor;
+    String link;
     BookUseYnEnum bookUseYnEnum;
+    Integer viewCnt;
+    String filePullPath;
     String bookRegDt;
     String regDt;
 }

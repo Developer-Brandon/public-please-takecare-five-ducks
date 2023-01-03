@@ -1,11 +1,9 @@
 package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
-import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.InsertAnimeInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.SelectAnimeInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.UpdateAnimeInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.UpdateAnimeStateRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
 import com.dev.pleaseTakecareFiveDucks.anime.util.AnimeUseYnEnum;
+import com.dev.pleaseTakecareFiveDucks.anime.util.FinalizedYnEnum;
 import org.hamcrest.CoreMatchers;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -22,6 +20,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.StringContains.containsString;
 
@@ -40,6 +39,8 @@ public class AnimeDAOTests {
 
     private InsertAnimeInfoRequestDTO insertAnimeInfoRequestDTO;
 
+    private InsertAnimeThumbnailInfoRequestDTO insertAnimeThumbnailInfoRequestDTO;
+
     @Before
     public void init() {
 
@@ -51,8 +52,15 @@ public class AnimeDAOTests {
                 .madeNatureNo(natureNo)
                 .title("귀멸의칼날")
                 .author("코요게고로하루")
-                .pagePerAnimeCnt(0) // 미정일때에는 0으로 합니다.
+                .link("http://www.naver.com")
+                .finalizedYnEnum(FinalizedYnEnum.y)
+                .animeBroadcastCnt(64)
                 .animeRegDt("2016-02-15")
+                .build();
+
+        insertAnimeThumbnailInfoRequestDTO = InsertAnimeThumbnailInfoRequestDTO.builder()
+                .filePath("anime")
+                .fileName("no_name.png")
                 .build();
     }
 
@@ -61,6 +69,7 @@ public class AnimeDAOTests {
         logger.debug("테스트 케이스 완료");
     }
 
+    // 상품 조회 -> 삽입 -> 재조회로 검증
     @Ignore
     @Test
     public void test1_GetAnimeTotalCnt() {
@@ -78,13 +87,14 @@ public class AnimeDAOTests {
 
         // 2. 삽입
         // given
-
-        // when
         int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        insertAnimeInfoRequestDTO.setInsertedAnimeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo());
+        int insertedCnt2 = animeDAO.insertAnimeThumbnailInfo(insertAnimeThumbnailInfoRequestDTO);
 
-        // then
+        // when & then
         assertThat(insertedCnt, is(1));
         assertThat(insertAnimeInfoRequestDTO.getInsertedAnimeNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ////////////////////////////
 
@@ -98,6 +108,7 @@ public class AnimeDAOTests {
         assertThat(animeTotalCnt2, greaterThanOrEqualTo(1));
     }
 
+    // 애니 삽입 -> 조회 -> 전체삭제 -> 재조회로 검증
     @Test
     public void test2_DeleteAll() {
 
@@ -106,11 +117,15 @@ public class AnimeDAOTests {
         // given
 
         // when
+        // anime info , anime thumbnail 삽입
         int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        insertAnimeThumbnailInfoRequestDTO.setAnimeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo());
+        int insertedCnt2 = animeDAO.insertAnimeThumbnailInfo(insertAnimeThumbnailInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
         assertThat(insertAnimeInfoRequestDTO.getInsertedAnimeNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ////////////////////////////
 
@@ -121,22 +136,21 @@ public class AnimeDAOTests {
                 .animeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo())
                 .build();
 
-        // when
+        // when & then
         AnimeVO animeVO = animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO);
-
-        // then
         assertThat(animeVO.getAnimeNo(), greaterThanOrEqualTo(1));
+        assertThat(animeVO.getFilePullPath(), is(notNullValue()));
 
         ////////////////////////////
 
         // 3. 전체 삭제
+        // (1개 이상일시에만 삭제되어야 합니다.)
 
         // given
 
-        // when
         int deleteAllAnimeCnt = animeDAO.deleteAll();
 
-        // then
+        // when & then
         assertThat(deleteAllAnimeCnt, greaterThanOrEqualTo(1));
 
         /////////////////////////////////////////
@@ -144,14 +158,13 @@ public class AnimeDAOTests {
         // 4. 전체 리스트 조회
 
         // given
-
-        // when
         List<AnimeVO> animeVOList = animeDAO.selectAllAnimeList();
 
-        // then
+        // when & then
         assertThat(animeVOList.size(), is(0));
     }
 
+    // 애니 삽입 -> 리스트 조회(0번째 item을 조회하는 것으로..)로 검증
     @Test
     public void test3_SelectAllAnimeList() {
 
@@ -161,10 +174,13 @@ public class AnimeDAOTests {
 
         // when
         int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        insertAnimeThumbnailInfoRequestDTO.setAnimeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo());
+        int insertedCnt2 = animeDAO.insertAnimeThumbnailInfo(insertAnimeThumbnailInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
         assertThat(insertAnimeInfoRequestDTO.getInsertedAnimeNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         /////////////////////////////////////////
 
@@ -200,6 +216,7 @@ public class AnimeDAOTests {
         // TODO: dao단에서의 pagination은 간단하기 때문에..service단에서 pagination에 대한 기능 테스트를 마치고 추후 테스트 케이스 작성 예정입니다.
     }
 
+    // 애니 삽입 -> 조회로 검증
     @Test
     public void test5_SelectAnimeInfo() {
 
@@ -207,10 +224,13 @@ public class AnimeDAOTests {
 
         // given
         int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        insertAnimeThumbnailInfoRequestDTO.setAnimeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo());
+        int insertedCnt2 = animeDAO.insertAnimeThumbnailInfo(insertAnimeThumbnailInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
         assertThat(insertAnimeInfoRequestDTO.getInsertedAnimeNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ///////////////////////////////////////////////////////
 
@@ -227,25 +247,30 @@ public class AnimeDAOTests {
         // then
         assertThat(animeVO.getAnimeTitle(), CoreMatchers.is("귀멸의칼날"));
         assertThat(animeVO.getAnimeAuthor(), containsString("코요게고로하루"));
+        assertThat(animeVO.getFilePullPath(), CoreMatchers.is(notNullValue()));
     }
 
+    // 생략
     @Test
     public void test6_InsertAnimeInfo() {
 
         // 바로 위에서 실행한 test5_SelectAnimeInfo 메소드의 테스트와 일맥상통하므로 생략하겠습니다.
-
     }
 
+    // 애니 삽입 -> 조회 -> 정보 업데이트 -> 재조회로 검증
     @Test
     public void test7_UpdateAnimeInfo() {
         // 1. 삽입
 
         // given
         int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        insertAnimeThumbnailInfoRequestDTO.setAnimeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo());
+        int insertedCnt2 = animeDAO.insertAnimeThumbnailInfo(insertAnimeThumbnailInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
         assertThat(insertAnimeInfoRequestDTO.getInsertedAnimeNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         //////////////////////////////////
 
@@ -269,9 +294,11 @@ public class AnimeDAOTests {
         UpdateAnimeInfoRequestDTO updateAnimeInfoRequestDTO = UpdateAnimeInfoRequestDTO.builder()
                 .madeNatureNo(natureNo)
                 .animeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo())
-                .pagePerAnimeCnt(0)
-                .title("드래곤볼GT")
-                .author("나카츠루 카츠요시")
+                .animeTitle("드래곤볼GT")
+                .animeAuthor("나카츠루 카츠요시")
+                .link("https://www.daum.net")
+                .finalizedYnEnum(FinalizedYnEnum.y)
+                .animeBroadcastCnt(64)
                 .animeRegDt("1996-12-20")
                 .build();
 
@@ -300,6 +327,7 @@ public class AnimeDAOTests {
         assertThat(animeVO2.getAnimeAuthor(), is("나카츠루 카츠요시"));
     }
 
+    // 애니 삽입 -> 조회 -> 상태 업데이트 -> 재조회로 검증
     @Test
     public void test8_UpdateAnimeState() {
 
@@ -307,10 +335,13 @@ public class AnimeDAOTests {
 
         // given
         int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        insertAnimeThumbnailInfoRequestDTO.setAnimeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo());
+        int insertedCnt2 = animeDAO.insertAnimeThumbnailInfo(insertAnimeThumbnailInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
         assertThat(insertAnimeInfoRequestDTO.getInsertedAnimeNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         //////////////////////////////////
 
@@ -330,11 +361,11 @@ public class AnimeDAOTests {
 
         //////////////////////////////////
 
-        // 3. 업데이트
+        // 3. 상태 업데이트
 
         // given
         UpdateAnimeStateRequestDTO updateAnimeStateRequestDTO = UpdateAnimeStateRequestDTO.builder()
-                .animeNo(animeVO.getAnimeNo())
+                .animeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo())
                 .animeUseYnEnum(AnimeUseYnEnum.N)
                 .build();
 
@@ -357,6 +388,7 @@ public class AnimeDAOTests {
         assertThat(animVO2.getAnimeUseYnEnum(), CoreMatchers.is(AnimeUseYnEnum.N));
     }
 
+    // 애니 삽입 -> 조회 -> 삭제 -> 재조회로 검증
     @Test
     public void test9_DeleteAnimeInfo() {
 
@@ -367,10 +399,13 @@ public class AnimeDAOTests {
 
         // when
         int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        insertAnimeThumbnailInfoRequestDTO.setAnimeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo());
+        int insertedCnt2 = animeDAO.insertAnimeThumbnailInfo(insertAnimeThumbnailInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, CoreMatchers.is(1));
         assertThat(insertAnimeInfoRequestDTO.getInsertedAnimeNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ////////////////////////////////
 
@@ -415,6 +450,6 @@ public class AnimeDAOTests {
         AnimeVO animeVO2 = animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO2);
 
         // then
-        assertThat(animeVO2, is(nullValue()));
+        assertThat(animeVO2.getAnimeNo(), is(nullValue()));
     }
 }

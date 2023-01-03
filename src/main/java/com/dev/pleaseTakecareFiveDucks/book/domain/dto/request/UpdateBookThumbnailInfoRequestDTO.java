@@ -7,12 +7,8 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class UpdateBookInfoRequestDTO {
+public class UpdateBookThumbnailInfoRequestDTO {
     Integer bookNo;
-    Integer madeNatureNo;
-    Integer bookTypeNo;
-    String title;
-    String author;
-    String link;
-    String bookRegDt;
+    String filePath;
+    String fileName;
 }

@@ -1,12 +1,11 @@
 package com.dev.pleaseTakecareFiveDucks.anime.domain.vo;
 
 import com.dev.pleaseTakecareFiveDucks.anime.util.AnimeUseYnEnum;
+import com.dev.pleaseTakecareFiveDucks.anime.util.FinalizedYnEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 @Builder
 @Data
@@ -17,8 +16,12 @@ public class AnimeVO {
     Integer madeNatureNo;
     String animeTitle;
     String animeAuthor;
-    Integer pagePerAnimeCnt;
+    String link;
+    FinalizedYnEnum finalizedYnEnum;
+    Integer animeBroadcastCnt;
     AnimeUseYnEnum animeUseYnEnum;
+    Integer viewCnt;
+    String filePullPath;
     String animeRegDt;
     String regDt;
 }

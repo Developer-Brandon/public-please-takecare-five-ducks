@@ -7,12 +7,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class UpdateBookInfoRequestDTO {
+public class InsertBookViewCntRequestDTO {
+    Integer userNo;
     Integer bookNo;
-    Integer madeNatureNo;
-    Integer bookTypeNo;
-    String title;
-    String author;
-    String link;
-    String bookRegDt;
 }

@@ -24,14 +24,19 @@
         <![CDATA[
         /* 전체 책 리스트 조회 쿼리 */
         ]]>
-        select r_book_no as bookNo
-             , m_n_no as madeNatureNo
-             , title as bookTitle
-             , author as bookAuthor
-             , use_yn as bookUseYnEnum
-             , left(replace(book_reg_dt, '. ', '-') ,length(replace(book_reg_dt, '. ', '-')) - 1) as bookRegDt
-             , reg_dt as regDt
-        from web_app_test2.tb_book
+        select tb_b.r_book_no as bookNo
+             , tb_b.m_n_no as madeNatureNo
+             , tb_b_t.tag_korean_name as bookTypeKorean
+             , tb_b_t.tag_english_name as bookTypeEnglish
+             , tb_b.title as bookTitle
+             , tb_b.author as bookAuthor
+             , tb_b.link as link
+             , tb_b.use_yn as bookUseYnEnum
+             , left(replace(tb_b.book_reg_dt, '. ', '-') ,length(replace(tb_b.book_reg_dt, '. ', '-')) - 1) as bookRegDt
+             , tb_b.reg_dt as regDt
+        from web_app_test2.tb_book as tb_b
+            inner join web_app_test2.tb_book_type as tb_b_t
+                on tb_b.r_book_type_no = tb_b_t.r_book_type_no
         order by str_to_date(bookRegDt, '%Y-%m-%d') desc
     </select>
 
@@ -41,41 +46,82 @@
         <![CDATA[
         /* 전체 책 리스트 조회 쿼리(pagination) */
         ]]>
-        select r_book_no as bookNo
-             , m_n_no as madeNatureNo
-             , title as bookTitle
-             , author as bookAuthor
-             , use_yn as bookUseYnEnum
-             , left(replace(book_reg_dt, '. ', '-') ,length(replace(book_reg_dt, '. ', '-')) - 1) as bookRegDt
-             , reg_dt as regDt
-        from web_app_test2.tb_book
+        select tb_b.r_book_no as bookNo
+             , tb_b.m_n_no as madeNatureNo
+             , tb_b_t.tag_korean_name as bookTypeKorean
+             , tb_b_t.tag_english_name as bookTypeEnglish
+             , tb_b.title as bookTitle
+             , tb_b.author as bookAuthor
+             , tb_b.link as link
+             , tb_b.use_yn as bookUseYnEnum
+             , left(replace(tb_b.book_reg_dt, '. ', '-') ,length(replace(tb_b.book_reg_dt, '. ', '-')) - 1) as bookRegDt
+             , tb_b.reg_dt as regDt
+        from web_app_test2.tb_book as tb_b
+            inner join web_app_test2.tb_book_type as tb_b_t
+                on tb_b.r_book_type_no = tb_b_t.r_book_type_no
         order by str_to_date(bookRegDt, '%Y-%m-%d') desc
         limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="selectBookThumbnailImageListByBookNo"
+            parameterType="com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.SelectBookThumbnailImageListRequestDTO"
+            resultType="com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookThumbnailVO">
+        <![CDATA[
+        /* 전체 책 썸네일 리스트 조회 쿼리(리스트 조회의 경우 left outer join 보다, 선택적인 번호만 넘겨서 부분 조회하는 것으로 개발하였습니다) */
+        ]]>
+        select r_book_no as bookNo
+             , concat(file_path, '/', file_name) as filePullPath
+        from web_app_test2.tb_book_thumbnail_img
+        where r_book_no in (
+            <foreach item="item" collection="bookNoList" separator=",">
+                #{item}
+            </foreach>
+        )
     </select>
 
     <select id="selectBookInfo"
             parameterType="com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.SelectBookInfoRequestDTO"
             resultType="com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO">
         <![CDATA[
-        /* 전체 책 리스트 조회 쿼리(pagination) */
+        /* 단일 책 상세 정보 조회 쿼리 */
         ]]>
-        select r_book_no as bookNo
-             , m_n_no as madeNatureNo
-             , title as bookTitle
-             , author as bookAuthor
-             , use_yn as bookUseYnEnum
-             , left(replace(book_reg_dt, '. ', '-') ,length(replace(book_reg_dt, '. ', '-')) - 1) as bookRegDt
-             , reg_dt as regDt
-        from web_app_test2.tb_book
-        where r_book_no = #{bookNo}
+        select tb_b.r_book_no as bookNo
+             , tb_b.m_n_no as madeNatureNo
+             , tb_b_t.tag_korean_name as bookTypeKorean
+             , tb_b_t.tag_english_name as bookTypeEnglish
+             , tb_b.title as bookTitle
+             , tb_b.author as bookAuthor
+             , tb_b.link as link
+             , tb_b.use_yn as bookUseYnEnum
+             , ifnull(null, count(tb_b_v.view_no)) as viewCnt
+             , ifnull(null, concat(tb_b_t_i.file_path, '/', tb_b_t_i.file_name)) as filePullPath
+             , left(replace(tb_b.book_reg_dt, '. ', '-') ,length(replace(tb_b.book_reg_dt, '. ', '-')) - 1) as bookRegDt
+             , left(replace(tb_b.reg_dt, '. ', '-') ,length(replace(tb_b.reg_dt, '. ', '-')) - 1) as regDt
+        from web_app_test2.tb_book as tb_b
+            inner join web_app_test2.tb_book_type as tb_b_t
+                on tb_b.r_book_type_no = tb_b_t.r_book_type_no
+            left outer join web_app_test2.tb_book_view as tb_b_v
+                on tb_b.r_book_no = tb_b_v.r_book_no
+            left outer join web_app_test2.tb_book_thumbnail_img as tb_b_t_i
+                on tb_b.r_book_no = tb_b_t_i.r_book_no
+        where tb_b.r_book_no = #{bookNo}
     </select>
+
+    <insert id="insertBookViewCnt"
+            parameterType="com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.InsertBookViewCntRequestDTO">
+        <![CDATA[
+        /* 책 조회수 증가 쿼리 */
+        ]]>
+        insert into web_app_test2.tb_book_view(user_no, r_book_no)
+        value(#{userNo}, #{bookNo})
+    </insert>
 
     <insert id="insertBookInfo"
             parameterType="com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.InsertBookInfoRequestDTO">
         <![CDATA[
         /* 책 정보 삽입 쿼리 */
-        insert into web_app_test2.tb_book(m_n_no, title, author, book_reg_dt)
-        value (#{madeNatureNo}, #{title}, #{author}, #{bookRegDt})
+        insert into web_app_test2.tb_book(m_n_no, r_book_type_no, title, author, link, book_reg_dt)
+        value (#{madeNatureNo}, #{bookTypeNo}, #{title}, #{author}, #{link}, #{bookRegDt})
         ]]>
         <selectKey
                 keyProperty="insertedBookNo"
@@ -87,15 +133,39 @@
         </selectKey>
     </insert>
 
+    <insert id="insertBookThumbnailInfo"
+            parameterType="com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.InsertBookThumbnailInfoRequestDTO">
+        <![CDATA[
+        /* 책 썸네일 정보 삽입 쿼리 */
+        insert into web_app_test2.tb_book_thumbnail_img(r_book_no, file_path, file_name)
+            value(#{bookNo}, #{filePath}, #{fileName})
+        ]]>
+    </insert>
+
     <update id="updateBookInfo"
             parameterType="com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.UpdateBookInfoRequestDTO">
         <![CDATA[
         /* 단일 책 정보 수정 쿼리 */
         update web_app_test2.tb_book
-        set m_n_no = #{madeNatureNo},
-            title = #{title},
-            author = #{author},
-            book_reg_dt = #{bookRegDt}
+        set m_n_no = #{madeNatureNo}
+            , r_book_type_no = #{bookTypeNo}
+            , title = #{title}
+            , author = #{author}
+            , link = #{link}
+            , book_reg_dt = #{bookRegDt}
+            , mod_dt = now()
+        where r_book_no = #{bookNo}
+        ]]>
+    </update>
+
+    <update id="updateBookThumbnailInfo"
+            parameterType="com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.UpdateBookThumbnailInfoRequestDTO">
+        <![CDATA[
+        /* 책 썸네일 수정 쿼리 */
+        update web_app_test2.tb_book_thumbnail_img
+        set file_path = #{filePath}
+          , file_name = #{fileName}
+          , mod_dt = now()
         where r_book_no = #{bookNo}
         ]]>
     </update>
@@ -106,6 +176,7 @@
         /* 단일 책 상태 수정 쿼리 */
         update web_app_test2.tb_book
         set use_yn = #{bookUseYnEnum}
+          , mod_dt = now()
         where r_book_no = #{bookNo}
         ]]>
     </update>
@@ -115,6 +186,15 @@
         <![CDATA[
         /* 단일 책 삭제 쿼리 */
         delete from web_app_test2.tb_book
+        where r_book_no = #{bookNo}
+        ]]>
+    </delete>
+
+    <delete id="deleteBookThumbnailInfo"
+            parameterType="Integer">
+        <![CDATA[
+        /* 단일 책 썸네일 삭제 쿼리 */
+        delete from web_app_test2.tb_book_thumbnail_img
         where r_book_no = #{bookNo}
         ]]>
     </delete>
