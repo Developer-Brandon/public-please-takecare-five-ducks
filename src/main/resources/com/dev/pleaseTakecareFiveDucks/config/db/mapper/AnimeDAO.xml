@@ -85,13 +85,13 @@
         /* 단일 애니 상세 정보 조회 쿼리 */
         ]]>
         select tb_a.r_anime_no as animeNo
-             , m_n_no as madeNatureNo
-             , title as animeTitle
-             , author as animeAuthor
-             , link as link
-             , finalized_yn as finalizedYnEnum
-             , anime_broadcast_cnt as animeBroadcastCnt
-             , use_yn as animeUseYnEnum
+             , tb_a.m_n_no as madeNatureNo
+             , tb_a.title as animeTitle
+             , tb_a.author as animeAuthor
+             , tb_a.link as link
+             , tb_a.finalized_yn as finalizedYnEnum
+             , tb_a.anime_broadcast_cnt as animeBroadcastCnt
+             , tb_a.use_yn as animeUseYnEnum
              , ifnull(null, count(tb_a_v.view_no)) as viewCnt
              , ifnull(null, concat(tb_a_t_i.file_path, '/', tb_a_t_i.file_name)) as filePullPath
              , left(replace(anime_reg_dt, '. ', '-') ,length(replace(anime_reg_dt, '. ', '-')) - 1) as animeRegDt
@@ -124,7 +124,7 @@
                 keyProperty="insertedAnimeNo"
                 order="AFTER"
                 resultType="Integer">
-            /* 애니 정보 삽입 쿼리 */
+            /* 애니 정보 조회 쿼리 */
             select max(r_anime_no)
             from web_app_test2.tb_anime
         </selectKey>
@@ -145,13 +145,13 @@
         /* 단일 애니 정보 수정 쿼리 */
         update web_app_test2.tb_anime
         set m_n_no = #{madeNatureNo}
-            , title = #{animeTitle}
-            , author = #{animeAuthor}
-            , link = #{link}
-            , finalized_yn = #{finalizedYnEnum}
-            , anime_broadcast_cnt = #{animeBroadcastCnt}
-            , anime_reg_dt = #{animeRegDt}
-            , mod_dt = now()
+            ,title = #{animeTitle}
+            ,author = #{animeAuthor}
+            ,link = #{link}
+            ,finalized_yn = #{finalizedYnEnum}
+            ,anime_broadcast_cnt = #{animeBroadcastCnt}
+            ,anime_reg_dt = #{animeRegDt}
+            ,mod_dt = now()
         where r_anime_no = #{animeNo}
         ]]>
     </update>

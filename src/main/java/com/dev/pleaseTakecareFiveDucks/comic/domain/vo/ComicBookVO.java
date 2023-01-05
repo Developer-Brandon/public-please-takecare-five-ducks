@@ -19,6 +19,7 @@ public class ComicBookVO {
     String link;
     ComicBookSerialStateEnum comicBookSerialStateEnum;
     ComicBookUseYnEnum comicBookUseYnEnum;
+    Integer viewCnt;
     String fileFullPath;
     String comicBookRegDt;
     String regDt;

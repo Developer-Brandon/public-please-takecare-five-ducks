@@ -1,5 +1,6 @@
 package com.dev.pleaseTakecareFiveDucks.drama.domain.vo;
 
+import com.dev.pleaseTakecareFiveDucks.drama.util.BroadcastStateEnum;
 import com.dev.pleaseTakecareFiveDucks.drama.util.DramaUseYnEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,8 +18,11 @@ public class DramaVO {
     Integer madeNatureNo;
     String dramaTitle;
     String dramaAuthor;
-    Integer pagePerDramaCnt;
+    String link;
+    BroadcastStateEnum broadcastStateEnum;
     DramaUseYnEnum dramaUseYnEnum;
+    Integer viewCnt;
+    String filePullPath;
     String dramaRegDt;
     String regDt;
 }

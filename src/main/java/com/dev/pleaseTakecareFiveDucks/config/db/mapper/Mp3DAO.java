@@ -7,6 +7,7 @@ import com.dev.pleaseTakecareFiveDucks.mp3.domain.dto.request.UpdateMp3StateRequ
 import com.dev.pleaseTakecareFiveDucks.mp3.domain.vo.Mp3VO;
 import java.util.List;
 
+// todo: Mp3DAO와 YotubeDAO는 추후 util 메뉴에 대해서 추가적으로 고민 후 개발 예정입니다
 public interface Mp3DAO {
 
     int getMp3TotalCnt();

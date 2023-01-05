@@ -52,7 +52,6 @@ public class MovieDAOTests {
                 .title("대부")
                 .directorName("돈꼴레오네")
                 .movieRegDt("1980-11-20")
-                .pagePerMovieCnt(0)
                 .build();
     }
 
@@ -272,7 +271,6 @@ public class MovieDAOTests {
                 .title("대부2")
                 .directorName("돈꼴레오네")
                 .movieRegDt("1996-12-20")
-                .pagePerMovieCnt(0)
                 .build();
 
         // when & then

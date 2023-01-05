@@ -13,7 +13,7 @@ public interface DramaService {
 
     Integer selectDramaTotalCnt();
 
-    void removeAllDramaInfoList();
+    void removeAllDramaInfoList() throws Exception;
 
     List<DramaVO> selectDramaList();
 
@@ -21,11 +21,11 @@ public interface DramaService {
 
     DramaVO selectDramaInfo(SelectDramaInfoRequestDTO selectDramaInfoRequestDTO);
 
-    void registerDramaInfo(InsertDramaInfoRequestDTO insertDramaInfoRequestDTO);
+    void registerDramaInfo(InsertDramaInfoRequestDTO insertDramaInfoRequestDTO) throws Exception;
 
-    void modifyDramaInfo(UpdateDramaInfoRequestDTO updateDramaInfoRequestDTO);
+    void modifyDramaInfo(UpdateDramaInfoRequestDTO updateDramaInfoRequestDTO) throws Exception;
 
-    void modifyDramaState(UpdateDramaStateRequestDTO updateDramaStateRequestDTO);
+    void modifyDramaState(UpdateDramaStateRequestDTO updateDramaStateRequestDTO) throws Exception;
 
-    void removeDramaInfo(Integer No);
+    void removeDramaInfo(Integer No) throws Exception;
 }

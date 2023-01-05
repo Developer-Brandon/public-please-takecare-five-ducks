@@ -4,7 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dev.pleaseTakecareFiveDucks.config.db.mapper.MovieDAO">
 
-    <select id="getMovieTotalCnt" resultType="int">
+    <select id="getMovieTotalCnt"
+            resultType="int">
         <![CDATA[
         /* 전체 영화 개수 조회 쿼리 */
         ]]>
@@ -28,7 +29,8 @@
              , m_n_no as madeNatureNo
              , title as movieTitle
              , director as directorName
-             , page_per_movie_cnt as pagePerMovieCnt
+             , link as link
+             , total_number_of_episode as totalNumberOfEpisode
              , use_yn as movieUseYnEnum
              , left(replace(movie_reg_dt, '. ', '-') ,length(replace(movie_reg_dt, '. ', '-')) - 1) as movieRegDt
              , left(replace(reg_dt, '. ', '-') ,length(replace(reg_dt, '. ', '-')) - 1) as regDt
@@ -42,11 +44,12 @@
         <![CDATA[
         /* 전체 영화 리스트 조회 쿼리(pagination) */
         ]]>
-        select r_movie_no as movieNo
+       select r_movie_no as movieNo
              , m_n_no as madeNatureNo
              , title as movieTitle
              , director as directorName
-             , page_per_movie_cnt as pagePerMovieCnt
+             , link as link
+             , total_number_of_episode as totalNumberOfEpisode
              , use_yn as movieUseYnEnum
              , left(replace(movie_reg_dt, '. ', '-') ,length(replace(movie_reg_dt, '. ', '-')) - 1) as movieRegDt
              , left(replace(reg_dt, '. ', '-') ,length(replace(reg_dt, '. ', '-')) - 1) as regDt
@@ -55,39 +58,83 @@
         limit #{offset}, #{pageSize}
     </select>
 
+    <select id="selectMovieThumbnailImageListByMovieNo"
+            parameterType="com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.SelectMovieThumbnailImageListRequestDTO"
+            resultType="com.dev.pleaseTakecareFiveDucks.movie.domain.vo.MovieThumbnailVO">
+        <![CDATA[
+        /*
+            전체 영화 썸네일 리스트 조회 쿼리
+           (리스트 조회의 경우 left outer join 보다, 선택적인 번호만 넘겨서 부분 조회하는 것으로 개발하였습니다)
+        */
+        ]]>
+        select r_movie_no as movieNo
+             , concat(file_path, '/', file_name) as filePullPath
+        from web_app_test2.tb_movie_thumbnail_img
+        where r_movie_no in (
+        <foreach item="item" collection="movieNoList" separator=",">
+            #{item}
+        </foreach>
+        )
+    </select>
+
     <select id="selectMovieInfo"
             parameterType="com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.SelectMovieInfoRequestDTO"
             resultType="com.dev.pleaseTakecareFiveDucks.movie.domain.vo.MovieVO">
         <![CDATA[
         /* 단일 책 리스트 조회 쿼리 */
         ]]>
-        select r_movie_no as movieNo
-             , m_n_no as madeNatureNo
-             , title as movieTitle
-             , director as directorName
-             , page_per_movie_cnt as pagePerMovieCnt
-             , use_yn as movieUseYnEnum
-             , left(replace(movie_reg_dt, '. ', '-') ,length(replace(movie_reg_dt, '. ', '-')) - 1) as movieRegDt
-             , left(replace(reg_dt, '. ', '-') ,length(replace(reg_dt, '. ', '-')) - 1) as regDt
-        from web_app_test2.tb_movie
-        where r_movie_no = #{movieNo}
+       select tb_m.r_movie_no as movieNo
+         , tb_m.m_n_no as madeNatureNo
+         , tb_m.title as movieTitle
+         , tb_m.director as directorName
+         , tb_m.link as link
+         , tb_m.total_number_of_episode as totalNumberOfEpisode
+         , tb_m.use_yn as movieUseYnEnum
+         , ifnull(null, count(tb_m_v.view_no)) as viewCnt
+         , ifnull(null, concat(tb_m_t_i.file_path, '/', tb_m_t_i.file_name)) as filePullPath
+         , left(replace(tb_m.movie_reg_dt, '. ', '-') ,length(replace(tb_m.movie_reg_dt, '. ', '-')) - 1) as movieRegDt
+         , left(replace(tb_m.reg_dt, '. ', '-') ,length(replace(tb_m.reg_dt, '. ', '-')) - 1) as regDt
+        from web_app_test2.tb_movie as tb_m
+        left outer join web_app_test2.tb_movie_view as tb_m_v
+            on tb_m.r_movie_no = tb_m_v.r_movie_no
+        left outer join web_app_test2.tb_movie_thumbnail_img as tb_m_t_i
+            on tb_m.r_movie_no = tb_m_t_i.r_movie_no
+    where tb_m.r_movie_no = #{movieNo}
     </select>
+
+    <insert id="insertMovieViewCnt"
+            parameterType="com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.InsertMovieViewCntRequestDTO">
+        <![CDATA[
+        /* 영화 조회수 증가 쿼리 */
+        ]]>
+        insert into web_app_test2.tb_movie_view(user_no, r_movie_no)
+        value(#{userNo},#{movieNo})
+    </insert>
 
     <insert id="insertMovieInfo"
             parameterType="com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.InsertMovieInfoRequestDTO">
         <![CDATA[
         /* 영화 정보 삽입 쿼리 */
-        insert into web_app_test2.tb_movie(m_n_no, title, director, page_per_movie_cnt, movie_reg_dt)
-        value (#{madeNatureNo}, #{title}, #{directorName}, #{pagePerMovieCnt}, #{movieRegDt})
+        insert into web_app_test2.tb_movie(m_n_no, title, director, link, total_number_of_episode, movie_reg_dt)
+        value (#{madeNatureNo}, #{title}, #{directorName}, #{link}, #{totalNumberOfEpisode}, #{movieRegDt})
         ]]>
         <selectKey
                 keyProperty="insertedMovieNo"
                 order="AFTER"
                 resultType="Integer">
-            /* 영화 정보 삽입 쿼리 */
+            /* 영화 정보 조회 쿼리 */
             select max(r_movie_no)
             from web_app_test2.tb_movie
         </selectKey>
+    </insert>
+
+    <insert id="insertMovieThumbnailInfo"
+            parameterType="com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.InsertMovieThumbnailInfoRequestDTO">
+        <![CDATA[
+        /* 영화 썸네일 정보 삽입 쿼리 */
+        insert into web_app_test2.tb_movie_thumbnail_img(r_movie_no, file_path, file_name)
+            value(#{movieNo}, #{filePath}, #{fileName})
+        ]]>
     </insert>
 
     <update id="updateMovieInfo"
@@ -95,11 +142,25 @@
         <![CDATA[
         /* 단일 영화 정보 수정 쿼리 */
         update web_app_test2.tb_movie
-        set m_n_no = #{madeNatureNo},
-            title = #{title},
-            director = #{directorName},
-            page_per_movie_cnt = #{pagePerMovieCnt},
-            movie_reg_dt = #{movieRegDt}
+        set m_n_no = #{madeNatureNo}
+            ,title = #{title}
+            ,director = #{directorName}
+            ,link = #{link}
+            ,total_number_of_episode = #{totalNumberOfEpisode}
+            ,movie_reg_dt = #{movieRegDt}
+            ,mod_dt = now()
+        where r_movie_no = #{movieNo}
+        ]]>
+    </update>
+
+    <update id="updateMovieThumbnailInfo"
+            parameterType="com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.UpdateMovieThumbnailInfoRequestDTO">
+        <![CDATA[
+        /* 영화 썸네일 수정 쿼리 */
+        update web_app_test2.tb_movie_thumbnail_img
+        set file_path = #{filePath}
+            ,file_name = #{fileName}
+            ,mod_dt = now()
         where r_movie_no = #{movieNo}
         ]]>
     </update>
@@ -110,6 +171,7 @@
         /* 단일 영화 상태 수정 쿼리 */
         update web_app_test2.tb_movie
         set use_yn = #{movieUseYnEnum}
+            ,mod_dt = now()
         where r_movie_no = #{movieNo}
         ]]>
     </update>
@@ -119,6 +181,15 @@
         <![CDATA[
         /* 단일 영화 삭제 쿼리 */
         delete from web_app_test2.tb_movie
+        where r_movie_no = #{movieNo}
+        ]]>
+    </delete>
+
+    <delete id="deleteMovieThumbnailInfo"
+            parameterType="Integer">
+        <![CDATA[
+        /* 단일 영화 썸네일 삭제 쿼리 */
+        delete from web_app_test2.tb_movie_thumbnail_img
         where r_movie_no = #{movieNo}
         ]]>
     </delete>

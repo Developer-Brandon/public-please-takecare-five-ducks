@@ -8,6 +8,7 @@ import com.dev.pleaseTakecareFiveDucks.youtube.domain.vo.YoutubeVO;
 
 import java.util.List;
 
+// todo: Mp3DAO와 YotubeDAO는 추후 util 메뉴에 대해서 추가적으로 고민 후 개발 예정입니다
 public interface YoutubeDAO {
 
     int getYoutubeTotalCnt();

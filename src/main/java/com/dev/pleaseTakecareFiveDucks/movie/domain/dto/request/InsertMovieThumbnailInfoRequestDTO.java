@@ -4,28 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
 @Builder
 @AllArgsConstructor
-public class UpdateMovieInfoRequestDTO {
-
+public class InsertMovieThumbnailInfoRequestDTO {
     Integer movieNo;
-
-    Integer madeNatureNo;
-
-    String title;
-
-    String directorName;
-
-    String link;
-
-    Integer totalNumberOfEpisode;
-
     String filePath;
-
     String fileName;
-
-    String movieRegDt;
 }

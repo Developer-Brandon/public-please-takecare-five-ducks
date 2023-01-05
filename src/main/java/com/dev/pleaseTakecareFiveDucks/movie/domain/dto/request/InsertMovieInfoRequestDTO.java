@@ -10,10 +10,22 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 public class InsertMovieInfoRequestDTO {
+
     Integer insertedMovieNo;
+
     Integer madeNatureNo;
+
     String title;
+
     String directorName;
-    Integer pagePerMovieCnt;
+
+    String link;
+
+    Integer totalNumberOfEpisode;
+
+    String filePath;
+
+    String fileName;
+
     String movieRegDt;
 }

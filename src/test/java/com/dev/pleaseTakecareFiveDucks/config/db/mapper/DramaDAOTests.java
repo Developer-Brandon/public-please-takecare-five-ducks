@@ -4,6 +4,7 @@ import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.SelectDramaInfoR
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.UpdateDramaInfoRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.UpdateDramaStateRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaVO;
+import com.dev.pleaseTakecareFiveDucks.drama.util.BroadcastStateEnum;
 import com.dev.pleaseTakecareFiveDucks.drama.util.DramaUseYnEnum;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.InsertDramaInfoRequestDTO;
 import org.hamcrest.CoreMatchers;
@@ -51,8 +52,9 @@ public class DramaDAOTests {
                 .madeNatureNo(natureNo)
                 .title("올인")
                 .author("최완규")
+                .link("http://www.drama.com")
+                .broadcastStateEnum(BroadcastStateEnum.end)
                 .dramaRegDt("2003-01-15")
-                .pagePerDramaCnt(0)
                 .build();
     }
 

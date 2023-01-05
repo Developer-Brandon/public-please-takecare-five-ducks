@@ -89,12 +89,15 @@
              , tb_c_b.link as link
              , tb_c_b.serial_state as comicBookSerialStateEnum
              , tb_c_b.use_yn as comicBookUseYnEnum
+             , ifnull(null, count(tb_c_b_v.view_no)) as viewCnt
              , ifnull(null, concat(tb_c_b_i.file_path, '/', tb_c_b_i.file_name)) as filePullPath
              , left(replace(tb_c_b.book_reg_dt, '. ', '-') ,length(replace(tb_c_b.book_reg_dt, '. ', '-')) - 1) as comicBookRegDt
              , left(replace(tb_c_b.reg_dt, '. ', '-') ,length(replace(tb_c_b.reg_dt, '. ', '-')) - 1) as regDt
         from web_app_test2.tb_comic_book as tb_c_b
+            left outer join web_app_test2.tb_comic_book_view as tb_c_b_v
+                on tb_c_b.r_book_no = tb_c_b_v.r_book_no
             left outer join web_app_test2.tb_comic_book_thumbnail_img as tb_c_b_i
-            on tb_c_b.r_book_no = tb_c_b_i.r_book_no
+                on tb_c_b.r_book_no = tb_c_b_i.r_book_no
         where tb_c_b.r_book_no = #{bookNo}
     </select>
 

@@ -17,7 +17,10 @@ public class MovieVO {
     Integer madeNatureNo;
     String movieTitle;
     String directorName;
-    Integer pagePerMovieCnt;
+    String link;
+    Integer totalNumberOfEpisode;
+    Integer viewCnt;
+    String filePullPath;
     MovieUseYnEnum movieUseYnEnum;
     String movieRegDt;
     String regDt;
