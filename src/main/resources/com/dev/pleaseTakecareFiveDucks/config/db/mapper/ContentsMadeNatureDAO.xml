@@ -86,8 +86,9 @@
         <![CDATA[
         /* 단일 컨텐츠 정보 수정 쿼리 */
         update web_app_test2.tb_contents_made_nature
-        set english_name = #{englishName},
-            korean_name = #{koreanName}
+        set english_name = #{englishName}
+            ,korean_name = #{koreanName}
+            ,mod_dt = now()
         where m_n_no = #{contentsNo};
         ]]>
     </update>
@@ -98,6 +99,7 @@
         /* 단일 컨텐츠 상태 수정 쿼리 */
         update web_app_test2.tb_contents_made_nature
         set use_yn = #{contentsMadeNatureUseYnEnum}
+            ,mod_dt = now()
         where m_n_no = #{contentsNo}
         ]]>
     </update>
