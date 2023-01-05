@@ -124,7 +124,7 @@ public class ComicBookDAOTests {
         ComicBookVO ComicBookVO = comicBookDAO.selectComicBookInfo(selectComicBookInfoRequestDTO);
 
         // then
-        assertThat(ComicBookVO.getComicBookNo(), greaterThanOrEqualTo(1));
+        assertThat(ComicBookVO.getBookNo(), greaterThanOrEqualTo(1));
 
         ////////////////////////////
 
@@ -258,7 +258,7 @@ public class ComicBookDAOTests {
         ComicBookVO ComicBookVO = comicBookDAO.selectComicBookInfo(selectComicBookInfoRequestDTO);
 
         // when & then
-        assertThat(ComicBookVO.getComicBookNo(), greaterThanOrEqualTo(insertComicBookInfoRequestDTO.getInsertedComicBookNo()));
+        assertThat(ComicBookVO.getBookNo(), greaterThanOrEqualTo(insertComicBookInfoRequestDTO.getInsertedComicBookNo()));
 
         //////////////////////////////////
 
@@ -293,7 +293,7 @@ public class ComicBookDAOTests {
         ComicBookVO comicBookVO2 = comicBookDAO.selectComicBookInfo(selectComicBookInfoRequestDTO2);
 
         // then
-        assertThat(comicBookVO2.getComicBookNo(), is(updateComicBookInfoRequestDTO.getBookNo()));
+        assertThat(comicBookVO2.getBookNo(), is(updateComicBookInfoRequestDTO.getBookNo()));
         assertThat(comicBookVO2.getComicBookTitle(), is("드래곤볼GT"));
         assertThat(comicBookVO2.getComicBookAuthor(), is("나카츠루 카츠요시"));
     }
@@ -322,7 +322,7 @@ public class ComicBookDAOTests {
         ComicBookVO comicBookVO = comicBookDAO.selectComicBookInfo(selectComicBookInfoRequestDTO);
 
         // when & then
-        assertThat(comicBookVO.getComicBookNo(), greaterThanOrEqualTo(insertComicBookInfoRequestDTO.getInsertedComicBookNo()));
+        assertThat(comicBookVO.getBookNo(), greaterThanOrEqualTo(insertComicBookInfoRequestDTO.getInsertedComicBookNo()));
         // 추가로, 책의 상태도 체크합니다.
         assertThat(comicBookVO.getComicBookUseYnEnum(), CoreMatchers.is(ComicBookUseYnEnum.Y));
 
@@ -332,7 +332,7 @@ public class ComicBookDAOTests {
 
         // given
         UpdateComicBookStateRequestDTO updateComicBookStateRequestDTO = UpdateComicBookStateRequestDTO.builder()
-                .bookNo(comicBookVO.getComicBookNo())
+                .bookNo(comicBookVO.getBookNo())
                 .comicBookUseYnEnum(ComicBookUseYnEnum.N)
                 .build();
 
@@ -384,7 +384,7 @@ public class ComicBookDAOTests {
         ComicBookVO comicBookVO = comicBookDAO.selectComicBookInfo(selectComicBookInfoRequestDTO);
 
         // then
-        assertThat(comicBookVO.getComicBookNo(), is(selectComicBookInfoRequestDTO.getBookNo()));
+        assertThat(comicBookVO.getBookNo(), is(selectComicBookInfoRequestDTO.getBookNo()));
 
         ////////////////////////////////
 
@@ -394,7 +394,7 @@ public class ComicBookDAOTests {
         // 상단에서 삽입한 dto를 그대로 가져와서 조회합니다.
 
         // when
-        int deletedCnt = comicBookDAO.deleteComicBookInfo(comicBookVO.getComicBookNo());
+        int deletedCnt = comicBookDAO.deleteComicBookInfo(comicBookVO.getBookNo());
 
         // then
         assertThat(deletedCnt, is(1));
