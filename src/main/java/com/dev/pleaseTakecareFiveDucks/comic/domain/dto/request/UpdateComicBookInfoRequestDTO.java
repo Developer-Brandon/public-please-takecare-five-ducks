@@ -1,5 +1,6 @@
 package com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request;
 
+import com.dev.pleaseTakecareFiveDucks.comic.util.ComicBookSerialStateEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,5 +15,9 @@ public class UpdateComicBookInfoRequestDTO {
     Integer madeNatureNo;
     String title;
     String author;
+    String link;
+    ComicBookSerialStateEnum comicBookSerialStateEnum;
+    String filePath;
+    String fileName;
     String comicBookRegDt;
 }

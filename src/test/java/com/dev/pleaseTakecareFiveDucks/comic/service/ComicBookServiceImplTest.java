@@ -118,7 +118,7 @@ public class ComicBookServiceImplTest extends TestCase {
 
         // given
         ComicBookVO comicBookVO = mock(ComicBookVO.class);
-        comicBookVO.setComicBookNo(1);
+        comicBookVO.setBookNo(1);
         comicBookVO.setComicBookAuthor("테스트_저자");
         comicBookVO.setComicBookRegDt("2022-12-30");
         comicBookVO.setComicBookTitle("테스트_제목");
@@ -127,7 +127,7 @@ public class ComicBookServiceImplTest extends TestCase {
         comicBookVO.setRegDt("2022-12-30");
 
         ComicBookVO comicBookVO2 = mock(ComicBookVO.class);
-        comicBookVO2.setComicBookNo(1);
+        comicBookVO2.setBookNo(1);
         comicBookVO2.setComicBookAuthor("테스트_저자");
         comicBookVO2.setComicBookRegDt("2022-12-30");
         comicBookVO2.setComicBookTitle("테스트_제목");
@@ -136,7 +136,7 @@ public class ComicBookServiceImplTest extends TestCase {
         comicBookVO2.setRegDt("2022-12-30");
 
         ComicBookVO comicBookVO3 = mock(ComicBookVO.class);
-        comicBookVO3.setComicBookNo(1);
+        comicBookVO3.setBookNo(1);
         comicBookVO3.setComicBookAuthor("테스트_저자");
         comicBookVO3.setComicBookRegDt("2022-12-30");
         comicBookVO3.setComicBookTitle("테스트_제목");

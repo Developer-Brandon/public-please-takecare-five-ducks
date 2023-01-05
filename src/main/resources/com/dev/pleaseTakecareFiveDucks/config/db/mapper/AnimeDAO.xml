@@ -14,7 +14,7 @@
 
     <delete id="deleteAll">
         <![CDATA[
-        /* 디비에 쌓여있는 전체 만화책 삭제 쿼리 */
+        /* 디비에 쌓여있는 전체 애니 삭제 쿼리 */
         ]]>
         delete from web_app_test2.tb_anime
     </delete>
@@ -63,7 +63,10 @@
             parameterType="com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.SelectAnimeThumbnailImageListRequestDTO"
             resultType="com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeThumbnailVO">
         <![CDATA[
-        /* 전체 애니 썸네일 리스트 조회 쿼리(리스트 조회의 경우 left outer join 보다, 선택적인 번호만 넘겨서 부분 조회하는 것으로 개발하였습니다) */
+        /*
+            전체 애니 썸네일 리스트 조회 쿼리
+           (리스트 조회의 경우 left outer join 보다, 선택적인 번호만 넘겨서 부분 조회하는 것으로 개발하였습니다)
+        */
         ]]>
         select r_anime_no as animeNo
                , concat(file_path, '/', file_name) as filePullPath
@@ -121,7 +124,7 @@
                 keyProperty="insertedAnimeNo"
                 order="AFTER"
                 resultType="Integer">
-            /* 만화책 정보 삽입 쿼리 */
+            /* 애니 정보 삽입 쿼리 */
             select max(r_anime_no)
             from web_app_test2.tb_anime
         </selectKey>

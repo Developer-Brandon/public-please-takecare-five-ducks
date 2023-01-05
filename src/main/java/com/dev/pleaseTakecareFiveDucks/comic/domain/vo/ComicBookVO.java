@@ -1,5 +1,6 @@
 package com.dev.pleaseTakecareFiveDucks.comic.domain.vo;
 
+import com.dev.pleaseTakecareFiveDucks.comic.util.ComicBookSerialStateEnum;
 import com.dev.pleaseTakecareFiveDucks.comic.util.ComicBookUseYnEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +12,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ComicBookVO {
-    Integer comicBookNo;
+    Integer bookNo;
     Integer madeNatureNo;
     String comicBookTitle;
     String comicBookAuthor;
+    String link;
+    ComicBookSerialStateEnum comicBookSerialStateEnum;
     ComicBookUseYnEnum comicBookUseYnEnum;
+    String fileFullPath;
     String comicBookRegDt;
     String regDt;
 }
