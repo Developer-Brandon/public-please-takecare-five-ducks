@@ -1,4 +1,4 @@
-package com.dev.pleaseTakecareFiveDucks;
+package com.dev.pleaseTakecareFiveDucks.main.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
