@@ -1,12 +1,15 @@
 package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
 import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.*;
+import com.dev.pleaseTakecareFiveDucks.movie.domain.vo.MainMovieVO;
 import com.dev.pleaseTakecareFiveDucks.movie.domain.vo.MovieThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.movie.domain.vo.MovieVO;
 
 import java.util.List;
 
 public interface MovieDAO {
+
+    List<MainMovieVO> selectMainMovieList();
 
     int getMovieTotalCnt();
 

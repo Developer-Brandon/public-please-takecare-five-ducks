@@ -3,9 +3,13 @@ package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaVO;
+import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.MainDramaVO;
+
 import java.util.List;
 
 public interface DramaDAO {
+
+    List<MainDramaVO> selectMainDramaList();
 
     int getDramaTotalCnt();
 
