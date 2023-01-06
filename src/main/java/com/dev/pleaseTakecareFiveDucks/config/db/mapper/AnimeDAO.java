@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface AnimeDAO {
 
-    List<MainAnimeVO> selectHotAnimationList();
+    List<MainAnimeVO> selectMainAnimationList();
 
     int getAnimeTotalCnt();
 

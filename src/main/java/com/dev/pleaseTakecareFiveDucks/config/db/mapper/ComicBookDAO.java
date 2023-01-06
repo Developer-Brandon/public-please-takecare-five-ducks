@@ -3,10 +3,14 @@ package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookVO;
+import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.MainComicBookDetailVO;
+import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.MainComicBookVO;
 
 import java.util.List;
 
 public interface ComicBookDAO {
+
+    MainComicBookDetailVO selectMainComicBookList(MainComicBookRequestDTO mainComicBookRequestDTO);
 
     int getComicBookTotalCnt();
 
