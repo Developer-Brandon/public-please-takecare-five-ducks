@@ -4,7 +4,6 @@ import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.MainAnimeVO;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

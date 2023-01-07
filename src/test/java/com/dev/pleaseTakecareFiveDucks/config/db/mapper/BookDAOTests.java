@@ -2,6 +2,7 @@ package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
 import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
+import com.dev.pleaseTakecareFiveDucks.book.domain.vo.MainBookVO;
 import com.dev.pleaseTakecareFiveDucks.book.util.BookUseYnEnum;
 import org.hamcrest.core.StringContains;
 import org.junit.*;
@@ -451,5 +452,14 @@ public class BookDAOTests {
 
         // then
         assertThat(bookVO2.getBookNo(), is(nullValue()));
+    }
+
+    // 메인 책 리스트 조회 쿼리 조회 테스트
+    @Test
+    public void test10_MainBookList(){
+
+        List<MainBookVO> selectMainBookList = bookDAO.selectMainBookList();
+
+        System.out.println("selectMainBookList.size(): " + selectMainBookList.size());
     }
 }
