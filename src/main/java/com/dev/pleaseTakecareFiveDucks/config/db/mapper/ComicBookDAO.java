@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ComicBookDAO {
 
-    MainComicBookDetailVO selectMainComicBookList(MainComicBookRequestDTO mainComicBookRequestDTO);
+    List<MainComicBookDetailVO> selectMainComicBookList(MainComicBookRequestDTO mainComicBookRequestDTO);
 
     int getComicBookTotalCnt();
 

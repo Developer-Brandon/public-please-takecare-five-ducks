@@ -1,5 +1,7 @@
 package com.dev.pleaseTakecareFiveDucks.main.service;
 
-public interface MainService {
+import com.dev.pleaseTakecareFiveDucks.main.domain.vo.MainPageVO;
 
+public interface MainService {
+    MainPageVO selectMainPageData();
 }

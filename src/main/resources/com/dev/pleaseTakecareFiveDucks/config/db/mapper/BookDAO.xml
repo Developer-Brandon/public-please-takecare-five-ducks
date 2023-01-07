@@ -15,7 +15,7 @@
              , tb_b.link as link
              , tb_b_t.tag_korean_name as bookTypeKorean
              , tb_b_t.tag_english_name as bookTypeEnglish
-             , ifnull(null, count(tb_b_v.view_no)) as viewCnt
+             , if(count(tb_b_v.view_no) = 0, null, count(tb_b_v.view_no)) as viewCnt
              , ifnull(null, concat(tb_b_t_i.file_path, '/', tb_b_t_i.file_name)) as filePullPath
              , left(replace(tb_b.book_reg_dt, '. ', '-') ,length(replace(tb_b.book_reg_dt, '. ', '-')) - 1) as bookRegDt
              , left(replace(tb_b.reg_dt, '. ', '-') ,length(replace(tb_b.reg_dt, '. ', '-')) - 1) as regDt

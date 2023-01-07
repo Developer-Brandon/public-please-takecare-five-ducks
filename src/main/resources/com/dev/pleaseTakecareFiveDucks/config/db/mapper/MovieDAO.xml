@@ -10,7 +10,7 @@
         /* 메인 영화 리스트 조회 쿼리 */
         ]]>
         select tb_m.title as dramaTitle
-             , ifnull(null, count(tb_m_v.view_no)) as viewCnt
+             , if(count(tb_m_v.view_no) = 0, null, count(tb_m_v.view_no)) as viewCnt
         from web_app_test2.tb_movie as tb_m
                  left outer join web_app_test2.tb_movie_view as tb_m_v
                                  on tb_m.r_movie_no = tb_m_v.r_movie_no
