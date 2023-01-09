@@ -1,5 +1,6 @@
 package com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request;
 
+import com.dev.pleaseTakecareFiveDucks.drama.util.BroadcastStateEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,8 +15,9 @@ public class UpdateDramaInfoRequestDTO {
     Integer madeNatureNo;
     String title;
     String author;
+    String link;
     String filePath;
     String fileName;
-    Integer pagePerDramaCnt;
+    BroadcastStateEnum broadcastStateEnum;
     String dramaRegDt;
 }

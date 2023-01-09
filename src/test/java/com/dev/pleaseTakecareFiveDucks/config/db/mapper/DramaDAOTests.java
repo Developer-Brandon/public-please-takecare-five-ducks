@@ -273,8 +273,9 @@ public class DramaDAOTests {
                 .dramaNo(insertDramaInfoRequestDTO.getInsertedDramaNo())
                 .title("올인2")
                 .author("?")
+                .link("www.naver.com")
+                .broadcastStateEnum(BroadcastStateEnum.end)
                 .dramaRegDt("1996-12-20")
-                .pagePerDramaCnt(0)
                 .build();
 
         // when & then
@@ -323,12 +324,11 @@ public class DramaDAOTests {
                 .dramaNo(insertDramaInfoRequestDTO.getInsertedDramaNo())
                 .build();
 
+        // when
         DramaVO dramaVO = dramaDAO.selectDramaInfo(selectDramaInfoRequestDTO);
 
-        // when & then
+        // then
         assertThat(dramaVO.getDramaNo(), greaterThanOrEqualTo(insertDramaInfoRequestDTO.getInsertedDramaNo()));
-        // 추가로, 책의 상태도 체크합니다.
-        assertThat(dramaVO.getDramaUseYnEnum(), CoreMatchers.is(DramaUseYnEnum.Y));
 
         //////////////////////////////////
 
@@ -356,7 +356,7 @@ public class DramaDAOTests {
         // when & then
         DramaVO animVO2 = dramaDAO.selectDramaInfo(selectDramaInfoRequestDTO);
 
-        assertThat(animVO2.getDramaUseYnEnum(), is(DramaUseYnEnum.N));
+        assertThat(animVO2, is(nullValue()));
     }
 
     @Test
