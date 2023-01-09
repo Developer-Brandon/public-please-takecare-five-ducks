@@ -1,10 +1,9 @@
 package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
-import com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.InsertComicBookInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.SelectComicBookInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.UpdateComicBookInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.UpdateComicBookStateRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookVO;
+import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.MainComicBookDetailVO;
+import com.dev.pleaseTakecareFiveDucks.comic.util.ComicBookSerialStateEnum;
 import com.dev.pleaseTakecareFiveDucks.comic.util.ComicBookUseYnEnum;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.core.StringContains;
@@ -40,6 +39,8 @@ public class ComicBookDAOTests {
 
     private InsertComicBookInfoRequestDTO insertComicBookInfoRequestDTO;
 
+    private InsertComicBookThumbnailInfoRequestDTO insertComicBookThumbnailInfoRequestDTO;
+
     @Before
     public void init() {
 
@@ -51,7 +52,14 @@ public class ComicBookDAOTests {
                 .madeNatureNo(natureNo)
                 .title("귀멸의칼날")
                 .author("코요게고로하루")
+                .link("www.naver.com")
+                .comicBookSerialStateEnum(ComicBookSerialStateEnum.finished)
                 .comicBookRegDt("2016-02-15")
+                .build();
+
+        insertComicBookThumbnailInfoRequestDTO = InsertComicBookThumbnailInfoRequestDTO.builder()
+                .filePath("anime")
+                .fileName("no_name.png")
                 .build();
     }
 
@@ -80,17 +88,18 @@ public class ComicBookDAOTests {
 
         // when
         int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        insertComicBookThumbnailInfoRequestDTO.setBookNo(insertComicBookInfoRequestDTO.getInsertedComicBookNo());
+        int insertedCnt2 = comicBookDAO.insertComicBookThumbnailInfo(insertComicBookThumbnailInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
         assertThat(insertComicBookInfoRequestDTO.getInsertedComicBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ////////////////////////////
 
         // 3. 재조회
-        // given
-
-        // when
+        // given & when
         int comicBookTotalCnt2 = comicBookDAO.getComicBookTotalCnt();
 
         // then
@@ -106,10 +115,13 @@ public class ComicBookDAOTests {
 
         // when
         int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        insertComicBookThumbnailInfoRequestDTO.setBookNo(insertComicBookInfoRequestDTO.getInsertedComicBookNo());
+        int insertedCnt2 = comicBookDAO.insertComicBookThumbnailInfo(insertComicBookThumbnailInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
         assertThat(insertComicBookInfoRequestDTO.getInsertedComicBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ////////////////////////////
 
@@ -160,10 +172,13 @@ public class ComicBookDAOTests {
 
         // when
         int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        insertComicBookThumbnailInfoRequestDTO.setBookNo(insertComicBookInfoRequestDTO.getInsertedComicBookNo());
+        int insertedCnt2 = comicBookDAO.insertComicBookThumbnailInfo(insertComicBookThumbnailInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
         assertThat(insertComicBookInfoRequestDTO.getInsertedComicBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         /////////////////////////////////////////
 
@@ -178,7 +193,6 @@ public class ComicBookDAOTests {
         assertThat(comicBookVOList.size(), is(1));
         assertThat(comicBookVOList.get(0).getComicBookTitle(), is("귀멸의칼날"));
         assertThat(comicBookVOList.get(0).getComicBookAuthor(), is("코요게고로하루"));
-
     }
 
     // Pagination test입니다.
@@ -206,10 +220,13 @@ public class ComicBookDAOTests {
 
         // given
         int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        insertComicBookThumbnailInfoRequestDTO.setBookNo(insertComicBookInfoRequestDTO.getInsertedComicBookNo());
+        int insertedCnt2 = comicBookDAO.insertComicBookThumbnailInfo(insertComicBookThumbnailInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
         assertThat(insertComicBookInfoRequestDTO.getInsertedComicBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ///////////////////////////////////////////////////////
 
@@ -241,10 +258,13 @@ public class ComicBookDAOTests {
 
         // given
         int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        insertComicBookThumbnailInfoRequestDTO.setBookNo(insertComicBookInfoRequestDTO.getInsertedComicBookNo());
+        int insertedCnt2 = comicBookDAO.insertComicBookThumbnailInfo(insertComicBookThumbnailInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
         assertThat(insertComicBookInfoRequestDTO.getInsertedComicBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         //////////////////////////////////
 
@@ -270,6 +290,8 @@ public class ComicBookDAOTests {
                 .bookNo(insertComicBookInfoRequestDTO.getInsertedComicBookNo())
                 .title("드래곤볼GT")
                 .author("나카츠루 카츠요시")
+                .link("www.daum.net")
+                .comicBookSerialStateEnum(ComicBookSerialStateEnum.finished)
                 .comicBookRegDt("1996-12-20")
                 .build();
 
@@ -305,10 +327,13 @@ public class ComicBookDAOTests {
 
         // given
         int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        insertComicBookThumbnailInfoRequestDTO.setBookNo(insertComicBookInfoRequestDTO.getInsertedComicBookNo());
+        int insertedCnt2 = comicBookDAO.insertComicBookThumbnailInfo(insertComicBookThumbnailInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
         assertThat(insertComicBookInfoRequestDTO.getInsertedComicBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         //////////////////////////////////
 
@@ -352,7 +377,7 @@ public class ComicBookDAOTests {
         // when & then
         ComicBookVO animVO2 = comicBookDAO.selectComicBookInfo(selectComicBookInfoRequestDTO);
 
-        assertThat(animVO2.getComicBookUseYnEnum(), is(ComicBookUseYnEnum.N));
+        assertThat(animVO2, is(nullValue()));
     }
 
     @Test
@@ -365,10 +390,13 @@ public class ComicBookDAOTests {
 
         // when
         int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        insertComicBookThumbnailInfoRequestDTO.setBookNo(insertComicBookInfoRequestDTO.getInsertedComicBookNo());
+        int insertedCnt2 = comicBookDAO.insertComicBookThumbnailInfo(insertComicBookThumbnailInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
         assertThat(insertComicBookInfoRequestDTO.getInsertedComicBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ////////////////////////////////
 
@@ -414,5 +442,41 @@ public class ComicBookDAOTests {
 
         // then
         assertThat(comicBookVO2, is(nullValue()));
+    }
+
+    @Test
+    public void test10_selectMainComicBookList() {
+
+        // 1. 삽입
+
+        // given
+        // 최상단에서 만들어진 dto를 그대로 가져와서 조회합니다.
+
+        // when
+        int insertedCnt = comicBookDAO.insertComicBookInfo(insertComicBookInfoRequestDTO);
+        insertComicBookThumbnailInfoRequestDTO.setBookNo(insertComicBookInfoRequestDTO.getInsertedComicBookNo());
+        int insertedCnt2 = comicBookDAO.insertComicBookThumbnailInfo(insertComicBookThumbnailInfoRequestDTO);
+
+        // then
+        assertThat(insertedCnt, is(1));
+        assertThat(insertComicBookInfoRequestDTO.getInsertedComicBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
+
+        ////////////////////////////////
+
+        // 2. 조회
+
+        // given & when
+        MainComicBookRequestDTO mainComicBookRequestDTO = MainComicBookRequestDTO.builder()
+                .startDt("2010")
+                .endDt("2020")
+                .build();
+
+        List<MainComicBookDetailVO> mainComicBookVOList = comicBookDAO.selectMainComicBookList(mainComicBookRequestDTO);
+
+        // then
+        assertThat(mainComicBookVOList.size(), is(1));
+        assertThat(mainComicBookVOList.get(0).getComicBookTitle(), is("귀멸의칼날"));
+        assertThat(mainComicBookVOList.get(0).getComicBookAuthor(), is("코요게고로하루"));
     }
 }

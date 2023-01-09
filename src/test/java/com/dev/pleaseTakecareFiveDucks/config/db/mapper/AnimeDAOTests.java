@@ -2,6 +2,7 @@ package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
 import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
+import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.MainAnimeVO;
 import com.dev.pleaseTakecareFiveDucks.anime.util.AnimeUseYnEnum;
 import com.dev.pleaseTakecareFiveDucks.anime.util.FinalizedYnEnum;
 import org.hamcrest.CoreMatchers;
@@ -88,7 +89,7 @@ public class AnimeDAOTests {
         // 2. 삽입
         // given
         int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
-        insertAnimeInfoRequestDTO.setInsertedAnimeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo());
+        insertAnimeThumbnailInfoRequestDTO.setAnimeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo());
         int insertedCnt2 = animeDAO.insertAnimeThumbnailInfo(insertAnimeThumbnailInfoRequestDTO);
 
         // when & then
@@ -385,7 +386,7 @@ public class AnimeDAOTests {
         // when & then
         AnimeVO animVO2 = animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO);
 
-        assertThat(animVO2.getAnimeUseYnEnum(), CoreMatchers.is(AnimeUseYnEnum.N));
+        assertThat(animVO2, CoreMatchers.is(nullValue()));
     }
 
     // 애니 삽입 -> 조회 -> 삭제 -> 재조회로 검증
@@ -450,6 +451,37 @@ public class AnimeDAOTests {
         AnimeVO animeVO2 = animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO2);
 
         // then
-        assertThat(animeVO2.getAnimeNo(), is(nullValue()));
+        assertThat(animeVO2, is(nullValue()));
+    }
+
+    // 애니 삽입 -> 조회로 검증
+    @Test
+    public void test10_selectMainAnimationList() {
+
+        // 1. 삽입
+
+        // given
+        // 최상단에서 만들어진 dto를 그대로 가져와서 조회합니다.
+
+        // when
+        int insertedCnt = animeDAO.insertAnimeInfo(insertAnimeInfoRequestDTO);
+        insertAnimeThumbnailInfoRequestDTO.setAnimeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo());
+        int insertedCnt2 = animeDAO.insertAnimeThumbnailInfo(insertAnimeThumbnailInfoRequestDTO);
+
+        // then
+        assertThat(insertedCnt, CoreMatchers.is(1));
+        assertThat(insertAnimeInfoRequestDTO.getInsertedAnimeNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
+
+        ////////////////////////////////
+
+        // 2. 조회
+        // given & when
+        List<MainAnimeVO> mainAnimeVOList = animeDAO.selectMainAnimationList();
+
+        // then
+        assertThat(mainAnimeVOList.size(), is(1));
+        assertThat(mainAnimeVOList.get(0).getAnimeTitle(), is("귀멸의칼날"));
+        assertThat(mainAnimeVOList.get(0).getAnimeAuthor(), is("코요게고로하루"));
     }
 }

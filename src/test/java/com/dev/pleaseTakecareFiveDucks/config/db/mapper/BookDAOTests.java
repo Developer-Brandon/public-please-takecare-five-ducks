@@ -386,7 +386,7 @@ public class BookDAOTests {
         // when & then
         BookVO bookVO2 = bookDAO.selectBookInfo(selectBookInfoRequestDTO);
 
-        assertThat(bookVO2.getBookUseYnEnum(), is(BookUseYnEnum.N));
+        assertThat(bookVO2, is(nullValue()));
     }
 
     // 책 삽입 -> 조회 -> 삭제 -> 재조회로 검증
@@ -451,15 +451,39 @@ public class BookDAOTests {
         BookVO bookVO2 = bookDAO.selectBookInfo(selectBookInfoRequestDTO2);
 
         // then
-        assertThat(bookVO2.getBookNo(), is(nullValue()));
+        assertThat(bookVO2, is(nullValue()));
     }
 
-    // 메인 책 리스트 조회 쿼리 조회 테스트
+    // 책 삽입 -> 조회로 검증
     @Test
     public void test10_MainBookList(){
 
-        List<MainBookVO> selectMainBookList = bookDAO.selectMainBookList();
+        // 메인 책 리스트 조회 쿼리 조회 테스트
 
-        System.out.println("selectMainBookList.size(): " + selectMainBookList.size());
+        // 1. 삽입
+
+        // given
+        // 최상단에서 만들어진 dto를 그대로 가져와서 조회합니다.
+
+        // when
+        int insertedCnt = bookDAO.insertBookInfo(insertBookInfoRequestDTO);
+        insertBookThumbnailInfoRequestDTO.setBookNo(insertBookInfoRequestDTO.getInsertedBookNo());
+        int insertedCnt2 = bookDAO.insertBookThumbnailInfo(insertBookThumbnailInfoRequestDTO);
+
+        // then
+        assertThat(insertedCnt, is(1));
+        assertThat(insertBookInfoRequestDTO.getInsertedBookNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
+
+        ////////////////////////////////
+
+        // given & when
+        List<MainBookVO> mainBookVOList = bookDAO.selectMainBookList();
+
+        // then
+        // then
+        assertThat(mainBookVOList.size(), is(1));
+        assertThat(mainBookVOList.get(0).getBookTitle(), is("해리포터"));
+        assertThat(mainBookVOList.get(0).getBookAuthor(), is("JK롤링"));
     }
 }
