@@ -1,5 +1,8 @@
 package com.dev.pleaseTakecareFiveDucks.main.controller;
 
+import com.dev.pleaseTakecareFiveDucks.main.domain.vo.MainPageVO;
+import com.dev.pleaseTakecareFiveDucks.main.service.MainService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,14 +10,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.Locale;
 
 @Controller
+@RequiredArgsConstructor
 public class MainController{
 
+    private final MainService mainService;
+
     @GetMapping(value = "/")
-    public String goMainJsp(Locale locale, Model model) {
+    public String goMainJsp(Locale locale, Model model) throws Exception {
 
         // TODO: 로그인 화면으로 꾸미기
         //
 
+        MainPageVO mainPageVO = mainService.selectMainPageData();
+
+        model.addAttribute("mainPageVO", mainPageVO);
 
         return "main";
     }
