@@ -58,7 +58,7 @@ public class ComicBookDAOTests {
                 .build();
 
         insertComicBookThumbnailInfoRequestDTO = InsertComicBookThumbnailInfoRequestDTO.builder()
-                .filePath("anime")
+                .filePath("comic_book")
                 .fileName("no_name.png")
                 .build();
     }

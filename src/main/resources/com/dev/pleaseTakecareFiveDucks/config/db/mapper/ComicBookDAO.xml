@@ -6,8 +6,9 @@
 
     <sql id="selectComicBookViewCnt">
         select r_book_no
-               , count(view_no) as viewCnt
+               , count(r_book_no) as viewCnt
         from web_app_test2.tb_comic_book_view
+        group by r_book_no
     </sql>
 
     <select id="selectMainComicBookList"

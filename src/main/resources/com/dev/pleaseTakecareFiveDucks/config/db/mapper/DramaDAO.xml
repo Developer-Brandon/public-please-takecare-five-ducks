@@ -6,8 +6,9 @@
 
     <sql id="selectMainDramaViewCnt">
         select r_drama_no,
-               count(view_no) as viewCnt
+               count(r_drama_no) as viewCnt
         from web_app_test2.tb_drama_view
+        group by r_drama_no
     </sql>
 
     <select id="selectMainDramaList"

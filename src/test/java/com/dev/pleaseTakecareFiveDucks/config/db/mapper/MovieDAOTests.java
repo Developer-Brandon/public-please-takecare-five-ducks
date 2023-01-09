@@ -1,9 +1,7 @@
 package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
-import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.InsertMovieInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.SelectMovieInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.UpdateMovieInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.UpdateMovieStateRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.*;
+import com.dev.pleaseTakecareFiveDucks.movie.domain.vo.MainMovieVO;
 import com.dev.pleaseTakecareFiveDucks.movie.domain.vo.MovieVO;
 import com.dev.pleaseTakecareFiveDucks.movie.util.MovieUseYnEnum;
 import org.hamcrest.CoreMatchers;
@@ -40,6 +38,8 @@ public class MovieDAOTests {
 
     private InsertMovieInfoRequestDTO insertMovieInfoRequestDTO;
 
+    private InsertMovieThumbnailInfoRequestDTO insertMovieThumbnailInfoRequestDTO;
+
     @Before
     public void init() {
 
@@ -51,7 +51,14 @@ public class MovieDAOTests {
                 .madeNatureNo(natureNo)
                 .title("대부")
                 .directorName("돈꼴레오네")
+                .link("www.naver.com")
+                .totalNumberOfEpisode(3)
                 .movieRegDt("1980-11-20")
+                .build();
+
+        insertMovieThumbnailInfoRequestDTO = InsertMovieThumbnailInfoRequestDTO.builder()
+                .fileName("movie")
+                .filePath("no_name.png")
                 .build();
     }
 
@@ -80,10 +87,13 @@ public class MovieDAOTests {
 
         // when
         int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
+        insertMovieThumbnailInfoRequestDTO.setMovieNo(insertMovieInfoRequestDTO.getInsertedMovieNo());
+        int insertedCnt2 = movieDAO.insertMovieThumbnailInfo(insertMovieThumbnailInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
         assertThat(insertMovieInfoRequestDTO.getInsertedMovieNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ////////////////////////////
 
@@ -106,10 +116,13 @@ public class MovieDAOTests {
 
         // when
         int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
+        insertMovieThumbnailInfoRequestDTO.setMovieNo(insertMovieInfoRequestDTO.getInsertedMovieNo());
+        int insertedCnt2 = movieDAO.insertMovieThumbnailInfo(insertMovieThumbnailInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
         assertThat(insertMovieInfoRequestDTO.getInsertedMovieNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ////////////////////////////
 
@@ -160,10 +173,13 @@ public class MovieDAOTests {
 
         // when
         int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
+        insertMovieThumbnailInfoRequestDTO.setMovieNo(insertMovieInfoRequestDTO.getInsertedMovieNo());
+        int insertedCnt2 = movieDAO.insertMovieThumbnailInfo(insertMovieThumbnailInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
         assertThat(insertMovieInfoRequestDTO.getInsertedMovieNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         /////////////////////////////////////////
 
@@ -206,10 +222,13 @@ public class MovieDAOTests {
 
         // given
         int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
+        insertMovieThumbnailInfoRequestDTO.setMovieNo(insertMovieInfoRequestDTO.getInsertedMovieNo());
+        int insertedCnt2 = movieDAO.insertMovieThumbnailInfo(insertMovieThumbnailInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
         assertThat(insertMovieInfoRequestDTO.getInsertedMovieNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ///////////////////////////////////////////////////////
 
@@ -241,10 +260,13 @@ public class MovieDAOTests {
 
         // given
         int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
+        insertMovieThumbnailInfoRequestDTO.setMovieNo(insertMovieInfoRequestDTO.getInsertedMovieNo());
+        int insertedCnt2 = movieDAO.insertMovieThumbnailInfo(insertMovieThumbnailInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
         assertThat(insertMovieInfoRequestDTO.getInsertedMovieNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         //////////////////////////////////
 
@@ -270,6 +292,8 @@ public class MovieDAOTests {
                 .movieNo(insertMovieInfoRequestDTO.getInsertedMovieNo())
                 .title("대부2")
                 .directorName("돈꼴레오네")
+                .link("www.naver.com")
+                .totalNumberOfEpisode(3)
                 .movieRegDt("1996-12-20")
                 .build();
 
@@ -305,10 +329,13 @@ public class MovieDAOTests {
 
         // given
         int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
+        insertMovieThumbnailInfoRequestDTO.setMovieNo(insertMovieInfoRequestDTO.getInsertedMovieNo());
+        int insertedCnt2 = movieDAO.insertMovieThumbnailInfo(insertMovieThumbnailInfoRequestDTO);
 
         // when & then
         assertThat(insertedCnt, CoreMatchers.is(1));
         assertThat(insertMovieInfoRequestDTO.getInsertedMovieNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         //////////////////////////////////
 
@@ -323,8 +350,6 @@ public class MovieDAOTests {
 
         // when & then
         assertThat(movieVO.getMovieNo(), greaterThanOrEqualTo(insertMovieInfoRequestDTO.getInsertedMovieNo()));
-        // 추가로, 책의 상태도 체크합니다.
-        assertThat(movieVO.getMovieUseYnEnum(), CoreMatchers.is(MovieUseYnEnum.Y));
 
         //////////////////////////////////
 
@@ -352,7 +377,7 @@ public class MovieDAOTests {
         // when & then
         MovieVO animVO2 = movieDAO.selectMovieInfo(selectMovieInfoRequestDTO);
 
-        assertThat(animVO2.getMovieUseYnEnum(), is(MovieUseYnEnum.N));
+        assertThat(animVO2, is(nullValue()));
     }
 
     @Test
@@ -365,10 +390,13 @@ public class MovieDAOTests {
 
         // when
         int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
+        insertMovieThumbnailInfoRequestDTO.setMovieNo(insertMovieInfoRequestDTO.getInsertedMovieNo());
+        int insertedCnt2 = movieDAO.insertMovieThumbnailInfo(insertMovieThumbnailInfoRequestDTO);
 
         // then
         assertThat(insertedCnt, is(1));
         assertThat(insertMovieInfoRequestDTO.getInsertedMovieNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
 
         ////////////////////////////////
 
@@ -406,7 +434,7 @@ public class MovieDAOTests {
         // given
         // 상단에서 삽입한 dto를 그대로 가져와서 조회합니다.
         SelectMovieInfoRequestDTO selectMovieInfoRequestDTO2 = SelectMovieInfoRequestDTO.builder()
-                .movieNo(insertMovieInfoRequestDTO.getInsertedMovieNo())
+                .movieNo(movieVO.getMovieNo())
                 .build();
 
         // when
@@ -414,5 +442,30 @@ public class MovieDAOTests {
 
         // then
         assertThat(movieVO2, is(nullValue()));
+    }
+
+    @Test
+    public void tes10_selectMainMovieList() {
+
+        // 1. 삽입
+
+        // given
+        // 최상단에서 만들어진 dto를 그대로 가져와서 조회합니다.
+
+        // when
+        int insertedCnt = movieDAO.insertMovieInfo(insertMovieInfoRequestDTO);
+        insertMovieThumbnailInfoRequestDTO.setMovieNo(insertMovieInfoRequestDTO.getInsertedMovieNo());
+        int insertedCnt2 = movieDAO.insertMovieThumbnailInfo(insertMovieThumbnailInfoRequestDTO);
+
+        // then
+        assertThat(insertedCnt, is(1));
+        assertThat(insertMovieInfoRequestDTO.getInsertedMovieNo(), greaterThanOrEqualTo(1));
+        assertThat(insertedCnt2, is(1));
+
+        ////////////////////////////////
+
+        List<MainMovieVO> mainMovieVOList = movieDAO.selectMainMovieList();
+
+        assertThat(mainMovieVOList.size(), is(1));
     }
 }
