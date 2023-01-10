@@ -28,7 +28,7 @@ public class MainServiceImpl implements MainService{
     private final MovieDAO movieDAO;
 
     @Override
-    public MainPageVO selectMainPageData() throws Exception{
+    public MainPageVO selectMainPageData() throws Exception {
 
         MainComicBookRequestDTO mainComicBookRequestDTO = MainComicBookRequestDTO.builder()
                 .startDt("1990")
