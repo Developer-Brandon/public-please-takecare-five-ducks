@@ -14,37 +14,46 @@
     <body>
         <nav class="menu-bar">
             <div class="menu-bar__inner">
-                <div class="logo-title">
-                    <div class="wrap-logo">
+                <div class="wrap-logo">
+                    <div class="wrap-logo__inner">
                         <img id="logo"
-                             src="${pageContext.request.contextPath}/resources/images/rubber-duck.png"
+                             src="${pageContext.request.contextPath}/resources/images/main-logo-icon.png"
                              alt="로고 이미지입니다" />
                     </div>
-                    <div class="wrap-title">
-                        <div class="wrap-title__inner">
-                            <h1 id="main-title">오덕을 부탁해</h1>
-                            <p id="main-description">Please, take care 5ducks</p>
-                        </div>
-                    </div>
                 </div>
-                <div class="menu-list">
-                    <ul class="menu-list-ul">
-                        <li class="menu-list-li">
-                            <a href="/comic/main">만화책</a>
-                        </li>
-                        <li class="menu-list-li">
-                            <a href="/anime/main">애니</a>
-                        </li>
-                        <li class="menu-list-li">
-                            <a href="/movie/main">영화</a>
-                        </li>
-                        <li class="menu-list-li">
-                            <a href="/game/main">게임</a>
-                        </li>
-                        <li class="menu-list-li">
-                            <a href="/util/main">유틸</a>
-                        </li>
-                    </ul>
+                <div class="wrap-menu">
+                    <div class="normal-menu">
+                        <ul class="menu-list-ul">
+                            <li class="menu-list-li">
+                                <a href="/anime/main">애니</a>
+                            </li>
+                            <li class="menu-list-li">
+                                <a href="/book/main">책</a>
+                            </li>
+                            <li class="menu-list-li">
+                                <a href="/comicBook/main">만화책</a>
+                            </li>
+                            <li class="menu-list-li">
+                                <a href="/drama/main">드라마</a>
+                            </li>
+                            <li class="menu-list-li">
+                                <a href="/movie/main">영화</a>
+                            </li>
+                            <li class="menu-list-li">
+                                <a href="/util/main">유틸</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="auth-menu">
+                        <ul class="my-page-menu-list-ul">
+                            <li class="my-page-menu-list-li">
+                                <a href="/mypage/main">내정보</a>
+                            </li>
+                            <li class="my-page-menu-list-li">
+                                <a href="/logout">로그아웃</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>

@@ -29,9 +29,8 @@
         <div class="famous-writing-list__inner">
             <div class="title">
                 <p id="title-content">
-                    <img
-                            src="${pageContext.request.contextPath}/resources/images/stars-black-icon.png"
-                            style="width:13px; height:13px;margin-right:4px;"
+                    <img src="${pageContext.request.contextPath}/resources/images/stars-black-icon.png"
+                    style="width:13px; height:13px;margin-right:4px;"
                     />인기 만화 리스트</p>
                 <!-- <div id="ptcfd-border"></div> -->
             </div>

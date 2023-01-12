@@ -16,7 +16,6 @@
 }
 
 /* */
-
 @font-face {
   font-family: 'BMJUA';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
@@ -55,6 +54,13 @@
 @font-face {
     font-family: 'establishRetrosansOTF';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.css') format('woff');
     font-weight: normal;
     font-style: normal;
 }
