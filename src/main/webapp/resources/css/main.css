@@ -60,17 +60,23 @@
     background-color: #A4A2A2;
     width: 210px;
     height: 150px;
-    margin-right:37px;
+    margin-right: 37px;
     margin-bottom: 15px;
     border-radius: 30px;
+    cursor: pointer;
 }
+
+.anime-thumbnail-list > .thumbnail-box:hover {
+    /* todo: 추후 박스에 hover시 글자가 커지게끔 만들기 */
+}
+
 
 /* 세번째 선택자에 해당하는 자식 요소에게만 margin-right를 0으로 설정합니다. */
 .anime-thumbnail-list > .thumbnail-box:nth-child(3n) {
     margin-right: 0;
 }
 
-.anime-thumbnail-list > .thumbnail-box > .thumbnail-box__inner{
+.anime-thumbnail-list > .thumbnail-box > .thumbnail-box__inner {
     width: 100%;
     height: 100%;
     display: flex;
@@ -79,18 +85,18 @@
 }
 
 .thumbnail {
-    cursor: default;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .thumbnail > p {
     color: #FFFFFF;
-    font-weight: 200!important;
+    font-weight: 200 !important;
     font-size: 15px;
-    line-height: 20px;
+    line-height: 18px;
 }
 
 /* 애니 더 보기 버튼 */
@@ -100,12 +106,12 @@
     margin-bottom: 56px;
 }
 
-.see-more-anime-button{
+.see-more-anime-button {
     width: 162px;
     height: 30px;
-    border: 2px solid #EAE7E7;
+    border: 1px solid #6F6D6D;
     border-radius: 15px;
-    color:#AAA8A8;
+    color: #6F6D6D;
     background-color: white;
     cursor: pointer;
 }

@@ -12,8 +12,8 @@
              , count(r_anime_no) as viewCnt
         from web_app_test2.tb_anime_view
         group by r_anime_no
-        order by viewCnt
-        desc limit 6
+        order by viewCnt desc
+        limit 6
     </sql>
 
     <select id="selectMainAnimationList"
@@ -27,13 +27,13 @@
         , tb_a.link as link
         , ifnull(tb_a_v.viewCnt, 0) as viewCnt
         , concat(tb_a_t_i.file_path, '/', tb_a_t_i.file_name) as filePullPath
-        , left(replace(tb_a.anime_reg_dt, '. ', '-') ,length(replace(tb_a.anime_reg_dt, '. ', '-')) - 1) as animeRegDt
-        , left (replace(tb_a.reg_dt, '. ', '-'), length (replace(tb_a.reg_dt, '. ', '-')) - 1) as regDt
+        , date_format(tb_a.anime_reg_dt, '%Y-%m-%d') as animeRegDt
+        , date_format(tb_a.reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_anime as tb_a
             left outer join (<include refid="selectAnimeViewCnt"/>) as tb_a_v
-            on tb_a.r_anime_no = tb_a_v.animeNo
+                on tb_a.r_anime_no = tb_a_v.animeNo
             left outer join web_app_test2.tb_anime_thumbnail_img as tb_a_t_i
-            on tb_a.r_anime_no = tb_a_t_i.r_anime_no
+                on tb_a.r_anime_no = tb_a_t_i.r_anime_no
         where tb_a.use_yn = 'y'
     </select>
 
@@ -68,8 +68,8 @@
              , finalized_yn        as finalizedYnEnum
              , anime_broadcast_cnt as animeBroadcastCnt
              , use_yn              as animeUseYnEnum
-             , left (replace(anime_reg_dt, '. ', '-'), length (replace(anime_reg_dt, '. ', '-')) - 1) as animeRegDt
-             , left (replace(reg_dt, '. ', '-'), length (replace(reg_dt, '. ', '-')) - 1) as regDt
+             , date_format(anime_reg_dt, '%Y-%m-%d') as animeRegDt
+             , date_format(reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_anime
         where use_yn = 'y'
         order by str_to_date(animeRegDt, '%Y-%m-%d') desc
@@ -89,8 +89,8 @@
              , finalized_yn        as finalizedYnEnum
              , anime_broadcast_cnt as animeBroadcastCnt
              , use_yn              as animeUseYnEnum
-             , left (replace(anime_reg_dt, '. ', '-'), length (replace(anime_reg_dt, '. ', '-')) - 1) as animeRegDt
-             , left (replace(reg_dt, '. ', '-'), length (replace(reg_dt, '. ', '-')) - 1) as regDt
+             , date_format(anime_reg_dt, '%Y-%m-%d') as animeRegDt
+             , date_format(reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_anime
         where use_yn = 'y'
         order by str_to_date(animeRegDt, '%Y-%m-%d') desc
@@ -110,9 +110,9 @@
                , concat(file_path, '/', file_name) as filePullPath
         from web_app_test2.tb_anime_thumbnail_img
         where r_anime_no in (
-        <foreach item="item" collection="animeNoList" separator=",">
-            #{item}
-        </foreach>
+            <foreach item="item" collection="animeNoList" separator=",">
+                #{item}
+            </foreach>
         )
     </select>
 
@@ -132,8 +132,8 @@
              , tb_a.use_yn                                                       as animeUseYnEnum
              , ifnull(tb_a_v.viewCnt, 0)                                         as viewCnt
              , concat(tb_a_t_i.file_path, '/', tb_a_t_i.file_name)               as filePullPath
-             , left (replace(tb_a.anime_reg_dt, '. ', '-'), length (replace(tb_a.anime_reg_dt, '. ', '-')) - 1) as animeRegDt
-             , left (replace(tb_a.reg_dt, '. ', '-'), length (replace(tb_a.reg_dt, '. ', '-')) - 1) as regDt
+             , date_format(tb_a.anime_reg_dt, '%Y-%m-%d') as animeRegDt
+             , date_format(tb_a.reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_anime as tb_a
             left outer join (
                 select r_anime_no     as animeNo

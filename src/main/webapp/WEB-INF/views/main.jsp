@@ -23,7 +23,9 @@
          alt="손오공 유년시절">
 </div>
 <div class="body__inner">
-    <!-- 인기 만화 시작 -->
+
+    <%--    --%>
+    <!-- 가장 핫한 애니 시작 -->
     <div class="hot-anime-list">
         <div class="title">
             <p id="main-title">가장 핫한 애니 추천</p>
@@ -32,7 +34,7 @@
         <div class="anime-thumbnail-list">
             <c:forEach var="anime" items="${mainAnimeVOList}">
                 <div class="thumbnail-box">
-                    <%--<p><c:out value="${anime.animeNo}"/></p>--%>
+                        <%--<p><c:out value="${anime.animeNo}"/></p>--%>
                     <div class="thumbnail-box__inner">
                         <div class="thumbnail">
                             <p><c:out value="${anime.animeTitle}"/></p>
@@ -50,16 +52,14 @@
     <!--  -->
 
     <!--  -->
-    <!-- 만화 시작 -->
+    <!-- 각종 도서(책) 모음 시작 -->
     <div class="comic-list">
         <div class="comic-list__inner">
             <div class="title">
                 <p class="title-content">
-                    <img
-                            src="${pageContext.request.contextPath}/resources/images/book-icon.png"
-                            style="width:13px; height:13px;margin-right:4px;"
+                    <img src="${pageContext.request.contextPath}/resources/images/book-icon.png"
+                         style="width:13px; height:13px;margin-right:4px;"
                     />일반 만화 리스트</p>
-                <!-- <div id="ptcfd-border"></div> -->
             </div>
             <div class="content">
                 <div class="content__inner"></div>
