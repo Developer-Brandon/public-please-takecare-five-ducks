@@ -1,149 +1,206 @@
 .custom-body {
-  /* overflow: hidden;
-  position: relative; */
-  background-image: url("../images/transparency-pattern.jpg");
+    /*  추후 배경을 투명바둑으로 도배하고싶을때 ... */
+    /*background-image: url("../images/transparency-pattern.jpg");*/
 }
 
+.image-box {
+    text-align: center;
+    background-color: #202124;
+}
 
-.body__inner{
-  width: 800px;
-  max-width: 1000px;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin: 0 auto;
-  /* opacity: 0.7;
-  position: absolute;
-  left: 0;
-  top: 100px;
-  width: 100%;
-  height: auto;
-  background-image: url("./images/moroccan-white-flower.png"); */
+.image-box > .goku {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 130px;
+    height: 200px;
+}
+
+/* 이미지 박스 아래 body inner 시작 */
+.body__inner {
+    width: 724px;
+    margin: 0 auto;
 }
 
 /* 인기 만화 리스트 시작 */
-.famous-writing-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.body__inner > .hot-anime-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
 }
 
-.famous-writing-list > .famous-writing-list__inner {
-  /*  */
+.hot-anime-list > .title {
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 14px;
 }
 
-.famous-writing-list > .famous-writing-list__inner > .title {
-  /*  */
+.hot-anime-list > .title > #main-title {
+    font-size: 24px;
+    line-height: 31px;
+    font-weight: 600 !important;
+    cursor: default;
 }
 
-.famous-writing-list > .famous-writing-list__inner > .title > #title-content{
-  font-size: 18px;
-  text-align: left;
-  /* border-bottom: 1px solid black; */
-  padding-left: 5px;
-  padding-bottom: 7px;
+.hot-anime-list > .title > #sub-title {
+    font-size: 15px;
+    line-height: 15px;
+    font-weight: 400;
+    color: #A4A2A2;
+    cursor: default;
 }
+
+.anime-thumbnail-list {
+    width: 704px;
+    margin-bottom: 1px;
+}
+
+.anime-thumbnail-list > .thumbnail-box {
+    float: left;
+    background-color: #A4A2A2;
+    width: 210px;
+    height: 150px;
+    margin-right:37px;
+    margin-bottom: 15px;
+    border-radius: 30px;
+}
+
+/* 세번째 선택자에 해당하는 자식 요소에게만 margin-right를 0으로 설정합니다. */
+.anime-thumbnail-list > .thumbnail-box:nth-child(3n) {
+    margin-right: 0;
+}
+
+.anime-thumbnail-list > .thumbnail-box > .thumbnail-box__inner{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.thumbnail {
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.thumbnail > p {
+    color: #FFFFFF;
+    font-weight: 200!important;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+/* 애니 더 보기 버튼 */
+.wrap-more-anime-button {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 56px;
+}
+
+.see-more-anime-button{
+    width: 162px;
+    height: 30px;
+    border: 2px solid #EAE7E7;
+    border-radius: 15px;
+    color:#AAA8A8;
+    background-color: white;
+    cursor: pointer;
+}
+
 
 /* 일반 만화 리스트 시작 */
 .comic-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .comic-list > .comic-list__inner {
-  /*  */
+    /*  */
 }
 
 .comic-list > .comic-list__inner > .title {
-  /*  */
+    /*  */
 }
 
-.comic-list > .comic-list__inner > .title > #title-content{
-  font-size: 18px;
-  text-align: left;
-  /* border-bottom: 1px solid black; */
-  padding-left: 5px;
-  padding-bottom: 7px;
+.comic-list > .comic-list__inner > .title > .title-content {
+    font-size: 18px;
+    text-align: left;
+    /* border-bottom: 1px solid black; */
+    padding-left: 5px;
+    padding-bottom: 7px;
 }
 
 .anime-box {
-  flex-grow: 1;
+    flex-grow: 1;
 }
 
 .game-box {
-  flex-grow: 1;
+    flex-grow: 1;
 }
 
 .util-box {
-  flex-grow: 1;
+    flex-grow: 1;
 }
 
 /* 유틸 리스트 시작 */
 .etc-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .etc-list > .etc-list__inner {
-  /*  */
-  display: flex;
-  flex-direction: row;
+    /*  */
+    display: flex;
+    flex-direction: row;
 }
 
-.anime-list > .anime-list__inner > .title > #title-content{
-  font-size: 13px;
-  text-align: left;
-  padding-left: 5px;
-  padding-bottom: 7px;
+.anime-list > .anime-list__inner > .title > .title-content {
+    font-size: 13px;
+    text-align: left;
+    padding-left: 5px;
+    padding-bottom: 7px;
 }
 
-.game-list > .game-list__inner > .title > #title-content{
-  font-size: 13px;
-  text-align: left;
-  padding-left: 5px;
-  padding-bottom: 7px;
+.game-list > .game-list__inner > .title > .title-content {
+    font-size: 13px;
+    text-align: left;
+    padding-left: 5px;
+    padding-bottom: 7px;
 }
 
-.util-list > .util-list__inner > .title > #title-content{
-  font-size: 13px;
-  text-align: left;
-  padding-left: 5px;
-  padding-bottom: 7px;
+.util-list > .util-list__inner > .title > .title-content {
+    font-size: 13px;
+    text-align: left;
+    padding-left: 5px;
+    padding-bottom: 7px;
 }
 
-.image-box {
-  text-align: center;
-}
-
-.misato {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  width: 150px;
-  height: 200px;
-}
-
-p#title-content {
+p.title-content {
 }
 
 .footer {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: auto;
-  height: 180px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: auto;
+    height: 180px;
 }
 
 .footer > .footer__inner {
-  width: 800px;
-  max-width: 1000px;
-  padding-left: 20px;
-  padding-right: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin:0 auto;
+    width: 800px;
+    max-width: 1000px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 0 auto;
 }
 
 .footer > .footer__inner > .announce {

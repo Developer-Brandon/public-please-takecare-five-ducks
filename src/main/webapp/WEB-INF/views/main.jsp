@@ -17,23 +17,34 @@
 <!-- 메뉴 끝 -->
 
 <!-- 메인 시작 -->
+<div class="image-box">
+    <img class="goku"
+         src="${pageContext.request.contextPath}/resources/images/goku.png"
+         alt="손오공 유년시절">
+</div>
 <div class="body__inner">
-
-    <div class="image-box">
-        <img class="misato" src="${pageContext.request.contextPath}/resources/images/Misato.png" alt="">
-    </div>
-
-    <!--  -->
     <!-- 인기 만화 시작 -->
-    <div class="famous-writing-list">
-        <div class="famous-writing-list__inner">
-            <div class="title">
-                <p id="title-content">
-                    <img src="${pageContext.request.contextPath}/resources/images/stars-black-icon.png"
-                    style="width:13px; height:13px;margin-right:4px;"
-                    />인기 만화 리스트</p>
-                <!-- <div id="ptcfd-border"></div> -->
-            </div>
+    <div class="hot-anime-list">
+        <div class="title">
+            <p id="main-title">가장 핫한 애니 추천</p>
+            <p id="sub-title">장르 불문 인기 애니를 만나보세요~</p>
+        </div>
+        <div class="anime-thumbnail-list">
+            <c:forEach var="anime" items="${mainAnimeVOList}">
+                <div class="thumbnail-box">
+                    <%--<p><c:out value="${anime.animeNo}"/></p>--%>
+                    <div class="thumbnail-box__inner">
+                        <div class="thumbnail">
+                            <p><c:out value="${anime.animeTitle}"/></p>
+                            <p><c:out value="${anime.animeAuthor}"/></p>
+                            <p><c:out value="${anime.animeRegDt}"/></p>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+        <div class="wrap-more-anime-button">
+            <button class="see-more-anime-button">애니 더 보기</button>
         </div>
     </div>
     <!--  -->
@@ -43,7 +54,7 @@
     <div class="comic-list">
         <div class="comic-list__inner">
             <div class="title">
-                <p id="title-content">
+                <p class="title-content">
                     <img
                             src="${pageContext.request.contextPath}/resources/images/book-icon.png"
                             style="width:13px; height:13px;margin-right:4px;"
@@ -66,7 +77,7 @@
                 <div class="anime-list">
                     <div class="anime-list__inner">
                         <div class="title">
-                            <p id="title-content">
+                            <p class="title-content">
                                 <img
                                         src="${pageContext.request.contextPath}/resources/images/anime-icon.png"
                                         style="width:9px; height:9px;margin-right:4px;"
@@ -85,7 +96,7 @@
                 <div class="game-list">
                     <div class="game-list__inner">
                         <div class="title">
-                            <p id="title-content">
+                            <p class="title-content">
                                 <img
                                         src="${pageContext.request.contextPath}/resources/images/game-icon.png"
                                         style="width:9px; height:9px;margin-right:4px;"
@@ -104,7 +115,7 @@
                 <div class="util-list">
                     <div class="util-list__inner">
                         <div class="title">
-                            <p id="title-content">
+                            <p class="title-content">
                                 <img
                                         src="${pageContext.request.contextPath}/resources/images/util-icon.png"
                                         style="width:9px; height:9px;margin-right:4px;"

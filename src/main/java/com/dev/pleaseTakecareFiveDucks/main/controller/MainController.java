@@ -23,7 +23,12 @@ public class MainController{
 
         MainPageVO mainPageVO = mainService.selectMainPageData();
 
-        model.addAttribute("mainPageVO", mainPageVO);
+        model.addAttribute("mainBannerVOList", mainPageVO.getMainBannerVOList());
+        model.addAttribute("mainAnimeVOList", mainPageVO.getMainAnimeVOList());
+        model.addAttribute("mainBookVOList", mainPageVO.getMainBookVOList());
+        model.addAttribute("mainComicBookVOList", mainPageVO.getMainComicBookVOMap());
+        model.addAttribute("mainDramaVOList", mainPageVO.getMainDramaVOList());
+        model.addAttribute("mainMovieVOList", mainPageVO.getMainMovieVOList());
 
         return "main";
     }
