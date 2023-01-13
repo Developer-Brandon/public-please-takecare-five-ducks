@@ -31,18 +31,18 @@
 
 .hot-anime-list > .title {
     text-align: center;
-    margin-top: 24px;
+    margin-top: 25px;
     margin-bottom: 14px;
 }
 
-.hot-anime-list > .title > #main-title {
+.hot-anime-list > .title > .main-title {
     font-size: 24px;
     line-height: 31px;
     font-weight: 600 !important;
     cursor: default;
 }
 
-.hot-anime-list > .title > #sub-title {
+.hot-anime-list > .title > .sub-title {
     font-size: 15px;
     line-height: 15px;
     font-weight: 400;
@@ -52,7 +52,7 @@
 
 .anime-thumbnail-list {
     width: 704px;
-    margin-bottom: 1px;
+    margin-bottom: 5px;
 }
 
 .anime-thumbnail-list > .thumbnail-box {
@@ -103,7 +103,7 @@
 .wrap-more-anime-button {
     width: 100%;
     text-align: center;
-    margin-bottom: 56px;
+    margin-bottom: 52px;
 }
 
 .see-more-anime-button {
@@ -116,79 +116,40 @@
     cursor: pointer;
 }
 
-
-/* 일반 만화 리스트 시작 */
-.comic-list {
+/* 각종(책)모음 보기 시작 */
+.body__inner > .some-book-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 0 10px;
 }
 
-.comic-list > .comic-list__inner {
-    /*  */
+.some-book-list > .title {
+    text-align: center;
+    margin-bottom: 14px;
 }
 
-.comic-list > .comic-list__inner > .title {
-    /*  */
+.some-book-list > .title > .main-title {
+    font-size: 24px;
+    line-height: 31px;
+    font-weight: 600 !important;
+    cursor: default;
 }
 
-.comic-list > .comic-list__inner > .title > .title-content {
-    font-size: 18px;
-    text-align: left;
-    /* border-bottom: 1px solid black; */
-    padding-left: 5px;
-    padding-bottom: 7px;
+.some-book-list > .title > .sub-title {
+    font-size: 15px;
+    line-height: 15px;
+    font-weight: 400;
+    color: #A4A2A2;
+    cursor: default;
 }
 
-.anime-box {
-    flex-grow: 1;
+.some-book-list__inner{
+    width: 704px;
+    margin-bottom: 5px;
 }
 
-.game-box {
-    flex-grow: 1;
-}
-
-.util-box {
-    flex-grow: 1;
-}
-
-/* 유틸 리스트 시작 */
-.etc-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.etc-list > .etc-list__inner {
-    /*  */
-    display: flex;
-    flex-direction: row;
-}
-
-.anime-list > .anime-list__inner > .title > .title-content {
-    font-size: 13px;
-    text-align: left;
-    padding-left: 5px;
-    padding-bottom: 7px;
-}
-
-.game-list > .game-list__inner > .title > .title-content {
-    font-size: 13px;
-    text-align: left;
-    padding-left: 5px;
-    padding-bottom: 7px;
-}
-
-.util-list > .util-list__inner > .title > .title-content {
-    font-size: 13px;
-    text-align: left;
-    padding-left: 5px;
-    padding-bottom: 7px;
-}
-
-p.title-content {
-}
-
+/* footer 시작 */
 .footer {
     background-color: white;
     display: flex;

@@ -10,6 +10,15 @@
     <!-- -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/component/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
+    <script type="text/javascript">
+     function goAnimeDetailPage(animeNo) {
+      console.log(animeNo);
+     }
+
+     function goAnimePage() {
+      console.log("애니 페이지로 이동하기")
+     }
+    </script>
 </head>
 <body class="custom-body">
 <!-- 메뉴 시작 -->
@@ -28,14 +37,13 @@
     <!-- 가장 핫한 애니 시작 -->
     <div class="hot-anime-list">
         <div class="title">
-            <p id="main-title">가장 핫한 애니 추천</p>
-            <p id="sub-title">장르 불문 인기 애니를 만나보세요~</p>
+            <p class="main-title">가장 핫한 애니 추천</p>
+            <p class="sub-title">장르 불문 인기 애니를 만나보세요~</p>
         </div>
         <div class="anime-thumbnail-list">
             <c:forEach var="anime" items="${mainAnimeVOList}">
                 <div class="thumbnail-box">
-                        <%--<p><c:out value="${anime.animeNo}"/></p>--%>
-                    <div class="thumbnail-box__inner">
+                    <div class="thumbnail-box__inner" onclick="goAnimeDetailPage(${anime.animeNo})">
                         <div class="thumbnail">
                             <p><c:out value="${anime.animeTitle}"/></p>
                             <p><c:out value="${anime.animeAuthor}"/></p>
@@ -46,90 +54,116 @@
             </c:forEach>
         </div>
         <div class="wrap-more-anime-button">
-            <button class="see-more-anime-button">애니 더 보기</button>
+            <button class="see-more-anime-button" onclick="goAnimePage()">애니 더 보기</button>
         </div>
     </div>
     <!--  -->
 
     <!--  -->
     <!-- 각종 도서(책) 모음 시작 -->
-    <div class="comic-list">
-        <div class="comic-list__inner">
-            <div class="title">
-                <p class="title-content">
+    <div class="some-book-list">
+        <div class="title">
+            <p class="main-title">각종 도서(책) 모음</p>
+            <p class="sub-title">강의 요약 스크립트 / 기술서적 / 인터넷 소설 등등</p>
+        </div>
+        <div class="some-book-list">
+            <div class="some-book-list__inner">
+                <div class="some-book-list__inner__left">
                     <img src="${pageContext.request.contextPath}/resources/images/book-icon.png"
-                         style="width:13px; height:13px;margin-right:4px;"
-                    />일반 만화 리스트</p>
-            </div>
-            <div class="content">
-                <div class="content__inner"></div>
+                         alt="책 아이콘"
+                         class="book-icon">
+                </div>
+                <div class="some-book-list__inner__right">
+                    <c:forEach var="book" items="${mainBookVOList}">
+                        <div class="top-title">
+                            <p><c:out value="${book.bookTitle}"/></p>
+                            <p><c:out value="${book.bookTypeEnglish}"/></p>
+                        </div>
+                        <div class="bottom-date">
+                            <p><c:out value="${book.bookRegDt}"/></p>
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
         </div>
     </div>
+    <%--    <div class="comic-list">--%>
+    <%--        <div class="comic-list__inner">--%>
+    <%--            <div class="title">--%>
+    <%--                <p class="title-content">--%>
+    <%--                    <img src="${pageContext.request.contextPath}/resources/images/book-icon.png"--%>
+    <%--                         style="width:13px; height:13px;margin-right:4px;"--%>
+    <%--                    />일반 만화 리스트</p>--%>
+    <%--            </div>--%>
+    <%--            <div class="content">--%>
+    <%--                <div class="content__inner"></div>--%>
+    <%--            </div>--%>
+    <%--        </div>--%>
+    <%--    </div>--%>
     <!--  -->
 
     <!--  -->
     <!-- ETC 시작 -->
-    <div class="etc-list">
-        <div class="etc-list__inner">
-            <!-- 애니 시작 -->
-            <div class="anime-box">
-                <div class="anime-list">
-                    <div class="anime-list__inner">
-                        <div class="title">
-                            <p class="title-content">
-                                <img
-                                        src="${pageContext.request.contextPath}/resources/images/anime-icon.png"
-                                        style="width:9px; height:9px;margin-right:4px;"
-                                />애니 리스트</p>
-                            <!-- <div id="ptcfd-border"></div> -->
-                        </div>
-                        <div class="content">
-                            <div class="content__inner"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <%--    <div class="etc-list">--%>
+    <%--        <div class="etc-list__inner">--%>
+    <%--            <!-- 애니 시작 -->--%>
+    <%--            <div class="anime-box">--%>
+    <%--                <div class="anime-list">--%>
+    <%--                    <div class="anime-list__inner">--%>
+    <%--                        <div class="title">--%>
+    <%--                            <p class="title-content">--%>
+    <%--                                <img--%>
+    <%--                                        src="${pageContext.request.contextPath}/resources/images/anime-icon.png"--%>
+    <%--                                        style="width:9px; height:9px;margin-right:4px;"--%>
+    <%--                                />애니 리스트</p>--%>
+    <%--                            <!-- <div id="ptcfd-border"></div> -->--%>
+    <%--                        </div>--%>
+    <%--                        <div class="content">--%>
+    <%--                            <div class="content__inner"></div>--%>
+    <%--                        </div>--%>
+    <%--                    </div>--%>
+    <%--                </div>--%>
+    <%--            </div>--%>
 
-            <!-- 게임 시작 -->
-            <div class="game-box">
-                <div class="game-list">
-                    <div class="game-list__inner">
-                        <div class="title">
-                            <p class="title-content">
-                                <img
-                                        src="${pageContext.request.contextPath}/resources/images/game-icon.png"
-                                        style="width:9px; height:9px;margin-right:4px;"
-                                />게임 리스트</p>
-                            <!-- <div id="ptcfd-border"></div> -->
-                        </div>
-                        <div class="content">
-                            <div class="content__inner"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <%--            <!-- 게임 시작 -->--%>
+    <%--            <div class="game-box">--%>
+    <%--                <div class="game-list">--%>
+    <%--                    <div class="game-list__inner">--%>
+    <%--                        <div class="title">--%>
+    <%--                            <p class="title-content">--%>
+    <%--                                <img--%>
+    <%--                                        src="${pageContext.request.contextPath}/resources/images/game-icon.png"--%>
+    <%--                                        style="width:9px; height:9px;margin-right:4px;"--%>
+    <%--                                />게임 리스트</p>--%>
+    <%--                            <!-- <div id="ptcfd-border"></div> -->--%>
+    <%--                        </div>--%>
+    <%--                        <div class="content">--%>
+    <%--                            <div class="content__inner"></div>--%>
+    <%--                        </div>--%>
+    <%--                    </div>--%>
+    <%--                </div>--%>
+    <%--            </div>--%>
 
-            <!-- 유틸 시작 -->
-            <div class="util-box">
-                <div class="util-list">
-                    <div class="util-list__inner">
-                        <div class="title">
-                            <p class="title-content">
-                                <img
-                                        src="${pageContext.request.contextPath}/resources/images/util-icon.png"
-                                        style="width:9px; height:9px;margin-right:4px;"
-                                />유틸 리스트</p>
-                            <!-- <div id="ptcfd-border"></div> -->
-                        </div>
-                        <div class="content">
-                            <div class="content__inner"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <%--            <!-- 유틸 시작 -->--%>
+    <%--            <div class="util-box">--%>
+    <%--                <div class="util-list">--%>
+    <%--                    <div class="util-list__inner">--%>
+    <%--                        <div class="title">--%>
+    <%--                            <p class="title-content">--%>
+    <%--                                <img--%>
+    <%--                                        src="${pageContext.request.contextPath}/resources/images/util-icon.png"--%>
+    <%--                                        style="width:9px; height:9px;margin-right:4px;"--%>
+    <%--                                />유틸 리스트</p>--%>
+    <%--                            <!-- <div id="ptcfd-border"></div> -->--%>
+    <%--                        </div>--%>
+    <%--                        <div class="content">--%>
+    <%--                            <div class="content__inner"></div>--%>
+    <%--                        </div>--%>
+    <%--                    </div>--%>
+    <%--                </div>--%>
+    <%--            </div>--%>
+    <%--        </div>--%>
+    <%--    </div>--%>
     <!--  -->
 
     <!-- 메인 끝 -->
