@@ -13,8 +13,8 @@
             , expose_order as exposeOrder
             , file_path as filePath
             , file_name as fileName
-            , reg_dt as regDt
-            , mod_dt as modDt
+            , date_format(reg_dt, '%Y-%m-%d') as regDt
+            , date_format(mod_dt, '%Y-%m-%d') as modDt
     from web_app_test2.tb_main_banner_img
     where use_yn = 'y'
     </select>

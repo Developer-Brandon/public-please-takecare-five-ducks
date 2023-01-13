@@ -24,8 +24,8 @@
         , tb_b_t.tag_english_name as bookTypeEnglish
         , ifnull(tb_b_v.viewCnt, 0) as viewCnt
         , concat(tb_b_t_i.file_path, '/', tb_b_t_i.file_name) as filePullPath
-        , left(replace(tb_b.book_reg_dt, '. ', '-') ,length(replace(tb_b.book_reg_dt, '. ', '-')) - 1) as bookRegDt
-        , left(replace(tb_b.reg_dt, '. ', '-') ,length(replace(tb_b.reg_dt, '. ', '-')) - 1) as regDt
+        , date_format(tb_b.book_reg_dt, '%Y-%m-%d') as bookRegDt
+        , date_format(tb_b.reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_book as tb_b
             inner join web_app_test2.tb_book_type as tb_b_t
             on tb_b.r_book_type_no = tb_b_t.r_book_type_no
@@ -66,8 +66,8 @@
              , tb_b.author             as bookAuthor
              , tb_b.link               as link
              , tb_b.use_yn             as bookUseYnEnum
-             , left(replace(tb_b.book_reg_dt, '. ', '-') ,length(replace(tb_b.book_reg_dt, '. ', '-')) - 1) as bookRegDt
-             , left(replace(tb_b.reg_dt, '. ', '-') ,length(replace(tb_b.reg_dt, '. ', '-')) - 1) as regDt
+             , date_format(tb_b.book_reg_dt, '%Y-%m-%d') as bookRegDt
+             , date_format(tb_b.reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_book as tb_b
             inner join web_app_test2.tb_book_type as tb_b_t
             on tb_b.r_book_type_no = tb_b_t.r_book_type_no
@@ -89,8 +89,8 @@
              , tb_b.author             as bookAuthor
              , tb_b.link               as link
              , tb_b.use_yn             as bookUseYnEnum
-             , left(replace(tb_b.book_reg_dt, '. ', '-') ,length(replace(tb_b.book_reg_dt, '. ', '-')) - 1) as bookRegDt
-             , left(replace(tb_b.reg_dt, '. ', '-') ,length(replace(tb_b.reg_dt, '. ', '-')) - 1) as regDt
+             , date_format(tb_b.book_reg_dt, '%Y-%m-%d') as bookRegDt
+             , date_format(tb_b.reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_book as tb_b
             inner join web_app_test2.tb_book_type as tb_b_t
             on tb_b.r_book_type_no = tb_b_t.r_book_type_no
@@ -134,8 +134,8 @@
         , tb_b.use_yn as bookUseYnEnum
         , ifnull(tb_b_v.viewCnt, 0) as viewCnt
         , concat(tb_b_t_i.file_path, '/', tb_b_t_i.file_name) as filePullPath
-        , left(replace(tb_b.book_reg_dt, '. ', '-') ,length(replace(tb_b.book_reg_dt, '. ', '-')) - 1) as bookRegDt
-        , left(replace(tb_b.reg_dt, '. ', '-') ,length(replace(tb_b.reg_dt, '. ', '-')) - 1) as regDt
+        , date_format(tb_b.book_reg_dt, '%Y-%m-%d') as bookRegDt
+        , date_format(tb_b.reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_book as tb_b
             inner join web_app_test2.tb_book_type as tb_b_t
             on tb_b.r_book_type_no = tb_b_t.r_book_type_no

@@ -28,7 +28,7 @@
             , english_name as englishName
             , korean_name as koreanName
             , use_yn as contentsMadeNatureUseYnEnum
-            , left(replace(reg_dt, '. ', '-') ,length(replace(reg_dt, '. ', '-')) - 1) as regDt
+            , date_format(reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_contents_made_nature
         order by str_to_date(regDt, '%Y-%m-%d') desc
     </select>
@@ -43,7 +43,7 @@
              , english_name as englishName
              , korean_name as koreanName
              , use_yn as contentsMadeNatureUseYnEnum
-             , left(replace(reg_dt, '. ', '-') ,length(replace(reg_dt, '. ', '-')) - 1) as regDt
+             , date_format(reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_contents_made_nature
         order by str_to_date(regDt, '%Y-%m-%d') desc
         limit #{offset}, #{pageSize}
@@ -59,7 +59,7 @@
              , english_name as englishName
              , korean_name as koreanName
              , use_yn as contentsMadeNatureUseYnEnum
-             , left(replace(reg_dt, '. ', '-') ,length(replace(reg_dt, '. ', '-')) - 1) as regDt
+             , date_format(reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_contents_made_nature
         where m_n_no = #{contentsNo}
     </select>
