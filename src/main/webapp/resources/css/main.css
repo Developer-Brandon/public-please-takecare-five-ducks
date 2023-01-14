@@ -25,12 +25,10 @@
 .body__inner > .hot-anime-list {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     padding: 0 10px;
 }
 
 .hot-anime-list > .title {
-    text-align: center;
     margin-top: 25px;
     margin-bottom: 14px;
 }
@@ -39,6 +37,7 @@
     font-size: 24px;
     line-height: 31px;
     font-weight: 600 !important;
+    text-align: center;
     cursor: default;
 }
 
@@ -46,17 +45,22 @@
     font-size: 15px;
     line-height: 15px;
     font-weight: 400;
+    text-align: center;
     color: #A4A2A2;
     cursor: default;
 }
 
 .anime-thumbnail-list {
     width: 704px;
+    max-width: 704px;
     margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .anime-thumbnail-list > .thumbnail-box {
-    float: left;
     background-color: #A4A2A2;
     width: 210px;
     height: 150px;
@@ -66,20 +70,20 @@
     cursor: pointer;
 }
 
-.anime-thumbnail-list > .thumbnail-box:hover {
-    /* todo: 추후 박스에 hover시 글자가 커지게끔 만들기 */
-}
-
-
 /* 세번째 선택자에 해당하는 자식 요소에게만 margin-right를 0으로 설정합니다. */
 .anime-thumbnail-list > .thumbnail-box:nth-child(3n) {
     margin-right: 0;
+}
+
+.anime-thumbnail-list > .thumbnail-box:hover {
+    /* todo: 추후 박스에 hover시 글자가 커지게끔 만들기 */
 }
 
 .anime-thumbnail-list > .thumbnail-box > .thumbnail-box__inner {
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
