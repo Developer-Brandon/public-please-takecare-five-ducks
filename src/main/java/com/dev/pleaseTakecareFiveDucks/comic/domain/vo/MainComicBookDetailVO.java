@@ -9,4 +9,6 @@ public class MainComicBookDetailVO {
     Integer comicBookNo;
     String comicBookTitle;
     String comicBookAuthor;
+    String link;
+    String fileFullPath;
 }

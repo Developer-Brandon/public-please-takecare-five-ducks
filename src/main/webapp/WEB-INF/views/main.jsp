@@ -5,6 +5,7 @@
 <head>
     <%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
     <%@ page session="false" %>
+    <%@ page import="java.util.*"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="page_header.jsp" %>
     <!-- -->
@@ -127,40 +128,57 @@
         <div class="comic-book-cover">
             <div class="comic-book-cover__inner">
                 <c:forEach var="comic" items="${mainComicBookVOMap}">
-                    <c:if test="comic.key == '1990'">
+                    <c:if test="${comic.key == '1990'}">
                         <div class="comic-book-section">
                             <p class="gen-title">1990~</p>
-                            <img src="" alt="" class="comic-thumbnail"/>
-                            <div class="introduce">
-                                <div class="introduce__inner">
-                                    <div class="title">comic.comicBookTitle</div>
-                                    <div class="author">comic.comicBookAuthor</div>
+                            <c:forEach var="innerComic" items="${comic.value}">
+                                <div class="wrap-thumbnail-item">
+                                    <c:choose>
+                                        <c:when test="${innerComic.fileFullPath != ''}">
+                                            <div class="thumbnail__default"></div>
+                                            <!-- 추후 썸네일 준비 끝나면 개발 예정 -->
+                                            <!-- <img src="${innerComic.fileFullPath}" alt="" class="thumbnail"> -->
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="thumbnail__default"></div>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <div class="introduce">
+                                        <div class="introduce__inner">
+                                            <div class="title">${innerComic.comicBookTitle}</div>
+                                            <div class="author">${innerComic.comicBookAuthor}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </c:if>
-                    <c:if test="comic.key == '2000'">
+                    <c:if test="${comic.key == '2000'}">
                         <div class="comic-book-section">
                             <p class="gen-title">2000~</p>
                             <img src="" alt="" class="comic-thumbnail"/>
+                            <c:forEach var="innerComic" items="${comic.value}">
                             <div class="introduce">
                                 <div class="introduce__inner">
-                                    <div class="title">comic.comicBookTitle</div>
-                                    <div class="author">comic.comicBookAuthor</div>
+                                    <div class="title">${innerComic.comicBookTitle}</div>
+                                    <div class="author">${innerComic.comicBookAuthor}</div>
                                 </div>
                             </div>
+                            </c:forEach>
                         </div>
                     </c:if>
-                    <c:if test="comic.key == '2010'">
+                    <c:if test="${comic.key == '2010'}">
                         <div class="comic-book-section">
                             <p class="gen-title">2010~</p>
                             <img src="" alt="" class="comic-thumbnail"/>
+                            <c:forEach var="innerComic" items="${comic.value}">
                             <div class="introduce">
                                 <div class="introduce__inner">
-                                    <div class="title">comic.comicBookTitle</div>
-                                    <div class="author">comic.comicBookAuthor</div>
+                                    <div class="title">innerComic.comicBookTitle</div>
+                                    <div class="author">innerComic.comicBookAuthor</div>
                                 </div>
                             </div>
+                            </c:forEach>
                         </div>
                     </c:if>
                 </c:forEach>

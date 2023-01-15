@@ -1,6 +1,5 @@
 package com.dev.pleaseTakecareFiveDucks.comic.service;
 
-import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookVO;
