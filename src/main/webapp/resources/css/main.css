@@ -35,7 +35,7 @@
 
 .hot-anime-list > .title > .main-title {
     font-size: 24px;
-    line-height: 31px;
+    line-height: 29px;
     font-weight: 600 !important;
     text-align: center;
     cursor: default;
@@ -43,7 +43,7 @@
 
 .hot-anime-list > .title > .sub-title {
     font-size: 15px;
-    line-height: 15px;
+    line-height: 18px;
     font-weight: 400;
     text-align: center;
     color: #A4A2A2;
@@ -118,6 +118,12 @@
     color: #6F6D6D;
     background-color: white;
     cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.see-more-anime-button:hover {
+    color: white;
+    background-color: #6F6D6D;
 }
 
 /* 각종(책)모음 보기 시작 */
@@ -135,14 +141,14 @@
 
 .some-book-list > .title > .main-title {
     font-size: 24px;
-    line-height: 31px;
+    line-height: 29px;
     font-weight: 600 !important;
     cursor: default;
 }
 
 .some-book-list > .title > .sub-title {
     font-size: 15px;
-    line-height: 15px;
+    line-height: 18px;
     font-weight: 400;
     color: #A4A2A2;
     cursor: default;
@@ -191,7 +197,7 @@
 #book-title {
     width: 100px;
     font-size: 13px;
-    line-height:18px;
+    line-height: 18px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -201,11 +207,40 @@
 
 #book-type {
     font-size: 10px;
-    line-height:12px;
-    margin-bottom:13px;
+    line-height: 12px;
+    margin-bottom: 13px;
     font-weight: 600 !important;
     text-align: right;
 }
+
+.book-type_script {
+    color: #FF0000;
+}
+
+.book-type_study-summary {
+    color: #04CF00;
+}
+
+.book-type_book-summary {
+    color: #0500FF;
+}
+
+.book-type_book-pdf {
+    color: #FFF500;
+}
+
+.book-type_lecture_summary {
+    color: #7CA800;
+}
+
+.book-type_novel {
+    color: #CF0095;
+}
+
+.book-type_default {
+    color: black;
+}
+
 
 #book-reg-dt {
     font-weight: 200 !important;
@@ -227,6 +262,12 @@
     color: #6F6D6D;
     background-color: white;
     cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.see-more-book-button:hover {
+    color: white;
+    background-color: #6F6D6D;
 }
 
 

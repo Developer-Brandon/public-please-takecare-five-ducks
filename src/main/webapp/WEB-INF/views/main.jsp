@@ -11,16 +11,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/component/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
     <script type="text/javascript">
-     function goAnimeDetailPage(animeNo) {
-      console.log(animeNo);
+     function goNotionPage(link) {
+      window.open(link)
      }
 
      function goAnimePage() {
-      console.log("애니 페이지로 이동하기")
+      location.href = './anime/main'
      }
 
-     function goBookPage(){
-      console.log("책 페이지로 이동하기")
+     function goBookPage() {
+      location.href = './book/main'
      }
     </script>
 </head>
@@ -47,7 +47,7 @@
         <div class="anime-thumbnail-list">
             <c:forEach var="anime" items="${mainAnimeVOList}">
                 <div class="thumbnail-box">
-                    <div class="thumbnail-box__inner" onclick="goAnimeDetailPage(${anime.animeNo})">
+                    <div class="thumbnail-box__inner" onclick="goNotionPage('${anime.link}')">
                         <div class="thumbnail">
                             <p><c:out value="${anime.animeTitle}"/></p>
                             <p><c:out value="${anime.animeAuthor}"/></p>
@@ -73,7 +73,7 @@
         <div class="some-book-list">
             <div class="some-book-list__inner">
                 <c:forEach var="book" items="${mainBookVOList}">
-                    <div class="book-item">
+                    <div class="book-item" onclick="goNotionPage('${book.link}')">
                         <div class="book-item__left">
                             <img src="${pageContext.request.contextPath}/resources/images/book-icon.png"
                                  alt="책 아이콘"
@@ -82,10 +82,17 @@
                         <div class="book-item__right">
                             <div class="top-title">
                                 <p id="book-title"><c:out value="${book.bookTitle}"/></p>
-                                <p id="book-type">
-                                    <span>[</span>
-                                        <c:out value="${book.bookTypeEnglish}"/>
-                                    <span>]</span>
+                                <p id="book-type" class="<c:choose>
+                                        <c:when test="${book.bookTypeEnglish == 'SCRIPT'}">book-type_script</c:when>
+                                        <c:when test="${book.bookTypeEnglish == 'STUDY_SUMMARY'}">book-type_study-summary</c:when>
+                                        <c:when test="${book.bookTypeEnglish == 'BOOK_SUMMARY'}">book-type_book-summary</c:when>
+                                        <c:when test="${book.bookTypeEnglish == 'LECTURE_SUMMARY'}">book-type_lecture_summary</c:when>
+                                        <c:when test="${book.bookTypeEnglish == 'NOVEL'}">book-type_novel</c:when>
+                                        <c:otherwise>book-type_default</c:otherwise>
+                                    </c:choose>">
+                                    <span style="font-weight:800 !important;">[</span>
+                                    <c:out value="${book.bookTypeEnglish}"/>
+                                    <span style="font-weight:800 !important;">]</span>
                                 </p>
                                 <p id="book-reg-dt"><c:out value="${book.bookRegDt}"/></p>
                             </div>
