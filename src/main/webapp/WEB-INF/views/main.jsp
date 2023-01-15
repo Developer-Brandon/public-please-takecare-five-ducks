@@ -124,41 +124,53 @@
             <p class="main-title">내가 찾던 바로 그 만화책!</p>
             <p class="sub-title">옛날 고전 만화부터, 최신 만화까지 다양하게 즐겨보세요~</p>
         </div>
-    </div>
-    <div class="comic-book-cover">
-        <div class="comic-book-cover__inner">
-            <c:forEach var="comic" items="${mainComicBookVOMap.get('1990')}">
-                <div class="comic-book-section">
-                    <img src="" alt="" class="comic-thumbnail"/>
-                    <div class="introduce">
-                        <div class="introduce__inner">
-                            <div class="title">comic.comicBookTitle</div>
-                            <div class="author">comic.comicBookAuthor</div></div>
-                    </div>
-                </div>
-            </c:forEach>
-            <c:forEach var="comic" items="${mainComicBookVOMap.get('2000')}">
-                <div class="comic-book-section">
-                    <img src="" alt="" class="comic-thumbnail"/>
-                    <div class="introduce">
-                        <div class="introduce__inner">
-                            <div class="title">comic.comicBookTitle</div>
-                            <div class="author">comic.comicBookAuthor</div></div>
-                    </div>
-                </div>
-            </c:forEach>
-            <c:forEach var="comic" items="${mainComicBookVOMap.get('2010')}">
-                <div class="comic-book-section">
-                    <img src="" alt="" class="comic-thumbnail"/>
-                    <div class="introduce">
-                        <div class="introduce__inner">
-                            <div class="title">comic.comicBookTitle</div>
-                            <div class="author">comic.comicBookAuthor</div></div>
-                    </div>
-                </div>
-            </c:forEach>
+        <div class="comic-book-cover">
+            <div class="comic-book-cover__inner">
+                <c:forEach var="comic" items="${mainComicBookVOMap}">
+                    <c:if test="comic.key == '1990'">
+                        <div class="comic-book-section">
+                            <p class="gen-title">1990~</p>
+                            <img src="" alt="" class="comic-thumbnail"/>
+                            <div class="introduce">
+                                <div class="introduce__inner">
+                                    <div class="title">comic.comicBookTitle</div>
+                                    <div class="author">comic.comicBookAuthor</div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
+                    <c:if test="comic.key == '2000'">
+                        <div class="comic-book-section">
+                            <p class="gen-title">2000~</p>
+                            <img src="" alt="" class="comic-thumbnail"/>
+                            <div class="introduce">
+                                <div class="introduce__inner">
+                                    <div class="title">comic.comicBookTitle</div>
+                                    <div class="author">comic.comicBookAuthor</div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
+                    <c:if test="comic.key == '2010'">
+                        <div class="comic-book-section">
+                            <p class="gen-title">2010~</p>
+                            <img src="" alt="" class="comic-thumbnail"/>
+                            <div class="introduce">
+                                <div class="introduce__inner">
+                                    <div class="title">comic.comicBookTitle</div>
+                                    <div class="author">comic.comicBookAuthor</div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
+                </c:forEach>
+            </div>
+        </div>
+        <div class="wrap-more-comic-book-button">
+            <div class="see-more-comic-book-button">만화책 더보기</div>
         </div>
     </div>
+
     <!-- 내가 찾던 바로 그 만화책 모음 끝 -->
     <!--  -->
 

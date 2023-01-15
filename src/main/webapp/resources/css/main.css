@@ -275,12 +275,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding: 0 10px;
 }
 
 .comic-book-list > .title {
     text-align: center;
-    margin-bottom: 14px;
+    margin-bottom: 36px;
 }
 
 .comic-book-list > .title > .main-title {
@@ -297,6 +298,45 @@
     color: #A4A2A2;
     cursor: default;
 }
+
+.comic-book-list > .comic-book-cover {
+    width: 550px;
+    height: 183px;
+    border-radius: 50px;
+    box-shadow: 4.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
+    margin-bottom: 20px;
+}
+
+/* 책들의 섹션 */
+.comic-book-section {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* 만화책 더보기 */
+.wrap-more-comic-book-button {
+    margin-bottom: 52px;
+}
+
+.see-more-comic-book-button {
+    width: 162px;
+    height: 30px;
+    border: 1px solid #6F6D6D;
+    border-radius: 15px;
+    color: #6F6D6D;
+    background-color: white;
+    text-align: center;
+    line-height: 28px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.see-more-comic-book-button:hover {
+    color: white;
+    background-color: #6F6D6D;
+}
+
 
 /* 베스트 영화, 드라마 시작 */
 
@@ -370,7 +410,7 @@
 .wrap-dam-buttons {
     width: 100%;
     text-align: center;
-    margin-bottom: 236px;
+    margin-bottom: 136px;
 }
 
 .wrap-dam-buttons > .dam-button {
