@@ -22,6 +22,14 @@
      function goBookPage() {
       location.href = './book/main'
      }
+
+     function goDramaPage() {
+      location.href = './drama/main'
+     }
+
+     function goMoviePage() {
+      location.href = './movie/main'
+     }
     </script>
 </head>
 <body class="custom-body">
@@ -109,7 +117,41 @@
     <!-- 각종 도서(책) 모음 끝 -->
     <!--  -->
 
-<%--        title 빼놓고는 css 선언되어 있지 않음, 추후 데이터 insert한 후에 마저 완성할 것 --%>
+    <!--  -->
+    <!-- 베스트 드라마/영화 모음 시작 -->
+    <div class="drama-and-movie-list">
+        <div class="title">
+            <p class="main-title">베스트 드라마/영화 모음</p>
+            <p class="sub-title">인기 드라마와 영화를 보러 출바알~!</p>
+        </div>
+        <div class="drama-and-movie-list__inner">
+            <c:forEach var="entertain" items="${mainEntertainVOList}">
+                <div class="dam-item">
+                    <c:choose>
+                        <c:when test="${entertain.fileFullPath} != null || ${entertain.fileFullPath} != ''">
+                            <img src="${entertain.fileFullPath}"
+                                 alt="영화썸네일입니다."
+                                 class="thumbnail"/>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="thumbnail" style="background-color: #D9D9D9;"></div>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <p class="title">${entertain.title}</p>
+                </div>
+            </c:forEach>
+        </div>
+        <div class="wrap-dam-buttons">
+            <button class="dam-button" onclick="goDramaPage()">드라마 더보기</button>
+            <button class="dam-button" onclick="goMoviePage()">영화 더보기</button>
+        </div>
+    </div>
+    <!-- 베스트 드라마/영화 모음 끝 -->
+    <!--  -->
+
+
+    <%--      title 빼놓고는 css 선언되어 있지 않음, 추후 데이터 insert한 후에 마저 완성할 것 --%>
     <%--        <div class="comic-book-list">--%>
     <%--            <div class="title">--%>
     <%--                <p class="main-title">내가 찾던 바로 그 만화책!</p>--%>

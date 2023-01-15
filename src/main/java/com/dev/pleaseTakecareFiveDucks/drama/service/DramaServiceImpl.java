@@ -69,13 +69,13 @@ public class DramaServiceImpl implements DramaService{
 
         List<DramaThumbnailVO> dramaThumbnailVOList = dramaDAO.selectDramaThumbnailImageListByDramaNo(selectDramaThumbnailImageListRequestDTO);
 
-        // dramaVOList를 순회하며, dramaNo가 같은 요소들끼리 찾아서 filePullPath를 set해줍니다.
+        // dramaVOList를 순회하며, dramaNo가 같은 요소들끼리 찾아서 fileFullPath를 set해줍니다.
         dramaVOList.forEach(e -> {
 
             //
             dramaThumbnailVOList.forEach(f -> {
                 if(e.getDramaNo().equals(f.getDramaNo())) {
-                    e.setFilePullPath(f.getFilePullPath());
+                    e.setFileFullPath(f.getFileFullPath());
                 }
             });
         });

@@ -92,7 +92,7 @@
         */
         ]]>
         select r_book_no as bookNo
-        , concat(file_path, '/', file_name) as filePullPath
+        , concat(file_path, '/', file_name) as fileFullPath
         from web_app_test2.tb_comic_book_thumbnail_img
         where r_book_no in (
         <foreach item="item" collection="comicBookNoList" separator=",">
@@ -115,7 +115,7 @@
             , tb_c_b.serial_state as comicBookSerialStateEnum
             , tb_c_b.use_yn as comicBookUseYnEnum
             , ifnull(tb_c_b_v.viewCnt, 0) as viewCnt
-            , concat(tb_c_b_i.file_path, '/', tb_c_b_i.file_name) as filePullPath
+            , concat(tb_c_b_i.file_path, '/', tb_c_b_i.file_name) as fileFullPath
             , date_format(tb_c_b.book_reg_dt, '%Y-%m-%d') as comicBookRegDt
             , date_format(tb_c_b.reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_comic_book as tb_c_b

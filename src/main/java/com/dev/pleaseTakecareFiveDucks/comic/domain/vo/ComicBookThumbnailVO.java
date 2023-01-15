@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ComicBookThumbnailVO {
     Integer bookNo;
-    String filePullPath;
+    String fileFullPath;
 }

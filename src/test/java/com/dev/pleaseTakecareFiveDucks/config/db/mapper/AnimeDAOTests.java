@@ -140,7 +140,7 @@ public class AnimeDAOTests {
         // when & then
         AnimeVO animeVO = animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO);
         assertThat(animeVO.getAnimeNo(), greaterThanOrEqualTo(1));
-        assertThat(animeVO.getFilePullPath(), is(notNullValue()));
+        assertThat(animeVO.getFileFullPath(), is(notNullValue()));
 
         ////////////////////////////
 
@@ -248,7 +248,7 @@ public class AnimeDAOTests {
         // then
         assertThat(animeVO.getAnimeTitle(), CoreMatchers.is("귀멸의칼날"));
         assertThat(animeVO.getAnimeAuthor(), containsString("코요게고로하루"));
-        assertThat(animeVO.getFilePullPath(), CoreMatchers.is(notNullValue()));
+        assertThat(animeVO.getFileFullPath(), CoreMatchers.is(notNullValue()));
     }
 
     // 생략

@@ -139,7 +139,7 @@ public class BookDAOTests {
         // when & then
         BookVO bookVO = bookDAO.selectBookInfo(selectBookInfoRequestDTO);
         assertThat(bookVO.getBookNo(), greaterThanOrEqualTo(insertBookInfoRequestDTO.getInsertedBookNo()));
-        assertThat(bookVO.getFilePullPath(), is(notNullValue()));
+        assertThat(bookVO.getFileFullPath(), is(notNullValue()));
 
         ////////////////////////////////////////
 
@@ -247,7 +247,7 @@ public class BookDAOTests {
         // then
         assertThat(bookVO.getBookTitle(), is("해리포터"));
         assertThat(bookVO.getBookAuthor(), StringContains.containsString("롤링"));
-        assertThat(bookVO.getFilePullPath(), is(notNullValue()));
+        assertThat(bookVO.getFileFullPath(), is(notNullValue()));
     }
 
     // 생략

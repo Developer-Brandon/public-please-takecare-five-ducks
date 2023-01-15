@@ -23,7 +23,5 @@ public class MainPageVO {
 
     Map<String, List<MainComicBookDetailVO>> mainComicBookVOMap;
 
-    List<MainDramaVO> mainDramaVOList;
-
-    List<MainMovieVO> mainMovieVOList;
+    List<MainEntertainVO> mainEntertainVOList;
 }

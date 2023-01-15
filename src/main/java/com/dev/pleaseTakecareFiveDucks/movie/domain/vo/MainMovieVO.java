@@ -7,5 +7,6 @@ import lombok.Setter;
 @Setter
 public class MainMovieVO {
     String movieTitle;
+    String fileFullPath;
     Integer viewCnt;
 }

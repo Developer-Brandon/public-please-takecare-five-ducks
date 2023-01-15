@@ -20,7 +20,7 @@ public class BookVO {
     String link;
     BookUseYnEnum bookUseYnEnum;
     Integer viewCnt;
-    String filePullPath;
+    String fileFullPath;
     String bookRegDt;
     String regDt;
 }

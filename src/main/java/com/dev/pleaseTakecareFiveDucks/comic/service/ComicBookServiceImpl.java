@@ -70,13 +70,13 @@ public class ComicBookServiceImpl implements ComicBookService{
 
         List<ComicBookThumbnailVO> comicBookThumbnailVOList = comicBookDAO.selectComicBookThumbnailImageListByComicBookNo(comicBookThumbnailImageListRequestDTO);
 
-        // comicBookVOList를 순회하며, animeNo가 같은 요소들끼리 찾아서 filePullPath를 set해줍니다.
+        // comicBookVOList를 순회하며, animeNo가 같은 요소들끼리 찾아서 fileFullPath를 set해줍니다.
         comicBookVOList.forEach(e -> {
 
             //
             comicBookThumbnailVOList.forEach(f -> {
                 if(e.getBookNo().equals(f.getBookNo())) {
-                    e.setFileFullPath(f.getFilePullPath());
+                    e.setFileFullPath(f.getFileFullPath());
                 }
             });
         });

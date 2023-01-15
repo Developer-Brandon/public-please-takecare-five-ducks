@@ -29,10 +29,7 @@ public class MainController{
         model.addAttribute("mainAnimeVOList", mainPageVO.getMainAnimeVOList());
         model.addAttribute("mainBookVOList", mainPageVO.getMainBookVOList());
         model.addAttribute("mainComicBookVOMap", mainPageVO.getMainComicBookVOMap());
-        model.addAttribute("mainDramaVOList", mainPageVO.getMainDramaVOList());
-        model.addAttribute("mainMovieVOList", mainPageVO.getMainMovieVOList());
-
-        List<MainComicBookDetailVO> mainComicBookDetailVOList = mainPageVO.getMainComicBookVOMap().get("1990");
+        model.addAttribute("mainEntertainVOList", mainPageVO.getMainEntertainVOList());
 
         return "main";
     }

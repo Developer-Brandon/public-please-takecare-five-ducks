@@ -75,13 +75,13 @@ public class MovieServiceImpl implements MovieService{
 
         List<MovieThumbnailVO> movieThumbnailVOList = movieDAO.selectMovieThumbnailImageListByMovieNo(selectMovieThumbnailImageListRequestDTO);
 
-        // movieVOList를 순회하며, movieNo가 같은 요소들끼리 찾아서 filePullPath를 set해줍니다.
+        // movieVOList를 순회하며, movieNo가 같은 요소들끼리 찾아서 fileFullPath를 set해줍니다.
         movieVOList.forEach(e -> {
 
             //
             movieThumbnailVOList.forEach(f -> {
                 if(e.getMovieNo().equals(f.getMovieNo())) {
-                    e.setFilePullPath(f.getFilePullPath());
+                    e.setFileFullPath(f.getFileFullPath());
                 }
             });
         });

@@ -298,6 +298,101 @@
     cursor: default;
 }
 
+/* 베스트 영화, 드라마 시작 */
+
+.drama-and-movie-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.drama-and-movie-list > .title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.drama-and-movie-list > .title > .main-title {
+    font-size: 24px;
+    line-height: 29px;
+    font-weight: 600 !important;
+    cursor: default;
+}
+
+.drama-and-movie-list > .title > .sub-title {
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #A4A2A2;
+    cursor: default;
+}
+
+.drama-and-movie-list__inner {
+    width: 489px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.dam-item {
+    width:119px;
+    height:110px;
+    margin-right:66px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dam-item:nth-child(3n){
+    margin-right:0;
+}
+
+.dam-item > .thumbnail {
+    display: block;
+    width:80px;
+    height:80px;
+    margin-bottom: 9px;
+    border: 3px solid blue;
+    border-radius: 100px;
+}
+
+.dam-item:nth-child(2n) > .thumbnail {
+    border: 3px solid green;
+}
+
+.dam-item > .title {
+    font-size: 17px;
+    font-weight: 600 !important;
+}
+
+.wrap-dam-buttons {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 236px;
+}
+
+.wrap-dam-buttons > .dam-button {
+    width: 162px;
+    height: 30px;
+    border: 1px solid #6F6D6D;
+    border-radius: 15px;
+    color: #6F6D6D;
+    background-color: white;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.wrap-dam-buttons > .dam-button:hover {
+    color: white;
+    background-color: #6F6D6D;
+}
+
+.dam-button:first-child {
+    margin-right: 40px;
+}
+
 
 /* footer 시작 */
 .footer {

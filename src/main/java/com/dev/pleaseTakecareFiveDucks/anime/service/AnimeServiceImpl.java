@@ -69,13 +69,13 @@ public class AnimeServiceImpl implements AnimeService{
 
         List<AnimeThumbnailVO> animeThumbnailVOList = animeDAO.selectAnimeThumbnailImageListByAnimeNo(selectAnimeThumbnailImageListRequestDTO);
 
-        // animeVOList를 순회하며, animeNo가 같은 요소들끼리 찾아서 filePullPath를 set해줍니다.
+        // animeVOList를 순회하며, animeNo가 같은 요소들끼리 찾아서 fileFullPath를 set해줍니다.
         animeVOList.forEach(e -> {
 
                     //
                     animeThumbnailVOList.forEach(f -> {
                                 if(e.getAnimeNo().equals(f.getAnimeNo())) {
-                                    e.setFilePullPath(f.getFilePullPath());
+                                    e.setFileFullPath(f.getFileFullPath());
                                 }
                     });
         });
