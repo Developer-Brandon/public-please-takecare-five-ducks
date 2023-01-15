@@ -1,5 +1,6 @@
 package com.dev.pleaseTakecareFiveDucks.main.controller;
 
+import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.MainComicBookDetailVO;
 import com.dev.pleaseTakecareFiveDucks.main.domain.vo.MainPageVO;
 import com.dev.pleaseTakecareFiveDucks.main.service.MainService;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -26,9 +28,11 @@ public class MainController{
         model.addAttribute("mainBannerVOList", mainPageVO.getMainBannerVOList());
         model.addAttribute("mainAnimeVOList", mainPageVO.getMainAnimeVOList());
         model.addAttribute("mainBookVOList", mainPageVO.getMainBookVOList());
-        model.addAttribute("mainComicBookVOList", mainPageVO.getMainComicBookVOMap());
+        model.addAttribute("mainComicBookVOMap", mainPageVO.getMainComicBookVOMap());
         model.addAttribute("mainDramaVOList", mainPageVO.getMainDramaVOList());
         model.addAttribute("mainMovieVOList", mainPageVO.getMainMovieVOList());
+
+        List<MainComicBookDetailVO> mainComicBookDetailVOList = mainPageVO.getMainComicBookVOMap().get("1990");
 
         return "main";
     }

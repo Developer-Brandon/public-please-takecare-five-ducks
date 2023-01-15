@@ -270,6 +270,34 @@
     background-color: #6F6D6D;
 }
 
+/* 내가 찾던 바로 그 만화책 */
+.body__inner > .comic-book-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.comic-book-list > .title {
+    text-align: center;
+    margin-bottom: 14px;
+}
+
+.comic-book-list > .title > .main-title {
+    font-size: 24px;
+    line-height: 29px;
+    font-weight: 600 !important;
+    cursor: default;
+}
+
+.comic-book-list > .title > .sub-title {
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #A4A2A2;
+    cursor: default;
+}
+
 
 /* footer 시작 */
 .footer {

@@ -37,7 +37,7 @@
 </div>
 <div class="body__inner">
 
-    <%--    --%>
+    <!--    -->
     <!-- 가장 핫한 애니 시작 -->
     <div class="hot-anime-list">
         <div class="title">
@@ -61,6 +61,7 @@
             <button class="see-more-anime-button" onclick="goAnimePage()">애니 더 보기</button>
         </div>
     </div>
+    <!-- 가장 핫한 애니 끝 -->
     <!--  -->
 
     <!--  -->
@@ -105,84 +106,51 @@
             </div>
         </div>
     </div>
-    <%--    <div class="comic-list">--%>
-    <%--        <div class="comic-list__inner">--%>
+    <!-- 각종 도서(책) 모음 끝 -->
+    <!--  -->
+
+<%--        title 빼놓고는 css 선언되어 있지 않음, 추후 데이터 insert한 후에 마저 완성할 것 --%>
+    <%--        <div class="comic-book-list">--%>
     <%--            <div class="title">--%>
-    <%--                <p class="title-content">--%>
-    <%--                    <img src="${pageContext.request.contextPath}/resources/images/book-icon.png"--%>
-    <%--                         style="width:13px; height:13px;margin-right:4px;"--%>
-    <%--                    />일반 만화 리스트</p>--%>
-    <%--            </div>--%>
-    <%--            <div class="content">--%>
-    <%--                <div class="content__inner"></div>--%>
+    <%--                <p class="main-title">내가 찾던 바로 그 만화책!</p>--%>
+    <%--                <p class="sub-title">옛날 고전 만화부터, 최신 만화까지 다양하게 즐겨보세요~</p>--%>
     <%--            </div>--%>
     <%--        </div>--%>
-    <%--    </div>--%>
-    <!--  -->
-
-    <!--  -->
-    <!-- ETC 시작 -->
-    <%--    <div class="etc-list">--%>
-    <%--        <div class="etc-list__inner">--%>
-    <%--            <!-- 애니 시작 -->--%>
-    <%--            <div class="anime-box">--%>
-    <%--                <div class="anime-list">--%>
-    <%--                    <div class="anime-list__inner">--%>
-    <%--                        <div class="title">--%>
-    <%--                            <p class="title-content">--%>
-    <%--                                <img--%>
-    <%--                                        src="${pageContext.request.contextPath}/resources/images/anime-icon.png"--%>
-    <%--                                        style="width:9px; height:9px;margin-right:4px;"--%>
-    <%--                                />애니 리스트</p>--%>
-    <%--                            <!-- <div id="ptcfd-border"></div> -->--%>
-    <%--                        </div>--%>
-    <%--                        <div class="content">--%>
-    <%--                            <div class="content__inner"></div>--%>
+    <%--        <div class="comic-book-cover">--%>
+    <%--            <div class="comic-book-cover__inner">--%>
+    <%--                <c:forEach var="comic" items="${mainComicBookVOMap.get('1990')}">--%>
+    <%--                    <div class="comic-book-section">--%>
+    <%--                        <img src="" alt="" class="comic-thumbnail"/>--%>
+    <%--                        <div class="introduce">--%>
+    <%--                            <div class="introduce__inner">--%>
+    <%--                                <div class="title">comic.comicBookTitle</div>--%>
+    <%--                                <div class="author">comic.comicBookAuthor</div></div>--%>
     <%--                        </div>--%>
     <%--                    </div>--%>
-    <%--                </div>--%>
-    <%--            </div>--%>
-
-    <%--            <!-- 게임 시작 -->--%>
-    <%--            <div class="game-box">--%>
-    <%--                <div class="game-list">--%>
-    <%--                    <div class="game-list__inner">--%>
-    <%--                        <div class="title">--%>
-    <%--                            <p class="title-content">--%>
-    <%--                                <img--%>
-    <%--                                        src="${pageContext.request.contextPath}/resources/images/game-icon.png"--%>
-    <%--                                        style="width:9px; height:9px;margin-right:4px;"--%>
-    <%--                                />게임 리스트</p>--%>
-    <%--                            <!-- <div id="ptcfd-border"></div> -->--%>
-    <%--                        </div>--%>
-    <%--                        <div class="content">--%>
-    <%--                            <div class="content__inner"></div>--%>
+    <%--                </c:forEach>--%>
+    <%--                <c:forEach var="comic" items="${mainComicBookVOMap.get('2000')}">--%>
+    <%--                    <div class="comic-book-section">--%>
+    <%--                        <img src="" alt="" class="comic-thumbnail"/>--%>
+    <%--                        <div class="introduce">--%>
+    <%--                            <div class="introduce__inner">--%>
+    <%--                                <div class="title">comic.comicBookTitle</div>--%>
+    <%--                                <div class="author">comic.comicBookAuthor</div></div>--%>
     <%--                        </div>--%>
     <%--                    </div>--%>
-    <%--                </div>--%>
-    <%--            </div>--%>
-
-    <%--            <!-- 유틸 시작 -->--%>
-    <%--            <div class="util-box">--%>
-    <%--                <div class="util-list">--%>
-    <%--                    <div class="util-list__inner">--%>
-    <%--                        <div class="title">--%>
-    <%--                            <p class="title-content">--%>
-    <%--                                <img--%>
-    <%--                                        src="${pageContext.request.contextPath}/resources/images/util-icon.png"--%>
-    <%--                                        style="width:9px; height:9px;margin-right:4px;"--%>
-    <%--                                />유틸 리스트</p>--%>
-    <%--                            <!-- <div id="ptcfd-border"></div> -->--%>
-    <%--                        </div>--%>
-    <%--                        <div class="content">--%>
-    <%--                            <div class="content__inner"></div>--%>
+    <%--                </c:forEach>--%>
+    <%--                <c:forEach var="comic" items="${mainComicBookVOMap.get('2010')}">--%>
+    <%--                    <div class="comic-book-section">--%>
+    <%--                        <img src="" alt="" class="comic-thumbnail"/>--%>
+    <%--                        <div class="introduce">--%>
+    <%--                            <div class="introduce__inner">--%>
+    <%--                                <div class="title">comic.comicBookTitle</div>--%>
+    <%--                                <div class="author">comic.comicBookAuthor</div></div>--%>
     <%--                        </div>--%>
     <%--                    </div>--%>
-    <%--                </div>--%>
+    <%--                </c:forEach>--%>
     <%--            </div>--%>
     <%--        </div>--%>
-    <%--    </div>--%>
-    <!--  -->
+
 
     <!-- 메인 끝 -->
 

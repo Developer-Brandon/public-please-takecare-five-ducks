@@ -32,7 +32,7 @@ public class MainServiceImpl implements MainService{
 
         MainComicBookRequestDTO mainComicBookRequestDTO = MainComicBookRequestDTO.builder()
                 .startDt("1990")
-                .startDt("1999")
+                .endDt("1999")
                 .build();
 
         List<MainComicBookDetailVO> firstMainComicBookVOList = comicBookDAO.selectMainComicBookList(mainComicBookRequestDTO);
