@@ -18,6 +18,10 @@
      function goAnimePage() {
       console.log("애니 페이지로 이동하기")
      }
+
+     function goBookPage(){
+      console.log("책 페이지로 이동하기")
+     }
     </script>
 </head>
 <body class="custom-body">
@@ -68,22 +72,29 @@
         </div>
         <div class="some-book-list">
             <div class="some-book-list__inner">
-                <div class="some-book-list__inner__left">
-                    <img src="${pageContext.request.contextPath}/resources/images/book-icon.png"
-                         alt="책 아이콘"
-                         class="book-icon">
-                </div>
-                <div class="some-book-list__inner__right">
-                    <c:forEach var="book" items="${mainBookVOList}">
-                        <div class="top-title">
-                            <p><c:out value="${book.bookTitle}"/></p>
-                            <p><c:out value="${book.bookTypeEnglish}"/></p>
+                <c:forEach var="book" items="${mainBookVOList}">
+                    <div class="book-item">
+                        <div class="book-item__left">
+                            <img src="${pageContext.request.contextPath}/resources/images/book-icon.png"
+                                 alt="책 아이콘"
+                                 class="book-icon">
                         </div>
-                        <div class="bottom-date">
-                            <p><c:out value="${book.bookRegDt}"/></p>
+                        <div class="book-item__right">
+                            <div class="top-title">
+                                <p id="book-title"><c:out value="${book.bookTitle}"/></p>
+                                <p id="book-type">
+                                    <span>[</span>
+                                        <c:out value="${book.bookTypeEnglish}"/>
+                                    <span>]</span>
+                                </p>
+                                <p id="book-reg-dt"><c:out value="${book.bookRegDt}"/></p>
+                            </div>
                         </div>
-                    </c:forEach>
-                </div>
+                    </div>
+                </c:forEach>
+            </div>
+            <div class="wrap-more-book-button">
+                <button class="see-more-book-button" onclick="goBookPage()">도서(책) 더보기</button>
             </div>
         </div>
     </div>
