@@ -10,6 +10,11 @@
     <head>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/component/reset.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/menu.css">
+        <script>
+            function goMainPage() {
+             location.href = '../'
+            }
+        </script>
     </head>
     <body>
         <nav class="menu-bar">
@@ -17,6 +22,7 @@
                 <div class="wrap-logo">
                     <div class="wrap-logo__inner">
                         <img id="logo"
+                             onclick="goMainPage()"
                              src="${pageContext.request.contextPath}/resources/images/main-logo-icon.png"
                              alt="로고 이미지입니다" />
                     </div>

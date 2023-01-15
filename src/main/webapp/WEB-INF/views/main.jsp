@@ -118,6 +118,51 @@
     <!--  -->
 
     <!--  -->
+    <!-- 내가 찾던 바로 그 만화책 시작 -->
+    <div class="comic-book-list">
+        <div class="title">
+            <p class="main-title">내가 찾던 바로 그 만화책!</p>
+            <p class="sub-title">옛날 고전 만화부터, 최신 만화까지 다양하게 즐겨보세요~</p>
+        </div>
+    </div>
+    <div class="comic-book-cover">
+        <div class="comic-book-cover__inner">
+            <c:forEach var="comic" items="${mainComicBookVOMap.get('1990')}">
+                <div class="comic-book-section">
+                    <img src="" alt="" class="comic-thumbnail"/>
+                    <div class="introduce">
+                        <div class="introduce__inner">
+                            <div class="title">comic.comicBookTitle</div>
+                            <div class="author">comic.comicBookAuthor</div></div>
+                    </div>
+                </div>
+            </c:forEach>
+            <c:forEach var="comic" items="${mainComicBookVOMap.get('2000')}">
+                <div class="comic-book-section">
+                    <img src="" alt="" class="comic-thumbnail"/>
+                    <div class="introduce">
+                        <div class="introduce__inner">
+                            <div class="title">comic.comicBookTitle</div>
+                            <div class="author">comic.comicBookAuthor</div></div>
+                    </div>
+                </div>
+            </c:forEach>
+            <c:forEach var="comic" items="${mainComicBookVOMap.get('2010')}">
+                <div class="comic-book-section">
+                    <img src="" alt="" class="comic-thumbnail"/>
+                    <div class="introduce">
+                        <div class="introduce__inner">
+                            <div class="title">comic.comicBookTitle</div>
+                            <div class="author">comic.comicBookAuthor</div></div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+    <!-- 내가 찾던 바로 그 만화책 모음 끝 -->
+    <!--  -->
+
+    <!--  -->
     <!-- 베스트 드라마/영화 모음 시작 -->
     <div class="drama-and-movie-list">
         <div class="title">
@@ -126,7 +171,7 @@
         </div>
         <div class="drama-and-movie-list__inner">
             <c:forEach var="entertain" items="${mainEntertainVOList}">
-                <div class="dam-item">
+                <div class="dam-item" onclick="goNotionPage('${entertain.link}')">
                     <c:choose>
                         <c:when test="${entertain.fileFullPath} != null || ${entertain.fileFullPath} != ''">
                             <img src="${entertain.fileFullPath}"
@@ -149,50 +194,6 @@
     </div>
     <!-- 베스트 드라마/영화 모음 끝 -->
     <!--  -->
-
-
-    <%--      title 빼놓고는 css 선언되어 있지 않음, 추후 데이터 insert한 후에 마저 완성할 것 --%>
-    <%--        <div class="comic-book-list">--%>
-    <%--            <div class="title">--%>
-    <%--                <p class="main-title">내가 찾던 바로 그 만화책!</p>--%>
-    <%--                <p class="sub-title">옛날 고전 만화부터, 최신 만화까지 다양하게 즐겨보세요~</p>--%>
-    <%--            </div>--%>
-    <%--        </div>--%>
-    <%--        <div class="comic-book-cover">--%>
-    <%--            <div class="comic-book-cover__inner">--%>
-    <%--                <c:forEach var="comic" items="${mainComicBookVOMap.get('1990')}">--%>
-    <%--                    <div class="comic-book-section">--%>
-    <%--                        <img src="" alt="" class="comic-thumbnail"/>--%>
-    <%--                        <div class="introduce">--%>
-    <%--                            <div class="introduce__inner">--%>
-    <%--                                <div class="title">comic.comicBookTitle</div>--%>
-    <%--                                <div class="author">comic.comicBookAuthor</div></div>--%>
-    <%--                        </div>--%>
-    <%--                    </div>--%>
-    <%--                </c:forEach>--%>
-    <%--                <c:forEach var="comic" items="${mainComicBookVOMap.get('2000')}">--%>
-    <%--                    <div class="comic-book-section">--%>
-    <%--                        <img src="" alt="" class="comic-thumbnail"/>--%>
-    <%--                        <div class="introduce">--%>
-    <%--                            <div class="introduce__inner">--%>
-    <%--                                <div class="title">comic.comicBookTitle</div>--%>
-    <%--                                <div class="author">comic.comicBookAuthor</div></div>--%>
-    <%--                        </div>--%>
-    <%--                    </div>--%>
-    <%--                </c:forEach>--%>
-    <%--                <c:forEach var="comic" items="${mainComicBookVOMap.get('2010')}">--%>
-    <%--                    <div class="comic-book-section">--%>
-    <%--                        <img src="" alt="" class="comic-thumbnail"/>--%>
-    <%--                        <div class="introduce">--%>
-    <%--                            <div class="introduce__inner">--%>
-    <%--                                <div class="title">comic.comicBookTitle</div>--%>
-    <%--                                <div class="author">comic.comicBookAuthor</div></div>--%>
-    <%--                        </div>--%>
-    <%--                    </div>--%>
-    <%--                </c:forEach>--%>
-    <%--            </div>--%>
-    <%--        </div>--%>
-
 
     <!-- 메인 끝 -->
 

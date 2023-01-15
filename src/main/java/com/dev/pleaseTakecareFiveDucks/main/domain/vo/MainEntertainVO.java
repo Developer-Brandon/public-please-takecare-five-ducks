@@ -11,6 +11,8 @@ public class MainEntertainVO {
 
     String title;
 
+    String link;
+
     String fileFullPath;
 
     Integer viewCnt;

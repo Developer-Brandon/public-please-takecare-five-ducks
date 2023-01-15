@@ -39,6 +39,10 @@
     height: 43px;
 }
 
+#logo {
+    cursor: pointer;
+}
+
 
 /* 메뉴 시작 */
 .wrap-menu{

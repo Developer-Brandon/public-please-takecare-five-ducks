@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class MainDramaVO {
     String dramaTitle;
+    String link;
     String fileFullPath;
     Integer viewCnt;
 }
