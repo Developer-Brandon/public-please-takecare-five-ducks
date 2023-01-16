@@ -43,6 +43,6 @@ public class AnimeController extends BaseController {
 
         model.addAttribute("animeVOList", animeVOList);
 
-        return "/anime/index";
+        return "/anime/main";
     }
 }

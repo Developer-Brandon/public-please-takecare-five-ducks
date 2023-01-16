@@ -188,7 +188,6 @@
             <div class="see-more-comic-book-button">만화책 더보기</div>
         </div>
     </div>
-
     <!-- 내가 찾던 바로 그 만화책 모음 끝 -->
     <!--  -->
 
@@ -224,11 +223,10 @@
     </div>
     <!-- 베스트 드라마/영화 모음 끝 -->
     <!--  -->
-
-    <!-- 메인 끝 -->
-
-    <!-- footer 시작 -->
-    <%@ include file="footer.jsp" %>
-    <!-- footer 끝 -->
+</div>
+<!-- footer 시작 -->
+<%@ include file="footer.jsp" %>
+<!-- footer 끝 -->
 </body>
+<!-- 메인 끝 -->
 </html>

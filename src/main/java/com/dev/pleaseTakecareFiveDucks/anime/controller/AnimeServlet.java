@@ -38,7 +38,7 @@ public class AnimeServlet extends BaseHttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-      //  req.getRequestDispatcher("/anime/index.jsp");
+      //  req.getRequestDispatcher("/anime/main.jsp");
     }
 }
 */

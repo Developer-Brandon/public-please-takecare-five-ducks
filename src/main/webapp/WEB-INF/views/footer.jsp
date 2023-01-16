@@ -5,6 +5,8 @@
   Time: 오후 1:03
   To change this template use File | Settings | File Templates.
 --%>
-<footer class="container">
-    <p>&copy; </p>
+<footer class="footer">
+    <div class="footer__inner">
+        <p>&copy; </p>
+    </div>
 </footer>
