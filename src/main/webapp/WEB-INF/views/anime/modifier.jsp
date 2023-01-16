@@ -15,31 +15,13 @@
 <%@ include file="../menu.jsp" %>
 <!-- 메뉴 끝 -->
 
-
-
-<div class="body__inner">
-    <div class="top">
-        <div class="top__left">
-            <p class="title">애니 모음</p>
-        </div>
-    </div>
-    <div class="top__right">
-        <p class="register-text">등록하기</p>
-    </div>
-    <ul class="list">
-        <li class="item"></li>
+<c:forEach var="animeType" items="${animeVOList}">
+    <ul>
+        <li><c:out value="${animeType.animeNo}"/></li>
+        <li><c:out value="${animeType.animeTitle}"/></li>
+        <li><c:out value="${animeType.animeAuthor}"/></li>
     </ul>
-    <div class="search-section"></div>
-    <div class="pagination-section">
-        <c:forEach var="animeType" items="${animeVOList}">
-            <ul class="pagination">
-                <li><c:out value="${animeType.animeNo}"/></li>
-                <li><c:out value="${animeType.animeTitle}"/></li>
-                <li><c:out value="${animeType.animeAuthor}"/></li>
-            </ul>
-        </c:forEach>
-    </div>
-</div>
+</c:forEach>
 
 <!-- footer 시작 -->
 <%@ include file="../footer.jsp" %>
