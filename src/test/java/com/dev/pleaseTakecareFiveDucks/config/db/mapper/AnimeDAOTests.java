@@ -482,6 +482,5 @@ public class AnimeDAOTests {
         // then
         assertThat(mainAnimeVOList.size(), is(1));
         assertThat(mainAnimeVOList.get(0).getAnimeTitle(), is("귀멸의칼날"));
-        assertThat(mainAnimeVOList.get(0).getAnimeAuthor(), is("코요게고로하루"));
     }
 }

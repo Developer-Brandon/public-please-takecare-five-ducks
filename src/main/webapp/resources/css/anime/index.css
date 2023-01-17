@@ -1,0 +1,68 @@
+
+.body__inner {
+    width: 704px;
+    margin: 0 auto;
+    padding: 25px 0;
+}
+
+.top {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-bottom: 32px;
+}
+
+.top > .top__left {
+    width: 50%;
+}
+
+.top > .top__left > .title {
+    font-size: 24px;
+    font-weight: 600 !important;
+    line-height: 29px;
+}
+
+.top > .top__right {
+    width: 50%;
+}
+
+.top > .top__right > .register-text{
+    text-align: right;
+    font-size: 24px;
+    font-weight: 600 !important;
+    line-height: 29px;
+    transition: 0.4s;
+}
+
+.top > .top__right > .register-text:hover{
+    font-size: 27px;
+    font-weight: 900 !important;
+    line-height: 33px;
+    color: #2400FF;
+    cursor: pointer;
+}
+
+/* pagination 시작 */
+
+.pagination-section {
+
+}
+
+.pagination-section > .pagination {
+
+}
+
+.pagination-section > .pagination > li{
+
+}
+
+.pagination-section > .pagination > li.item{
+    font-size: 15px;
+    color: #000000;
+    line-height: 18px;
+}
+
+.pagination-section > .pagination > li.anime-no{
+
+}

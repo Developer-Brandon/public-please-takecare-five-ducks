@@ -1,7 +1,4 @@
 <html>
-<!-- jsp reload 하는 법 -->
-<!-- https://velog.io/@coreminw/Intellij%EC%97%90%EC%84%9C-JSP-%EC%88%98%EC%A0%95%EC%8B%9C-%EC%9E%90%EB%8F%99-%EB%A6%AC%EB%A1%9C%EB%93%9C-%EB%90%98%EB%8F%84%EB%A1%9D-%EC%84%A4%EC%A0%95 -->
-<!-- reload시 주의점: css의 reloading을 고려하여 ctrl + shift + R로 새로고침을 실행해야합니다.-->
 <head>
     <%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
     <%@ page session="false" %>
@@ -15,29 +12,50 @@
 <%@ include file="../menu.jsp" %>
 <!-- 메뉴 끝 -->
 
-
-
 <div class="body__inner">
+
+    <%-- 상단의 제목 시작 --%>
     <div class="top">
         <div class="top__left">
             <p class="title">애니 모음</p>
         </div>
+        <div class="top__right">
+            <p class="register-text">등록하기</p>
+        </div>
     </div>
-    <div class="top__right">
-        <p class="register-text">등록하기</p>
-    </div>
-    <ul class="list">
-        <li class="item"></li>
-    </ul>
-    <div class="search-section"></div>
+
+    <%-- pagination list 시작 --%>
     <div class="pagination-section">
         <c:forEach var="animeType" items="${animeVOList}">
             <ul class="pagination">
-                <li><c:out value="${animeType.animeNo}"/></li>
-                <li><c:out value="${animeType.animeTitle}"/></li>
-                <li><c:out value="${animeType.animeAuthor}"/></li>
+                <li class="item anime-no"><c:out value="${animeType.animeNo}"/></li>
+                <li class="item anime-title"><c:out value="${animeType.animeTitle}"/></li>
+                <c:choose>
+                    <c:when test="${animeType.finalizedYnEnum == 'y'}">
+                        <li class="item anime-finalized-yn">완결</li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="item anime-finalized-yn">방영중</li>
+                    </c:otherwise>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${animeType.finalizedYnEnum == 'y'}">
+                        <li class="item anime-cnt">총 <c:out value="${animeType.animeBroadcastCnt}"/>화</li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="item anime-cnt"><c:out value="${animeType.animeBroadcastCnt}"/>화</li>
+                    </c:otherwise>
+                </c:choose>
+                <li class="item anime-reg-dt"><c:out value="${animeType.animeRegDt}"/></li>
             </ul>
         </c:forEach>
+    </div>
+
+    <%-- pagination section 시작 --%>
+    <div class="search-section">
+        <div class="search-section__inner">
+
+        </div>
     </div>
 </div>
 

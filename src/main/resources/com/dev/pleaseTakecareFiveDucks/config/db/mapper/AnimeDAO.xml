@@ -8,12 +8,11 @@
         <![CDATA[
         /* 핫한 애니 리스트 조회 쿼리(상세) */
         ]]>
-        select r_anime_no     as animeNo
+        select r_anime_no        as animeNo
              , count(r_anime_no) as viewCnt
         from web_app_test2.tb_anime_view
         group by r_anime_no
-        order by viewCnt desc
-        limit 6
+        order by viewCnt desc limit 6
     </sql>
 
     <select id="selectMainAnimationList"
@@ -22,18 +21,20 @@
         /* 핫한 애니 리스트 조회 쿼리 */
         ]]>
         select tb_a.r_anime_no as animeNo
-        , tb_a.title as animeTitle
-        , tb_a.author as animeAuthor
-        , tb_a.link as link
-        , ifnull(tb_a_v.viewCnt, 0) as viewCnt
-        , concat(tb_a_t_i.file_path, '/', tb_a_t_i.file_name) as fileFullPath
-        , date_format(tb_a.anime_reg_dt, '%Y-%m-%d') as animeRegDt
-        , date_format(tb_a.reg_dt, '%Y-%m-%d') as regDt
+                , tb_a.title as animeTitle
+                , tb_a.finalized_yn as finalizedYnEnum
+                , tb_a.link as link
+                , tb_a.author as animeAuthor
+                , tb_a.anime_broadcast_cnt as animeBroadcastCnt
+                , ifnull(tb_a_v.viewCnt, 0) as viewCnt
+                , concat(tb_a_t_i.file_path, '/', tb_a_t_i.file_name) as fileFullPath
+                , date_format(tb_a.anime_reg_dt, '%Y-%m-%d') as animeRegDt
+                , date_format(tb_a.reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_anime as tb_a
-            left outer join (<include refid="selectAnimeViewCnt"/>) as tb_a_v
-                on tb_a.r_anime_no = tb_a_v.animeNo
-            left outer join web_app_test2.tb_anime_thumbnail_img as tb_a_t_i
-                on tb_a.r_anime_no = tb_a_t_i.r_anime_no
+        left outer join (<include refid="selectAnimeViewCnt"/>) as tb_a_v
+        on tb_a.r_anime_no = tb_a_v.animeNo
+        left outer join web_app_test2.tb_anime_thumbnail_img as tb_a_t_i
+        on tb_a.r_anime_no = tb_a_t_i.r_anime_no
         where tb_a.use_yn = 'y'
     </select>
 
@@ -60,16 +61,16 @@
         <![CDATA[
         /* 전체 애니 리스트 조회 쿼리 */
         ]]>
-        select r_anime_no          as animeNo
-             , m_n_no              as madeNatureNo
-             , title               as animeTitle
-             , author              as animeAuthor
-             , link                as link
-             , finalized_yn        as finalizedYnEnum
-             , anime_broadcast_cnt as animeBroadcastCnt
-             , use_yn              as animeUseYnEnum
+        select r_anime_no                            as animeNo
+             , m_n_no                                as madeNatureNo
+             , title                                 as animeTitle
+             , author                                as animeAuthor
+             , link                                  as link
+             , finalized_yn                          as finalizedYnEnum
+             , anime_broadcast_cnt                   as animeBroadcastCnt
+             , use_yn                                as animeUseYnEnum
              , date_format(anime_reg_dt, '%Y-%m-%d') as animeRegDt
-             , date_format(reg_dt, '%Y-%m-%d') as regDt
+             , date_format(reg_dt, '%Y-%m-%d')       as regDt
         from web_app_test2.tb_anime
         where use_yn = 'y'
         order by str_to_date(animeRegDt, '%Y-%m-%d') desc
@@ -81,20 +82,20 @@
         <![CDATA[
         /* 전체 애니 리스트 조회 쿼리(pagination) */
         ]]>
-        select r_anime_no          as animeNo
-             , m_n_no              as madeNatureNo
-             , title               as animeTitle
-             , author              as animeAuthor
-             , link                as link
-             , finalized_yn        as finalizedYnEnum
-             , anime_broadcast_cnt as animeBroadcastCnt
-             , use_yn              as animeUseYnEnum
+        select r_anime_no                            as animeNo
+             , m_n_no                                as madeNatureNo
+             , title                                 as animeTitle
+             , author                                as animeAuthor
+             , link                                  as link
+             , finalized_yn                          as finalizedYnEnum
+             , anime_broadcast_cnt                   as animeBroadcastCnt
+             , use_yn                                as animeUseYnEnum
              , date_format(anime_reg_dt, '%Y-%m-%d') as animeRegDt
-             , date_format(reg_dt, '%Y-%m-%d') as regDt
+             , date_format(reg_dt, '%Y-%m-%d')       as regDt
         from web_app_test2.tb_anime
         where use_yn = 'y'
         order by str_to_date(animeRegDt, '%Y-%m-%d') desc
-        limit #{offset}, #{pageSize}
+            limit #{offset}, #{pageSize}
     </select>
 
     <select id="selectAnimeThumbnailImageListByAnimeNo"
@@ -107,12 +108,12 @@
         */
         ]]>
         select r_anime_no as animeNo
-               , concat(file_path, '/', file_name) as fileFullPath
+        , concat(file_path, '/', file_name) as fileFullPath
         from web_app_test2.tb_anime_thumbnail_img
         where r_anime_no in (
-            <foreach item="item" collection="animeNoList" separator=",">
-                #{item}
-            </foreach>
+        <foreach item="item" collection="animeNoList" separator=",">
+            #{item}
+        </foreach>
         )
     </select>
 
@@ -122,30 +123,30 @@
         <![CDATA[
         /* 단일 애니 상세 정보 조회 쿼리 */
         ]]>
-        select tb_a.r_anime_no                                                   as animeNo
-             , tb_a.m_n_no                                                       as madeNatureNo
-             , tb_a.title                                                        as animeTitle
-             , tb_a.author                                                       as animeAuthor
-             , tb_a.link                                                         as link
-             , tb_a.finalized_yn                                                 as finalizedYnEnum
-             , tb_a.anime_broadcast_cnt                                          as animeBroadcastCnt
-             , tb_a.use_yn                                                       as animeUseYnEnum
-             , ifnull(tb_a_v.viewCnt, 0)                                         as viewCnt
-             , concat(tb_a_t_i.file_path, '/', tb_a_t_i.file_name)               as fileFullPath
-             , date_format(tb_a.anime_reg_dt, '%Y-%m-%d') as animeRegDt
-             , date_format(tb_a.reg_dt, '%Y-%m-%d') as regDt
+        select tb_a.r_anime_no                                     as animeNo
+             , tb_a.m_n_no                                         as madeNatureNo
+             , tb_a.title                                          as animeTitle
+             , tb_a.author                                         as animeAuthor
+             , tb_a.link                                           as link
+             , tb_a.finalized_yn                                   as finalizedYnEnum
+             , tb_a.anime_broadcast_cnt                            as animeBroadcastCnt
+             , tb_a.use_yn                                         as animeUseYnEnum
+             , ifnull(tb_a_v.viewCnt, 0)                           as viewCnt
+             , concat(tb_a_t_i.file_path, '/', tb_a_t_i.file_name) as fileFullPath
+             , date_format(tb_a.anime_reg_dt, '%Y-%m-%d')          as animeRegDt
+             , date_format(tb_a.reg_dt, '%Y-%m-%d')                as regDt
         from web_app_test2.tb_anime as tb_a
-            left outer join (
-                select r_anime_no     as animeNo
-                    , count(view_no) as viewCnt
-                from web_app_test2.tb_anime_view
-                group by r_anime_no
-            ) as tb_a_v
-            on tb_a.r_anime_no = tb_a_v.animeNo
-            left outer join web_app_test2.tb_anime_thumbnail_img as tb_a_t_i
-            on tb_a.r_anime_no = tb_a_t_i.r_anime_no
+                 left outer join (
+            select r_anime_no     as animeNo
+                 , count(view_no) as viewCnt
+            from web_app_test2.tb_anime_view
+            group by r_anime_no
+        ) as tb_a_v
+                                 on tb_a.r_anime_no = tb_a_v.animeNo
+                 left outer join web_app_test2.tb_anime_thumbnail_img as tb_a_t_i
+                                 on tb_a.r_anime_no = tb_a_t_i.r_anime_no
         where tb_a.use_yn = 'y'
-        and tb_a.r_anime_no = #{animeNo}
+          and tb_a.r_anime_no = #{animeNo}
     </select>
 
     <insert id="insertAnimeViewCnt"
@@ -179,7 +180,7 @@
         <![CDATA[
         /* 애니 썸네일 정보 삽입 쿼리 */
         insert into web_app_test2.tb_anime_thumbnail_img(r_anime_no, file_path, file_name)
-        value (#{animeNo}, #{filePath}, #{fileName})
+            value (#{animeNo}, #{filePath}, #{fileName})
         ]]>
     </insert>
 
@@ -197,7 +198,7 @@
           , anime_reg_dt        = #{animeRegDt}
           , mod_dt              = now()
         where use_yn = 'y'
-        and r_anime_no = #{animeNo}
+          and r_anime_no = #{animeNo}
         ]]>
     </update>
 
