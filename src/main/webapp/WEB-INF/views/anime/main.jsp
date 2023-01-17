@@ -26,37 +26,43 @@
 
     <%-- pagination list 시작 --%>
     <div class="pagination-section">
-        <c:forEach var="animeType" items="${animeVOList}">
-            <ul class="pagination">
-                <li class="item anime-no"><c:out value="${animeType.animeNo}"/></li>
-                <li class="item anime-title"><c:out value="${animeType.animeTitle}"/></li>
-                <c:choose>
-                    <c:when test="${animeType.finalizedYnEnum == 'y'}">
-                        <li class="item anime-finalized-yn">완결</li>
-                    </c:when>
-                    <c:otherwise>
-                        <li class="item anime-finalized-yn">방영중</li>
-                    </c:otherwise>
-                </c:choose>
-                <c:choose>
-                    <c:when test="${animeType.finalizedYnEnum == 'y'}">
-                        <li class="item anime-cnt">총 <c:out value="${animeType.animeBroadcastCnt}"/>화</li>
-                    </c:when>
-                    <c:otherwise>
-                        <li class="item anime-cnt"><c:out value="${animeType.animeBroadcastCnt}"/>화</li>
-                    </c:otherwise>
-                </c:choose>
-                <li class="item anime-reg-dt"><c:out value="${animeType.animeRegDt}"/></li>
-            </ul>
-        </c:forEach>
+        <ul class="pagination">
+            <c:forEach var="animeType" items="${animeVOList}">
+            <li class="item">
+                    <a class="anime-no"><c:out value="${animeType.animeNo}"/></a>
+                    <a class="anime-title"><c:out value="${animeType.animeTitle}"/></a>
+                    <c:choose>
+                        <c:when test="${animeType.finalizedYnEnum == 'y'}">
+                            <a class="anime-finalized-yn">완결</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="anime-finalized-yn">방영중</a>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${animeType.finalizedYnEnum == 'y'}">
+                            <a class="anime-cnt">총 <c:out value="${animeType.animeBroadcastCnt}"/>화</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="anime-cnt"><c:out value="${animeType.animeBroadcastCnt}"/>화</a>
+                        </c:otherwise>
+                    </c:choose>
+                    <a class="anime-reg-dt"><c:out value="${animeType.animeRegDt}"/></a>
+            </li>
+            </c:forEach>
+        </ul>
+    </div
+
+    <%-- search section 시작 --%>
+    <%--        todo: search-section 돔이 없던데 왜그런건지 알아보기 --%>
+    <div class="search-section">
+        <div class="wrap-search-input">
+            <p class="search-text">제목</p>
+            <input type="text" class="search-input"/>
+        </div>
     </div>
 
     <%-- pagination section 시작 --%>
-    <div class="search-section">
-        <div class="search-section__inner">
-
-        </div>
-    </div>
 </div>
 
 <!-- footer 시작 -->
