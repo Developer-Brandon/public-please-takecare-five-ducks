@@ -8,7 +8,7 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="../page_header.jsp" %>
     <!-- -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/anime/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/anime/main.css">
 </head>
 <body>
 <!-- 메뉴 시작 -->

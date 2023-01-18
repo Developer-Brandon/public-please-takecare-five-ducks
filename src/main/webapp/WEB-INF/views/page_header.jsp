@@ -24,3 +24,6 @@
 
 <!-- bootstrap -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+<%-- favicon --%>
+<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/duck-favicon.png">

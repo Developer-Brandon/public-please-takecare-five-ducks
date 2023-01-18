@@ -5,7 +5,7 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="../page_header.jsp" %>
     <!-- -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/anime/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/anime/main.css">
 </head>
 <body>
 <!-- 메뉴 시작 -->
@@ -24,11 +24,11 @@
         </div>
     </div>
 
-    <%-- pagination list 시작 --%>
-    <div class="pagination-section">
-        <ul class="pagination">
+    <%-- list section 시작 --%>
+    <div class="list-section">
+        <ul>
             <c:forEach var="animeType" items="${animeVOList}">
-            <li class="item">
+            <li class="item" onclick="">
                     <a class="anime-no"><c:out value="${animeType.animeNo}"/></a>
                     <a class="anime-title"><c:out value="${animeType.animeTitle}"/></a>
                     <c:choose>
@@ -51,10 +51,9 @@
             </li>
             </c:forEach>
         </ul>
-    </div
+    </div>
 
     <%-- search section 시작 --%>
-    <%--        todo: search-section 돔이 없던데 왜그런건지 알아보기 --%>
     <div class="search-section">
         <div class="wrap-search-input">
             <p class="search-text">제목</p>
@@ -63,6 +62,23 @@
     </div>
 
     <%-- pagination section 시작 --%>
+    <div class="pagination-section">
+        <div class="pagination-section__inner">
+            <img src="${pageContext.request.contextPath}/resources/images/left-arrow.png"
+                alt=""
+                class="left-arrow">
+            <ul>
+                <li class="item">1</li>
+                <li class="item">2</li>
+                <li class="item">3</li>
+                <li class="item">4</li>
+                <li class="item">5</li>
+            </ul>
+            <img src="${pageContext.request.contextPath}/resources/images/right-arrow.png"
+                 alt=""
+                 class="right-arrow">
+        </div>
+    </div>
 </div>
 
 <!-- footer 시작 -->
