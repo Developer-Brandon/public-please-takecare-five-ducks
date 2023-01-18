@@ -41,10 +41,10 @@
                     </c:choose>
                     <c:choose>
                         <c:when test="${animeType.finalizedYnEnum == 'y'}">
-                            <a class="anime-cnt">총 <c:out value="${animeType.animeBroadcastCnt}"/>화</a>
+                            <a class="anime-cnt">총 <c:out value="${animeType.animeBroadcastCnt}"/> 화</a>
                         </c:when>
                         <c:otherwise>
-                            <a class="anime-cnt"><c:out value="${animeType.animeBroadcastCnt}"/>화</a>
+                            <a class="anime-cnt"><c:out value="${animeType.animeBroadcastCnt}"/> 화</a>
                         </c:otherwise>
                     </c:choose>
                     <a class="anime-reg-dt"><c:out value="${animeType.animeRegDt}"/></a>
