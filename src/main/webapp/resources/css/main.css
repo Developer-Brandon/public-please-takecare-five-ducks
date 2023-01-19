@@ -499,21 +499,3 @@
 .dam-button:first-child {
     margin-right: 40px;
 }
-
-/* footer 시작 */
-.footer {
-    background-color: #202124;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    height: 400px;
-}
-
-.footer > .footer__inner {
-    width: 100%;
-    height: 100%;
-}
-
-.footer > .footer__inner > .announce {
-}

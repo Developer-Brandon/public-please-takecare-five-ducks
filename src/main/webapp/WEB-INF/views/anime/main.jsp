@@ -5,7 +5,22 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="../page_header.jsp" %>
     <!-- -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/component/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/anime/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
+    <script type="text/javascript">
+     function goAnimeRegisterPage() {
+      location.href = './register'
+     }
+
+     function goAnimeModifierPage() {
+      location.href = './modifier'
+     }
+
+     function goAnimeDetailPage(link) {
+      window.open(link)
+     }
+    </script>
 </head>
 <body>
 <!-- 메뉴 시작 -->
@@ -20,19 +35,20 @@
             <p class="title">애니 모음</p>
         </div>
         <div class="top__right">
-            <p class="register-text">등록하기</p>
+            <p class="register-text" onclick="goAnimeRegisterPage()">등록하기</p>
         </div>
     </div>
 
     <%-- list section 시작 --%>
     <div class="list-section">
         <ul>
-            <c:forEach var="animeType" items="${animeVOList}">
-            <li class="item" onclick="">
-                    <a class="anime-no"><c:out value="${animeType.animeNo}"/></a>
-                    <a class="anime-title"><c:out value="${animeType.animeTitle}"/></a>
+            <c:forEach var="animeVO" items="${animeVOList}">
+                <li class="item" onclick="goAnimeDetailPage('${animeVO.link}')">
+                    <a class="anime-no"><c:out value="${animeVO.animeNo}"/></a>
+                    <a class="anime-title"><c:out value="${animeVO.animeTitle}"/><span style="display:inline-block;"
+                                                                                       onclick="goAnimeModifierPage()">&nbsp;✍🏻</span></a>
                     <c:choose>
-                        <c:when test="${animeType.finalizedYnEnum == 'y'}">
+                        <c:when test="${animeVO.finalizedYnEnum == 'y'}">
                             <a class="anime-finalized-yn">완결</a>
                         </c:when>
                         <c:otherwise>
@@ -40,15 +56,15 @@
                         </c:otherwise>
                     </c:choose>
                     <c:choose>
-                        <c:when test="${animeType.finalizedYnEnum == 'y'}">
-                            <a class="anime-cnt">총 <c:out value="${animeType.animeBroadcastCnt}"/> 화</a>
+                        <c:when test="${animeVO.finalizedYnEnum == 'y'}">
+                            <a class="anime-cnt">총 <c:out value="${animeVO.animeBroadcastCnt}"/> 화</a>
                         </c:when>
                         <c:otherwise>
-                            <a class="anime-cnt"><c:out value="${animeType.animeBroadcastCnt}"/> 화</a>
+                            <a class="anime-cnt"><c:out value="${animeVO.animeBroadcastCnt}"/> 화</a>
                         </c:otherwise>
                     </c:choose>
-                    <a class="anime-reg-dt"><c:out value="${animeType.animeRegDt}"/></a>
-            </li>
+                    <a class="anime-reg-dt"><c:out value="${animeVO.animeRegDt}"/></a>
+                </li>
             </c:forEach>
         </ul>
     </div>
@@ -65,8 +81,8 @@
     <div class="pagination-section">
         <div class="pagination-section__inner">
             <img src="${pageContext.request.contextPath}/resources/images/left-arrow.png"
-                alt=""
-                class="left-arrow">
+                 alt=""
+                 class="left-arrow">
             <ul>
                 <li class="item">1</li>
                 <li class="item">2</li>

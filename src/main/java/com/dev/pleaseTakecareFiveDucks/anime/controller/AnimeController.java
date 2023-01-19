@@ -38,11 +38,31 @@ public class AnimeController extends BaseController {
                 .currentPage(currentPage)
                 .build();
 
-        // todo: pagination logic 불러온 후 테스트 예정입니다. 그 전까지는 아래 model로 대체...
+        // todo: pagination logic 불러온 후 테스트 예정입니다. 그 전까지는 아래 vo list로 대체합니다.
         List<AnimeVO> animeVOList = animeService.selectAllAnimeInfoList();
 
         model.addAttribute("animeVOList", animeVOList);
 
         return "/anime/main";
+    }
+
+    @GetMapping(value ="/register")
+    public String goRegisterPage(
+            @RequestParam(required = false)
+                    Integer currentPage
+            , HttpServletRequest request
+            , Model model
+    ) {
+        return "/anime/register";
+    }
+
+    @GetMapping(value ="/modifier")
+    public String goModifierPage(
+            @RequestParam(required = false)
+                    Integer currentPage
+            , HttpServletRequest request
+            , Model model
+    ) {
+        return "/anime/modifier";
     }
 }

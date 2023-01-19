@@ -1,27 +1,108 @@
 <html>
-<!-- jsp reload 하는 법 -->
-<!-- https://velog.io/@coreminw/Intellij%EC%97%90%EC%84%9C-JSP-%EC%88%98%EC%A0%95%EC%8B%9C-%EC%9E%90%EB%8F%99-%EB%A6%AC%EB%A1%9C%EB%93%9C-%EB%90%98%EB%8F%84%EB%A1%9D-%EC%84%A4%EC%A0%95 -->
-<!-- reload시 주의점: css의 reloading을 고려하여 ctrl + shift + R로 새로고침을 실행해야합니다.-->
 <head>
     <%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
     <%@ page session="false" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="../page_header.jsp" %>
     <!-- -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/anime/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/component/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/anime/register.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
+    <script type="text/javascript">
+    </script>
 </head>
-<body>
+<body class="custom-body">
 <!-- 메뉴 시작 -->
 <%@ include file="../menu.jsp" %>
 <!-- 메뉴 끝 -->
 
-<c:forEach var="animeType" items="${animeVOList}">
-    <ul>
-        <li><c:out value="${animeType.animeNo}"/></li>
-        <li><c:out value="${animeType.animeTitle}"/></li>
-        <li><c:out value="${animeType.animeAuthor}"/></li>
-    </ul>
-</c:forEach>
+<%-- 메인 시작 --%>
+<div class="anime-banner">
+    <div class="anime-banner__inner"></div>
+</div>
+<div class="body__inner">
+    <%-- 상단의 제목 시작 --%>
+    <div class="top">
+        <div class="top__left">
+            <p class="title">애니 등록하기</p>
+        </div>
+        <div class="top__right">
+        </div>
+    </div>
+
+    <%-- 썸네일 자동찾기 섹션 --%>
+    <div class="thumbnail-section">
+        <div class="thumbnail-section__inner">
+            <%-- <img src="" alt="" class="thumbnail"> --%>
+            <%-- img 태그가 없을 시 기본적으로 사진 지정 --%>
+            <div class="default-thumbnail"></div>
+        </div>
+    </div>
+
+    <%-- 각각 요소들의 섹션 --%>
+    <div class="item-section">
+        <div class="item">
+            <div class="item__left">
+                <p class="title">제목</p>
+            </div>
+            <div class="item__right">
+                <input type="text" class="content title-input">
+                <button class="find-thumbnail-button">썸네일 찾기</button>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item__left">
+                <p class="title">방영상태</p>
+            </div>
+            <div class="item__right">
+                <p class="content finalized-text">완결</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item__left">
+                <p class="title">방영회수</p>
+            </div>
+            <div class="item__right">
+                <input type="text" class="content board-cast-cnt-input">
+                <span class="board-cast-cnt-text">&nbsp;회</span>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item__left">
+                <p class="title">최초방영일자</p>
+            </div>
+            <div class="item__right">
+                <input type="text" class="content anime-reg-dt">
+            </div>
+        </div>
+        <div class="item">
+
+            <div class="item__left">
+                <p class="title">제작국가</p>
+            </div>
+            <div class="item__right">
+                <p class="content made-nature-no-text">일본</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item__left">
+                <p class="title">importLink</p>
+            </div>
+            <div class="item__right">
+                <input type="text" class="content import-link">
+            </div>
+        </div>
+    </div>
+
+    <%-- 하단의 섹션 --%>
+    <div class="register-bottom">
+        <div class="register-bottom__inner">
+            <p class="register-text">등록하기</p>
+        </div>
+    </div>
+</div>
+
+<%-- 메인 끝 --%>
 
 <!-- footer 시작 -->
 <%@ include file="../footer.jsp" %>
