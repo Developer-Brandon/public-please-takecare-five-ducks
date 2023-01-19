@@ -21,6 +21,7 @@
     font-size: 24px;
     font-weight: 600 !important;
     line-height: 29px;
+    cursor: default;
 }
 
 .top > .top__right {
@@ -102,7 +103,7 @@
 
 .list-section > ul > .item > .anime-reg-dt {
     width: 87px;
-    text-align: right;
+    text-align: center;
     padding-right: 3px;
 }
 
@@ -148,6 +149,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-bottom: 75px;
 }
 
 .pagination-section > .pagination-section__inner {

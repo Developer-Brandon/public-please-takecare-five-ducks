@@ -35,7 +35,7 @@
             <p class="title">애니 모음</p>
         </div>
         <div class="top__right">
-            <p class="register-text" onclick="goAnimeRegisterPage()">등록하기</p>
+            <p class="register-text" onclick="goAnimeRegisterPage()">등록하기✍🏻</p>
         </div>
     </div>
 
@@ -49,10 +49,10 @@
                                                                                        onclick="goAnimeModifierPage()">&nbsp;✍🏻</span></a>
                     <c:choose>
                         <c:when test="${animeVO.finalizedYnEnum == 'y'}">
-                            <a class="anime-finalized-yn">완결</a>
+                            <a class="anime-finalized-yn" style="color:#FF0000;">완결</a>
                         </c:when>
                         <c:otherwise>
-                            <a class="anime-finalized-yn">방영중</a>
+                            <a class="anime-finalized-yn" style="color:#2400FF;">방영중</a>
                         </c:otherwise>
                     </c:choose>
                     <c:choose>

@@ -8,12 +8,48 @@
     background-color: #202124;
 }
 
+.image-box > .evangalion {
+    width: 400px;
+    height: 300px;
+    padding-top: 50px;
+}
+
 .image-box > .goku {
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-right: 10px;
+    margin-bottom: 100px;
     width: 130px;
     height: 200px;
 }
+
+.image-box > .zoro {
+    width: 270px;
+    height: 270px;
+}
+
+.image-box > .vmon {
+    width: 130px;
+    height: 150px;
+}
+
+.image-box > .kiu {
+    width: 250px;
+    height: 300px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
+.image-box > .itachi{
+    width: 200px;
+    height: 250px;
+}
+
+.image-box > .bashu {
+    margin-left: -30px;
+    width: 400px;
+    height: 300px;
+}
+
 
 /* 이미지 박스 아래 body inner 시작 */
 .body__inner {
@@ -104,7 +140,13 @@
     font-weight: 200 !important;
     font-size: 15px;
     line-height: 18px;
+    margin-bottom: 5px;
 }
+
+.thumbnail > p:last-child {
+    margin-bottom: 0;
+}
+
 
 /* 애니 더 보기 버튼 */
 .wrap-more-anime-button {

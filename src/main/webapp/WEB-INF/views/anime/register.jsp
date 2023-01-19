@@ -17,14 +17,14 @@
 <!-- 메뉴 끝 -->
 
 <%-- 메인 시작 --%>
-<div class="anime-banner">
-    <div class="anime-banner__inner"></div>
-</div>
+<%--<div class="anime-banner">--%>
+<%--    <div class="anime-banner__inner"></div>--%>
+<%--</div>--%>
 <div class="body__inner">
     <%-- 상단의 제목 시작 --%>
     <div class="top">
         <div class="top__left">
-            <p class="title">애니 등록하기</p>
+            <p class="title">✍🏼애니 등록하기</p>
         </div>
         <div class="top__right">
         </div>

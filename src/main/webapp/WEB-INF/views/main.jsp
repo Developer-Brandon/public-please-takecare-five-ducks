@@ -37,9 +37,32 @@
 
 <!-- 메인 시작 -->
 <div class="image-box">
-    <img class="goku"
-         src="${pageContext.request.contextPath}/resources/images/goku.png"
-         alt="손오공 유년시절">
+    <%--    --%>
+    <img class="evangalion"
+         src="${pageContext.request.contextPath}/resources/images/evangalion.png"
+         alt="에반게리온 초호기">
+    <%--    <img class="goku"--%>
+    <%--         src="${pageContext.request.contextPath}/resources/images/goku.png"--%>
+    <%--         alt="손오공 유년시절">--%>
+    <%--    <img class="zoro"--%>
+    <%--         src="${pageContext.request.contextPath}/resources/images/zoro.png"--%>
+    <%--         alt="조로">--%>
+    <%--    --%>
+    <%--    <img class="vmon"--%>
+    <%--         src="${pageContext.request.contextPath}/resources/images/vmon.png"--%>
+    <%--         alt="브이몬">--%>
+    <%--    --%>
+    <%--    <img class="kiu"--%>
+    <%--         src="${pageContext.request.contextPath}/resources/images/kiu.png"--%>
+    <%--         alt="기유">--%>
+    <%--    &lt;%&ndash;    &ndash;%&gt;--%>
+    <%--    <img class="itachi"--%>
+    <%--         src="${pageContext.request.contextPath}/resources/images/itachi.png"--%>
+    <%--         alt="이타치">--%>
+    <%--    &lt;%&ndash;    &ndash;%&gt;--%>
+    <%--    <img class="bashu"--%>
+    <%--         src="${pageContext.request.contextPath}/resources/images/trigun.png"--%>
+    <%--         alt="밧슈">--%>
 </div>
 <div class="body__inner">
 
@@ -127,7 +150,7 @@
                 <c:forEach var="comic" items="${mainComicBookVOMap}">
                     <c:if test="${comic.key == '1990'}">
                         <div class="comic-book-section">
-                            <p class="gen-title">1990~</p>
+                            <p class="gen-title">📆1990~</p>
                             <c:forEach var="innerComic" items="${comic.value}">
                                 <div class="wrap-thumbnail-item">
                                     <c:choose>
@@ -152,7 +175,7 @@
                     </c:if>
                     <c:if test="${comic.key == '2000'}">
                         <div class="comic-book-section">
-                            <p class="gen-title">2000~</p>
+                            <p class="gen-title">📆2000~</p>
                             <img src="" alt="" class="comic-thumbnail"/>
                             <c:forEach var="innerComic" items="${comic.value}">
                             <div class="introduce">
@@ -166,7 +189,7 @@
                     </c:if>
                     <c:if test="${comic.key == '2010'}">
                         <div class="comic-book-section">
-                            <p class="gen-title">2010~</p>
+                            <p class="gen-title">📆2010~</p>
                             <img src="" alt="" class="comic-thumbnail"/>
                             <c:forEach var="innerComic" items="${comic.value}">
                             <div class="introduce">
@@ -192,7 +215,7 @@
     <!-- 베스트 드라마/영화 모음 시작 -->
     <div class="drama-and-movie-list">
         <div class="title">
-            <p class="main-title">베스트 드라마/영화 모음</p>
+            <p class="main-title">베스트 드라마📺/영화📽 모음</p>
             <p class="sub-title">인기 드라마와 영화를 보러 출바알~!</p>
         </div>
         <div class="drama-and-movie-list__inner">
