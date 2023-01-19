@@ -29,7 +29,7 @@
 }
 
 .hot-anime-list > .title {
-    margin-top: 25px;
+    margin-top: 35px;
     margin-bottom: 14px;
 }
 
@@ -61,22 +61,25 @@
 }
 
 .anime-thumbnail-list > .thumbnail-box {
-    background-color: #A4A2A2;
+    background-color: #D9D9D9;
     width: 210px;
     height: 150px;
     margin-right: 37px;
     margin-bottom: 15px;
     border-radius: 30px;
     cursor: pointer;
+    transition: 0.4s;
+}
+
+.anime-thumbnail-list > .thumbnail-box:hover {
+    /* todo: 추후 박스에 hover시 글자가 커지게끔 만들기 */
+    width: 202px;
+    height: 142px;
 }
 
 /* 세번째 선택자에 해당하는 자식 요소에게만 margin-right를 0으로 설정합니다. */
 .anime-thumbnail-list > .thumbnail-box:nth-child(3n) {
     margin-right: 0;
-}
-
-.anime-thumbnail-list > .thumbnail-box:hover {
-    /* todo: 추후 박스에 hover시 글자가 커지게끔 만들기 */
 }
 
 .anime-thumbnail-list > .thumbnail-box > .thumbnail-box__inner {
@@ -97,7 +100,7 @@
 }
 
 .thumbnail > p {
-    color: #FFFFFF;
+    color: #202124;
     font-weight: 200 !important;
     font-size: 15px;
     line-height: 18px;
@@ -107,7 +110,7 @@
 .wrap-more-anime-button {
     width: 100%;
     text-align: center;
-    margin-bottom: 52px;
+    margin-bottom: 100px;
 }
 
 .see-more-anime-button {
@@ -251,7 +254,7 @@
 .wrap-more-book-button {
     width: 100%;
     text-align: center;
-    margin-bottom: 52px;
+    margin-bottom: 100px;
 }
 
 .see-more-book-button {
@@ -384,7 +387,7 @@
 
 /* 만화책 더보기 */
 .wrap-more-comic-book-button {
-    margin-bottom: 52px;
+    margin-bottom: 100px;
 }
 
 .see-more-comic-book-button {
@@ -458,11 +461,17 @@
 
 .dam-item > .thumbnail {
     display: block;
-    width:80px;
-    height:80px;
+    width: 75px;
+    height: 75px;
     margin-bottom: 9px;
     border: 3px solid blue;
     border-radius: 100px;
+    transition: 0.4s;
+}
+
+.dam-item > .thumbnail:hover {
+    width: 65px;
+    height: 65px;
 }
 
 .dam-item:nth-child(2n) > .thumbnail {
@@ -477,7 +486,7 @@
 .wrap-dam-buttons {
     width: 100%;
     text-align: center;
-    margin-bottom: 136px;
+    margin-bottom: 100px;
 }
 
 .wrap-dam-buttons > .dam-button {

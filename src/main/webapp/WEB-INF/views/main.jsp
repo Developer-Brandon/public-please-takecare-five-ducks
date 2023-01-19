@@ -47,7 +47,7 @@
     <!-- 가장 핫한 애니 시작 -->
     <div class="hot-anime-list">
         <div class="title">
-            <p class="main-title">가장 핫한 애니 추천</p>
+            <p class="main-title">가장 핫한🔥애니 추천</p>
             <p class="sub-title">장르 불문 인기 애니를 만나보세요~</p>
         </div>
         <div class="anime-thumbnail-list">
@@ -64,7 +64,7 @@
             </c:forEach>
         </div>
         <div class="wrap-more-anime-button">
-            <button class="see-more-anime-button" onclick="goAnimePage()">애니 더 보기</button>
+            <button class="see-more-anime-button" onclick="goAnimePage()">애니 더 보기👉🏻</button>
         </div>
     </div>
     <!-- 가장 핫한 애니 끝 -->
@@ -74,7 +74,7 @@
     <!-- 각종 도서(책) 모음 시작 -->
     <div class="some-book-list">
         <div class="title">
-            <p class="main-title">각종 도서(책) 모음</p>
+            <p class="main-title">각종 도서(책)📖 모음</p>
             <p class="sub-title">강의 요약 스크립트 / 기술서적 / 인터넷 소설 등등</p>
         </div>
         <div class="some-book-list">
@@ -108,7 +108,7 @@
                 </c:forEach>
             </div>
             <div class="wrap-more-book-button">
-                <button class="see-more-book-button" onclick="goBookPage()">도서(책) 더보기</button>
+                <button class="see-more-book-button" onclick="goBookPage()">도서(책) 더보기👉🏻</button>
             </div>
         </div>
     </div>
@@ -119,7 +119,7 @@
     <!-- 내가 찾던 바로 그 만화책 시작 -->
     <div class="comic-book-list">
         <div class="title">
-            <p class="main-title">내가 찾던 바로 그 만화책!</p>
+            <p class="main-title">내가 찾던 바로 그 만화책📚!</p>
             <p class="sub-title">옛날 고전 만화부터, 최신 만화까지 다양하게 즐겨보세요~</p>
         </div>
         <div class="comic-book-cover">
@@ -182,7 +182,7 @@
             </div>
         </div>
         <div class="wrap-more-comic-book-button">
-            <div class="see-more-comic-book-button">만화책 더보기</div>
+            <div class="see-more-comic-book-button">만화책 더보기👉🏻</div>
         </div>
     </div>
     <!-- 내가 찾던 바로 그 만화책 모음 끝 -->
@@ -214,8 +214,8 @@
             </c:forEach>
         </div>
         <div class="wrap-dam-buttons">
-            <button class="dam-button" onclick="goDramaPage()">드라마 더보기</button>
-            <button class="dam-button" onclick="goMoviePage()">영화 더보기</button>
+            <button class="dam-button" onclick="goDramaPage()">드라마 더보기👉🏻</button>
+            <button class="dam-button" onclick="goMoviePage()">영화 더보기👉🏻</button>
         </div>
     </div>
     <!-- 베스트 드라마/영화 모음 끝 -->
