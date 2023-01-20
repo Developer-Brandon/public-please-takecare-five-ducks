@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -210,14 +211,20 @@ public class AnimeServiceImpl implements AnimeService{
 
                 try {
 
-                    JSONArray cseThumbnail = ((JSONObject) e).getJSONObject("pagemap").getJSONArray("cse_thumbnail");
+                    JSONObject jsonObject = ((JSONObject) e).getJSONObject("pagemap");
 
-                    for(Integer i = 0; i < cseThumbnail.length(); i++) {
+                    if(jsonObject.has("cse_thumbnail")) {
 
-                        String innerImageUrl = cseThumbnail.getJSONObject(i).getString("src");
+                        JSONArray cseThumbnail = jsonObject.getJSONArray("cse_thumbnail");
 
-                        animeImageUrlList.add(innerImageUrl);
+                        for(Integer i = 0; i < cseThumbnail.length(); i++) {
+
+                            String innerImageUrl = cseThumbnail.getJSONObject(i).getString("src");
+
+                            animeImageUrlList.add(innerImageUrl);
+                        }
                     }
+
                 } catch (Exception exception) {
                     exception.printStackTrace();
                     animeImageUrlList.add("");
@@ -228,12 +235,10 @@ public class AnimeServiceImpl implements AnimeService{
         List<RawImageThumbnailVO> filteredAnimeImageUrlList = animeImageUrlList
                 .stream()
                 .filter(e -> !e.isEmpty())
-                .map(e2 -> {
-
-                    return RawImageThumbnailVO.builder()
+                .map(e2 -> RawImageThumbnailVO.builder()
                             .imageUrl(e2)
-                            .build();
-                })
+                            .build()
+                )
                 .collect(Collectors.toList());
 
         return filteredAnimeImageUrlList;

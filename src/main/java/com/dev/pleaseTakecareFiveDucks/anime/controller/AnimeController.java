@@ -3,17 +3,16 @@ package com.dev.pleaseTakecareFiveDucks.anime.controller;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.SelectAnimeThumbnailImageUrlDTO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.SelectAnimePaginationRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
-import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.anime.service.AnimeServiceImpl;
 import com.dev.pleaseTakecareFiveDucks.config.controller.BaseController;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -25,10 +24,10 @@ public class AnimeController extends BaseController {
 
     private final AnimeServiceImpl animeService;
 
-    @GetMapping(value ="/main")
+    @GetMapping(value = "/main")
     public String goMainPage(
             @RequestParam(required = false)
-            Integer currentPage
+                    Integer currentPage
             , HttpServletRequest request
             , Model model
     ) {
@@ -49,7 +48,7 @@ public class AnimeController extends BaseController {
         return "/anime/main";
     }
 
-    @GetMapping(value ="/register")
+    @GetMapping(value = "/register")
     public String goRegisterPage(
             @RequestParam(required = false)
                     Integer currentPage
@@ -59,7 +58,7 @@ public class AnimeController extends BaseController {
         return "/anime/register";
     }
 
-    @GetMapping(value ="/modifier")
+    @GetMapping(value = "/modifier")
     public String goModifierPage(
             @RequestParam(required = false)
                     Integer currentPage
@@ -69,8 +68,8 @@ public class AnimeController extends BaseController {
         return "/anime/modifier";
     }
 
-    @GetMapping(value = "/search/image/thumbnail", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<RawImageThumbnailVO> selectImageThumbnailVOList(
+    @GetMapping(value = "/search/image/thumbnail")
+    public ModelAndView selectImageThumbnailVOList(
             @RequestParam
             String animeName
     ) throws Exception {
@@ -79,6 +78,12 @@ public class AnimeController extends BaseController {
                 .animeName(animeName)
                 .build();
 
-        return animeService.selectImageThumbnailVOList(selectAnimeThumbnailImageUrlDTO);
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.setViewName("anime/register");
+
+        modelAndView.addObject("imageThumbnailVoList", animeService.selectImageThumbnailVOList(selectAnimeThumbnailImageUrlDTO));
+
+        return modelAndView;
     }
 }
