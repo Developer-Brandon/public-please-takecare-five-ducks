@@ -6,6 +6,10 @@ import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.MainAnimeVO;
 import com.dev.pleaseTakecareFiveDucks.anime.util.AnimeUseYnEnum;
 import com.dev.pleaseTakecareFiveDucks.anime.util.FinalizedYnEnum;
 import org.hamcrest.CoreMatchers;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -16,7 +20,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -482,5 +489,70 @@ public class AnimeDAOTests {
         // then
         assertThat(mainAnimeVOList.size(), is(1));
         assertThat(mainAnimeVOList.get(0).getAnimeTitle(), is("귀멸의칼날"));
+    }
+
+    @Test
+    public void test11_selectAnimeThumbnail() {
+
+        String animeName = "드래곤볼Z";
+
+        JSONObject json = null;
+
+        String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+
+        String SEARCH_API_URL = "https://www.googleapis.com/customsearch/v1";
+
+        String API_KEY = "AIzaSyAw2NnlSIS-dj6-Rh-3FsvLwiUKP35b6Tc";
+
+        String SEARCH_ENGINE_ID = "d1bf72817817d47b1";
+
+        List<String> animeImageUrlList = new ArrayList<>();
+
+        Connection.Response res = null;
+
+        try {
+
+            res = Jsoup.connect(SEARCH_API_URL + "?key=" + API_KEY + "&cx=" + SEARCH_ENGINE_ID + "&q=" + animeName)
+                    .ignoreContentType(true)
+                    .userAgent(USER_AGENT)
+                    .execute();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+        json = new JSONObject(res.body());
+
+        JSONArray jsonArray = json.getJSONArray("items");
+
+        if (jsonArray.length() > 0) {
+
+            jsonArray.forEach(e -> {
+
+                try {
+
+                    JSONArray cseThumbnail = ((JSONObject) e).getJSONObject("pagemap").getJSONArray("cse_thumbnail");
+
+                    System.out.println("cseThumbnail.length()" + cseThumbnail.length());
+
+                    for(Integer i = 0; i < cseThumbnail.length(); i++) {
+
+                        String innerImageUrl = cseThumbnail.getJSONObject(i).getString("src");
+
+                        animeImageUrlList.add(innerImageUrl);
+                    }
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                    animeImageUrlList.add("");
+                }
+            });
+        }
+
+        List<String> filteredAnimeImageUrlList = animeImageUrlList
+                .stream()
+                .filter(e -> !e.isEmpty())
+                .collect(Collectors.toList());
+
+        filteredAnimeImageUrlList.forEach(e -> System.out.println("e: " + e));
     }
 }

@@ -1,12 +1,20 @@
 package com.dev.pleaseTakecareFiveDucks.anime.service;
 
+import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.SelectAnimeThumbnailImageUrlDTO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
+import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.config.db.mapper.AnimeDAO;
 import lombok.RequiredArgsConstructor;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -160,5 +168,74 @@ public class AnimeServiceImpl implements AnimeService{
         if(animeDAO.deleteAnimeThumbnailInfo(removeAnimeRequestDTO.getAnimeNo()) != 1) {
             throw new Exception();
         }
+    }
+
+    @Override
+    public List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectAnimeThumbnailImageUrlDTO selectAnimeThumbnailImageUrlDTO) throws Exception {
+
+        String animeName = selectAnimeThumbnailImageUrlDTO.getAnimeName();
+
+        JSONObject json = null;
+
+        String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+
+        String SEARCH_API_URL = "https://www.googleapis.com/customsearch/v1";
+
+        String API_KEY = "AIzaSyAw2NnlSIS-dj6-Rh-3FsvLwiUKP35b6Tc";
+
+        String SEARCH_ENGINE_ID = "d1bf72817817d47b1";
+
+        List<String> animeImageUrlList = new ArrayList<>();
+
+        Connection.Response res = null;
+
+        try {
+
+            res = Jsoup.connect(SEARCH_API_URL + "?key=" + API_KEY + "&cx=" + SEARCH_ENGINE_ID + "&q=" + animeName)
+                    .ignoreContentType(true)
+                    .userAgent(USER_AGENT)
+                    .execute();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+        json = new JSONObject(res.body());
+
+        JSONArray jsonArray = json.getJSONArray("items");
+
+        if (jsonArray.length() > 0) {
+
+            jsonArray.forEach(e -> {
+
+                try {
+
+                    JSONArray cseThumbnail = ((JSONObject) e).getJSONObject("pagemap").getJSONArray("cse_thumbnail");
+
+                    for(Integer i = 0; i < cseThumbnail.length(); i++) {
+
+                        String innerImageUrl = cseThumbnail.getJSONObject(i).getString("src");
+
+                        animeImageUrlList.add(innerImageUrl);
+                    }
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                    animeImageUrlList.add("");
+                }
+            });
+        }
+
+        List<RawImageThumbnailVO> filteredAnimeImageUrlList = animeImageUrlList
+                .stream()
+                .filter(e -> !e.isEmpty())
+                .map(e2 -> {
+
+                    return RawImageThumbnailVO.builder()
+                            .imageUrl(e2)
+                            .build();
+                })
+                .collect(Collectors.toList());
+
+        return filteredAnimeImageUrlList;
     }
 }

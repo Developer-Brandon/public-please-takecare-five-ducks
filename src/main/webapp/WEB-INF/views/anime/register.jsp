@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/anime/register.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
     <script type="text/javascript">
+
+    function selectImageThumbnail() {
+
+    }
+
     </script>
 </head>
 <body class="custom-body">
@@ -47,7 +52,7 @@
             </div>
             <div class="item__right">
                 <input type="text" class="content title-input">
-                <button class="find-thumbnail-button">썸네일 찾기</button>
+                <button class="find-thumbnail-button" onclick="selectImageThumbnail()">썸네일 찾기</button>
             </div>
         </div>
         <div class="item">

@@ -1,10 +1,13 @@
 package com.dev.pleaseTakecareFiveDucks.anime.controller;
 
+import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.SelectAnimeThumbnailImageUrlDTO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.SelectAnimePaginationRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
+import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.anime.service.AnimeServiceImpl;
 import com.dev.pleaseTakecareFiveDucks.config.controller.BaseController;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -64,5 +67,18 @@ public class AnimeController extends BaseController {
             , Model model
     ) {
         return "/anime/modifier";
+    }
+
+    @GetMapping(value = "/search/image/thumbnail", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<RawImageThumbnailVO> selectImageThumbnailVOList(
+            @RequestParam
+            String animeName
+    ) throws Exception {
+
+        SelectAnimeThumbnailImageUrlDTO selectAnimeThumbnailImageUrlDTO = SelectAnimeThumbnailImageUrlDTO.builder()
+                .animeName(animeName)
+                .build();
+
+        return animeService.selectImageThumbnailVOList(selectAnimeThumbnailImageUrlDTO);
     }
 }
