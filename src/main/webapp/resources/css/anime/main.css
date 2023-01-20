@@ -95,6 +95,7 @@
 .list-section > ul > .item > .anime-finalized-yn {
     width: 161px;
     text-align: center;
+    font-weight: 900!important;
 }
 
 .list-section > ul > .item > .anime-cnt {

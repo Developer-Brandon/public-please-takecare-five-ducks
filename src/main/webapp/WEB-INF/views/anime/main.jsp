@@ -35,7 +35,7 @@
             <p class="title">애니 모음</p>
         </div>
         <div class="top__right">
-            <p class="register-text" onclick="goAnimeRegisterPage()">등록하기✍🏻</p>
+            <p class="register-text" onclick="goAnimeRegisterPage()">등록하기</p>
         </div>
     </div>
 
@@ -72,7 +72,7 @@
     <%-- search section 시작 --%>
     <div class="search-section">
         <div class="wrap-search-input">
-            <p class="search-text">제목</p>
+            <p class="search-text">👆🏼제목</p>
             <input type="text" class="search-input"/>
         </div>
     </div>
