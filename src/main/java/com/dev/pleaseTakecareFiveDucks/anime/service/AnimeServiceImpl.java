@@ -27,11 +27,14 @@ public class AnimeServiceImpl implements AnimeService{
     private final AnimeDAO animeDAO;
 
     private boolean validateFileAttachedOrNot(String filePath, String fileName) {
-        if(!filePath.isEmpty() && !fileName.isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
+
+        // 임시로 주석 처리합니다.
+        //        if(!filePath.isEmpty() && !fileName.isEmpty()) {
+        //            return true;
+        //        } else {
+        //            return false;
+        //        }
+        return true;
     }
 
     @Override

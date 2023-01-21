@@ -1,8 +1,8 @@
-let thumbnailImageUrl
-let finalizedStateEnum
-let contentsMadeNatureNo
-let broadCastCnt
-let animeRegDt
+let thumbnailImageUrl = ''
+let finalizedStateEnum = ''
+let contentsMadeNatureNo = ''
+let broadCastCnt = ''
+let animeRegDt = ''
 
 /** 썸네일을 찾는(구글로부터) 버튼을 클릭했을때에 호출되는 메소드입니다. */
 function selectImageThumbnailFromGoogle() {
@@ -83,6 +83,60 @@ function selectMadeNature(madeNatureNo, size) {
 
 function validationFormInfo() {
 
+ if(thumbnailImageUrl === '') {
+  thumbnailImageUrl = 'default'
+ }
+
+ if ($('.register-text').val() === '') {
+  console.log("썸네일 주소 관련 태그는 추후 개발 예정입니다.")
+ }
+
+ if ($('.title-input').val() === '') {
+  alert("제목은 필수 입력 사항입니다.")
+  return
+ } else {
+  if ($('.title-input').val().length === 1) {
+   alert("1글자 초과로 입력해주세요.")
+   return
+  }
+ }
+
+ if ($('.author-input').val() === '') {
+  alert("작가이름은 필수 입력 사항입니다.")
+  return
+ } else {
+  if ($('.author-input').val().length === 1) {
+   alert("1글자 초과로 입력해주세요.")
+   return
+  }
+ }
+
+ if (finalizedStateEnum === '') {
+  alert("방영상태는 필수 입력사항입니다.")
+  return
+ }
+
+ if ($('.board-cast-cnt-input').val() === '') {
+  broadCastCnt = 0
+ } else {
+  broadCastCnt = $('.board-cast-cnt-input').val()
+ }
+
+ if ($('.anime-reg-dt').val() === '') {
+  animeRegDt = 20000101
+ } else {
+  animeRegDt = $('.anime-reg-dt').val()
+ }
+
+ if (contentsMadeNatureNo === '') {
+  alert("제작국가는 필수 입력사항입니다.")
+  return
+ }
+
+ if ($('.import-link').val() === '') {
+  alert("importLink는 필수 입력사항입니다.")
+  return
+ }
 }
 
 /** Jquery 로딩이 끝난 후를 보장합니다 */
@@ -92,80 +146,32 @@ $(function () {
  // 아래와 같이 따로 구현해주어야 합니다.
  $(".register-text").click(function () {
 
-  if ($('.register-text').val() === '') {
-   console.log("썸네일 주소 관련 태그는 추후 개발 예정입니다.")
-  }
-
-  if ($('.title-input').val() === '') {
-   alert("제목은 필수 입력 사항입니다.")
-   return
-  } else {
-   if ($('.title-input').val().length === 1) {
-    alert("1글자 초과로 입력해주세요.")
-    return
-   }
-  }
-
-  if ($('.author-input').val() === '') {
-   alert("작가이름은 필수 입력 사항입니다.")
-   return
-  } else {
-   if ($('.author-input').val().length === 1) {
-    alert("1글자 초과로 입력해주세요.")
-    return
-   }
-  }
-
-  if (finalizedStateEnum === '') {
-   alert("방영상태는 필수 입력사항입니다.")
-   return
-  }
-
-  if ($('.board-cast-cnt-input').val() === '') {
-   broadCastCnt = 0
-  } else {
-   broadCastCnt = $('.board-cast-cnt-input').val()
-  }
-
-  if ($('.anime-reg-dt').val() === '') {
-   animeRegDt = 20000101
-  } else {
-   animeRegDt = $('.anime-reg-dt').val()
-  }
-
-  if (contentsMadeNatureNo === '') {
-   alert("제작국가는 필수 입력사항입니다.")
-   return
-  }
-
-  if ($('.import-link').val() === '') {
-   alert("importLink는 필수 입력사항입니다.")
-   return
-  }
+  validationFormInfo()
 
   let insertedAnimeInfoForm = {
-   madeNatureNo: contentsMadeNatureNo
-   , title: $('.title-input').val()
-   , author: $('.author-input').val()
-   , link: $('.import-link').val()
-   , filePath: thumbnailImageUrl
-   , fileName: ''
-   , finalizedYnEnum: finalizedStateEnum
-   , animeBroadcastCnt: broadCastCnt
-   , animeRegDt: animeRegDt
+    madeNatureNo: Number(contentsMadeNatureNo)
+    , title: $('.title-input').val()
+    , author: $('.author-input').val()
+    , link: $('.import-link').val()
+    , filePath: thumbnailImageUrl
+    , fileName: ''
+    , finalizedYnEnum: finalizedStateEnum
+    , animeBroadcastCnt: Number(broadCastCnt)
+    , animeRegDt: animeRegDt
   }
 
   $.ajax({
+   url: "./content",
    method: "POST",
-   data: insertedAnimeInfoForm,
+   data: JSON.stringify(insertedAnimeInfoForm),
+   contentType: "application/json",
    dataType: 'json',
    processData: false,
-   contentType: false,
    success: function () {
-    console.log("completed!");
+    location.href = './main'
    },
-   error: function () {
-    alert("failed! ")
+   error: function (error) {
+    alert("failed! ", error.toString())
    }
   });
  });

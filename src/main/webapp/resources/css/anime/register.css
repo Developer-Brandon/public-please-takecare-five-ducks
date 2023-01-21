@@ -138,6 +138,11 @@
     cursor: pointer;
 }
 
+.item > .item__right > .author-input {
+    width: 120px;
+}
+
+
 .item > .item__right > ul > li >.finalized-text {
     font-size: 17px;
     line-height: 21px;

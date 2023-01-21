@@ -10,23 +10,23 @@ import java.util.List;
 
 public interface AnimeService {
 
-    List<FinalizedYnEnum> selectAnimeFinalizedList() throws Exception;
+    public List<FinalizedYnEnum> selectAnimeFinalizedList() throws Exception;
 
-    Integer selectAnimeTotalCnt() throws Exception;
+    public Integer selectAnimeTotalCnt() throws Exception;
 
-    void removeAllAnimeInfoList() throws Exception;
+    public void removeAllAnimeInfoList() throws Exception;
 
-    List<AnimeVO> selectAnimeList(SelectAnimePaginationRequestDTO selectAnimePaginationRequestDTO);
+    public List<AnimeVO> selectAnimeList(SelectAnimePaginationRequestDTO selectAnimePaginationRequestDTO);
 
-    List<AnimeVO> selectAllAnimeInfoList();
+    public List<AnimeVO> selectAllAnimeInfoList();
 
-    AnimeVO selectAnimeInfo(SelectAnimeInfoRequestDTO selectAnimeInfoRequestDTO);
+    public AnimeVO selectAnimeInfo(SelectAnimeInfoRequestDTO selectAnimeInfoRequestDTO);
 
-    void registerAnimeInfo(InsertAnimeInfoRequestDTO insertAnimeInfoRequestDTO) throws Exception;
+    public void registerAnimeInfo(InsertAnimeInfoRequestDTO insertAnimeInfoRequestDTO) throws Exception;
 
-    void modifyAnimeInfo(UpdateAnimeInfoRequestDTO updateAnimeInfoRequestDTO) throws Exception;
+    public void modifyAnimeInfo(UpdateAnimeInfoRequestDTO updateAnimeInfoRequestDTO) throws Exception;
 
-    void removeAnimeInfo(RemoveAnimeInfoRequestDTO removeAnimeRequestDTO) throws Exception;
+    public void removeAnimeInfo(RemoveAnimeInfoRequestDTO removeAnimeRequestDTO) throws Exception;
 
-    List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectAnimeThumbnailImageUrlDTO selectAnimeThumbnailImageUrlDTO) throws Exception;
+    public List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectAnimeThumbnailImageUrlDTO selectAnimeThumbnailImageUrlDTO) throws Exception;
 }

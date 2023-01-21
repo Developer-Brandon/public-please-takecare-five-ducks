@@ -1,6 +1,7 @@
 package com.dev.pleaseTakecareFiveDucks.anime.controller;
 
 import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.SelectAnimeThumbnailImageUrlDTO;
+import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.InsertAnimeInfoRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.SelectAnimePaginationRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
@@ -12,13 +13,11 @@ import com.dev.pleaseTakecareFiveDucks.config.controller.BaseController;
 import com.dev.pleaseTakecareFiveDucks.contents.service.ContentsMadeNatureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -106,5 +105,17 @@ public class AnimeController extends BaseController {
         return RawAnimeFinalizedResultVO.builder()
                 .finalizedYnEnumArrayList((ArrayList<FinalizedYnEnum>) animeService.selectAnimeFinalizedList())
                 .build();
+    }
+
+    @ResponseBody
+    @PostMapping(value = "/content", produces = JSON_FORMAT)
+    public ResponseEntity<Integer> insertAnimeInfo(
+            @RequestBody
+            InsertAnimeInfoRequestDTO insertAnimeInfoRequestDTO
+    ) throws Exception {
+
+        animeService.registerAnimeInfo(insertAnimeInfoRequestDTO);
+
+        return ResponseEntity.ok(insertAnimeInfoRequestDTO.getInsertedAnimeNo());
     }
 }
