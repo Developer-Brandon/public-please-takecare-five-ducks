@@ -4,12 +4,15 @@ import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.SelectAnimeThumbnailImag
 import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
+import com.dev.pleaseTakecareFiveDucks.anime.util.FinalizedYnEnum;
 
 import java.util.List;
 
 public interface AnimeService {
 
-    Integer selectAnimeTotalCnt();
+    List<FinalizedYnEnum> selectAnimeFinalizedList() throws Exception;
+
+    Integer selectAnimeTotalCnt() throws Exception;
 
     void removeAllAnimeInfoList() throws Exception;
 

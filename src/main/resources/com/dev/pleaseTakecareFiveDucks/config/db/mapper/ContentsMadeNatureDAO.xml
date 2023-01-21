@@ -4,7 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dev.pleaseTakecareFiveDucks.config.db.mapper.ContentsMadeNatureDAO">
 
-    <select id="getContentsTotalCnt" resultType="int">
+    <select id="selectContentsMadeNatureList"
+            resultType="com.dev.pleaseTakecareFiveDucks.contents.domain.vo.ContentsMadeNatureInfoVO">
+        <![CDATA[
+        /* 컨텐츠 국가 종류 리스트 조회 쿼리 */
+        ]]>
+        select m_n_no as madeNatureNo
+                , public_code_number as publicCodeNumber
+                , korean_name as koreanName
+        from web_app_test2.tb_contents_made_nature
+        where use_yn = 'y'
+    </select>
+
+
+    <select id="selectContentsTotalCnt" resultType="int">
         <![CDATA[
         /* 전체 컨텐츠 개수 조회 쿼리 */
         ]]>

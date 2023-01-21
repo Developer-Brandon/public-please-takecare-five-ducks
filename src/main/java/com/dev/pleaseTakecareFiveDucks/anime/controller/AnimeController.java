@@ -3,18 +3,27 @@ package com.dev.pleaseTakecareFiveDucks.anime.controller;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.SelectAnimeThumbnailImageUrlDTO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.SelectAnimePaginationRequestDTO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
-import com.dev.pleaseTakecareFiveDucks.anime.service.AnimeServiceImpl;
+import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
+import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.result.RawAnimeFinalizedResultVO;
+import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.result.RawImageThumbnailResultVO;
+import com.dev.pleaseTakecareFiveDucks.anime.service.AnimeService;
+import com.dev.pleaseTakecareFiveDucks.anime.util.FinalizedYnEnum;
 import com.dev.pleaseTakecareFiveDucks.config.controller.BaseController;
+import com.dev.pleaseTakecareFiveDucks.contents.service.ContentsMadeNatureService;
+import com.dev.pleaseTakecareFiveDucks.main.service.MainService;
+import com.dev.pleaseTakecareFiveDucks.main.service.MainServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -22,7 +31,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AnimeController extends BaseController {
 
-    private final AnimeServiceImpl animeService;
+    private final AnimeService animeService;
+
+    private final ContentsMadeNatureService contentsMadeNatureService;
 
     @GetMapping(value = "/main")
     public String goMainPage(
@@ -54,7 +65,12 @@ public class AnimeController extends BaseController {
                     Integer currentPage
             , HttpServletRequest request
             , Model model
-    ) {
+    ) throws Exception {
+
+        model.addAttribute("animeFinalizedList", animeService.selectAnimeFinalizedList());
+
+        model.addAttribute("contentsMadeNatureInfoList", contentsMadeNatureService.selectContentsMadeNatureInfoList());
+
         return "/anime/register";
     }
 
@@ -68,8 +84,9 @@ public class AnimeController extends BaseController {
         return "/anime/modifier";
     }
 
-    @GetMapping(value = "/search/image/thumbnail")
-    public ModelAndView selectImageThumbnailVOList(
+    @ResponseBody
+    @GetMapping(value = "/search/image/thumbnail", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public RawImageThumbnailResultVO selectImageThumbnailVOList(
             @RequestParam
             String animeName
     ) throws Exception {
@@ -78,12 +95,18 @@ public class AnimeController extends BaseController {
                 .animeName(animeName)
                 .build();
 
-        ModelAndView modelAndView = new ModelAndView();
+        return RawImageThumbnailResultVO.builder()
+                .rawImageThumbnailVOArrayList((ArrayList<RawImageThumbnailVO>) animeService.selectImageThumbnailVOList(selectAnimeThumbnailImageUrlDTO))
+                .build();
+    }
 
-        modelAndView.setViewName("anime/register");
+    @ResponseBody
+    @GetMapping(value = "/finalized/list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public RawAnimeFinalizedResultVO selectAnimeFinalizedList(
+    ) throws Exception {
 
-        modelAndView.addObject("imageThumbnailVoList", animeService.selectImageThumbnailVOList(selectAnimeThumbnailImageUrlDTO));
-
-        return modelAndView;
+        return RawAnimeFinalizedResultVO.builder()
+                .finalizedYnEnumArrayList((ArrayList<FinalizedYnEnum>) animeService.selectAnimeFinalizedList())
+                .build();
     }
 }

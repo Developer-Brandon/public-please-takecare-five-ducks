@@ -5,6 +5,7 @@ import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
+import com.dev.pleaseTakecareFiveDucks.anime.util.FinalizedYnEnum;
 import com.dev.pleaseTakecareFiveDucks.config.db.mapper.AnimeDAO;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
@@ -34,7 +35,19 @@ public class AnimeServiceImpl implements AnimeService{
     }
 
     @Override
-    public Integer selectAnimeTotalCnt() {
+    public List<FinalizedYnEnum> selectAnimeFinalizedList() throws Exception {
+
+        List<FinalizedYnEnum> finalizedYnEnumList = new ArrayList<>();
+
+        finalizedYnEnumList.add(FinalizedYnEnum.y);
+
+        finalizedYnEnumList.add(FinalizedYnEnum.n);
+
+        return finalizedYnEnumList;
+    }
+
+    @Override
+    public Integer selectAnimeTotalCnt() throws Exception{
         return animeDAO.getAnimeTotalCnt();
     }
 
@@ -230,17 +243,20 @@ public class AnimeServiceImpl implements AnimeService{
                     animeImageUrlList.add("");
                 }
             });
-        }
 
-        List<RawImageThumbnailVO> filteredAnimeImageUrlList = animeImageUrlList
-                .stream()
-                .filter(e -> !e.isEmpty())
-                .map(e2 -> RawImageThumbnailVO.builder()
+            List<RawImageThumbnailVO> filteredAnimeImageUrlList = animeImageUrlList
+                    .stream()
+                    .filter(e -> !e.isEmpty())
+                    .map(e2 -> RawImageThumbnailVO.builder()
                             .imageUrl(e2)
                             .build()
-                )
-                .collect(Collectors.toList());
+                    )
+                    .collect(Collectors.toList());
 
-        return filteredAnimeImageUrlList;
+            return filteredAnimeImageUrlList;
+        } else {
+
+            return new ArrayList<>();
+        }
     }
 }

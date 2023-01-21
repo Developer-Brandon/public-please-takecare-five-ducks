@@ -1,10 +1,13 @@
 package com.dev.pleaseTakecareFiveDucks.contents.service;
 
 import com.dev.pleaseTakecareFiveDucks.contents.domain.dto.request.*;
+import com.dev.pleaseTakecareFiveDucks.contents.domain.vo.ContentsMadeNatureInfoVO;
 import com.dev.pleaseTakecareFiveDucks.contents.domain.vo.ContentsVO;
 import java.util.List;
 
 public interface ContentsMadeNatureService {
+
+    List<ContentsMadeNatureInfoVO> selectContentsMadeNatureInfoList() throws Exception;
 
     Integer selectContentsMadeNatureTotalCnt();
 

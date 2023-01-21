@@ -1,11 +1,14 @@
 package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
 import com.dev.pleaseTakecareFiveDucks.contents.domain.dto.request.*;
+import com.dev.pleaseTakecareFiveDucks.contents.domain.vo.ContentsMadeNatureInfoVO;
 import com.dev.pleaseTakecareFiveDucks.contents.domain.vo.ContentsVO;
 
 import java.util.List;
 
 public interface ContentsMadeNatureDAO {
+
+    List<ContentsMadeNatureInfoVO> selectContentsMadeNatureList();
 
     int getContentsTotalCnt();
 

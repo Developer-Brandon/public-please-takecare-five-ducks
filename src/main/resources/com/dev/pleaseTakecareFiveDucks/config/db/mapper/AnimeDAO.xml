@@ -12,7 +12,8 @@
              , count(r_anime_no) as viewCnt
         from web_app_test2.tb_anime_view
         group by r_anime_no
-        order by viewCnt desc limit 6
+        order by viewCnt desc
+        limit 6
     </sql>
 
     <select id="selectMainAnimationList"

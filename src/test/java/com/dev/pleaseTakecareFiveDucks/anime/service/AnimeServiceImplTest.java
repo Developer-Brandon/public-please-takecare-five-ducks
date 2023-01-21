@@ -54,7 +54,7 @@ public class AnimeServiceImplTest extends TestCase {
 
     // 모든 애니 개수 조회
     @Test
-    public void test1_SelectAnimeTotalCnt() {
+    public void test1_SelectAnimeTotalCnt() throws Exception {
 
         // given
         Integer wholeAnimeCnt = 10;
