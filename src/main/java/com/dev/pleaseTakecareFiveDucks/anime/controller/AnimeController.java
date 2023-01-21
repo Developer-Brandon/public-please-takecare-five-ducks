@@ -10,8 +10,6 @@ import com.dev.pleaseTakecareFiveDucks.anime.service.AnimeService;
 import com.dev.pleaseTakecareFiveDucks.anime.util.FinalizedYnEnum;
 import com.dev.pleaseTakecareFiveDucks.config.controller.BaseController;
 import com.dev.pleaseTakecareFiveDucks.contents.service.ContentsMadeNatureService;
-import com.dev.pleaseTakecareFiveDucks.main.service.MainService;
-import com.dev.pleaseTakecareFiveDucks.main.service.MainServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

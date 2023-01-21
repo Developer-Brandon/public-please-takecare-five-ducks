@@ -36,7 +36,7 @@
     </div>
 
     <%-- 각각 요소들의 섹션 --%>
-    <form id="insert-anime-form" action="">
+    <form action="">
         <div class="item-section">
             <div class="item">
                 <div class="item__left">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="item__right">
                     <input type="text" class="content thumbnail-input">
-                    <button class="find-thumbnail-button" onclick="selectImageThumbnail()">썸네일 찾기</button>
+                    <button class="find-thumbnail-button" onclick="selectImageThumbnailFromGoogle()">썸네일 찾기</button>
                 </div>
             </div>
             <div class="item">
@@ -53,6 +53,14 @@
                 </div>
                 <div class="item__right">
                     <input type="text" class="content title-input">
+                </div>
+            </div>
+            <div class="item">
+                <div class="item__left">
+                    <p class="title">작가<span class="required-symbol">*</span></p>
+                </div>
+                <div class="item__right">
+                    <input type="text" class="content author-input">
                 </div>
             </div>
             <div class="item">
@@ -68,7 +76,8 @@
                                         <p class="content finalized-text finalized-text-y" style="color:#FF0000;">완결</p>
                                     </c:when>
                                     <c:otherwise>
-                                        <p class="content finalized-text finalized-text-n" style="color:#2400FF;">방영중</p>
+                                        <p class="content finalized-text finalized-text-n" style="color:#2400FF;">
+                                            방영중</p>
                                     </c:otherwise>
                                 </c:choose>
                             </li>
@@ -81,7 +90,7 @@
                     <p class="title">방영회수</p>
                 </div>
                 <div class="item__right">
-                    <input class="content board-cast-cnt-input" type='number' min='1' max='400'>
+                    <input class="content board-cast-cnt-input" type='number'>
                     <span class="board-cast-cnt-text">&nbsp;회</span>
                 </div>
             </div>
@@ -90,7 +99,7 @@
                     <p class="title">최초방영일자</p>
                 </div>
                 <div class="item__right">
-                    <input class="content anime-reg-dt" type='number' min='1900' max='2023' placeholder="19800922">
+                    <input class="content anime-reg-dt" type='number' placeholder="19800922">
                 </div>
             </div>
             <div class="item">
