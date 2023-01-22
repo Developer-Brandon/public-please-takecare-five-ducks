@@ -13,8 +13,8 @@
       location.href = './register'
      }
 
-     function goAnimeModifierPage() {
-      location.href = './modifier'
+     function goAnimeModifierPage(animeNo) {
+      location.href = './modifier/' + animeNo
      }
 
      function goAnimeDetailPage(link) {
@@ -46,7 +46,7 @@
                 <li class="item" onclick="goAnimeDetailPage('${animeVO.link}')">
                     <a class="anime-no"><c:out value="${animeVO.animeNo}"/></a>
                     <a class="anime-title"><c:out value="${animeVO.animeTitle}"/><span style="display:inline-block;"
-                                                                                       onclick="goAnimeModifierPage()">&nbsp;✍🏻</span></a>
+                                                                                       onclick="goAnimeModifierPage('${animeVO.animeNo}')">&nbsp;✍🏻</span></a>
                     <c:choose>
                         <c:when test="${animeVO.finalizedYnEnum == 'y'}">
                             <a class="anime-finalized-yn" style="color:#FF0000;">완결</a>

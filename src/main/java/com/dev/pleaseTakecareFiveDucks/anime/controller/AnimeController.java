@@ -58,9 +58,7 @@ public class AnimeController extends BaseController {
 
     @GetMapping(value = "/register")
     public String goRegisterPage(
-            @RequestParam(required = false)
-                    Integer currentPage
-            , HttpServletRequest request
+            HttpServletRequest request
             , Model model
     ) throws Exception {
 
@@ -71,51 +69,20 @@ public class AnimeController extends BaseController {
         return "/anime/register";
     }
 
-    @GetMapping(value = "/modifier")
+    @GetMapping(value = "/modifier/{animeNo}")
     public String goModifierPage(
-            @RequestParam(required = false)
-                    Integer currentPage
-            , HttpServletRequest request
+            HttpServletRequest request
             , Model model
-    ) {
+            , @PathVariable
+            Integer animeNo
+    ) throws Exception {
+
+        model.addAttribute("animeNo", animeNo);
+
+        model.addAttribute("animeFinalizedList", animeService.selectAnimeFinalizedList());
+
+        model.addAttribute("contentsMadeNatureInfoList", contentsMadeNatureService.selectContentsMadeNatureInfoList());
+
         return "/anime/modifier";
-    }
-
-    @ResponseBody
-    @GetMapping(value = "/search/image/thumbnail", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public RawImageThumbnailResultVO selectImageThumbnailVOList(
-            @RequestParam
-            String animeName
-    ) throws Exception {
-
-        SelectAnimeThumbnailImageUrlDTO selectAnimeThumbnailImageUrlDTO = SelectAnimeThumbnailImageUrlDTO.builder()
-                .animeName(animeName)
-                .build();
-
-        return RawImageThumbnailResultVO.builder()
-                .rawImageThumbnailVOArrayList((ArrayList<RawImageThumbnailVO>) animeService.selectImageThumbnailVOList(selectAnimeThumbnailImageUrlDTO))
-                .build();
-    }
-
-    @ResponseBody
-    @GetMapping(value = "/finalized/list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public RawAnimeFinalizedResultVO selectAnimeFinalizedList(
-    ) throws Exception {
-
-        return RawAnimeFinalizedResultVO.builder()
-                .finalizedYnEnumArrayList((ArrayList<FinalizedYnEnum>) animeService.selectAnimeFinalizedList())
-                .build();
-    }
-
-    @ResponseBody
-    @PostMapping(value = "/info", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Integer> insertAnimeInfo(
-            @RequestBody
-                    InsertAnimeInfoRequestDTO insertAnimeInfoRequestDTO
-    ) throws Exception {
-
-        animeService.registerAnimeInfo(insertAnimeInfoRequestDTO);
-
-        return ResponseEntity.ok(insertAnimeInfoRequestDTO.getInsertedAnimeNo());
     }
 }

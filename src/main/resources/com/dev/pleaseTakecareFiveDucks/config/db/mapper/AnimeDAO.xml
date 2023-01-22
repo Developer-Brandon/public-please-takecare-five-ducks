@@ -117,6 +117,18 @@
         )
     </select>
 
+    <select id="selectAnimeThumbnailImageByAnimeNo"
+            resultType="Integer">
+        <![CDATA[
+        /*
+            단일 애니 썸네일 조회 쿼리
+        */
+        ]]>
+        select count(*)
+        from web_app_test2.tb_anime_thumbnail_img
+        where r_anime_no = #{animeNo}
+    </select>
+
     <select id="selectAnimeInfo"
             parameterType="com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.SelectAnimeInfoRequestDTO"
             resultType="com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO">
@@ -190,8 +202,8 @@
         /* 단일 애니 정보 수정 쿼리 */
         update web_app_test2.tb_anime
         set m_n_no              = #{madeNatureNo}
-          , title               = #{animeTitle}
-          , author              = #{animeAuthor}
+          , title               = #{title}
+          , author              = #{author}
           , link                = #{link}
           , finalized_yn        = #{finalizedYnEnum}
           , anime_broadcast_cnt = #{animeBroadcastCnt}

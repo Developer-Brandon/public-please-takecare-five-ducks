@@ -36,4 +36,6 @@ public interface AnimeDAO {
     List<AnimeThumbnailVO> selectAnimeThumbnailImageListByAnimeNo(SelectAnimeThumbnailImageListRequestDTO selectAnimeThumbnailImageListRequestDTO);
 
     int deleteAnimeThumbnailInfo(Integer animeNo);
+
+    int selectAnimeThumbnailImageByAnimeNo(Integer animeNo);
 }

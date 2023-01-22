@@ -157,17 +157,34 @@ public class AnimeServiceImpl implements AnimeService{
 
         if(!webThumbnailUrl.isEmpty()) {
 
-            // 썸네일을 update하기 위한 dto를 준비합니다.
+            // 그리고 만약 썸네일 이 있다면 update를 하고, 없다면 insert를 합니다.
+            if(animeDAO.selectAnimeThumbnailImageByAnimeNo(updateAnimeInfoRequestDTO.getAnimeNo()) > 0) {
 
-            UpdateAnimeThumbnailInfoRequestDTO updateAnimeThumbnailInfoRequestDTO = UpdateAnimeThumbnailInfoRequestDTO.builder()
-                    .animeNo(updateAnimeInfoRequestDTO.getAnimeNo())
-                    .webThumbnailUrl(webThumbnailUrl)
-                    .build();
+                // 썸네일을 update하기 위한 dto를 준비합니다.
 
-            // 썸네일을 삽입합니다.
-            if(animeDAO.updateAnimeThumbnailInfo(updateAnimeThumbnailInfoRequestDTO) != 1) {
-                throw new Exception();
+                UpdateAnimeThumbnailInfoRequestDTO updateAnimeThumbnailInfoRequestDTO = UpdateAnimeThumbnailInfoRequestDTO.builder()
+                        .animeNo(updateAnimeInfoRequestDTO.getAnimeNo())
+                        .webThumbnailUrl(webThumbnailUrl)
+                        .build();
+
+                // 썸네일을 삽입합니다.
+                if(animeDAO.updateAnimeThumbnailInfo(updateAnimeThumbnailInfoRequestDTO) != 1) {
+                    throw new Exception();
+                }
+            } else {
+                // 썸네일을 삽입하기 위한 dto를 준비합니다.
+
+                InsertAnimeThumbnailInfoRequestDTO insertAnimeThumbnailInfoRequestDTO = InsertAnimeThumbnailInfoRequestDTO.builder()
+                        .animeNo(updateAnimeInfoRequestDTO.getAnimeNo())
+                        .webThumbnailUrl(webThumbnailUrl)
+                        .build();
+
+                // 썸네일을 삽입합니다.
+                if(animeDAO.insertAnimeThumbnailInfo(insertAnimeThumbnailInfoRequestDTO) != 1) {
+                    throw new Exception();
+                }
             }
+
         }
     }
 

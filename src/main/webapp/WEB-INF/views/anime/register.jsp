@@ -47,7 +47,7 @@
                 <p class="title">제목<span class="required-symbol">*</span></p>
             </div>
             <div class="item__right">
-                <input type="text" class="content title-input">
+                <input type="text" class="content title-input" onkeypress="if(window.event.keyCode===13) enterInputValue()">
                 <button class="find-thumbnail-button">썸네일 찾기</button>
             </div>
         </div>
@@ -107,8 +107,10 @@
                 <ul>
                     <c:forEach var="contentsMadeNatureInfoVO" items="${contentsMadeNatureInfoList}">
                         <li onclick="selectMadeNature('${contentsMadeNatureInfoVO.madeNatureNo}', '${contentsMadeNatureInfoList.size()}')">
-                            <p class="content made-nature-no-text made-nature-no-text${contentsMadeNatureInfoVO.madeNatureNo}">
-                                    ${contentsMadeNatureInfoVO.koreanName}
+                            <p class="content
+                                made-nature-no-text
+                                made-nature-no-text${contentsMadeNatureInfoVO.madeNatureNo}">
+                                        ${contentsMadeNatureInfoVO.koreanName}
                             </p>
                         </li>
                     </c:forEach>
