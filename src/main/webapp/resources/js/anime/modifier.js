@@ -122,6 +122,7 @@ $(function () {
    },
    error: function (error) {
     alert("failed! ", error.toString())
+    return
    }
   })
  })
@@ -155,6 +156,7 @@ $(function () {
    },
    error: function (error) {
     alert("failed! ", error)
+    return
    }
   })
  })
@@ -178,6 +180,7 @@ $(function () {
    },
    error: function (error) {
     alert("failed! ", error)
+    return
    }
   })
  })
