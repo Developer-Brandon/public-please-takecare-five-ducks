@@ -108,10 +108,10 @@ public class AnimeController extends BaseController {
     }
 
     @ResponseBody
-    @PostMapping(value = "/content", produces = JSON_FORMAT)
+    @PostMapping(value = "/info", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Integer> insertAnimeInfo(
             @RequestBody
-            InsertAnimeInfoRequestDTO insertAnimeInfoRequestDTO
+                    InsertAnimeInfoRequestDTO insertAnimeInfoRequestDTO
     ) throws Exception {
 
         animeService.registerAnimeInfo(insertAnimeInfoRequestDTO);

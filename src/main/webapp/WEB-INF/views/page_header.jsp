@@ -11,14 +11,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>오덕을 부탁해</title>
 
-<!-- -->
+<!-- component reset css(first) -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/google-reset-elements.css">
 
-<!-- -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset-font.css">
+<!-- component reset css(second) -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/component/reset.css">
 
-<!-- -->
+<!-- component util -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fd-util.css">
+
+<!-- font reset css -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset-font.css">
 
 <%-- favicon --%>
 <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/duck-favicon.png">
+
+<!-- footer css -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
+
+<%-- jquery --%>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.3.min.js"></script>
