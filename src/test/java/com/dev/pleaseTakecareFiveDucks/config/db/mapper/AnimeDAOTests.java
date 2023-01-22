@@ -85,7 +85,7 @@ public class AnimeDAOTests {
         // given
 
         // when
-        int animeTotalCnt = animeDAO.getAnimeTotalCnt();
+        int animeTotalCnt = animeDAO.getTotalCnt();
 
         // then
         assertThat(animeTotalCnt, is(0));
@@ -109,7 +109,7 @@ public class AnimeDAOTests {
         // given
 
         // when
-        int animeTotalCnt2 = animeDAO.getAnimeTotalCnt();
+        int animeTotalCnt2 = animeDAO.getTotalCnt();
 
         // then
         assertThat(animeTotalCnt2, greaterThanOrEqualTo(1));

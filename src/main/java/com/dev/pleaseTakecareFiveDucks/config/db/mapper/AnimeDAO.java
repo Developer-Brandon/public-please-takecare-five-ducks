@@ -11,13 +11,13 @@ public interface AnimeDAO {
 
     List<MainAnimeVO> selectMainAnimationList();
 
-    int getAnimeTotalCnt();
+    int getTotalCnt();
 
     int deleteAll();
 
     List<AnimeVO> selectAllAnimeList();
 
-    List<AnimeVO> selectAnimeList(SelectAnimePaginationRequestDTO selectAnimePaginationRequestDTO);
+    List<AnimeVO> selectAnimePaginationList(SelectAnimePaginationRequestDTO selectAnimePaginationRequestDTO);
 
     AnimeVO selectAnimeInfo(SelectAnimeInfoRequestDTO selectAnimeInfoRequestDTO);
 

@@ -38,7 +38,7 @@
         where tb_a.use_yn = 'y'
     </select>
 
-    <select id="getAnimeTotalCnt"
+    <select id="getTotalCnt"
             resultType="int">
         <![CDATA[
         /* 전체 만화책 개수 조회 쿼리 */
@@ -76,7 +76,7 @@
         order by str_to_date(animeRegDt, '%Y-%m-%d') desc
     </select>
 
-    <select id="selectAnimeList"
+    <select id="selectAnimePaginationList"
             parameterType="com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.SelectAnimePaginationRequestDTO"
             resultType="com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO">
         <![CDATA[

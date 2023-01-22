@@ -5,8 +5,10 @@ import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
+import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.result.AnimeListResultVO;
 import com.dev.pleaseTakecareFiveDucks.anime.util.FinalizedYnEnum;
 import com.dev.pleaseTakecareFiveDucks.config.db.mapper.AnimeDAO;
+import com.dev.pleaseTakecareFiveDucks.config.util.PageHandler;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -50,14 +52,14 @@ public class AnimeServiceImpl implements AnimeService{
 
     @Override
     public Integer selectAnimeTotalCnt() throws Exception{
-        return animeDAO.getAnimeTotalCnt();
+        return animeDAO.getTotalCnt();
     }
 
     @Override
     public void removeAllAnimeInfoList() throws Exception {
 
         // 만약 anime이 0개 초과로 있다면...
-        int animeCnt = animeDAO.getAnimeTotalCnt();
+        int animeCnt = animeDAO.getTotalCnt();
 
         if(animeCnt > 0) {
 
@@ -71,14 +73,31 @@ public class AnimeServiceImpl implements AnimeService{
         }
     }
 
-    // todo: 추후 jsp에서 어떻게 받을지 결정한 후에 개발하는 것으로 할게요.
     @Override
-    public List<AnimeVO> selectAnimeList(SelectAnimePaginationRequestDTO selectAnimePaginationRequestDTO) {
-        return null;
+    public AnimeListResultVO selectAnimePaginationList(SelectAnimePaginationRequestDTO selectAnimePaginationRequestDTO) {
+
+        int totalCnt = animeDAO.getTotalCnt();
+
+        PageHandler pageHandler = new PageHandler(totalCnt, selectAnimePaginationRequestDTO.getCurrentPage());
+
+        // 만약 현재의 페이지가.. 1 -> 0, 2 -> 1, 3 -> 2, 4 -> 3 대로 오프셋 설정
+        Integer offset = selectAnimePaginationRequestDTO.getCurrentPage() - 1;
+
+        // PageSize는 DTO에서 기본으로 10으로 처리되어 있습니다.
+        selectAnimePaginationRequestDTO.setOffset(offset * selectAnimePaginationRequestDTO.getPageSize());
+
+        selectAnimePaginationRequestDTO.setPageSize(selectAnimePaginationRequestDTO.getPageSize());
+
+        List<AnimeVO> animeVOList = animeDAO.selectAnimePaginationList(selectAnimePaginationRequestDTO);
+
+        return AnimeListResultVO.builder()
+                .pageHandler(pageHandler)
+                .animeVOList(animeVOList)
+                .build();
     }
 
     @Override
-    public List<AnimeVO> selectAllAnimeInfoList() {
+    public List<AnimeVO> selectAllAnimeInfoList() throws Exception {
 
         List<AnimeVO> animeVOList = animeDAO.selectAllAnimeList();
 

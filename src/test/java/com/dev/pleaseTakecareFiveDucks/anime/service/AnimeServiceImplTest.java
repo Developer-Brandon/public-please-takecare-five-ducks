@@ -58,14 +58,14 @@ public class AnimeServiceImplTest extends TestCase {
 
         // given
         Integer wholeAnimeCnt = 10;
-        given(animeDAO.getAnimeTotalCnt()).willReturn(wholeAnimeCnt);
+        given(animeDAO.getTotalCnt()).willReturn(wholeAnimeCnt);
 
         // when
         animeService.selectAnimeTotalCnt();
 
         // then & verify
-        then(animeDAO).should().getAnimeTotalCnt();
-        verify(animeDAO, times(1)).getAnimeTotalCnt();
+        then(animeDAO).should().getTotalCnt();
+        verify(animeDAO, times(1)).getTotalCnt();
     }
 
     // 모든 애니 지우기
@@ -77,7 +77,7 @@ public class AnimeServiceImplTest extends TestCase {
 
         // given
         Integer wholeAnimeTotalCnt = 1;
-        given(animeDAO.getAnimeTotalCnt()).willReturn(wholeAnimeTotalCnt);
+        given(animeDAO.getTotalCnt()).willReturn(wholeAnimeTotalCnt);
 
         Integer wholeRemovedAnimeCnt = 1;
         given(animeDAO.deleteAll()).willReturn(wholeRemovedAnimeCnt);
@@ -86,10 +86,10 @@ public class AnimeServiceImplTest extends TestCase {
         animeService.removeAllAnimeInfoList();
 
         // then & verify
-        then(animeDAO).should().getAnimeTotalCnt();
+        then(animeDAO).should().getTotalCnt();
         then(animeDAO).should().deleteAll();
         //
-        verify(animeDAO, times(1)).getAnimeTotalCnt();
+        verify(animeDAO, times(1)).getTotalCnt ();
         verify(animeDAO, times(1)).deleteAll();
     }
 
@@ -132,15 +132,15 @@ public class AnimeServiceImplTest extends TestCase {
 
         // given
         Integer wholeAnimeTotalCnt = 0;
-        given(animeDAO.getAnimeTotalCnt()).willReturn(wholeAnimeTotalCnt);
+        given(animeDAO.getTotalCnt()).willReturn(wholeAnimeTotalCnt);
 
         // when
         animeService.removeAllAnimeInfoList();
 
         // then & verify
-        then(animeDAO).should().getAnimeTotalCnt();
+        then(animeDAO).should().getTotalCnt();
         //
-        verify(animeDAO, times(1)).getAnimeTotalCnt();
+        verify(animeDAO, times(1)).getTotalCnt();
         verify(animeDAO, times(0)).deleteAll();
     }
 
@@ -156,7 +156,7 @@ public class AnimeServiceImplTest extends TestCase {
     }
 
     @Test
-    public void test4_SelectAllAnimeInfoList() {
+    public void test4_SelectAllAnimeInfoList() throws Exception {
 
         // given
         AnimeVO animeVO = new AnimeVO();

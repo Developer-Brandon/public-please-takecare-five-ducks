@@ -4,6 +4,7 @@ import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.SelectAnimeThumbnailImag
 import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
+import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.result.AnimeListResultVO;
 import com.dev.pleaseTakecareFiveDucks.anime.util.FinalizedYnEnum;
 
 import java.util.List;
@@ -16,9 +17,9 @@ public interface AnimeService {
 
     public void removeAllAnimeInfoList() throws Exception;
 
-    public List<AnimeVO> selectAnimeList(SelectAnimePaginationRequestDTO selectAnimePaginationRequestDTO);
+    public AnimeListResultVO selectAnimePaginationList(SelectAnimePaginationRequestDTO selectAnimePaginationRequestDTO);
 
-    public List<AnimeVO> selectAllAnimeInfoList();
+    public List<AnimeVO> selectAllAnimeInfoList() throws Exception;
 
     public AnimeVO selectAnimeInfo(SelectAnimeInfoRequestDTO selectAnimeInfoRequestDTO);
 

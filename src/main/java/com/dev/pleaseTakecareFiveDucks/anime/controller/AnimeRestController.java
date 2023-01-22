@@ -97,4 +97,7 @@ public class AnimeRestController extends BaseController {
 
         return ResponseEntity.ok(deleteComicBookInfoRequestDTO.getAnimeNo());
     }
+
+    // 애니 리스트만 json형식으로 불러오는 api
+    // todo: paginotion으로 부분적으로 불러오기 위해 여기서부터 다시....
 }
