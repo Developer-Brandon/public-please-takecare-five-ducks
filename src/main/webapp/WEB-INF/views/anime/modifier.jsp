@@ -69,7 +69,7 @@
             <p class="title">✍🏼애니 수정, 삭제하기</p>
         </div>
         <div class="top__right">
-            <input id="anime-no"></input>
+            <input id="anime-no" style="display:none"></input>
         </div>
     </div>
 

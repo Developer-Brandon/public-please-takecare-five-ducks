@@ -8,20 +8,14 @@ import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.result.RawAnimeFinalizedR
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.result.RawImageThumbnailResultVO;
 import com.dev.pleaseTakecareFiveDucks.anime.service.AnimeService;
 import com.dev.pleaseTakecareFiveDucks.anime.util.FinalizedYnEnum;
-import com.dev.pleaseTakecareFiveDucks.config.VoidResponse;
 import com.dev.pleaseTakecareFiveDucks.config.controller.BaseController;
 import com.dev.pleaseTakecareFiveDucks.contents.service.ContentsMadeNatureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/anime")
@@ -91,5 +85,16 @@ public class AnimeRestController extends BaseController {
         animeService.modifyAnimeInfo(updateAnimeInfoRequestDTO);
 
         return ResponseEntity.ok(updateAnimeInfoRequestDTO.getAnimeNo());
+    }
+
+    @DeleteMapping(value = "/info", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Integer> deleteAnimeInfo(
+            @RequestBody
+            DeleteAnimeInfoRequestDTO deleteComicBookInfoRequestDTO
+    ) throws Exception {
+
+        animeService.removeAnimeInfo(deleteComicBookInfoRequestDTO);
+
+        return ResponseEntity.ok(deleteComicBookInfoRequestDTO.getAnimeNo());
     }
 }

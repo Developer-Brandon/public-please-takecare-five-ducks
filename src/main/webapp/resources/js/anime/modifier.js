@@ -34,9 +34,11 @@ function selectMadeNature(madeNatureNo, size) {
 
 function validationFormInfo() {
 
- if (thumbnailImageUrl === '') {
+ if ($('.thumbnail-input').val() === '') {
   alert("썸네일 주소는 필수 입력 사항입니다.")
   return
+ } else {
+  thumbnailImageUrl = $('.thumbnail-input').val()
  }
 
  if ($('.title-input').val() === '') {
@@ -124,11 +126,8 @@ $(function () {
   })
  })
 
- // 삭제하기
- $(".delete-text").click(function (){})
-
  // 수정하기
- $(".modify-text").click(function (){
+ $(".modify-text").click(function () {
 
   validationFormInfo()
 
@@ -148,6 +147,29 @@ $(function () {
    url: "../../anime/info",
    method: "PUT",
    data: JSON.stringify(updateAnimeInfoForm),
+   contentType: "application/json",
+   dataType: 'json',
+   processData: false,
+   success: function () {
+    location.href = '../../anime/main'
+   },
+   error: function (error) {
+    alert("failed! ", error)
+   }
+  })
+ })
+
+ // 삭제하기
+ $(".delete-text").click(function () {
+
+  let deleteAnimeInfoForm = {
+   animeNo: Number($('#anime-no').val())
+  }
+
+   $.ajax({
+   url: "../../anime/info",
+   method: "DELETE",
+   data: JSON.stringify(deleteAnimeInfoForm),
    contentType: "application/json",
    dataType: 'json',
    processData: false,

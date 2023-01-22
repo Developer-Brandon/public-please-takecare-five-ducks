@@ -26,7 +26,7 @@ public interface AnimeService {
 
     public void modifyAnimeInfo(UpdateAnimeInfoRequestDTO updateAnimeInfoRequestDTO) throws Exception;
 
-    public void removeAnimeInfo(RemoveAnimeInfoRequestDTO removeAnimeRequestDTO) throws Exception;
+    public void removeAnimeInfo(DeleteAnimeInfoRequestDTO removeAnimeRequestDTO) throws Exception;
 
     public List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectAnimeThumbnailImageUrlDTO selectAnimeThumbnailImageUrlDTO) throws Exception;
 }

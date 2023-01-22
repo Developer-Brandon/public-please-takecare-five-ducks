@@ -77,7 +77,12 @@ function validationFormInfo() {
  if ($('.anime-reg-dt').val() === '') {
   animeRegDt = 20000101
  } else {
-  animeRegDt = $('.anime-reg-dt').val()
+  if($('.anime-reg-dt').val().length !== 8) {
+   alert("8글자 형식으로 입력해주셔야합니다\n(Example)19911220")
+   return
+  } else {
+   animeRegDt = $('.anime-reg-dt').val()
+  }
  }
 
  if (contentsMadeNatureNo === '') {

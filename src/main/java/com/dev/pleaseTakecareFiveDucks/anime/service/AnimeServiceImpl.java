@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -189,13 +188,14 @@ public class AnimeServiceImpl implements AnimeService{
     }
 
     @Override
-    public void removeAnimeInfo(RemoveAnimeInfoRequestDTO removeAnimeRequestDTO) throws Exception {
+    public void removeAnimeInfo(DeleteAnimeInfoRequestDTO removeAnimeRequestDTO) throws Exception {
 
-        if(animeDAO.deleteAnimeInfo(removeAnimeRequestDTO.getAnimeNo()) != 1) {
+        // fk 문제 때문에, fk의 맨 마지막에 걸려있는 데이터부터 삭제해야 합니다.
+        if(animeDAO.deleteAnimeThumbnailInfo(removeAnimeRequestDTO.getAnimeNo()) != 1) {
             throw new Exception();
         }
 
-        if(animeDAO.deleteAnimeThumbnailInfo(removeAnimeRequestDTO.getAnimeNo()) != 1) {
+        if(animeDAO.deleteAnimeInfo(removeAnimeRequestDTO.getAnimeNo()) != 1) {
             throw new Exception();
         }
     }
