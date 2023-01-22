@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AnimeThumbnailVO {
     Integer animeNo;
-    String fileFullPath;
+    String webThumbnailUrl;
 }

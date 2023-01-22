@@ -100,7 +100,7 @@ public class AnimeServiceImpl implements AnimeService{
                     //
                     animeThumbnailVOList.forEach(f -> {
                                 if(e.getAnimeNo().equals(f.getAnimeNo())) {
-                                    e.setFileFullPath(f.getFileFullPath());
+                                    e.setWebThumbnailUrl(f.getWebThumbnailUrl());
                                 }
                     });
         });
@@ -126,17 +126,15 @@ public class AnimeServiceImpl implements AnimeService{
         }
 
         // 만약 썸네일을 첨부했다면...
-        String filePath = insertAnimeInfoRequestDTO.getFilePath();
-        String fileName = insertAnimeInfoRequestDTO.getFileName();
+        String webThumbnailUrl = insertAnimeInfoRequestDTO.getWebThumbnailUrl();
 
-        if(validateFileAttachedOrNot(filePath, fileName)) {
+        if(!webThumbnailUrl.isEmpty()) {
 
             // 썸네일을 삽입하기 위한 dto를 준비합니다.
 
             InsertAnimeThumbnailInfoRequestDTO insertAnimeThumbnailInfoRequestDTO = InsertAnimeThumbnailInfoRequestDTO.builder()
                     .animeNo(insertAnimeInfoRequestDTO.getInsertedAnimeNo())
-                    .filePath(filePath)
-                    .fileName(fileName)
+                    .webThumbnailUrl(webThumbnailUrl)
                     .build();
 
             // 썸네일을 삽입합니다.
@@ -155,17 +153,15 @@ public class AnimeServiceImpl implements AnimeService{
        }
 
         // 만약 썸네일을 첨부했다면...
-        String filePath = updateAnimeInfoRequestDTO.getFilePath();
-        String fileName = updateAnimeInfoRequestDTO.getFileName();
+        String webThumbnailUrl = updateAnimeInfoRequestDTO.getWebThumbnailUrl();
 
-        if(validateFileAttachedOrNot(filePath, fileName)) {
+        if(!webThumbnailUrl.isEmpty()) {
 
             // 썸네일을 update하기 위한 dto를 준비합니다.
 
             UpdateAnimeThumbnailInfoRequestDTO updateAnimeThumbnailInfoRequestDTO = UpdateAnimeThumbnailInfoRequestDTO.builder()
                     .animeNo(updateAnimeInfoRequestDTO.getAnimeNo())
-                    .filePath(filePath)
-                    .fileName(fileName)
+                    .webThumbnailUrl(webThumbnailUrl)
                     .build();
 
             // 썸네일을 삽입합니다.

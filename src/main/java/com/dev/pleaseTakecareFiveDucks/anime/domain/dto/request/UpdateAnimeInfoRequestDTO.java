@@ -24,9 +24,7 @@ public class UpdateAnimeInfoRequestDTO {
 
     String link;
 
-    String filePath;
-
-    String fileName;
+    String webThumbnailUrl;
 
     FinalizedYnEnum finalizedYnEnum;
 

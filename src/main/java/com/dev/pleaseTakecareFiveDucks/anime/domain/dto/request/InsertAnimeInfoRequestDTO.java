@@ -22,9 +22,7 @@ public class InsertAnimeInfoRequestDTO {
 
     String link;
 
-    String filePath;
-
-    String fileName;
+    String webThumbnailUrl;
 
     FinalizedYnEnum finalizedYnEnum;
 

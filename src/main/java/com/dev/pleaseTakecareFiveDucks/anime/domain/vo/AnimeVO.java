@@ -21,7 +21,7 @@ public class AnimeVO {
     Integer animeBroadcastCnt;
     AnimeUseYnEnum animeUseYnEnum;
     Integer viewCnt;
-    String fileFullPath;
+    String webThumbnailUrl;
     String animeRegDt;
     String regDt;
 }

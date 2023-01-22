@@ -9,6 +9,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class InsertAnimeThumbnailInfoRequestDTO {
     Integer animeNo;
-    String filePath;
-    String fileName;
+    String webThumbnailUrl;
 }

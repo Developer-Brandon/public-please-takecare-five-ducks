@@ -18,7 +18,7 @@ public class MainAnimeVO {
     String animeAuthor;
     Integer animeBroadcastCnt;
     Integer viewCnt;
-    String fileFullPath;
+    String webThumbnailUrl;
     String animeRegDt;
     String regDt;
 }

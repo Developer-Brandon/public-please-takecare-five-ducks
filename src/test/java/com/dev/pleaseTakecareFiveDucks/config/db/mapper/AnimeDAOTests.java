@@ -67,8 +67,7 @@ public class AnimeDAOTests {
                 .build();
 
         insertAnimeThumbnailInfoRequestDTO = InsertAnimeThumbnailInfoRequestDTO.builder()
-                .filePath("anime")
-                .fileName("no_name.png")
+                .webThumbnailUrl("www.naver.com")
                 .build();
     }
 
@@ -147,7 +146,7 @@ public class AnimeDAOTests {
         // when & then
         AnimeVO animeVO = animeDAO.selectAnimeInfo(selectAnimeInfoRequestDTO);
         assertThat(animeVO.getAnimeNo(), greaterThanOrEqualTo(1));
-        assertThat(animeVO.getFileFullPath(), is(notNullValue()));
+        assertThat(animeVO.getWebThumbnailUrl(), is(notNullValue()));
 
         ////////////////////////////
 
@@ -255,7 +254,7 @@ public class AnimeDAOTests {
         // then
         assertThat(animeVO.getAnimeTitle(), CoreMatchers.is("귀멸의칼날"));
         assertThat(animeVO.getAnimeAuthor(), containsString("코요게고로하루"));
-        assertThat(animeVO.getFileFullPath(), CoreMatchers.is(notNullValue()));
+        assertThat(animeVO.getWebThumbnailUrl(), CoreMatchers.is(notNullValue()));
     }
 
     // 생략
