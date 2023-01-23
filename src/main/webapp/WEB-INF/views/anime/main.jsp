@@ -39,21 +39,38 @@
       location.href = './modifier/' + animeNo
      }
 
-     function goAnimeDetailPage(link) {
-      window.open(link)
+     function goAnimeDetailPage(animeNo, link) {
+
+      // todo: 추후 로그인의 개념이 잡히면 userNo를 교체할 예정입니다 .
+
+      let data = {userNo: 100, animeNo: animeNo};
+
+      $.ajax({
+       url: "./info/view",
+       data: JSON.stringify(data),
+       method: "POST",
+       contentType: "application/json",
+       dataType: "json",
+       success: function (data) {
+        window.open(link)
+       },
+       error: function (error) {
+        alert("failed! ", error.toString())
+       }
+      })
      }
 
      function enterSearchInputValue() {
 
-      // todo: 아무래도 JSP다 보니까, 페이지가 갱신되면서 input에 있던 검색어가 날라간다.
-      // 추후 쿠키
-      location.href ='./main?currentPage=1&title='+ $('.search-input').val()
+      // todo: 아무래도 JSP다 보니까, 페이지가 갱신되면서 input에 있던 검색어가 날아갑니다.
+      // 추후 쿠키개념을 도입하여 보완할 예정입니다.
+      location.href = './main?currentPage=1&title=' + $('.search-input').val()
      }
 
      $(function () {
 
       // search input 옆에 제목 텍스트와 아이콘을 누르면 발생하는 팝업창
-      $('.search-text').click(function() {
+      $('.search-text').click(function () {
        alert("제목 이외에도 다른 것으로 검색할 수 있게 기능추가 예정입니다")
       })
      })
@@ -80,7 +97,7 @@
     <div class="list-section">
         <ul>
             <c:forEach var="animeVO" items="${animeListResultVO.animeVOList}">
-                <li class="item" onclick="goAnimeDetailPage('${animeVO.link}')">
+                <li class="item" onclick="goAnimeDetailPage('${animeVO.animeNo}', '${animeVO.link}')">
                     <a class="anime-no"><c:out value="${animeVO.animeNo}"/></a>
                     <a class="anime-title">
                         <c:out value="${animeVO.animeTitle}"/>
@@ -88,7 +105,7 @@
                              src="${animeVO.webThumbnailUrl}"
                              alt="웹 썸네일 URL 입니다">
                         <span style="display:inline-block;"
-                           onclick="goAnimeModifierPage('${animeVO.animeNo}')">&nbsp;✍🏻
+                              onclick="goAnimeModifierPage('${animeVO.animeNo}')">&nbsp;✍🏻
                         </span>
                     </a>
                     <c:choose>
@@ -131,11 +148,11 @@
             <c:if test="${animeListResultVO.pageHandler.totalCnt != null && animeListResultVO.pageHandler.totalCnt != 0}">
                 <c:if test="${animeListResultVO.pageHandler.showPrev}">
                     <a class="first-left-side"
-                        href="<c:url value="/anime/main${animeListResultVO.pageHandler.sc.getQueryString(animeListResultVO.pageHandler.beginPage)}"/>">
-                        <%-- 추후 아이콘으로 사용하고 싶으면 아래 주석 풀고 사용하기 --%>
-                        <%--                        <img src="${pageContext.request.contextPath}/resources/images/left-arrow.png"--%>
-                        <%--                             alt="페이지의 앞으로 이동하는 아이콘입니다."--%>
-                        <%--                             class="left-arrow">--%>
+                       href="<c:url value="/anime/main${animeListResultVO.pageHandler.sc.getQueryString(animeListResultVO.pageHandler.beginPage)}"/>">
+                            <%-- 추후 아이콘으로 사용하고 싶으면 아래 주석 풀고 사용하기 --%>
+                            <%--                        <img src="${pageContext.request.contextPath}/resources/images/left-arrow.png"--%>
+                            <%--                             alt="페이지의 앞으로 이동하는 아이콘입니다."--%>
+                            <%--                             class="left-arrow">--%>
                         맨 앞으로
                     </a>
                 </c:if>
@@ -151,14 +168,14 @@
                     </c:forEach>
                 </ul>
                 <c:if test="${animeListResultVO.pageHandler.showNext}">
-                <a class="last-right-side"
-                   href="<c:url value="/anime/main${animeListResultVO.pageHandler.sc.getQueryString(animeListResultVO.pageHandler.endPage)}"/>">
-                        <%-- 추후 아이콘으로 사용하고 싶으면 아래 주석 풀고 사용하기 --%>
-                        <%--                    <img src="${pageContext.request.contextPath}/resources/images/right-arrow.png"--%>
-                        <%--                         alt="페이지의 앞으로 이동하는 아이콘입니다."--%>
-                        <%--                         class="right-arrow">--%>
+                    <a class="last-right-side"
+                       href="<c:url value="/anime/main${animeListResultVO.pageHandler.sc.getQueryString(animeListResultVO.pageHandler.endPage)}"/>">
+                            <%-- 추후 아이콘으로 사용하고 싶으면 아래 주석 풀고 사용하기 --%>
+                            <%--                    <img src="${pageContext.request.contextPath}/resources/images/right-arrow.png"--%>
+                            <%--                         alt="페이지의 앞으로 이동하는 아이콘입니다."--%>
+                            <%--                         class="right-arrow">--%>
                         맨 뒤로
-                </a>
+                    </a>
                 </c:if>
             </c:if>
         </div>

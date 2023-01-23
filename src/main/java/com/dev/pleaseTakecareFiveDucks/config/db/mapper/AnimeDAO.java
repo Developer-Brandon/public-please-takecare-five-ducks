@@ -40,4 +40,6 @@ public interface AnimeDAO {
     int deleteAnimeThumbnailInfo(Integer animeNo);
 
     int selectAnimeThumbnailImageByAnimeNo(Integer animeNo);
+
+    int insertAnimeViewCnt(InsertAnimeViewCntRequestDTO insertAnimeViewCntRequestDTO);
 }

@@ -296,4 +296,12 @@ public class AnimeServiceImpl implements AnimeService{
             return new ArrayList<>();
         }
     }
+
+    @Override
+    public void insertAnimeViewCnt(InsertAnimeViewCntRequestDTO insertAnimeViewCntRequestDTO) throws Exception {
+
+        if(animeDAO.insertAnimeViewCnt(insertAnimeViewCntRequestDTO) != 1) {
+            throw new Exception();
+        }
+    }
 }

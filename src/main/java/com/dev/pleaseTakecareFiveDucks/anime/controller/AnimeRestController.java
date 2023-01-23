@@ -122,4 +122,16 @@ public class AnimeRestController extends BaseController {
         return ResponseEntity.ok(animeListResultVO);
     }
 
+    // 애니 조회수 삽입 api 입니다.
+    @PostMapping(value = "/info/view", produces = JSON_FORMAT)
+    public ResponseEntity<Integer> insertAnimeInfoView(
+            @RequestBody
+            InsertAnimeViewCntRequestDTO insertAnimeViewCntRequestDTO
+    ) throws Exception {
+
+        animeService.insertAnimeViewCnt(insertAnimeViewCntRequestDTO);
+
+        return ResponseEntity.ok(insertAnimeViewCntRequestDTO.getAnimeNo());
+    }
+
 }
