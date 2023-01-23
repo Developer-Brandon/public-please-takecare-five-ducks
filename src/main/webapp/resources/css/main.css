@@ -105,12 +105,11 @@
     border-radius: 30px;
     cursor: pointer;
     transition: 0.4s;
+    opacity: 0.5;
 }
 
 .anime-thumbnail-list > .thumbnail-box:hover {
-    /* todo: 추후 박스에 hover시 글자가 커지게끔 만들기 */
-    width: 202px;
-    height: 142px;
+    opacity: 1;
 }
 
 /* 세번째 선택자에 해당하는 자식 요소에게만 margin-right를 0으로 설정합니다. */
@@ -125,6 +124,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-repeat: no-repeat;
+    background-size: 210px 150px;
+    border-radius: 30px;
 }
 
 .thumbnail {

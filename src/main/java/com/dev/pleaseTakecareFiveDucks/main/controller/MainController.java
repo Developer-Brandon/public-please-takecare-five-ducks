@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,7 +25,9 @@ public class MainController{
         MainPageVO mainPageVO = mainService.selectMainPageData();
 
         model.addAttribute("mainBannerVOList", mainPageVO.getMainBannerVOList());
-        model.addAttribute("mainAnimeVOList", mainPageVO.getMainAnimeVOList());
+
+        // 메인의 ui에 따라서 조정될 수 있지만 우선적으로 15개로 지정합니다.
+        model.addAttribute("mainAnimeVOList", mainPageVO.getMainAnimeVOList().stream().limit(15).collect(Collectors.toList()));
         model.addAttribute("mainBookVOList", mainPageVO.getMainBookVOList());
         model.addAttribute("mainComicBookVOMap", mainPageVO.getMainComicBookVOMap());
         model.addAttribute("mainEntertainVOList", mainPageVO.getMainEntertainVOList());

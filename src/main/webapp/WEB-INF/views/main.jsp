@@ -76,12 +76,14 @@
         <div class="anime-thumbnail-list">
             <c:forEach var="anime" items="${mainAnimeVOList}">
                 <div class="thumbnail-box">
-                    <div class="thumbnail-box__inner" onclick="goNotionPage('${anime.link}')">
-                        <div class="thumbnail">
-                            <p><c:out value="${anime.animeTitle}"/></p>
-                            <p><c:out value="${anime.animeAuthor}"/></p>
-                            <p><c:out value="${anime.animeRegDt}"/></p>
-                        </div>
+                    <div class="thumbnail-box__inner"
+                         style="background-image: url('<c:out value="${anime.webThumbnailUrl}"/>')"
+                         onclick="goNotionPage('${anime.link}')">
+                        <%--                        <div class="thumbnail">--%>
+                        <%--                            <p><c:out value="${anime.animeTitle}"/></p>--%>
+                        <%--                            <p><c:out value="${anime.animeAuthor}"/></p>--%>
+                        <%--                            <p><c:out value="${anime.animeRegDt}"/></p>--%>
+                        <%--                        </div>--%>
                     </div>
                 </div>
             </c:forEach>
