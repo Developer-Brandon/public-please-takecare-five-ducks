@@ -1,3 +1,16 @@
+/* For desktop View */
+body {
+    zoom: 150%;
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px)
+and (max-device-width: 1024px) {
+    body {
+        zoom: 100%;
+    }
+}
+
 #ptcfd-border {
   width: auto;
   border-bottom: 1px solid black;
