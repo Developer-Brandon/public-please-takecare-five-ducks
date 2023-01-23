@@ -160,11 +160,23 @@
     align-items: center;
 }
 
-.pagination-section > .pagination-section__inner > .left-arrow {
-    width: 15px;
-    height: 18px;
-    margin-right: 20px;
+.pagination-section > .pagination-section__inner > a {
+    display: block;
+    color: black;
     cursor: pointer;
+    transition: 0.4s;
+}
+
+.pagination-section > .pagination-section__inner > a.first-left-side {
+    margin-right: 10px;
+}
+
+.pagination-section > .pagination-section__inner > a.last-right-side {
+    margin-left: 10px;
+}
+
+.pagination-section > .pagination-section__inner > a:hover {
+    font-weight: 800!important;
 }
 
 .pagination-section > .pagination-section__inner > ul {
@@ -222,12 +234,4 @@
     text-align: center;
     line-height: 25px;
     font-weight: 600 !important;
-}
-
-
-.pagination-section > .pagination-section__inner > .right-arrow {
-    width: 15px;
-    height: 18px;
-    margin-left: 20px;
-    cursor: pointer;
 }

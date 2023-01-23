@@ -95,15 +95,20 @@
         <div class="pagination-section__inner">
             <c:if test="${animeListResultVO.pageHandler.totalCnt != null && animeListResultVO.pageHandler.totalCnt != 0}">
                 <c:if test="${animeListResultVO.pageHandler.showPrev}">
-                    <img src="${pageContext.request.contextPath}/resources/images/left-arrow.png"
-                         alt="페이지의 앞으로 이동하는 아이콘입니다."
-                         class="left-arrow">
+                    <a class="first-left-side"
+                        href="<c:url value="/anime/main${animeListResultVO.pageHandler.sc.getQueryString(animeListResultVO.pageHandler.beginPage)}"/>">
+                        <%-- 추후 아이콘으로 사용하고 싶으면 아래 주석 풀고 사용하기 --%>
+                        <%--                        <img src="${pageContext.request.contextPath}/resources/images/left-arrow.png"--%>
+                        <%--                             alt="페이지의 앞으로 이동하는 아이콘입니다."--%>
+                        <%--                             class="left-arrow">--%>
+                        맨 앞으로
+                    </a>
                 </c:if>
                 <ul>
                     <c:forEach var="i"
                                begin="${animeListResultVO.pageHandler.beginPage}"
                                end="${animeListResultVO.pageHandler.endPage}">
-                        <li class="item ${i == animeListResultVO.pageHandler.sc.currentPage? "active" : ""}">
+                        <li class="item ${i == animeListResultVO.pageHandler.sc.page? "active" : ""}">
                             <a href="<c:url value="/anime/main${animeListResultVO.pageHandler.sc.getQueryString(i)}"/>">
                                     ${i}
                             </a>
@@ -111,44 +116,19 @@
                     </c:forEach>
                 </ul>
                 <c:if test="${animeListResultVO.pageHandler.showNext}">
-                    <img src="${pageContext.request.contextPath}/resources/images/right-arrow.png"
-                         alt="페이지의 앞으로 이동하는 아이콘입니다."
-                         class="right-arrow">
+                <a class="last-right-side"
+                   href="<c:url value="/anime/main${animeListResultVO.pageHandler.sc.getQueryString(animeListResultVO.pageHandler.endPage)}"/>">
+                        <%-- 추후 아이콘으로 사용하고 싶으면 아래 주석 풀고 사용하기 --%>
+                        <%--                    <img src="${pageContext.request.contextPath}/resources/images/right-arrow.png"--%>
+                        <%--                         alt="페이지의 앞으로 이동하는 아이콘입니다."--%>
+                        <%--                         class="right-arrow">--%>
+                        맨 뒤로
+                </a>
                 </c:if>
             </c:if>
         </div>
     </div>
     <%-- pagination section 끝 --%>
-
-
-
-<%--            <!-- pagination start -->--%>
-<%--            <c:if test="${pageHandler.totalCnt != null && pageHandler.totalCnt != 0}">--%>
-<%--                <div class="pull-right">--%>
-<%--                    <ul class="pagination">--%>
-<%--                        <c:if test="${pageHandler.showPrev}">--%>
-<%--                            <li class="paginate_button previous">--%>
-<%--                                <a href="<c:url value="/notice/content/list${pageHandler.sc.getQueryString(pageHandler.beginPage - 1)}"/>">이전</a>--%>
-<%--                            </li>--%>
-<%--                        </c:if>--%>
-
-<%--                        <c:forEach var="i"--%>
-<%--                                   begin="${pageHandler.beginPage}"--%>
-<%--                                   end="${pageHandler.endPage}">--%>
-<%--                            <li class="paginate_button ${i==pageHandler.sc.page? "active" : ""}">--%>
-<%--                                <a href="<c:url value="/notice/content/list${pageHandler.sc.getQueryString(i)}"/>">${i}</a>--%>
-<%--                            </li>--%>
-<%--                        </c:forEach>--%>
-
-<%--                        <c:if test="${pageHandler.showNext}">--%>
-<%--                            <li class="paginate_button next">--%>
-<%--                                <a href="<c:url value="/notice/content/list${pageHandler.sc.getQueryString(pageHandler.endPage + 1)}"/>">다음</a>--%>
-<%--                            </li>--%>
-<%--                        </c:if>--%>
-<%--                    </ul>--%>
-<%--                </div>--%>
-<%--            </c:if>--%>
-<%--            <!-- pagination end -->--%>
 </div>
 
 <!-- footer 시작 -->

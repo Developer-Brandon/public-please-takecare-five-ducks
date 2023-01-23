@@ -78,7 +78,7 @@ public class AnimeServiceImpl implements AnimeService{
 
         int totalCnt = animeDAO.getTotalCnt();
 
-        PageHandler pageHandler = new PageHandler(totalCnt, selectAnimePaginationRequestDTO.getCurrentPage());
+        PageHandler pageHandler = new PageHandler(totalCnt, selectAnimePaginationRequestDTO.getCurrentPage(), selectAnimePaginationRequestDTO.getTitle());
 
         // 만약 현재의 페이지가.. 1 -> 0, 2 -> 1, 3 -> 2, 4 -> 3 대로 오프셋 설정
         Integer offset = selectAnimePaginationRequestDTO.getCurrentPage() - 1;
@@ -89,6 +89,8 @@ public class AnimeServiceImpl implements AnimeService{
         selectAnimePaginationRequestDTO.setPageSize(selectAnimePaginationRequestDTO.getPageSize());
 
         List<AnimeVO> animeVOList = animeDAO.selectAnimePaginationList(selectAnimePaginationRequestDTO);
+
+        System.out.println("pageHandler" + pageHandler.toString());
 
         return AnimeListResultVO.builder()
                 .pageHandler(pageHandler)
