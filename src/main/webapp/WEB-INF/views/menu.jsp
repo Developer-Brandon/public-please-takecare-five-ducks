@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/menu.css">
         <script>
             function goMainPage() {
-             location.href = '../'
+             location.href = '${pageContext.request.contextPath}/'
             }
         </script>
     </head>
@@ -31,32 +31,32 @@
                     <div class="normal-menu">
                         <ul class="menu-list-ul">
                             <li class="menu-list-li">
-                                <a href="/anime/main">애니</a>
+                                <a href="${pageContext.request.contextPath}/anime/main">애니</a>
                             </li>
                             <li class="menu-list-li">
-                                <a href="/book/main">책</a>
+                                <a href="${pageContext.request.contextPath}/book/main">책</a>
                             </li>
                             <li class="menu-list-li">
-                                <a href="/comicBook/main">만화책</a>
+                                <a href="${pageContext.request.contextPath}/comicBook/main">만화책</a>
                             </li>
                             <li class="menu-list-li">
-                                <a href="/drama/main">드라마</a>
+                                <a href="${pageContext.request.contextPath}/drama/main">드라마</a>
                             </li>
                             <li class="menu-list-li">
-                                <a href="/movie/main">영화</a>
+                                <a href="${pageContext.request.contextPath}/movie/main">영화</a>
                             </li>
-                            <li class="menu-list-li">
-                                <a href="/util/main">유틸</a>
-                            </li>
+                            <%--                            <li class="menu-list-li">--%>
+                            <%--                                <a href="/util/main">유틸</a>--%>
+                            <%--                            </li>--%>
                         </ul>
                     </div>
                     <div class="auth-menu">
                         <ul class="my-page-menu-list-ul">
                             <li class="my-page-menu-list-li">
-                                <a href="/mypage/main">내정보</a>
+                                <a href="${pageContext.request.contextPath}/mypage/main">내정보</a>
                             </li>
                             <li class="my-page-menu-list-li">
-                                <a href="/logout">로그아웃</a>
+                                <a href="${pageContext.request.contextPath}/logout">로그아웃</a>
                             </li>
                         </ul>
                     </div>
