@@ -22,10 +22,12 @@ public class AnimeController extends BaseController {
 
     private final ContentsMadeNatureService contentsMadeNatureService;
 
-    @GetMapping(value = "/main")
+    @GetMapping(value = "/main", produces = TEXT_HTML_FORMAT)
     public String goMainPage(
             @RequestParam(required = false)
-                    Integer currentPage
+            Integer currentPage
+            , @RequestParam(required = false)
+            String title
             , Model model
     ) throws Exception{
 
@@ -36,6 +38,12 @@ public class AnimeController extends BaseController {
         SelectAnimePaginationRequestDTO selectAnimePaginationRequestDTO = SelectAnimePaginationRequestDTO.builder()
                 .currentPage(currentPage)
                 .build();
+
+        if (StringUtils.isEmpty(title)) {
+            title = "";
+        }
+
+        selectAnimePaginationRequestDTO.setTitle(title);
 
         AnimeListResultVO animeListResultVO = animeService.selectAnimePaginationList(selectAnimePaginationRequestDTO);
 

@@ -68,6 +68,8 @@ public class PageHandler {
         showPrev = beginPage != 1;
 
         showNext = endPage != totalPage;
+
+        printCurrentStatus();
     }
 
     public PageHandler(int totalCnt, int currentPage) {
@@ -91,12 +93,12 @@ public class PageHandler {
 
     public String getQueryString(int page) {
 
-        // ?page=10&pageSize=10&option=A&keyword=title
+        // ?page=10&pageSize=10&option=A&title=title
         return UriComponentsBuilder.newInstance()
                 .queryParam("page", page)
                 .queryParam("pageSize", sc.getPageSize())
                 .queryParam("option", sc.getOption())
-                .queryParam("keyword", sc.getKeyword())
+                .queryParam("title", sc.getTitle())
                 .build().toString();
     }
 

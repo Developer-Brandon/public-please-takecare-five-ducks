@@ -4,6 +4,7 @@ import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.SelectAnimeThumbnailImag
 import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.AnimeVO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
+import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.result.AnimeListResultVO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.result.RawAnimeFinalizedResultVO;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.result.RawImageThumbnailResultVO;
 import com.dev.pleaseTakecareFiveDucks.anime.service.AnimeService;
@@ -26,7 +27,7 @@ public class AnimeRestController extends BaseController {
 
     private final ContentsMadeNatureService contentsMadeNatureService;
 
-    @GetMapping(value = "/search/image/thumbnail", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/search/image/thumbnail", produces = JSON_FORMAT)
     public RawImageThumbnailResultVO selectImageThumbnailVOList(
             @RequestParam
             String animeName
@@ -41,7 +42,7 @@ public class AnimeRestController extends BaseController {
                 .build();
     }
 
-    @GetMapping(value = "/finalized/list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/finalized/list", produces = JSON_FORMAT)
     public RawAnimeFinalizedResultVO selectAnimeFinalizedList(
     ) throws Exception {
 
@@ -50,7 +51,8 @@ public class AnimeRestController extends BaseController {
                 .build();
     }
 
-    @GetMapping(value = "/info", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    // 애니 단일 조회 api 입니다.
+    @GetMapping(value = "/info", produces = JSON_FORMAT)
     public ResponseEntity<AnimeVO> selectAnimeInfo(
             @RequestParam
             Integer animeNo
@@ -65,7 +67,8 @@ public class AnimeRestController extends BaseController {
         return ResponseEntity.ok(animeVO);
     }
 
-    @PostMapping(value = "/info", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    // 애니 단일 삽입 api 입니다.
+    @PostMapping(value = "/info", produces = JSON_FORMAT)
     public ResponseEntity<Integer> insertAnimeInfo(
             @RequestBody
                     InsertAnimeInfoRequestDTO insertAnimeInfoRequestDTO
@@ -76,7 +79,8 @@ public class AnimeRestController extends BaseController {
         return ResponseEntity.ok(insertAnimeInfoRequestDTO.getInsertedAnimeNo());
     }
 
-    @PutMapping(value = "/info", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    // 애니 단일 업데이트 api 입니다.
+    @PutMapping(value = "/info", produces = JSON_FORMAT)
     public ResponseEntity<Integer> updateAnimeInfo(
             @RequestBody
             UpdateAnimeInfoRequestDTO updateAnimeInfoRequestDTO
@@ -87,7 +91,8 @@ public class AnimeRestController extends BaseController {
         return ResponseEntity.ok(updateAnimeInfoRequestDTO.getAnimeNo());
     }
 
-    @DeleteMapping(value = "/info", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    // 애니 단일 삭제 api 입니다.
+    @DeleteMapping(value = "/info", produces = JSON_FORMAT)
     public ResponseEntity<Integer> deleteAnimeInfo(
             @RequestBody
             DeleteAnimeInfoRequestDTO deleteComicBookInfoRequestDTO
@@ -98,6 +103,23 @@ public class AnimeRestController extends BaseController {
         return ResponseEntity.ok(deleteComicBookInfoRequestDTO.getAnimeNo());
     }
 
-    // 애니 리스트만 json형식으로 불러오는 api
-    // todo: paginotion으로 부분적으로 불러오기 위해 여기서부터 다시....
+    // 애니 리스트만 json형식으로 불러오는 api 입니다.
+    @GetMapping(value = "/info/list", produces = JSON_FORMAT)
+    public ResponseEntity<AnimeListResultVO> getNoticeList(
+            @RequestParam(required = false, defaultValue = "1")
+                    Integer currentPage
+            , @RequestParam(required = false, defaultValue = "10")
+                    Integer pageSize
+    ) throws Exception {
+
+        SelectAnimePaginationRequestDTO selectAnimePaginationRequestDTO = SelectAnimePaginationRequestDTO.builder()
+                .currentPage(currentPage)
+                .pageSize(pageSize)
+                .build();
+
+        AnimeListResultVO animeListResultVO = animeService.selectAnimePaginationList(selectAnimePaginationRequestDTO);
+
+        return ResponseEntity.ok(animeListResultVO);
+    }
+
 }

@@ -28,19 +28,19 @@ public class SearchCondition {
     private String option = "";
 
     // 검색 페이지네이션
-    private String keyword = "";
+    private String title = "";
 
     public SearchCondition(Integer currentPage, Integer pageSize) {
 
         this(currentPage, pageSize, "", "");
     }
 
-    public SearchCondition(Integer currentPage, Integer pageSize, String option, String keyword) {
+    public SearchCondition(Integer currentPage, Integer pageSize, String option, String title) {
 
         this.currentPage = currentPage;
         this.pageSize = pageSize;
         this.option = option;
-        this.keyword = keyword;
+        this.title = title;
     }
 
     public String getQueryString() {
@@ -49,13 +49,14 @@ public class SearchCondition {
 
     public String getQueryString(Integer currentPage) {
 
-        // ?currentPage=10&pageSize=10&option=A&keyword=title
+        // ?currentPage=10&pageSize=10&option=A&title=title
         return UriComponentsBuilder.newInstance()
                 .queryParam("currentPage", currentPage)
-                .queryParam("pageSize", pageSize)
-                .queryParam("option", option)
-                .queryParam("keyword", keyword)
-                .build().toString();
+                // .queryParam("pageSize", pageSize)
+                // .queryParam("option", option)
+                .queryParam("title", title)
+                .build()
+                .toString();
     }
 
     public Integer getPageSize() {

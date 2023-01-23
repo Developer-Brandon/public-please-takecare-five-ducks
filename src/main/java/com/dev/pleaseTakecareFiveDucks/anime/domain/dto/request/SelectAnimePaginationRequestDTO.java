@@ -18,4 +18,6 @@ public class SelectAnimePaginationRequestDTO {
 
     @Builder.Default
     Integer pageSize = 10;
+
+    String title;
 }
