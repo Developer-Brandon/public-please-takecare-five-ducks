@@ -13,6 +13,8 @@ public interface AnimeDAO {
 
     int getTotalCnt();
 
+    int getTotalCntByCondition(SelectAnimePaginationRequestDTO selectAnimePaginationRequestDTO);
+
     int deleteAll();
 
     List<AnimeVO> selectAllAnimeList();

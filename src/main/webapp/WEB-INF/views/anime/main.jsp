@@ -1,10 +1,32 @@
+<%@ page import="java.net.URLDecoder" %>
 <html>
 <head>
     <%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
     <%@ page session="false" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="../page_header.jsp" %>
-    <!-- -->
+    <%-- TODO: 추후 게시판 검색창에 쿠키개념 도입 예정 --%>
+    <%--        request.setCharacterEncoding("UTF-8");--%>
+
+    <%--        Cookie[] cookies = request.getCookies();--%>
+
+    <%--        String oldSearchTitle = "";--%>
+
+    <%--        // 만약 쿠키가 비어있지 않다면?--%>
+    <%--        if(cookies != null){--%>
+
+    <%--            for(Cookie cookie:cookies){--%>
+
+    <%--                if(cookie.getName().equals("title")){--%>
+
+    <%--                    oldSearchTitle = cookie.getValue();--%>
+
+    <%--                    oldSearchTitle = URLDecoder.decode(oldSearchTitle, "UTF-8");--%>
+    <%--                }--%>
+    <%--            }--%>
+    <%--        }--%>
+
+    <%--        System.out.println(">>클라이언트가 전송한 쿠키정보:"+oldSearchTitle+"["+request.getRemoteAddr()+"]");--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/component/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/anime/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
@@ -21,7 +43,16 @@
       window.open(link)
      }
 
+     function enterSearchInputValue() {
+
+      // todo: 아무래도 JSP다 보니까, 페이지가 갱신되면서 input에 있던 검색어가 날라간다.
+      // 추후 쿠키
+      location.href ='./main?currentPage=1&title='+ $('.search-input').val()
+     }
+
      $(function () {
+
+      // search input 옆에 제목 텍스트와 아이콘을 누르면 발생하는 팝업창
       $('.search-text').click(function() {
        alert("제목 이외에도 다른 것으로 검색할 수 있게 기능추가 예정입니다")
       })
@@ -86,7 +117,11 @@
     <div class="search-section">
         <div class="wrap-search-input">
             <p class="search-text">👆🏼제목</p>
-            <input type="text" class="search-input"/>
+            <input type="text"
+                   class="search-input"
+                   onkeypress="if(window.event.keyCode===13) enterSearchInputValue()"
+                   value="${oldSearchTitle}"/>
+
         </div>
     </div>
 

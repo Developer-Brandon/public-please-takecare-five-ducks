@@ -76,7 +76,7 @@ public class AnimeServiceImpl implements AnimeService{
     @Override
     public AnimeListResultVO selectAnimePaginationList(SelectAnimePaginationRequestDTO selectAnimePaginationRequestDTO) {
 
-        int totalCnt = animeDAO.getTotalCnt();
+        int totalCnt = animeDAO.getTotalCntByCondition(selectAnimePaginationRequestDTO);
 
         PageHandler pageHandler = new PageHandler(totalCnt, selectAnimePaginationRequestDTO.getCurrentPage(), selectAnimePaginationRequestDTO.getTitle());
 

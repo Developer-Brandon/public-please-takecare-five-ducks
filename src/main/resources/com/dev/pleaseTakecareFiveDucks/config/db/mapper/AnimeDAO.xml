@@ -15,6 +15,30 @@
         order by viewCnt desc limit 6
     </sql>
 
+    <select id="getTotalCnt"
+            resultType="int">
+        <![CDATA[
+        /* 전체 만화책 개수 조회 쿼리 */
+        ]]>
+        select count(*)
+        from web_app_test2.tb_anime
+        where use_yn = 'y'
+    </select>
+
+    <select id="getTotalCntByCondition"
+            parameterType="com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.SelectAnimePaginationRequestDTO"
+            resultType="int">
+        <![CDATA[
+        /* (조건을 기반해서)전체 만화책 개수 조회 쿼리 */
+        ]]>
+        select count(*)
+        from web_app_test2.tb_anime as tb_a
+        where use_yn = 'y'
+        <if test="title != '' and title != null">
+            and tb_a.title like concat('%',#{title}, '%')
+        </if>
+    </select>
+
     <select id="selectMainAnimationList"
             resultType="com.dev.pleaseTakecareFiveDucks.anime.domain.vo.MainAnimeVO">
         <![CDATA[
@@ -37,16 +61,6 @@
         on tb_a.r_anime_no = tb_a_v.animeNo
         where tb_a.use_yn = 'y'
         order by tb_a.reg_dt desc
-    </select>
-
-    <select id="getTotalCnt"
-            resultType="int">
-        <![CDATA[
-        /* 전체 만화책 개수 조회 쿼리 */
-        ]]>
-        select count(*)
-        from web_app_test2.tb_anime
-        where use_yn = 'y'
     </select>
 
     <delete id="deleteAll">
