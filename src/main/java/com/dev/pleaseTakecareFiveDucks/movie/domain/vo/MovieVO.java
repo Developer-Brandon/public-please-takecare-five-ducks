@@ -15,7 +15,7 @@ import java.util.Date;
 public class MovieVO {
     Integer movieNo;
     Integer madeNatureNo;
-    String movieTitle;
+    String title;
     String directorName;
     String link;
     Integer totalNumberOfEpisode;

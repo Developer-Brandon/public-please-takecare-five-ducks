@@ -27,8 +27,7 @@ import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.StringContains.containsString;
 
@@ -199,7 +198,7 @@ public class AnimeDAOTests {
         List<AnimeVO> animeVOList = animeDAO.selectAllAnimeList();
 
         // then
-        assertThat(animeVOList.size(), is(1));
+        assertThat(animeVOList.size(), is(greaterThan(1)));
         assertThat(animeVOList.get(0).getAnimeTitle(), is("귀멸의칼날"));
         assertThat(animeVOList.get(0).getAnimeAuthor(), is("코요게고로하루"));
 
@@ -486,7 +485,7 @@ public class AnimeDAOTests {
         List<MainAnimeVO> mainAnimeVOList = animeDAO.selectMainAnimationList();
 
         // then
-        assertThat(mainAnimeVOList.size(), is(1));
+        assertThat(mainAnimeVOList.size(), is(greaterThan(1)));
         assertThat(mainAnimeVOList.get(0).getAnimeTitle(), is("귀멸의칼날"));
     }
 

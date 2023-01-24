@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MainMovieVO {
-    String movieTitle;
+    String title;
     String link;
     String webThumbnailUrl;
     Integer viewCnt;

@@ -5,9 +5,7 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="page_header.jsp" %>
     <!-- -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/component/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
     <script type="text/javascript">
      function goNotionPage(link) {
       window.open(link)
@@ -166,10 +164,10 @@
                                     <c:forEach var="innerComic" items="${comic.value}">
                                         <div class="wrap-thumbnail-item">
                                             <c:choose>
-                                                <c:when test="${innerComic.fileFullPath != ''}">
+                                                <c:when test="${innerComic.webThumbnailUrl != ''}">
                                                     <div class="thumbnail__default"></div>
                                                     <!-- 추후 썸네일 준비 끝나면 개발 예정 -->
-                                                    <!-- <img src="${innerComic.fileFullPath}" alt="" class="thumbnail"> -->
+                                                    <!-- <img src="${innerComic.webThumbnailUrl}" alt="" class="thumbnail"> -->
                                                 </c:when>
                                                 <c:otherwise>
                                                     <div class="thumbnail__default"></div>
@@ -238,8 +236,8 @@
                     <c:forEach var="entertain" items="${mainEntertainVOList}">
                         <div class="dam-item" onclick="goNotionPage('${entertain.link}')">
                             <c:choose>
-                                <c:when test="${entertain.fileFullPath} != null || ${entertain.fileFullPath} != ''">
-                                    <img src="${entertain.fileFullPath}"
+                                <c:when test="${entertain.webThumbnailUrl} != null || ${entertain.webThumbnailUrl} != ''">
+                                    <img src="${entertain.webThumbnailUrl}"
                                          alt="영화썸네일입니다."
                                          class="thumbnail"/>
                                 </c:when>

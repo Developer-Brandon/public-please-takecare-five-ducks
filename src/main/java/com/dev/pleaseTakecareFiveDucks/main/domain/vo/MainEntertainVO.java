@@ -13,7 +13,7 @@ public class MainEntertainVO {
 
     String link;
 
-    String fileFullPath;
+    String webThumbnailUrl;
 
     Integer viewCnt;
 }

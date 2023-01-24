@@ -56,7 +56,7 @@
     <![CDATA[
         /* 메인 영화 리스트 조회 쿼리 */
         ]]>
-        select tb_m.title as movieTitle
+        select tb_m.title as title
                 , tb_m.link as link
                 , tb_m_t_i.web_thumbnail_url as webThumbnailUrl
                 , ifnull(tb_m_v.viewCnt, 0) as viewCnt
@@ -76,7 +76,7 @@
         ]]>
         select tb_m.r_movie_no as movieNo
              , tb_m.m_n_no as madeNatureNo
-             , tb_m.title as movieTitle
+             , tb_m.title as title
              , tb_m.director as directorName
              , tb_m.link as link
              , tb_m.total_number_of_episode as totalNumberOfEpisode
@@ -90,7 +90,7 @@
             left outer join (<include refid="selectMovieViewCnt"/>) as tb_m_v
             on tb_m.r_movie_no = tb_m_v.r_movie_no
         where tb_m.use_yn = 'y'
-        order by str_to_date(movieRegDt, '%Y-%m-%d') desc
+        order by tb_m.reg_dt desc
     </select>
 
     <select id="selectMoviePaginationList"
@@ -101,7 +101,7 @@
         ]]>
        select tb_m.r_movie_no as movieNo
              , tb_m.m_n_no as madeNatureNo
-             , tb_m.title as movieTitle
+             , tb_m.title as title
              , tb_m.director as directorName
              , tb_m.link as link
              , tb_m.total_number_of_episode as totalNumberOfEpisode
@@ -149,7 +149,7 @@
         ]]>
        select tb_m.r_movie_no as movieNo
          , tb_m.m_n_no as madeNatureNo
-         , tb_m.title as movieTitle
+         , tb_m.title as title
          , tb_m.director as directorName
          , tb_m.link as link
          , tb_m.total_number_of_episode as totalNumberOfEpisode

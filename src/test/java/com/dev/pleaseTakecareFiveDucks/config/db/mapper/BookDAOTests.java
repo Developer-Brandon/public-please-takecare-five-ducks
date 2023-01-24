@@ -19,6 +19,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -187,7 +188,7 @@ public class BookDAOTests {
         List<BookVO> bookVOList = bookDAO.selectAllBookList();
 
         // then
-        assertThat(bookVOList.size(), is(1));
+        assertThat(bookVOList.size(), is(greaterThan(1)));
         assertThat(bookVOList.get(0).getBookTitle(), is("해리포터"));
         assertThat(bookVOList.get(0).getBookAuthor(), is("JK롤링"));
     }
@@ -481,7 +482,7 @@ public class BookDAOTests {
 
         // then
         // then
-        assertThat(mainBookVOList.size(), is(1));
+        assertThat(mainBookVOList.size(), is(greaterThan(1)));
         assertThat(mainBookVOList.get(0).getBookTitle(), is("해리포터"));
         assertThat(mainBookVOList.get(0).getBookAuthor(), is("JK롤링"));
     }

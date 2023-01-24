@@ -39,7 +39,7 @@
     <![CDATA[
         /* 메인 드라마 리스트 조회 쿼리 */
         ]]>
-        select tb_d.title as dramaTitle
+        select tb_d.title as title
             , tb_d.link as link
             , tb_d_t_i.web_thumbnail_url as webThumbnailUrl
             , ifnull(tb_d_v.viewCnt, 0) as viewCnt

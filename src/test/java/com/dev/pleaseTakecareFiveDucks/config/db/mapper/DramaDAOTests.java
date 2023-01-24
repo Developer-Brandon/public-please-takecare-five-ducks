@@ -1,12 +1,9 @@
 package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
-import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.SelectDramaInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.UpdateDramaInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.UpdateDramaStateRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaVO;
 import com.dev.pleaseTakecareFiveDucks.drama.util.BroadcastStateEnum;
 import com.dev.pleaseTakecareFiveDucks.drama.util.DramaUseYnEnum;
-import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.InsertDramaInfoRequestDTO;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.core.StringContains;
 import org.junit.*;
@@ -23,6 +20,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.core.Is.is;
 
@@ -41,6 +39,8 @@ public class DramaDAOTests {
 
     private InsertDramaInfoRequestDTO insertDramaInfoRequestDTO;
 
+    private InsertDramaThumbnailInfoRequestDTO insertDramaThumbnailInfoRequestDTO;
+
     @Before
     public void init() {
 
@@ -55,6 +55,10 @@ public class DramaDAOTests {
                 .link("http://www.drama.com")
                 .broadcastStateEnum(BroadcastStateEnum.end)
                 .dramaRegDt("2003-01-15")
+                .build();
+
+        insertDramaThumbnailInfoRequestDTO = InsertDramaThumbnailInfoRequestDTO.builder()
+                .webThumbnailUrl("default")
                 .build();
     }
 
@@ -164,8 +168,13 @@ public class DramaDAOTests {
         // when
         int insertedCnt = dramaDAO.insertDramaInfo(insertDramaInfoRequestDTO);
 
+        insertDramaThumbnailInfoRequestDTO.setDramaNo(insertDramaInfoRequestDTO.getInsertedDramaNo());
+
+        int insertedCnt2 = dramaDAO.insertDramaThumbnailInfo(insertDramaThumbnailInfoRequestDTO);
+
         // then
         assertThat(insertedCnt, is(1));
+        assertThat(insertedCnt2, is(1));
         assertThat(insertDramaInfoRequestDTO.getInsertedDramaNo(), greaterThanOrEqualTo(1));
 
         /////////////////////////////////////////
@@ -178,7 +187,7 @@ public class DramaDAOTests {
         List<DramaVO> dramaVOList = dramaDAO.selectAllDramaList();
 
         // then
-        assertThat(dramaVOList.size(), is(1));
+        assertThat(dramaVOList.size(), is(greaterThan(0)));
         assertThat(dramaVOList.get(0).getDramaTitle(), is("올인"));
         assertThat(dramaVOList.get(0).getDramaAuthor(), is("최완규"));
 

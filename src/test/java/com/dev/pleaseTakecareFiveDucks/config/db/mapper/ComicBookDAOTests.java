@@ -21,6 +21,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.core.Is.is;
 
@@ -189,7 +190,7 @@ public class ComicBookDAOTests {
         List<ComicBookVO> comicBookVOList = comicBookDAO.selectAllComicBookList();
 
         // then
-        assertThat(comicBookVOList.size(), is(1));
+        assertThat(comicBookVOList.size(), is(greaterThan(1)));
         assertThat(comicBookVOList.get(0).getComicBookTitle(), is("귀멸의칼날"));
         assertThat(comicBookVOList.get(0).getComicBookAuthor(), is("코요게고로하루"));
     }

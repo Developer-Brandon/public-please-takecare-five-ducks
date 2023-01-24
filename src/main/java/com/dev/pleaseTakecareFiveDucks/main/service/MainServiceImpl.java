@@ -62,6 +62,7 @@ public class MainServiceImpl implements MainService{
                     MainEntertainVO.builder()
                     .title(e.getDramaTitle())
                     .link(e.getLink())
+                    .webThumbnailUrl(e.getWebThumbnailUrl())
                     .viewCnt(e.getViewCnt())
                     .build()
                 )
@@ -71,8 +72,9 @@ public class MainServiceImpl implements MainService{
         movieDAO.selectMainMovieList()
                 .forEach(e -> mainEntertainVOList.add(
                     MainEntertainVO.builder()
-                    .title(e.getMovieTitle())
+                    .title(e.getTitle())
                     .link(e.getLink())
+                    .webThumbnailUrl(e.getWebThumbnailUrl())
                     .viewCnt(e.getViewCnt())
                     .build()
                 )

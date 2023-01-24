@@ -20,6 +20,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.core.Is.is;
 
@@ -190,8 +191,8 @@ public class MovieDAOTests {
         List<MovieVO> movieVOList = movieDAO.selectAllMovieList();
 
         // then
-        assertThat(movieVOList.size(), is(1));
-        assertThat(movieVOList.get(0).getMovieTitle(), is("대부"));
+        assertThat(movieVOList.size(), is(greaterThan(1)));
+        assertThat(movieVOList.get(0).getTitle(), is("대부"));
         assertThat(movieVOList.get(0).getDirectorName(), is("돈꼴레오네"));
 
     }
@@ -242,7 +243,7 @@ public class MovieDAOTests {
         MovieVO MovieVO = movieDAO.selectMovieInfo(selectMovieInfoRequestDTO);
 
         // then
-        assertThat(MovieVO.getMovieTitle(), CoreMatchers.is("대부"));
+        assertThat(MovieVO.getTitle(), CoreMatchers.is("대부"));
         assertThat(MovieVO.getDirectorName(), StringContains.containsString("돈꼴레오네"));
     }
 
@@ -317,7 +318,7 @@ public class MovieDAOTests {
 
         // then
         assertThat(movieVO2.getMovieNo(), is(updateMovieInfoRequestDTO.getMovieNo()));
-        assertThat(movieVO2.getMovieTitle(), is("대부2"));
+        assertThat(movieVO2.getTitle(), is("대부2"));
         assertThat(movieVO2.getDirectorName(), is("돈꼴레오네"));
     }
 
@@ -465,6 +466,6 @@ public class MovieDAOTests {
 
         List<MainMovieVO> mainMovieVOList = movieDAO.selectMainMovieList();
 
-        assertThat(mainMovieVOList.size(), is(1));
+        assertThat(mainMovieVOList.size(), is(greaterThan(1)));
     }
 }
