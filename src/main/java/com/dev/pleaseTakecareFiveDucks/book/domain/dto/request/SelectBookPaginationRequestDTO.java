@@ -18,4 +18,6 @@ public class SelectBookPaginationRequestDTO {
 
     @Builder.Default
     Integer pageSize = 10;
+
+    String title;
 }

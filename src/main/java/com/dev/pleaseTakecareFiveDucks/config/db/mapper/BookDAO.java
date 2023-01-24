@@ -2,6 +2,7 @@ package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
 
 import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.*;
+import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookTypeVO;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.MainBookVO;
 
@@ -9,15 +10,19 @@ import java.util.List;
 
 public interface BookDAO {
 
+    List<BookTypeVO> selectBookTypeList() throws Exception;
+
     List<MainBookVO> selectMainBookList();
 
     int getBookTotalCnt();
+
+    int getTotalCntByCondition(SelectBookPaginationRequestDTO selectBookPaginationRequestDTO);
 
     int deleteAll();
 
     List<BookVO> selectAllBookList();
 
-    List<BookVO> selectBookList(SelectBookPaginationRequestDTO selectBookPaginationRequestDTO);
+    List<BookVO> selectBookPaginationList(SelectBookPaginationRequestDTO selectBookPaginationRequestDTO);
 
     BookVO selectBookInfo(SelectBookInfoRequestDTO selectBookInfoRequestDTO);
 
@@ -36,4 +41,6 @@ public interface BookDAO {
     int deleteBookInfo(Integer bookNo);
 
     int deleteBookThumbnailInfo(Integer bookNo);
+
+    int selectBookThumbnailImageByBookNo(Integer bookNo);
 }

@@ -12,7 +12,7 @@
              , count(r_anime_no) as viewCnt
         from web_app_test2.tb_anime_view
         group by r_anime_no
-        order by viewCnt desc limit 6
+        order by viewCnt desc
     </sql>
 
     <select id="getTotalCnt"
@@ -55,11 +55,11 @@
         , date_format(tb_a.anime_reg_dt, '%Y-%m-%d') as animeRegDt
         , date_format(tb_a.reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_anime as tb_a
-        inner join web_app_test2.tb_anime_thumbnail_img as tb_a_t_i
-        on tb_a.r_anime_no = tb_a_t_i.r_anime_no
-        left outer join (<include refid="selectAnimeViewCnt"/>) as tb_a_v
-        on tb_a.r_anime_no = tb_a_v.animeNo
-        where tb_a.use_yn = 'y'
+            inner join web_app_test2.tb_anime_thumbnail_img as tb_a_t_i
+                on tb_a.r_anime_no = tb_a_t_i.r_anime_no
+            left outer join (<include refid="selectAnimeViewCnt"/>) as tb_a_v
+                on tb_a.r_anime_no = tb_a_v.animeNo
+            where tb_a.use_yn = 'y'
         order by tb_a.reg_dt desc
     </select>
 
@@ -88,7 +88,7 @@
              , date_format(reg_dt, '%Y-%m-%d')       as regDt
         from web_app_test2.tb_anime
         where use_yn = 'y'
-        order by str_to_date(animeRegDt, '%Y-%m-%d') desc
+        order by reg_dt desc
     </select>
 
     <select id="selectAnimePaginationList"
@@ -142,7 +142,7 @@
             resultType="Integer">
         <![CDATA[
         /*
-            단일 애니 썸네일 조회 쿼리
+            animeNo 기반 썸네일 개수 조회
         */
         ]]>
         select count(*)

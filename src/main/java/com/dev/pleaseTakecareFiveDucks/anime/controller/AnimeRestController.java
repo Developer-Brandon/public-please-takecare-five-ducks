@@ -12,7 +12,6 @@ import com.dev.pleaseTakecareFiveDucks.anime.util.FinalizedYnEnum;
 import com.dev.pleaseTakecareFiveDucks.config.controller.BaseController;
 import com.dev.pleaseTakecareFiveDucks.contents.service.ContentsMadeNatureService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -129,7 +128,7 @@ public class AnimeRestController extends BaseController {
             InsertAnimeViewCntRequestDTO insertAnimeViewCntRequestDTO
     ) throws Exception {
 
-        animeService.insertAnimeViewCnt(insertAnimeViewCntRequestDTO);
+        animeService.registerAnimeViewCnt(insertAnimeViewCntRequestDTO);
 
         return ResponseEntity.ok(insertAnimeViewCntRequestDTO.getAnimeNo());
     }

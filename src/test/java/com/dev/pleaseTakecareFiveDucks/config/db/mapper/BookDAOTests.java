@@ -64,8 +64,7 @@ public class BookDAOTests {
                 .build();
 
         insertBookThumbnailInfoRequestDTO = InsertBookThumbnailInfoRequestDTO.builder()
-                .filePath("book")
-                .fileName("no_name.png")
+                .webThumbnailUrl("https://www.naver.com")
                 .build();
     }
 
@@ -139,7 +138,7 @@ public class BookDAOTests {
         // when & then
         BookVO bookVO = bookDAO.selectBookInfo(selectBookInfoRequestDTO);
         assertThat(bookVO.getBookNo(), greaterThanOrEqualTo(insertBookInfoRequestDTO.getInsertedBookNo()));
-        assertThat(bookVO.getFileFullPath(), is(notNullValue()));
+        assertThat(bookVO.getWebThumbnailUrl(), is(notNullValue()));
 
         ////////////////////////////////////////
 
@@ -247,7 +246,7 @@ public class BookDAOTests {
         // then
         assertThat(bookVO.getBookTitle(), is("해리포터"));
         assertThat(bookVO.getBookAuthor(), StringContains.containsString("롤링"));
-        assertThat(bookVO.getFileFullPath(), is(notNullValue()));
+        assertThat(bookVO.getWebThumbnailUrl(), is(notNullValue()));
     }
 
     // 생략

@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookThumbnailVO {
+public class BookTypeVO {
     Integer bookNo;
-    String webThumbnailUrl;
+    String bookTypeKorean;
+    String bookTypeEnglish;
 }

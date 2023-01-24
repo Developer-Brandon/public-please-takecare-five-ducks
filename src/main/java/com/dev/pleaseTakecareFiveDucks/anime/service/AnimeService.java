@@ -31,5 +31,5 @@ public interface AnimeService {
 
     public List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectAnimeThumbnailImageUrlDTO selectAnimeThumbnailImageUrlDTO) throws Exception;
 
-    public void insertAnimeViewCnt(InsertAnimeViewCntRequestDTO insertAnimeViewCntRequestDTO) throws Exception;
+    public void registerAnimeViewCnt(InsertAnimeViewCntRequestDTO insertAnimeViewCntRequestDTO) throws Exception;
 }

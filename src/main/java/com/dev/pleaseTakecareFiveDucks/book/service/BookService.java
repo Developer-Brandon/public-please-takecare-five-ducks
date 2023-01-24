@@ -1,17 +1,23 @@
 package com.dev.pleaseTakecareFiveDucks.book.service;
 
+import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
+import com.dev.pleaseTakecareFiveDucks.book.domain.dto.SelectBookThumbnailImageUrlDTO;
 import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.*;
+import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookTypeVO;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
+import com.dev.pleaseTakecareFiveDucks.book.domain.vo.result.BookListResultVO;
 
 import java.util.List;
 
 public interface BookService {
 
+    List<BookTypeVO> selectBookTypeList() throws Exception;
+
     Integer selectBookTotalCnt();
 
     void removeAllBookInfoList() throws Exception;
 
-    List<BookVO> selectBookList(SelectBookPaginationRequestDTO selectBookPaginationRequestDTO);
+    BookListResultVO selectBookPaginationList(SelectBookPaginationRequestDTO selectBookPaginationRequestDTO);
 
     List<BookVO> selectAllBookInfoList();
 
@@ -22,4 +28,8 @@ public interface BookService {
     void modifyBookInfo(UpdateBookInfoRequestDTO updateBookInfoRequestDTO) throws Exception;
 
     void removeBookInfo(RemoveBookInfoRequestDTO removeBookInfoRequestDTO) throws Exception;
+
+    void registerBookViewCnt(InsertBookViewCntRequestDTO insertBookViewCntRequestDTO) throws Exception;
+
+    List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectBookThumbnailImageUrlDTO selectBookThumbnailImageUrlDTO) throws Exception;
 }

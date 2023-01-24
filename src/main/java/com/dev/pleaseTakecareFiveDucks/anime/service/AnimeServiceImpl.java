@@ -27,17 +27,6 @@ public class AnimeServiceImpl implements AnimeService{
 
     private final AnimeDAO animeDAO;
 
-    private boolean validateFileAttachedOrNot(String filePath, String fileName) {
-
-        // 임시로 주석 처리합니다.
-        //        if(!filePath.isEmpty() && !fileName.isEmpty()) {
-        //            return true;
-        //        } else {
-        //            return false;
-        //        }
-        return true;
-    }
-
     @Override
     public List<FinalizedYnEnum> selectAnimeFinalizedList() throws Exception {
 
@@ -178,6 +167,7 @@ public class AnimeServiceImpl implements AnimeService{
         if(!webThumbnailUrl.isEmpty()) {
 
             // 그리고 만약 썸네일 이 있다면 update를 하고, 없다면 insert를 합니다.
+            // (혹시모를 예외처리)
             if(animeDAO.selectAnimeThumbnailImageByAnimeNo(updateAnimeInfoRequestDTO.getAnimeNo()) > 0) {
 
                 // 썸네일을 update하기 위한 dto를 준비합니다.
@@ -281,7 +271,7 @@ public class AnimeServiceImpl implements AnimeService{
                 }
             });
 
-            List<RawImageThumbnailVO> filteredAnimeImageUrlList = animeImageUrlList
+            return animeImageUrlList
                     .stream()
                     .filter(e -> !e.isEmpty())
                     .map(e2 -> RawImageThumbnailVO.builder()
@@ -289,8 +279,6 @@ public class AnimeServiceImpl implements AnimeService{
                             .build()
                     )
                     .collect(Collectors.toList());
-
-            return filteredAnimeImageUrlList;
         } else {
 
             return new ArrayList<>();
@@ -298,7 +286,7 @@ public class AnimeServiceImpl implements AnimeService{
     }
 
     @Override
-    public void insertAnimeViewCnt(InsertAnimeViewCntRequestDTO insertAnimeViewCntRequestDTO) throws Exception {
+    public void registerAnimeViewCnt(InsertAnimeViewCntRequestDTO insertAnimeViewCntRequestDTO) throws Exception {
 
         if(animeDAO.insertAnimeViewCnt(insertAnimeViewCntRequestDTO) != 1) {
             throw new Exception();

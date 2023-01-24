@@ -17,7 +17,7 @@ public class MainBookVO {
     String bookTypeKorean;
     String bookTypeEnglish;
     Integer viewCnt;
-    String fileFullPath;
+    String webThumbnailUrl;
     String bookRegDt;
     String regDt;
 }

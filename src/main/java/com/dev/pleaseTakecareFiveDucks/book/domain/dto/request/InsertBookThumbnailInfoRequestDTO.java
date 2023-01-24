@@ -9,6 +9,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class InsertBookThumbnailInfoRequestDTO {
     Integer bookNo;
-    String filePath;
-    String fileName;
+    String webThumbnailUrl;
 }
