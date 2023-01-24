@@ -20,7 +20,7 @@ public class ComicBookVO {
     ComicBookSerialStateEnum comicBookSerialStateEnum;
     ComicBookUseYnEnum comicBookUseYnEnum;
     Integer viewCnt;
-    String fileFullPath;
+    String webThumbnailUrl;
     String comicBookRegDt;
     String regDt;
 }

@@ -9,5 +9,5 @@ import lombok.Setter;
 @Builder
 public class SelectBookThumbnailImageUrlDTO {
 
-    String bookName;
+    String comicBookName;
 }

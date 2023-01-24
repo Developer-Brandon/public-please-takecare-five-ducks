@@ -10,15 +10,17 @@ import java.util.List;
 
 public interface ComicBookDAO {
 
-    List<MainComicBookDetailVO> selectMainComicBookList(MainComicBookRequestDTO mainComicBookRequestDTO);
-
     int getComicBookTotalCnt();
 
-    int deleteAll();
+    int getTotalCntByCondition(SelectComicBookPaginationRequestDTO selectComicBookPaginationRequestDTO);
+
+    List<MainComicBookDetailVO> selectMainComicBookList(MainComicBookRequestDTO mainComicBookRequestDTO);
 
     List<ComicBookVO> selectAllComicBookList();
 
-    List<ComicBookVO> selectComicBookList(SelectComicBookPaginationRequestDTO selectComicBookPaginationRequestDTO);
+    List<ComicBookVO> selectComicBookPaginationList(SelectComicBookPaginationRequestDTO selectComicBookPaginationRequestDTO);
+
+    int selectComicBookThumbnailImageCntByBookNo(Integer comicBookNo);
 
     List<ComicBookThumbnailVO> selectComicBookThumbnailImageListByComicBookNo(SelectComicBookThumbnailImageListRequestDTO selectComicBookThumbnailImageListRequestDTO);
 
@@ -39,4 +41,6 @@ public interface ComicBookDAO {
     int deleteComicBookInfo(Integer bookNo);
 
     int deleteComicBookThumbnailInfo(Integer bookNo);
+
+    int deleteAll();
 }

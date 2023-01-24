@@ -22,9 +22,7 @@ public class InsertComicBookInfoRequestDTO {
 
     String link;
 
-    String filePath;
-
-    String fileName;
+    String webThumbnailUrl;
 
     ComicBookSerialStateEnum comicBookSerialStateEnum;
 

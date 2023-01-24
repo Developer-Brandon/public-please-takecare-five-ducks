@@ -17,7 +17,6 @@ public class UpdateComicBookInfoRequestDTO {
     String author;
     String link;
     ComicBookSerialStateEnum comicBookSerialStateEnum;
-    String filePath;
-    String fileName;
+    String webThumbnailUrl;
     String comicBookRegDt;
 }

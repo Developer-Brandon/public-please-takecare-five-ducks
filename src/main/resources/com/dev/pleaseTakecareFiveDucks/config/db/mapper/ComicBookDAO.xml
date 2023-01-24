@@ -11,26 +11,6 @@
         group by r_book_no
     </sql>
 
-    <select id="selectMainComicBookList"
-            parameterType="com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.MainComicBookRequestDTO"
-            resultType="com.dev.pleaseTakecareFiveDucks.comic.domain.vo.MainComicBookDetailVO">
-        <![CDATA[
-        /* 메인 만화책 리스트 조회 쿼리 */
-        select tb_c_b.r_book_no as comicBookNo
-             , tb_c_b.title     as comicBookTitle
-             , tb_c_b.author    as comicBookAuthor
-             , tb_c_b.link as link
-             , concat(tb_c_b_i.file_path, '/', tb_c_b_i.file_name) as fileFullPath
-        from web_app_test2.tb_comic_book as tb_c_b
-                 left outer join web_app_test2.tb_comic_book_thumbnail_img as tb_c_b_i
-                     on tb_c_b.r_book_no = tb_c_b_i.r_book_no
-        where use_yn = 'y'
-          and date_format(book_reg_dt, '%Y-%m-%d') > #{startDt}
-          and date_format(book_reg_dt, '%Y-%m-%d') < #{endDt}
-        limit 10
-        ]]>
-    </select>
-
     <select id="getComicBookTotalCnt" resultType="int">
         <![CDATA[
         /* 전체 만화책 개수 조회 쿼리 */
@@ -40,50 +20,97 @@
         where use_yn = 'y'
     </select>
 
-    <delete id="deleteAll">
+    <select id="getTotalCntByCondition"
+            parameterType="com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.SelectComicBookPaginationRequestDTO"
+            resultType="int">
         <![CDATA[
-        /* 디비에 쌓여있는 전체 만화책 삭제 쿼리 */
+        /* (조건을 기반해서)전체 책 개수 조회 쿼리 */
         ]]>
-        delete
-        from web_app_test2.tb_comic_book
-    </delete>
+        select count(*)
+        from web_app_test2.tb_comic_book as tb_c_b
+        where use_yn = 'y'
+        <if test="title != '' and title != null">
+            and tb_c_b.title like concat('%',#{title}, '%')
+        </if>
+    </select>
+
+    <select id="selectMainComicBookList"
+            parameterType="com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.MainComicBookRequestDTO"
+            resultType="com.dev.pleaseTakecareFiveDucks.comic.domain.vo.MainComicBookDetailVO">
+        <![CDATA[
+        /* 메인 만화책 리스트 조회 쿼리 */
+        select tb_c_b.r_book_no as comicBookNo
+             , tb_c_b.title     as comicBookTitle
+             , tb_c_b.author    as comicBookAuthor
+             , tb_c_b.link as link
+             , tb_c_b_i.web_thumbnail_url as webThumbnailUrl
+        from web_app_test2.tb_comic_book as tb_c_b
+                 inner join web_app_test2.tb_comic_book_thumbnail_img as tb_c_b_i
+                     on tb_c_b.r_book_no = tb_c_b_i.r_book_no
+        where tb_c_b.use_yn = 'y'
+          and date_format(tb_c_b.book_reg_dt, '%Y-%m-%d') > #{startDt}
+          and date_format(tb_c_b.book_reg_dt, '%Y-%m-%d') < #{endDt}
+        limit 10
+        ]]>
+    </select>
 
     <select id="selectAllComicBookList"
             resultType="com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookVO">
         <![CDATA[
         /* 전체 만화책 리스트 조회 쿼리 */
         ]]>
-        select r_book_no    as bookNo
-             , m_n_no       as madeNatureNo
-             , title        as comicBookTitle
-             , author       as comicBookAuthor
-             , link         as link
-             , serial_state as comicBookSerialStateEnum
-             , date_format(book_reg_dt, '%Y-%m-%d') as comicBookRegDt
-             , date_format(reg_dt, '%Y-%m-%d') as regDt
-        from web_app_test2.tb_comic_book
-        where use_yn = 'y'
-        order by str_to_date(comicBookRegDt, '%Y-%m-%d') desc
+        select tb_c_b.r_book_no    as bookNo
+             , tb_c_b.m_n_no       as madeNatureNo
+             , tb_c_b.title        as comicBookTitle
+             , tb_c_b.author       as comicBookAuthor
+             , tb_c_b.link         as link
+             , tb_c_b_i.web_thumbnail_url as webThumbnailUrl
+             , tb_c_b.serial_state as comicBookSerialStateEnum
+             , date_format(tb_c_b.book_reg_dt, '%Y-%m-%d') as comicBookRegDt
+             , date_format(tb_c_b.reg_dt, '%Y-%m-%d') as regDt
+        from web_app_test2.tb_comic_book as tb_c_b
+                 inner join web_app_test2.tb_comic_book_thumbnail_img as tb_c_b_i
+                    on tb_c_b.r_book_no = tb_c_b_i.r_book_no
+        where tb_c_b.use_yn = 'y'
+        order by tb_c_b.reg_dt desc
     </select>
 
-    <select id="selectComicBookList"
+    <select id="selectComicBookPaginationList"
             parameterType="com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.SelectComicBookPaginationRequestDTO"
             resultType="com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookVO">
         <![CDATA[
         /* 전체 만화책 리스트 조회 쿼리(pagination) */
         ]]>
-        select r_book_no    as bookNo
-             , m_n_no       as madeNatureNo
-             , title        as comicBookTitle
-             , author       as comicBookAuthor
-             , link         as link
-             , serial_state as comicBookSerialStateEnum
-             , date_format(book_reg_dt, '%Y-%m-%d') as comicBookRegDt
-             , date_format(reg_dt, '%Y-%m-%d') as regDt
-        from web_app_test2.tb_comic_book
-        where use_yn = 'y'
-        order by str_to_date(comicBookRegDt, '%Y-%m-%d') desc
-            limit #{offset}, #{pageSize}
+        select tb_c_b.r_book_no    as bookNo
+             , tb_c_b.m_n_no       as madeNatureNo
+             , tb_c_b.title        as comicBookTitle
+             , tb_c_b.author       as comicBookAuthor
+             , tb_c_b.link         as link
+             , tb_c_b_i.web_thumbnail_url as webThumbnailUrl
+             , tb_c_b.serial_state as comicBookSerialStateEnum
+             , date_format(tb_c_b.book_reg_dt, '%Y-%m-%d') as comicBookRegDt
+             , date_format(tb_c_b.reg_dt, '%Y-%m-%d') as regDt
+        from web_app_test2.tb_comic_book as tb_c_b
+                 inner join web_app_test2.tb_comic_book_thumbnail_img as tb_c_b_i
+                            on tb_c_b.r_book_no = tb_c_b_i.r_book_no
+        where tb_c_b.use_yn = 'y'
+        <if test="title != '' and title != null">
+            and tb_c_b.title like concat('%',#{title}, '%')
+        </if>
+        order by tb_c_b.reg_dt desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="selectComicBookThumbnailImageCntByBookNo"
+            resultType="Integer">
+        <![CDATA[
+        /*
+            comicBookNo 기반 썸네일 개수 조회
+        */
+        ]]>
+        select count(*)
+        from web_app_test2.tb_comic_book_thumbnail_img
+        where r_book_no = #{comicBookNo}
     </select>
 
     <select id="selectComicBookThumbnailImageListByComicBookNo"
@@ -96,7 +123,7 @@
         */
         ]]>
         select r_book_no as bookNo
-        , concat(file_path, '/', file_name) as fileFullPath
+        , web_thumbnail_url as webThumbnailUrl
         from web_app_test2.tb_comic_book_thumbnail_img
         where r_book_no in (
         <foreach item="item" collection="comicBookNoList" separator=",">
@@ -119,14 +146,14 @@
             , tb_c_b.serial_state as comicBookSerialStateEnum
             , tb_c_b.use_yn as comicBookUseYnEnum
             , ifnull(tb_c_b_v.viewCnt, 0) as viewCnt
-            , concat(tb_c_b_i.file_path, '/', tb_c_b_i.file_name) as fileFullPath
+            , tb_c_b_i.web_thumbnail_url as webThumbnailUrl
             , date_format(tb_c_b.book_reg_dt, '%Y-%m-%d') as comicBookRegDt
             , date_format(tb_c_b.reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_comic_book as tb_c_b
+        inner join web_app_test2.tb_comic_book_thumbnail_img as tb_c_b_i
+            on tb_c_b.r_book_no = tb_c_b_i.r_book_no
         left outer join (<include refid="selectComicBookViewCnt"/>) as tb_c_b_v
-        on tb_c_b.r_book_no = tb_c_b_v.r_book_no
-        left outer join web_app_test2.tb_comic_book_thumbnail_img as tb_c_b_i
-        on tb_c_b.r_book_no = tb_c_b_i.r_book_no
+            on tb_c_b.r_book_no = tb_c_b_v.r_book_no
         where tb_c_b.use_yn = 'y'
         and tb_c_b.r_book_no = #{bookNo}
     </select>
@@ -161,8 +188,8 @@
             parameterType="com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.InsertComicBookThumbnailInfoRequestDTO">
         <![CDATA[
         /* 만화책 썸네일 정보 삽입 쿼리 */
-        insert into web_app_test2.tb_comic_book_thumbnail_img(r_book_no, file_path, file_name)
-            value (#{bookNo}, #{filePath}, #{fileName})
+        insert into web_app_test2.tb_comic_book_thumbnail_img(r_book_no, web_thumbnail_url)
+            value (#{bookNo}, #{webThumbnailUrl})
         ]]>
     </insert>
 
@@ -179,7 +206,7 @@
           , book_reg_dt  = #{comicBookRegDt}
           , mod_dt       = now()
         where use_yn = 'y'
-          and r_book_no = #{bookNo};
+        and r_book_no = #{bookNo};
         ]]>
     </update>
 
@@ -188,10 +215,10 @@
         <![CDATA[
         /* 만화책 썸네일 수정 쿼리 */
         update web_app_test2.tb_comic_book_thumbnail_img
-        set file_path = #{filePath}
-          , file_name = #{fileName}
+        set web_thumbnail_url = #{webThumbnailUrl}
           , mod_dt    = now()
-        where r_book_no = #{bookNo}
+        where use_yn = 'y'
+        and r_book_no = #{bookNo}
         ]]>
     </update>
 
@@ -203,7 +230,7 @@
         set use_yn = #{comicBookUseYnEnum}
           , mod_dt = now()
         where use_yn = 'y'
-          and r_book_no = #{bookNo}
+        and r_book_no = #{bookNo}
         ]]>
     </update>
 
@@ -225,5 +252,13 @@
         from web_app_test2.tb_comic_book_thumbnail_img
         where r_book_no = #{bookNo}
         ]]>
+    </delete>
+
+    <delete id="deleteAll">
+        <![CDATA[
+        /* 디비에 쌓여있는 전체 만화책 삭제 쿼리 */
+        ]]>
+        delete
+        from web_app_test2.tb_comic_book
     </delete>
 </mapper>

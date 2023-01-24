@@ -29,7 +29,7 @@ public interface BookService {
 
     void removeBookInfo(RemoveBookInfoRequestDTO removeBookInfoRequestDTO) throws Exception;
 
-    void registerBookViewCnt(InsertBookViewCntRequestDTO insertBookViewCntRequestDTO) throws Exception;
-
     List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectBookThumbnailImageUrlDTO selectBookThumbnailImageUrlDTO) throws Exception;
+
+    void registerBookViewCnt(InsertBookViewCntRequestDTO insertBookViewCntRequestDTO) throws Exception;
 }

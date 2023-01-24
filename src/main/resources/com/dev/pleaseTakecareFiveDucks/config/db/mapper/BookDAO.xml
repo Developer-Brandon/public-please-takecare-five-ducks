@@ -110,7 +110,7 @@
         from web_app_test2.tb_book as tb_b
             inner join web_app_test2.tb_book_type as tb_b_t
                 on tb_b.r_book_type_no = tb_b_t.r_book_type_no
-            inner join web_app_test2.tb_book_thumbnail_img as tb_t_i
+            left outer web_app_test2.tb_book_thumbnail_img as tb_t_i
                 on tb_b.r_book_no = tb_t_i.r_book_no
         where tb_b.use_yn = 'y'
         <if test="title != '' and title != null">
@@ -120,7 +120,7 @@
         limit #{offset}, #{pageSize}
     </select>
 
-    <select id="selectBookThumbnailImageListByBookNo"
+    <select id="selectBookThumbnailImageCntByBookNo"
             parameterType="com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.SelectBookThumbnailImageListRequestDTO"
             resultType="com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookThumbnailVO">
         <![CDATA[
@@ -130,7 +130,7 @@
         */
         ]]>
         select r_book_no as bookNo
-        , web_thumbnail_url as webThumbnailUrl
+                , web_thumbnail_url as webThumbnailUrl
         from web_app_test2.tb_book_thumbnail_img
         where r_book_no in (
             <foreach item="item" collection="bookNoList" separator=",">
@@ -147,7 +147,7 @@
         */
         ]]>
         select count(*)
-        from web_app_test2.tb_book_thumbnail_img
+            from web_app_test2.tb_book_thumbnail_img
         where r_book_no = #{bookNo}
     </select>
 

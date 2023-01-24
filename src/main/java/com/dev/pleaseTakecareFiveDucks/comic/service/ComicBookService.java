@@ -1,7 +1,10 @@
 package com.dev.pleaseTakecareFiveDucks.comic.service;
 
+import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
+import com.dev.pleaseTakecareFiveDucks.book.domain.dto.SelectBookThumbnailImageUrlDTO;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookVO;
+import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.result.ComicBookListResultVO;
 
 import java.util.List;
 
@@ -11,7 +14,7 @@ public interface ComicBookService {
 
     void removeAllComicBookInfoList() throws Exception;
 
-    List<ComicBookVO> selectComicBookList(SelectComicBookPaginationRequestDTO selectComicBookPaginationRequestDTO);
+    ComicBookListResultVO selectComicBookPaginationList(SelectComicBookPaginationRequestDTO selectComicBookPaginationRequestDTO);
 
     List<ComicBookVO> selectAllComicBookInfoList();
 
@@ -22,4 +25,8 @@ public interface ComicBookService {
     void modifyComicBookInfo(UpdateComicBookInfoRequestDTO updateComicBookInfoRequestDTO) throws Exception;
 
     void removeComicBookInfo(DeleteComicBookInfoRequestDTO deleteComicBookInfoRequestDTO) throws Exception;
+
+    List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectBookThumbnailImageUrlDTO selectBookThumbnailImageUrlDTO) throws Exception;
+
+    void registerComicBookViewCnt(InsertComicBookViewCntRequestDTO insertComicBookViewCntRequestDTO) throws Exception;
 }

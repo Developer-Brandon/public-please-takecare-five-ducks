@@ -123,11 +123,10 @@ public class BookServiceImpl implements BookService{
         if(!webThumbnailUrl.isEmpty()) {
 
             // 그리고 만약 썸네일 이 있다면 update를 하고, 없다면 insert를 합니다.
-            // (혹시모를 예외처리)
-            if(bookDAO.selectBookThumbnailImageByBookNo(updateBookInfoRequestDTO.getBookNo()) > 0) {
+            // (혹시모를 예외처리입니다)
+            if(bookDAO.selectBookThumbnailImageCntByBookNo(updateBookInfoRequestDTO.getBookNo()) > 0) {
 
                 // 썸네일을 update하기 위한 dto를 준비합니다.
-
                 UpdateBookThumbnailInfoRequestDTO updateBookThumbnailInfoRequestDTO = UpdateBookThumbnailInfoRequestDTO.builder()
                         .bookNo(updateBookInfoRequestDTO.getBookNo())
                         .webThumbnailUrl(webThumbnailUrl)
@@ -154,20 +153,25 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
+    public void removeBookInfo(RemoveBookInfoRequestDTO removeBookInfoRequestDTO) throws Exception {
+
+        // fk 문제 때문에, fk의 맨 마지막에 걸려있는 데이터부터 삭제해야 합니다.
+        if(bookDAO.deleteBookThumbnailInfo(removeBookInfoRequestDTO.getBookNo()) != 1) {
+            throw new Exception();
+        }
+
+        if(bookDAO.deleteBookInfo(removeBookInfoRequestDTO.getBookNo()) != 1) {
+            throw new Exception();
+        }
+    }
+
+    @Override
     public List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectBookThumbnailImageUrlDTO selectBookThumbnailImageUrlDTO) throws Exception {
 
         // todo: 2023-01-24 기준에 book module에 썸네일이 없기 때문에 우선 썸네일을 선택하는 메소드를 비워두고...
         // 입력단에서 default값을 넣어주고, 선택하는 솔루션은 추후에 작업합니다.
 
         return null;
-    }
-
-    @Override
-    public void removeBookInfo(RemoveBookInfoRequestDTO removeBookInfoRequestDTO) throws Exception {
-
-        if(bookDAO.deleteBookInfo(removeBookInfoRequestDTO.getBookNo()) != 1) {
-            throw new Exception();
-        }
     }
 
     @Override

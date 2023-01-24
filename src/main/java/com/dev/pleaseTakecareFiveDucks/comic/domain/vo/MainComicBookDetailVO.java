@@ -10,5 +10,5 @@ public class MainComicBookDetailVO {
     String comicBookTitle;
     String comicBookAuthor;
     String link;
-    String fileFullPath;
+    String webThumbnailUrl;
 }
