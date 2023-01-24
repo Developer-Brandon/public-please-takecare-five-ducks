@@ -78,9 +78,7 @@
                     <a class="book-no"><c:out value="${bookVO.bookNo}"/></a>
                     <a class="book-title">
                         <c:out value="${bookVO.bookTitle}"/>
-                        <span style="display:inline-block;"
-                              onclick="goBookModifierPage('${bookVO.bookNo}')">&nbsp;✍🏻
-                        </span>
+                        <span onclick="goBookModifierPage('${bookVO.bookNo}')">&nbsp;✍🏻</span>
                     </a>
                     <c:choose>
                         <c:when test="${bookVO.bookTypeEnglish == 'SCRIPT'}">

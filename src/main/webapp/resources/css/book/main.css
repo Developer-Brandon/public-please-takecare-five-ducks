@@ -92,6 +92,10 @@
     width: 302px;
 }
 
+.list-section > ul > .item > .book-title > span {
+    display:inline-block;
+}
+
 .list-section > ul > .item > .book-type {
     width: 161px;
     text-align: center;
