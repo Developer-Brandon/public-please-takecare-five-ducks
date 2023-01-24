@@ -16,8 +16,7 @@ public class UpdateDramaInfoRequestDTO {
     String title;
     String author;
     String link;
-    String filePath;
-    String fileName;
+    String webThumbnailUrl;
     BroadcastStateEnum broadcastStateEnum;
     String dramaRegDt;
 }

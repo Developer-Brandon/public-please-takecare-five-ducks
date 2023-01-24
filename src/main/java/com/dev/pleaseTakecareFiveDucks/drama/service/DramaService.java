@@ -1,11 +1,12 @@
 package com.dev.pleaseTakecareFiveDucks.drama.service;
 
 
-import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.InsertDramaInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.SelectDramaInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.UpdateDramaInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.UpdateDramaStateRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
+import com.dev.pleaseTakecareFiveDucks.book.domain.dto.SelectBookThumbnailImageUrlDTO;
+import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.SelectDramaThumbnailImageUrlDTO;
+import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaVO;
+import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.result.DramaListResultVO;
 
 import java.util.List;
 
@@ -15,9 +16,9 @@ public interface DramaService {
 
     void removeAllDramaInfoList() throws Exception;
 
-    List<DramaVO> selectDramaList();
+    DramaListResultVO selectDramaPaginationList(SelectDramaPaginationDTO selectDramaPaginationDTO) throws Exception;
 
-    List<DramaVO> selectAllDramaInfoList();
+    List<DramaVO> selectAllDramaInfoList() throws Exception;
 
     DramaVO selectDramaInfo(SelectDramaInfoRequestDTO selectDramaInfoRequestDTO);
 
@@ -28,4 +29,8 @@ public interface DramaService {
     void modifyDramaState(UpdateDramaStateRequestDTO updateDramaStateRequestDTO) throws Exception;
 
     void removeDramaInfo(Integer No) throws Exception;
+
+    List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectDramaThumbnailImageUrlDTO selectDramaThumbnailImageUrlDTO) throws Exception;
+
+    void registerDramaViewCnt(InsertDramaViewCntRequestDTO insertDramaViewCntRequestDTO) throws Exception;
 }

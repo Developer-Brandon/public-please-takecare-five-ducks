@@ -22,7 +22,7 @@ public class DramaVO {
     BroadcastStateEnum broadcastStateEnum;
     DramaUseYnEnum dramaUseYnEnum;
     Integer viewCnt;
-    String fileFullPath;
+    String webThumbnailUrl;
     String dramaRegDt;
     String regDt;
 }

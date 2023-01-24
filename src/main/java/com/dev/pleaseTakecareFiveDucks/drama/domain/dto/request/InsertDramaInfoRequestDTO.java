@@ -16,8 +16,7 @@ public class InsertDramaInfoRequestDTO {
     String title;
     String author;
     String link;
-    String filePath;
-    String fileName;
+    String webThumbnailUrl;
     Integer viewCnt;
     BroadcastStateEnum broadcastStateEnum;
     String dramaRegDt;

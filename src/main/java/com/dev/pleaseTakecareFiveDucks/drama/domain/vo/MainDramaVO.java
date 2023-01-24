@@ -8,6 +8,6 @@ import lombok.Setter;
 public class MainDramaVO {
     String dramaTitle;
     String link;
-    String fileFullPath;
+    String webThumbnailUrl;
     Integer viewCnt;
 }

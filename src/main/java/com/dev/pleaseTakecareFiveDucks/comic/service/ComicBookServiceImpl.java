@@ -123,9 +123,7 @@ public class ComicBookServiceImpl implements ComicBookService{
         // 만약 썸네일을 첨부했다면....
         String webThumbnailUrl = updateComicBookInfoRequestDTO.getWebThumbnailUrl();
 
-
         if(!webThumbnailUrl.isEmpty()) {
-
 
             // 그리고 만약 썸네일 이 있다면 update를 하고, 없다면 insert를 합니다.
             // (사실상 말이 안되는 로직이긴 합니다, 왜냐하면 insert당시에 필수적으로 값을 밀어넣게끔 되어있기 때문에....)
@@ -174,7 +172,7 @@ public class ComicBookServiceImpl implements ComicBookService{
     @Override
     public List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectBookThumbnailImageUrlDTO selectBookThumbnailImageUrlDTO) throws Exception {
 
-        String animeName = selectBookThumbnailImageUrlDTO.getComicBookName();
+        String comicBookName = selectBookThumbnailImageUrlDTO.getComicBookName();
 
         JSONObject json = null;
 
@@ -192,7 +190,7 @@ public class ComicBookServiceImpl implements ComicBookService{
 
         try {
 
-            res = Jsoup.connect(SEARCH_API_URL + "?key=" + API_KEY + "&cx=" + SEARCH_ENGINE_ID + "&q=" + animeName)
+            res = Jsoup.connect(SEARCH_API_URL + "?key=" + API_KEY + "&cx=" + SEARCH_ENGINE_ID + "&q=" + comicBookName)
                     .ignoreContentType(true)
                     .userAgent(USER_AGENT)
                     .execute();

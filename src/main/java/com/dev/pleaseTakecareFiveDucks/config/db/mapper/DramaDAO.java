@@ -13,13 +13,15 @@ public interface DramaDAO {
 
     int getDramaTotalCnt();
 
-    int deleteAll();
+    int getTotalCntByCondition(SelectDramaPaginationDTO selectDramaPaginationDTO);
 
     List<DramaVO> selectAllDramaList();
 
-    List<DramaVO> selectDramaList(SelectDramaInfoRequestDTO selectDramaInfoRequestDTO);
+    List<DramaVO> selectDramaPaginationList(SelectDramaPaginationDTO selectDramaPaginationDTO);
 
     List<DramaThumbnailVO> selectDramaThumbnailImageListByDramaNo(SelectDramaThumbnailImageListRequestDTO selectDramaThumbnailImageListRequestDTO);
+
+    int selectDramaThumbnailImageCntByDramaNo(Integer dramaNo);
 
     DramaVO selectDramaInfo(SelectDramaInfoRequestDTO selectDramaInfoRequestDTO);
 
@@ -34,6 +36,8 @@ public interface DramaDAO {
     int updateDramaThumbnailInfo(UpdateDramaThumbnailInfoRequestDTO updateDramaThumbnailInfoRequestDTO);
 
     int updateDramaState(UpdateDramaStateRequestDTO updateDramaStateRequestDTO);
+
+    int deleteAll();
 
     int deleteDramaInfo(Integer bookNo);
 
