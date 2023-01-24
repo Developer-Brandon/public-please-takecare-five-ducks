@@ -9,15 +9,19 @@ import java.util.List;
 
 public interface MovieDAO {
 
-    List<MainMovieVO> selectMainMovieList();
-
     int getMovieTotalCnt();
+
+    int getTotalCntByCondition(SelectMoviePaginationRequestDTO selectMoviePaginationRequestDTO);
 
     int deleteAll();
 
     List<MovieVO> selectAllMovieList();
 
-    List<MovieVO> selectMovieList(SelectMoviePaginationRequestDTO selectMoviePaginationRequestDTO);
+    List<MainMovieVO> selectMainMovieList();
+
+    List<MovieVO> selectMoviePaginationList(SelectMoviePaginationRequestDTO selectMoviePaginationRequestDTO);
+
+    int selectMovieThumbnailImageCntByMovieNo(Integer movieNo);
 
     List<MovieThumbnailVO> selectMovieThumbnailImageListByMovieNo(SelectMovieThumbnailImageListRequestDTO selectMovieThumbnailImageListRequestDTO);
 

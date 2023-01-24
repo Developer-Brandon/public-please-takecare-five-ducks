@@ -20,7 +20,7 @@ public class MovieVO {
     String link;
     Integer totalNumberOfEpisode;
     Integer viewCnt;
-    String fileFullPath;
+    String webThumbnailUrl;
     MovieUseYnEnum movieUseYnEnum;
     String movieRegDt;
     String regDt;

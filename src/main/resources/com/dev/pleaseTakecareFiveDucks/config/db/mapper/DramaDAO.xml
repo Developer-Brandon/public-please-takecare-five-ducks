@@ -99,6 +99,9 @@
         left outer join (<include refid="selectMainDramaViewCnt"/>) as tb_d_v
         on tb_d.r_drama_no = tb_d_v.r_drama_no
         where tb_d.use_yn = 'y'
+        <if test="title != '' and title != null">
+            and tb_d.title like concat('%',#{title}, '%')
+        </if>
         order by tb_d.reg_dt desc
         limit #{offset}, #{pageSize}
     </select>
@@ -123,7 +126,8 @@
     </select>
 
     <select id="selectDramaThumbnailImageCntByDramaNo"
-            resultType="Integer">
+            parameterType="int"
+            resultType="int">
         <![CDATA[
         /*
             dramaNo 기반 썸네일 개수 조회

@@ -57,8 +57,7 @@ public class MovieDAOTests {
                 .build();
 
         insertMovieThumbnailInfoRequestDTO = InsertMovieThumbnailInfoRequestDTO.builder()
-                .fileName("movie")
-                .filePath("no_name.png")
+                .webThumbnailUrl("default")
                 .build();
     }
 

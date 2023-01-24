@@ -136,7 +136,6 @@ public class DramaServiceImpl implements DramaService{
             if(dramaDAO.selectDramaThumbnailImageCntByDramaNo(updateDramaInfoRequestDTO.getDramaNo()) > 0) {
 
                 // 썸네일을 update하기 위한 dto를 준비합니다.
-
                 UpdateDramaThumbnailInfoRequestDTO updateDramaThumbnailInfoRequestDTO = UpdateDramaThumbnailInfoRequestDTO.builder()
                         .dramaNo(updateDramaInfoRequestDTO.getDramaNo())
                         .webThumbnailUrl(updateDramaInfoRequestDTO.getWebThumbnailUrl())

@@ -1,11 +1,12 @@
 package com.dev.pleaseTakecareFiveDucks.movie.service;
 
 
-import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.InsertMovieInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.SelectMovieInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.UpdateMovieInfoRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.UpdateMovieStateRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
+import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.SelectDramaThumbnailImageUrlDTO;
+import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.SelectMovieThumbnailImageUrlDTO;
+import com.dev.pleaseTakecareFiveDucks.movie.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.movie.domain.vo.MovieVO;
+import com.dev.pleaseTakecareFiveDucks.movie.domain.vo.result.MovieListResultVO;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface MovieService {
 
     void removeAllMovieInfoList() throws Exception;
 
-    List<MovieVO> selectMovieList();
+    MovieListResultVO selectMoviePaginationList(SelectMoviePaginationRequestDTO selectMoviePaginationRequestDTO) throws Exception;
 
     List<MovieVO> selectAllMovieInfoList();
 
@@ -28,4 +29,8 @@ public interface MovieService {
     void modifyMovieState(UpdateMovieStateRequestDTO updateMovieStateRequestDTO) throws Exception;
 
     void removeMovieInfo(Integer movieNo) throws Exception;
+
+    List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectMovieThumbnailImageUrlDTO selectMovieThumbnailImageUrlDTO) throws Exception;
+
+    void registerDramaViewCnt(InsertMovieViewCntRequestDTO insertMovieViewCntRequestDTO) throws Exception;
 }

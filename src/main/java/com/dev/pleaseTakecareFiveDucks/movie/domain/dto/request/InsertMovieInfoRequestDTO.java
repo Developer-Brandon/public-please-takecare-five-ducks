@@ -23,9 +23,7 @@ public class InsertMovieInfoRequestDTO {
 
     Integer totalNumberOfEpisode;
 
-    String filePath;
-
-    String fileName;
+    String webThumbnailUrl;
 
     String movieRegDt;
 }

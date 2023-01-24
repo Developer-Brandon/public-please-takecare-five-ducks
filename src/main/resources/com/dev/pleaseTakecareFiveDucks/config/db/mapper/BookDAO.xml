@@ -140,7 +140,8 @@
     </select>
 
     <select id="selectBookThumbnailImageByBookNo"
-            resultType="Integer">
+            parameterType="int"
+            resultType="int">
         <![CDATA[
         /*
             bookNo 기반 썸네일 개수 조회

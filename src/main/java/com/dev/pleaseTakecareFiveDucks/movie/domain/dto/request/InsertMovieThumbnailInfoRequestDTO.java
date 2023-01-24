@@ -9,6 +9,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class InsertMovieThumbnailInfoRequestDTO {
     Integer movieNo;
-    String filePath;
-    String fileName;
+    String webThumbnailUrl;
 }
