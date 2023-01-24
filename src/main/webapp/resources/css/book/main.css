@@ -1,0 +1,262 @@
+.body__inner {
+    width: 704px;
+    height: auto;
+    margin: 0 auto;
+    padding: 25px 0;
+}
+
+.top {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-bottom: 32px;
+}
+
+.top > .top__left {
+    width: 50%;
+}
+
+.top > .top__left > .title {
+    font-size: 24px;
+    font-weight: 600 !important;
+    line-height: 29px;
+    cursor: default;
+}
+
+.top > .top__right {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.top > .top__right > .register-text {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 600 !important;
+    line-height: 29px;
+    transition: 0.4s;
+}
+
+.top > .top__right > .register-text:hover {
+    font-size: 27px;
+    font-weight: 900 !important;
+    line-height: 33px;
+    color: #2400FF;
+    cursor: pointer;
+}
+
+/* list section 시작 */
+
+.list-section {
+    margin-bottom: 10px;
+}
+
+.list-section > ul {
+    height: 500px;
+}
+
+.list-section > ul > li {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center; /* 글자라서 */
+    margin: 0;
+    padding: 0;
+}
+
+.list-section > ul > .item {
+    height: 50px;
+    font-size: 15px;
+    line-height: 18px;
+    transition: 0.4s;
+}
+
+.list-section > ul > .item:hover {
+    background-color: #D9D9D9;
+    cursor: pointer;
+}
+
+.list-section > ul > .item > a {
+    display: inline-block;
+    color: #000000;
+}
+
+.list-section > ul > .item > .book-no {
+    width: 55px;
+    text-align: center;
+}
+
+.list-section > ul > .item > .book-title {
+    width: 302px;
+}
+
+.list-section > ul > .item > .book-type {
+    width: 161px;
+    text-align: center;
+    font-weight: 900!important;
+}
+
+.list-section > ul > .item > .book-type.script {
+    color: #FF0000;
+}
+
+.list-section > ul > .item > .book-type.book-summary {
+    color: #0500FF;
+}
+
+.list-section > ul > .item > .book-type.book-pdf {
+    color: #FFF500;
+}
+
+.list-section > ul > .item > .book-type.study-summary {
+    color: #04CF00;
+}
+
+.list-section > ul > .item > .book-type.lecture-summary {
+    color: #7CA800;
+}
+
+.list-section > ul > .item > .book-type.novel {
+    color: #CF0095;
+}
+
+.list-section > ul > .item > .book-author {
+    width: 95px;
+    text-align: center;
+}
+
+.list-section > ul > .item > .book-reg-dt {
+    width: 87px;
+    text-align: center;
+    padding-right: 3px;
+}
+
+.search-section {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.wrap-search-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.wrap-search-input > .search-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600 !important;
+    line-height: 18px;
+    margin-right: 9px;
+}
+
+.wrap-search-input > .search-text:hover {
+    cursor: pointer;
+}
+
+.wrap-search-input > .search-input {
+    width: 158px;
+    border: 1px solid #B1B0B0;
+    border-radius: 40px;
+    padding: 4px 15px;
+    font-size: 15px;
+    font-weight: 600 !important;
+    line-height: 18px;
+}
+
+/* pagination section 시작 */
+.pagination-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 75px;
+}
+
+.pagination-section > .pagination-section__inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-section > .pagination-section__inner > a {
+    display: block;
+    color: black;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.pagination-section > .pagination-section__inner > a.first-left-side {
+    margin-right: 10px;
+}
+
+.pagination-section > .pagination-section__inner > a.last-right-side {
+    margin-left: 10px;
+}
+
+.pagination-section > .pagination-section__inner > a:hover {
+    font-weight: 800!important;
+}
+
+.pagination-section > .pagination-section__inner > ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    /**/
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-section > .pagination-section__inner > ul > li {
+    width: 25px;
+    height: 25px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 22px;
+    padding: 0;
+    transition: 0.2s;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    /**/
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-section > .pagination-section__inner > ul > li:first-child {
+    margin-left: 9px !important;
+}
+
+.pagination-section > .pagination-section__inner > ul > li:last-child {
+    margin-right: 9px !important;
+}
+
+.pagination-section > .pagination-section__inner > ul > li:hover {
+    background-color: #D9D9D9;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.pagination-section > .pagination-section__inner > ul > li.active {
+    background-color: #B1B0B0;
+    border-radius: 25px;
+}
+
+
+.pagination-section > .pagination-section__inner > ul > li > a {
+    display: block;
+    width: 25px;
+    height: 25px;
+    color: black;
+    font-size: 15px;
+    text-align: center;
+    line-height: 25px;
+    font-weight: 600 !important;
+}

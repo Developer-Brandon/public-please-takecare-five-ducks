@@ -1,8 +1,8 @@
-package com.dev.pleaseTakecareFiveDucks.anime.controller;
+package com.dev.pleaseTakecareFiveDucks.book.controller;
 
-import com.dev.pleaseTakecareFiveDucks.anime.domain.dto.request.SelectAnimePaginationRequestDTO;
-import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.result.AnimeListResultVO;
-import com.dev.pleaseTakecareFiveDucks.anime.service.AnimeService;
+import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.SelectBookPaginationRequestDTO;
+import com.dev.pleaseTakecareFiveDucks.book.domain.vo.result.BookListResultVO;
+import com.dev.pleaseTakecareFiveDucks.book.service.BookService;
 import com.dev.pleaseTakecareFiveDucks.config.controller.BaseController;
 import com.dev.pleaseTakecareFiveDucks.contents.service.ContentsMadeNatureService;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,11 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping("/anime")
+@RequestMapping("/book")
 @RequiredArgsConstructor
-public class AnimeController extends BaseController {
+public class BookController extends BaseController {
 
-    private final AnimeService animeService;
+    private final BookService bookService;
 
     private final ContentsMadeNatureService contentsMadeNatureService;
 
@@ -41,7 +40,7 @@ public class AnimeController extends BaseController {
             currentPage = 1;
         }
 
-        SelectAnimePaginationRequestDTO selectAnimePaginationRequestDTO = SelectAnimePaginationRequestDTO.builder()
+        SelectBookPaginationRequestDTO selectBookPaginationRequestDTO = SelectBookPaginationRequestDTO.builder()
                 .currentPage(currentPage)
                 .build();
 
@@ -49,11 +48,11 @@ public class AnimeController extends BaseController {
             title = "";
         }
 
-        selectAnimePaginationRequestDTO.setTitle(title);
+        selectBookPaginationRequestDTO.setTitle(title);
 
-        AnimeListResultVO animeListResultVO = animeService.selectAnimePaginationList(selectAnimePaginationRequestDTO);
+        BookListResultVO bookListResultVO = bookService.selectBookPaginationList(selectBookPaginationRequestDTO);
 
-        model.addAttribute("animeListResultVO", animeListResultVO);
+        model.addAttribute("bookListResultVO", bookListResultVO);
 
         // TODO: 추후 게시판 검색창에 쿠키개념 도입 예정
         //        https://velog.io/@max9106/JSP-Cookie%EC%BF%A0%ED%82%A4-p4k5b1auzs
@@ -83,36 +82,6 @@ public class AnimeController extends BaseController {
         //            }
         //        }
 
-        return "/anime/main";
-    }
-
-    @GetMapping(value = "/register")
-    public String goRegisterPage(
-            HttpServletRequest request
-            , Model model
-    ) throws Exception {
-
-        model.addAttribute("animeFinalizedList", animeService.selectAnimeFinalizedList());
-
-        model.addAttribute("contentsMadeNatureInfoList", contentsMadeNatureService.selectContentsMadeNatureInfoList());
-
-        return "/anime/register";
-    }
-
-    @GetMapping(value = "/modifier/{animeNo}")
-    public String goModifierPage(
-            HttpServletRequest request
-            , Model model
-            , @PathVariable
-                    Integer animeNo
-    ) throws Exception {
-
-        model.addAttribute("animeNo", animeNo);
-
-        model.addAttribute("animeFinalizedList", animeService.selectAnimeFinalizedList());
-
-        model.addAttribute("contentsMadeNatureInfoList", contentsMadeNatureService.selectContentsMadeNatureInfoList());
-
-        return "/anime/modifier";
+        return "/book/main";
     }
 }
