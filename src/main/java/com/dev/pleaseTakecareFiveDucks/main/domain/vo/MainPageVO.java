@@ -3,8 +3,6 @@ package com.dev.pleaseTakecareFiveDucks.main.domain.vo;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.MainAnimeVO;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.MainBookVO;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.MainComicBookDetailVO;
-import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.MainDramaVO;
-import com.dev.pleaseTakecareFiveDucks.movie.domain.vo.MainMovieVO;
 import lombok.Builder;
 import lombok.Getter;
 
