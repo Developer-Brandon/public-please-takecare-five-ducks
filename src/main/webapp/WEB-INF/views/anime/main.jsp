@@ -27,9 +27,7 @@
     <%--        }--%>
 
     <%--        System.out.println(">>클라이언트가 전송한 쿠키정보:"+oldSearchTitle+"["+request.getRemoteAddr()+"]");--%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/component/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/anime/main.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
     <script type="text/javascript">
      function goAnimeRegisterPage() {
       location.href = './register'

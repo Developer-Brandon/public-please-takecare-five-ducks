@@ -1,14 +1,10 @@
 package com.dev.pleaseTakecareFiveDucks.drama.service;
 
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.SelectBookThumbnailImageUrlDTO;
-import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookVO;
-import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.result.ComicBookListResultVO;
 import com.dev.pleaseTakecareFiveDucks.config.db.mapper.DramaDAO;
 import com.dev.pleaseTakecareFiveDucks.config.util.PageHandler;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.SelectDramaThumbnailImageUrlDTO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.*;
-import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.result.DramaListResultVO;
 import lombok.RequiredArgsConstructor;

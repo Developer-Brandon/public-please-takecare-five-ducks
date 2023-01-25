@@ -1,7 +1,7 @@
 package com.dev.pleaseTakecareFiveDucks.book.service;
 
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.SelectBookThumbnailImageUrlDTO;
+import com.dev.pleaseTakecareFiveDucks.book.domain.dto.SelectBookThumbnailDTO;
 import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookTypeVO;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
@@ -29,7 +29,7 @@ public interface BookService {
 
     void removeBookInfo(DeleteBookInfoRequestDTO deleteBookInfoRequestDTO) throws Exception;
 
-    List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectBookThumbnailImageUrlDTO selectBookThumbnailImageUrlDTO) throws Exception;
+    List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectBookThumbnailDTO selectBookThumbnailDTO) throws Exception;
 
     void registerBookViewCnt(InsertBookViewCntRequestDTO insertBookViewCntRequestDTO) throws Exception;
 }

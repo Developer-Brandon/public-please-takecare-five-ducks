@@ -1,13 +1,12 @@
 package com.dev.pleaseTakecareFiveDucks.comic.service;
 
-import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.SelectBookThumbnailImageUrlDTO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.vo.result.BookListResultVO;
+import com.dev.pleaseTakecareFiveDucks.comic.domain.dto.SelectComicBookThumbnailDTO;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.*;
-import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookThumbnailVO;
+import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookSerialStateVO;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookVO;
+import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.RawImageThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.result.ComicBookListResultVO;
+import com.dev.pleaseTakecareFiveDucks.comic.util.ComicBookSerialStateEnum;
 import com.dev.pleaseTakecareFiveDucks.config.db.mapper.ComicBookDAO;
 import com.dev.pleaseTakecareFiveDucks.config.util.PageHandler;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +30,17 @@ public class ComicBookServiceImpl implements ComicBookService{
     @Override
     public Integer selectComicBookTotalCnt() {
         return comicBookDAO.getComicBookTotalCnt();
+    }
+
+    @Override
+    public List<ComicBookSerialStateVO> selectComicBookSerialStateList() throws Exception {
+
+        ArrayList<ComicBookSerialStateVO> comicBookSerialStateVOArrayList = new ArrayList<>();
+        comicBookSerialStateVOArrayList.add(ComicBookSerialStateVO.builder().comicBookSerialStateEnum(ComicBookSerialStateEnum.being).build());
+        comicBookSerialStateVOArrayList.add(ComicBookSerialStateVO.builder().comicBookSerialStateEnum(ComicBookSerialStateEnum.finished).build());
+        comicBookSerialStateVOArrayList.add(ComicBookSerialStateVO.builder().comicBookSerialStateEnum(ComicBookSerialStateEnum.vacation).build());
+
+        return comicBookSerialStateVOArrayList;
     }
 
     @Override
@@ -170,9 +180,9 @@ public class ComicBookServiceImpl implements ComicBookService{
     }
 
     @Override
-    public List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectBookThumbnailImageUrlDTO selectBookThumbnailImageUrlDTO) throws Exception {
+    public ArrayList<RawImageThumbnailVO> selectImageThumbnailVOList(SelectComicBookThumbnailDTO selectComicBookThumbnailDTO) throws Exception {
 
-        String comicBookName = selectBookThumbnailImageUrlDTO.getBookName();
+        String comicBookName = selectComicBookThumbnailDTO.getComicBookName();
 
         JSONObject json = null;
 
@@ -229,7 +239,7 @@ public class ComicBookServiceImpl implements ComicBookService{
                 }
             });
 
-            return animeImageUrlList
+            return (ArrayList<RawImageThumbnailVO>) animeImageUrlList
                     .stream()
                     .filter(e -> !e.isEmpty())
                     .map(e2 -> RawImageThumbnailVO.builder()

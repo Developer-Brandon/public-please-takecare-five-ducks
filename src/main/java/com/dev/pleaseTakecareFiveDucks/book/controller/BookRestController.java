@@ -1,6 +1,6 @@
 package com.dev.pleaseTakecareFiveDucks.book.controller;
 
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.SelectBookThumbnailImageUrlDTO;
+import com.dev.pleaseTakecareFiveDucks.book.domain.dto.SelectBookThumbnailDTO;
 import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.result.BookListResultVO;
@@ -34,12 +34,12 @@ public class BookRestController extends BaseController {
                     String bookName
     ) throws Exception {
 
-        SelectBookThumbnailImageUrlDTO selectBookThumbnailImageUrlDTO = SelectBookThumbnailImageUrlDTO.builder()
+        SelectBookThumbnailDTO selectBookThumbnailDTO = SelectBookThumbnailDTO.builder()
                 .bookName(bookName)
                 .build();
 
         return RawImageThumbnailResultVO.builder()
-                .rawImageThumbnailVOArrayList((ArrayList<RawImageThumbnailVO>) bookService.selectImageThumbnailVOList(selectBookThumbnailImageUrlDTO))
+                .rawImageThumbnailVOArrayList((ArrayList<RawImageThumbnailVO>) bookService.selectImageThumbnailVOList(selectBookThumbnailDTO))
                 .build();
     }
 

@@ -1,0 +1,291 @@
+.font-weight-bold {
+    font-weight: 900!important;
+    font-size: 20px !important;
+}
+
+.required-symbol {
+    color: red;
+}
+
+/**/
+
+
+.body__inner {
+    width: 704px;
+    height: auto;
+    margin: 0 auto;
+    padding: 25px 0;
+}
+
+.anime-banner {
+    width:100%;
+    height:190px;
+    background-color: #D9D9D9;
+}
+
+.anime-banner > .anime-banner__inner {
+}
+
+.top {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-bottom: 25px;
+}
+
+.top > .top__left {
+    width: 50%;
+    cursor: default
+}
+
+.top > .top__left > .title {
+    font-size: 24px;
+    font-weight: 600 !important;
+    line-height: 45px;
+    border-bottom: 1px solid black;
+}
+
+.top > .top__right {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.thumbnail-section {
+}
+
+.thumbnail-section > .thumbnail-section__inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.thumbnail-section > .thumbnail-section__inner > .thumbnail {
+    width: 120px;
+    height: 120px;
+    border-radius: 25px;
+}
+
+.thumbnail-section > .thumbnail-section__inner > .default-thumbnail {
+    width: 200px;
+    height: 200px;
+    background-color: #D9D9D9;
+    border-radius: 25px;
+}
+
+.item-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+}
+
+.item-section > .item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-bottom:10px;
+}
+
+.item-section > .item:last-child {
+    margin-bottom: 0;
+}
+
+.item-section > .item > .item__left{
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.item > .item__right > .content {
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: -0.2px !important;
+}
+
+.item > .item__left > .thumbnail{
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: -0.2px !important;
+    font-weight: 600 !important;
+}
+
+.item-section > .item > .item__right{
+}
+
+.item > .item__right > p {
+    font-weight: 600 !important;
+}
+
+.item > .item__right > input {
+}
+
+.item > .item__left > .title {
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: -0.2px !important;
+    font-weight: 600 !important;
+}
+
+.item > .item__right > .thumbnail-input {
+    width: 250px;
+    margin-right: 15px;
+    background-color: #D9D9D9;
+    border-color: #D9D9D9;
+    border-radius: 3px;
+    cursor: default;
+}
+
+.item > .item__right > .thumbnail-input:hover{
+    border-color: #D9D9D9;
+}
+
+.item > .item__right > .thumbnail-input:active{
+    border-color: #D9D9D9;
+}
+
+.item > .item__right > .title-input {
+    margin-right: 10px;
+}
+
+.item > .item__right > .find-thumbnail-button {
+    font-size: 17px;
+    line-height: 25px;
+    width: 120px;
+    cursor: pointer;
+    color: #6F6D6D;
+    background-color: white;
+    border: 1px solid #6F6D6D;
+    border-radius: 5px;
+    transition: 0.4s;
+}
+
+.item > .item__right > .find-thumbnail-button:hover {
+    color: white;
+    background-color: #6F6D6D;
+    border: 1px solid white;
+}
+
+
+.item > .item__right > .author-input {
+    width: 120px;
+}
+
+
+.item > .item__right > ul > li >.finalized-text {
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: -0.2px !important;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.item > .item__right > ul > li >.finalized-text:hover{
+    font-weight: 900!important;
+}
+
+.item > .item__right > .board-cast-cnt-text{
+    font-size: 17px;
+}
+
+.item > .item__right > .board-cast-cnt-input {
+    width: 58px;
+}
+
+.item > .item__right > .anime-reg-dt {
+    width: 88px;
+}
+
+.item > .item__right > ul > li > .made-nature-no-text {
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: -0.2px !important;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.item > .item__right > ul > li > .made-nature-no-text:hover {
+    font-weight: 900!important;
+}
+
+.item > .item__right > .import-link {
+    width: 300px;
+}
+
+/* 썸네일 프리뷰 리스트 */
+.thumbnail-preview-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    transition: 0.2s;
+}
+
+
+.thumbnail-preview-list > .thumbnail {
+    width: 200px;
+    height: 200px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.modifier-bottom {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-bottom: 59px;
+}
+
+.modifier-bottom > .modifier-bottom__inner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.modifier-bottom > .modifier-bottom__inner > .modifier-bottom__inner__left {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.modifier-bottom__inner__left > .delete-text {
+    font-size: 25px;
+    line-height: 30px;
+    transition: 0.4s;
+}
+
+.modifier-bottom__inner__left > .delete-text:hover {
+    font-size: 27px;
+    line-height: 33px;
+    font-weight: 900 !important;
+    color: #FF0000;
+    cursor: pointer;
+}
+
+
+.modifier-bottom > .modifier-bottom__inner > .modifier-bottom__inner__right {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+}
+
+
+.modifier-bottom__inner__right > .modify-text {
+    font-size: 25px;
+    line-height: 30px;
+    transition: 0.4s;
+}
+
+.modifier-bottom__inner__right > .modify-text:hover {
+    font-size: 27px;
+    line-height: 33px;
+    font-weight: 900 !important;
+    color: #E0CA00;
+    cursor: pointer;
+}

@@ -37,7 +37,7 @@
                                 <a href="${pageContext.request.contextPath}/book/main">책</a>
                             </li>
                             <li class="menu-list-li">
-                                <a href="${pageContext.request.contextPath}/comicBook/main">만화책</a>
+                                <a href="${pageContext.request.contextPath}/comic/main">만화책</a>
                             </li>
                             <li class="menu-list-li">
                                 <a href="${pageContext.request.contextPath}/drama/main">드라마</a>

@@ -1,7 +1,7 @@
 package com.dev.pleaseTakecareFiveDucks.book.service;
 
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.SelectBookThumbnailImageUrlDTO;
+import com.dev.pleaseTakecareFiveDucks.book.domain.dto.SelectBookThumbnailDTO;
 import com.dev.pleaseTakecareFiveDucks.book.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookTypeVO;
 import com.dev.pleaseTakecareFiveDucks.book.domain.vo.BookVO;
@@ -166,7 +166,7 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectBookThumbnailImageUrlDTO selectBookThumbnailImageUrlDTO) throws Exception {
+    public List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectBookThumbnailDTO selectImageThumbnailVOList) throws Exception {
 
         // todo: 2023-01-24 기준에 book module에 썸네일이 없기 때문에 우선 썸네일을 선택하는 메소드를 비워두고...
         // 입력단에서 default값을 넣어주고, 선택하는 솔루션은 추후에 작업합니다.

@@ -1,16 +1,20 @@
 package com.dev.pleaseTakecareFiveDucks.comic.service;
 
-import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.SelectBookThumbnailImageUrlDTO;
+import com.dev.pleaseTakecareFiveDucks.comic.domain.dto.SelectComicBookThumbnailDTO;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.dto.request.*;
+import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookSerialStateVO;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.ComicBookVO;
+import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.RawImageThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.result.ComicBookListResultVO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ComicBookService {
 
-    Integer selectComicBookTotalCnt();
+    Integer selectComicBookTotalCnt() throws Exception;
+
+    List<ComicBookSerialStateVO> selectComicBookSerialStateList() throws Exception;
 
     void removeAllComicBookInfoList() throws Exception;
 
@@ -26,7 +30,7 @@ public interface ComicBookService {
 
     void removeComicBookInfo(DeleteComicBookInfoRequestDTO deleteComicBookInfoRequestDTO) throws Exception;
 
-    List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectBookThumbnailImageUrlDTO selectBookThumbnailImageUrlDTO) throws Exception;
+    ArrayList<RawImageThumbnailVO> selectImageThumbnailVOList(SelectComicBookThumbnailDTO selectComicBookThumbnailDTO) throws Exception;
 
     void registerComicBookViewCnt(InsertComicBookViewCntRequestDTO insertComicBookViewCntRequestDTO) throws Exception;
 }

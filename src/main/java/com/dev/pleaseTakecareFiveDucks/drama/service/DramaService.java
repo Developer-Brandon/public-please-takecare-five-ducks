@@ -2,7 +2,6 @@ package com.dev.pleaseTakecareFiveDucks.drama.service;
 
 
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
-import com.dev.pleaseTakecareFiveDucks.book.domain.dto.SelectBookThumbnailImageUrlDTO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.SelectDramaThumbnailImageUrlDTO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.*;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaVO;
