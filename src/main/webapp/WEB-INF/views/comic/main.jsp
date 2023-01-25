@@ -84,7 +84,7 @@
     <%-- 상단의 제목 시작 --%>
     <div class="top">
         <div class="top__left">
-            <p class="title">애니 모음</p>
+            <p class="title">만화책 모음</p>
         </div>
         <div class="top__right">
             <p class="register-text" onclick="goComicBookRegisterPage()">등록하기</p>

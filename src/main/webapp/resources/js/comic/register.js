@@ -1,28 +1,33 @@
 let thumbnailImageUrl = ''
-let finalizedStateEnum = ''
+let serialStateEnum = ''
 let contentsMadeNatureNo = ''
-let broadCastCnt = ''
-let animeRegDt = ''
+let comicRegDt = ''
 
 function enterInputValue() {
  $(".find-thumbnail-button").click();
 }
 
 /** 방영상태를 클릭했을때에 호출되는 메소드입니다. */
-function selectSerialState(finalizedYnEnum) {
+function selectSerialState(serialState) {
 
- finalizedStateEnum = finalizedYnEnum
+ serialStateEnum = serialState
 
- if (finalizedYnEnum === 'y') {
-  $('.finalized-text-y').addClass('font-weight-bold')
-  $('.finalized-text-n').removeClass('font-weight-bold')
- } else {
-  $('.finalized-text-n').addClass('font-weight-bold');
-  $('.finalized-text-y').removeClass('font-weight-bold')
+ if (serialStateEnum === 'being') {
+  $('.being').addClass('font-weight-bold')
+  $('.finished').removeClass('font-weight-bold')
+  $('.vacation').removeClass('font-weight-bold')
+ } else if(serialStateEnum === 'finished') {
+  $('.finished').addClass('font-weight-bold')
+  $('.being').removeClass('font-weight-bold')
+  $('.vacation').removeClass('font-weight-bold')
+ } else if(serialStateEnum === 'vacation') {
+  $('.vacation').addClass('font-weight-bold')
+  $('.finished').removeClass('font-weight-bold')
+  $('.being').removeClass('font-weight-bold')
  }
 }
 
-/** 애니 제작 국가 선택 시 호출하는 메소드 */
+/** 만화책 제작 국가 선택 시 호출하는 메소드 */
 function selectMadeNature(madeNatureNo, size) {
 
  contentsMadeNatureNo = madeNatureNo
@@ -53,6 +58,11 @@ function validationFormInfo() {
   }
  }
 
+ if (serialStateEnum === '') {
+  alert("연재상태는 필수 입력사항입니다.")
+  return
+ }
+
  if ($('.author-input').val() === '') {
   alert("작가이름은 필수 입력 사항입니다.")
   return
@@ -63,25 +73,14 @@ function validationFormInfo() {
   }
  }
 
- if (finalizedStateEnum === '') {
-  alert("방영상태는 필수 입력사항입니다.")
-  return
- }
-
- if ($('.board-cast-cnt-input').val() === '') {
-  broadCastCnt = 0
+ if ($('.comic-reg-dt').val() === '') {
+  comicRegDt = 20000101
  } else {
-  broadCastCnt = $('.board-cast-cnt-input').val()
- }
-
- if ($('.anime-reg-dt').val() === '') {
-  animeRegDt = 20000101
- } else {
-  if($('.anime-reg-dt').val().length !== 8) {
+  if($('.comic-reg-dt').val().length !== 8) {
    alert("8글자 형식으로 입력해주셔야합니다\n(Example)19911220")
    return
   } else {
-   animeRegDt = $('.anime-reg-dt').val()
+   comicRegDt = $('.comic-reg-dt').val()
   }
  }
 
@@ -105,21 +104,20 @@ $(function () {
 
   validationFormInfo()
 
-  let insertedAnimeInfoForm = {
+  let insertedComicInfoForm = {
    madeNatureNo: Number(contentsMadeNatureNo)
    , title: $('.title-input').val()
    , author: $('.author-input').val()
    , link: $('.import-link').val()
    , webThumbnailUrl: thumbnailImageUrl
-   , finalizedYnEnum: finalizedStateEnum
-   , animeBroadcastCnt: Number(broadCastCnt)
-   , animeRegDt: Number(animeRegDt)
+   , comicBookSerialStateEnum: serialStateEnum
+   , comicBookRegDt: Number(comicRegDt)
   }
 
   $.ajax({
    url: "./info",
    method: "POST",
-   data: JSON.stringify(insertedAnimeInfoForm),
+   data: JSON.stringify(insertedComicInfoForm),
    contentType: "application/json",
    dataType: 'json',
    processData: false,
@@ -138,7 +136,7 @@ $(function () {
   let insertedTitle = $('.title-input').val()
 
   if (insertedTitle === '') {
-   window.alert("애니 제목을 입력해주세요")
+   window.alert("만화책 제목을 입력해주세요")
    return
   }
 
@@ -148,7 +146,7 @@ $(function () {
 
   $.ajax({
    url: "./search/image/thumbnail",
-   data: {animeName: insertedTitle},
+   data: {comicBookName: insertedTitle},
    method: "GET",
    // contentType: "application/json",
    dataType: "json",

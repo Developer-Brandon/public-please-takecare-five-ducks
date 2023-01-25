@@ -59,7 +59,7 @@
             <div class="item__right">
                 <ul>
                     <c:forEach var="ComicBookSerialStateVO" items="${comicBookSerialStateList}">
-                        <li onclick="selectSerialState('${ComicBookSerialStateVO}')">
+                        <li onclick="selectSerialState('${ComicBookSerialStateVO.comicBookSerialStateEnum}')">
                             <c:choose>
                                 <c:when test="${ComicBookSerialStateVO.comicBookSerialStateEnum == 'being'}">
                                     <p class="content being" style="color:#000AFF;">연재중</p>
