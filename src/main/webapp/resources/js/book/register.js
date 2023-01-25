@@ -1,15 +1,14 @@
-let bookTypeNo = ''
+let bookTypeNumber = ''
 let contentsMadeNatureNo = ''
 let bookRegDt = ''
 
 /** 책종류를 클릭했을때에 호출되는 메소드입니다. */
 function selectBookType(bookTypeEnglish, bookTypeNo) {
 
- this.bookTypeNo = bookTypeNo
+ bookTypeNumber = bookTypeNo
 
  $('.'+bookTypeEnglish).addClass('font-weight-bold')
  $('.'+bookTypeEnglish).parents().siblings().children().removeClass('font-weight-bold')
- // $('.'+bookTypeEnglish).parents().children().addClass('font-weight-regular')
 
 }
 
@@ -83,8 +82,8 @@ $(function () {
   let insertedBookInfoForm = {
    madeNatureNo: Number(contentsMadeNatureNo)
    , title: $('.title-input').val()
-   , bookTypeNo: Number(bookTypeNo)
-   , author: $('author-input').val()
+   , bookTypeNo: Number(bookTypeNumber)
+   , author: $('.author-input').val()
    , link: $('.import-link').val()
    , bookRegDt: Number(bookRegDt)
   }

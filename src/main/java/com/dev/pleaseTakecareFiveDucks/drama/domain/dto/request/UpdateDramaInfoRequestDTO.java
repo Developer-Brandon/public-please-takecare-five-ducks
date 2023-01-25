@@ -4,6 +4,7 @@ import com.dev.pleaseTakecareFiveDucks.drama.util.BroadcastStateEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
