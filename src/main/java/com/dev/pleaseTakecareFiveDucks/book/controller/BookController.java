@@ -68,7 +68,7 @@ public class BookController extends BaseController {
 
         model.addAttribute("contentsMadeNatureInfoList", contentsMadeNatureService.selectContentsMadeNatureInfoList());
 
-        return "/anime/register";
+        return "/book/register";
     }
 
     @GetMapping(value = "/modifier/{bookNo}")
@@ -85,6 +85,6 @@ public class BookController extends BaseController {
 
         model.addAttribute("contentsMadeNatureInfoList", contentsMadeNatureService.selectContentsMadeNatureInfoList());
 
-        return "/anime/modifier";
+        return "/book/modifier";
     }
 }

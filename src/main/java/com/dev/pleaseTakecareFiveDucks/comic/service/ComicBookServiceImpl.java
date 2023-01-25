@@ -172,7 +172,7 @@ public class ComicBookServiceImpl implements ComicBookService{
     @Override
     public List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectBookThumbnailImageUrlDTO selectBookThumbnailImageUrlDTO) throws Exception {
 
-        String comicBookName = selectBookThumbnailImageUrlDTO.getComicBookName();
+        String comicBookName = selectBookThumbnailImageUrlDTO.getBookName();
 
         JSONObject json = null;
 

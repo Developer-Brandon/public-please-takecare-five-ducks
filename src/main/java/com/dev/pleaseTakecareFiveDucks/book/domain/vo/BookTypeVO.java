@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookTypeVO {
-    Integer bookNo;
+    Integer bookTypeNo;
     String bookTypeKorean;
     String bookTypeEnglish;
+    String hexCode;
 }

@@ -26,6 +26,7 @@ public class AnimeRestController extends BaseController {
 
     private final ContentsMadeNatureService contentsMadeNatureService;
 
+    // 등록페이지에서 썸네일을 찾는 api입니다.
     @GetMapping(value = "/search/image/thumbnail", produces = JSON_FORMAT)
     public RawImageThumbnailResultVO selectImageThumbnailVOList(
             @RequestParam
@@ -41,6 +42,7 @@ public class AnimeRestController extends BaseController {
                 .build();
     }
 
+    // 애니의 완결여부의 종류에 대해서 조회하는 api입니다.
     @GetMapping(value = "/finalized/list", produces = JSON_FORMAT)
     public RawAnimeFinalizedResultVO selectAnimeFinalizedList(
     ) throws Exception {
@@ -102,7 +104,19 @@ public class AnimeRestController extends BaseController {
         return ResponseEntity.ok(deleteComicBookInfoRequestDTO.getAnimeNo());
     }
 
-    // 애니 리스트만 json형식으로 불러오는 api 입니다.
+    // 애니 조회수 삽입 api 입니다.
+    @PostMapping(value = "/info/view", produces = JSON_FORMAT)
+    public ResponseEntity<Integer> insertAnimeInfoView(
+            @RequestBody
+                    InsertAnimeViewCntRequestDTO insertAnimeViewCntRequestDTO
+    ) throws Exception {
+
+        animeService.registerAnimeViewCnt(insertAnimeViewCntRequestDTO);
+
+        return ResponseEntity.ok(insertAnimeViewCntRequestDTO.getAnimeNo());
+    }
+
+    // (당장 사용하지 않는 api입니다) 애니 리스트만 pagination으로 json 형식으로 반환하는 api 입니다.
     @GetMapping(value = "/info/list", produces = JSON_FORMAT)
     public ResponseEntity<AnimeListResultVO> getNoticeList(
             @RequestParam(required = false, defaultValue = "1")
@@ -119,18 +133,6 @@ public class AnimeRestController extends BaseController {
         AnimeListResultVO animeListResultVO = animeService.selectAnimePaginationList(selectAnimePaginationRequestDTO);
 
         return ResponseEntity.ok(animeListResultVO);
-    }
-
-    // 애니 조회수 삽입 api 입니다.
-    @PostMapping(value = "/info/view", produces = JSON_FORMAT)
-    public ResponseEntity<Integer> insertAnimeInfoView(
-            @RequestBody
-            InsertAnimeViewCntRequestDTO insertAnimeViewCntRequestDTO
-    ) throws Exception {
-
-        animeService.registerAnimeViewCnt(insertAnimeViewCntRequestDTO);
-
-        return ResponseEntity.ok(insertAnimeViewCntRequestDTO.getAnimeNo());
     }
 
 }

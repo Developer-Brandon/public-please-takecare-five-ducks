@@ -83,7 +83,7 @@
         </div>
         <div class="item">
             <div class="item__left">
-                <p class="title">방영회수</p>
+                <p class="title">방영회수<span class="required-symbol">*</span></p>
             </div>
             <div class="item__right">
                 <input class="content board-cast-cnt-input" type='number'>
@@ -101,7 +101,7 @@
         <div class="item">
 
             <div class="item__left">
-                <p class="title">제작국가</p>
+                <p class="title">제작국가<span class="required-symbol">*</span></p>
             </div>
             <div class="item__right">
                 <ul>
@@ -119,7 +119,7 @@
         </div>
         <div class="item">
             <div class="item__left">
-                <p class="title">importLink</p>
+                <p class="title">importLink<span class="required-symbol">*</span></p>
             </div>
             <div class="item__right">
                 <input type="text" class="content import-link">
