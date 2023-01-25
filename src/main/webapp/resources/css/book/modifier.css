@@ -17,15 +17,6 @@
     padding: 25px 0;
 }
 
-.anime-banner {
-    width:100%;
-    height:190px;
-    background-color: #D9D9D9;
-}
-
-.anime-banner > .anime-banner__inner {
-}
-
 .top {
     width: 100%;
     display: flex;
@@ -51,27 +42,6 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-}
-
-.thumbnail-section {
-}
-
-.thumbnail-section > .thumbnail-section__inner {
-    display: flex;
-    flex-direction: column;
-}
-
-.thumbnail-section > .thumbnail-section__inner > .thumbnail {
-    width: 120px;
-    height: 120px;
-    border-radius: 25px;
-}
-
-.thumbnail-section > .thumbnail-section__inner > .default-thumbnail {
-    width: 200px;
-    height: 200px;
-    background-color: #D9D9D9;
-    border-radius: 25px;
 }
 
 .item-section {
@@ -128,52 +98,15 @@
     font-weight: 600 !important;
 }
 
-.item > .item__right > .thumbnail-input {
-    width: 250px;
-    margin-right: 15px;
-    background-color: #D9D9D9;
-    border-color: #D9D9D9;
-    border-radius: 3px;
-    cursor: default;
-}
-
-.item > .item__right > .thumbnail-input:hover{
-    border-color: #D9D9D9;
-}
-
-.item > .item__right > .thumbnail-input:active{
-    border-color: #D9D9D9;
-}
-
 .item > .item__right > .title-input {
     margin-right: 10px;
 }
-
-.item > .item__right > .find-thumbnail-button {
-    font-size: 17px;
-    line-height: 25px;
-    width: 120px;
-    cursor: pointer;
-    color: #6F6D6D;
-    background-color: white;
-    border: 1px solid #6F6D6D;
-    border-radius: 5px;
-    transition: 0.4s;
-}
-
-.item > .item__right > .find-thumbnail-button:hover {
-    color: white;
-    background-color: #6F6D6D;
-    border: 1px solid white;
-}
-
 
 .item > .item__right > .author-input {
     width: 120px;
 }
 
-
-.item > .item__right > ul > li >.finalized-text {
+.item > .item__right > ul > li >.book-type-text{
     font-size: 17px;
     line-height: 21px;
     letter-spacing: -0.2px !important;
@@ -181,19 +114,12 @@
     transition: 0.4s;
 }
 
-.item > .item__right > ul > li >.finalized-text:hover{
+.item > .item__right > ul > li >.book-type-text:hover{
     font-weight: 900!important;
 }
 
-.item > .item__right > .board-cast-cnt-text{
-    font-size: 17px;
-}
 
-.item > .item__right > .board-cast-cnt-input {
-    width: 58px;
-}
-
-.item > .item__right > .anime-reg-dt {
+.item > .item__right > .book-reg-dt {
     width: 88px;
 }
 
@@ -214,22 +140,6 @@
 }
 
 /* 썸네일 프리뷰 리스트 */
-.thumbnail-preview-list{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    transition: 0.2s;
-}
-
-
-.thumbnail-preview-list > .thumbnail {
-    width: 200px;
-    height: 200px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-}
-
 .modifier-bottom {
     display: flex;
     flex-direction: row;

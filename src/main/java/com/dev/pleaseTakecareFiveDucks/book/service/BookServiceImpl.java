@@ -124,7 +124,7 @@ public class BookServiceImpl implements BookService{
 
             // 그리고 만약 썸네일 이 있다면 update를 하고, 없다면 insert를 합니다.
             // (혹시모를 예외처리입니다)
-            if(bookDAO.selectBookThumbnailImageCntByBookNo(updateBookInfoRequestDTO.getBookNo()) > 0) {
+            if(bookDAO.selectBookThumbnailImageByBookNo(updateBookInfoRequestDTO.getBookNo()) > 0) {
 
                 // 썸네일을 update하기 위한 dto를 준비합니다.
                 UpdateBookThumbnailInfoRequestDTO updateBookThumbnailInfoRequestDTO = UpdateBookThumbnailInfoRequestDTO.builder()

@@ -42,5 +42,5 @@ public interface BookDAO {
 
     int deleteBookThumbnailInfo(Integer bookNo);
 
-    int selectBookThumbnailImageCntByBookNo(Integer bookNo);
+    int selectBookThumbnailImageByBookNo(Integer bookNo);
 }

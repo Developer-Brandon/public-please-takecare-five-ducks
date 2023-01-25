@@ -9,7 +9,6 @@ function selectBookType(bookTypeEnglish, bookTypeNo) {
 
  $('.'+bookTypeEnglish).addClass('font-weight-bold')
  $('.'+bookTypeEnglish).parents().siblings().children().removeClass('font-weight-bold')
-
 }
 
 /** 책 제작 국가 선택 시 호출하는 메소드 */

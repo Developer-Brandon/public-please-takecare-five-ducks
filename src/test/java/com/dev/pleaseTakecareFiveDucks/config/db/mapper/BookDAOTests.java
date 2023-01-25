@@ -358,7 +358,7 @@ public class BookDAOTests {
         // when & then
         assertThat(bookVO.getBookNo(), greaterThanOrEqualTo(insertBookInfoRequestDTO.getInsertedBookNo()));
         // 추가로, 책의 상태도 체크합니다.
-        assertThat(bookVO.getBookUseYnEnum(), is(BookUseYnEnum.Y));
+        assertThat(bookVO.getBookUseYnEnum(), is(BookUseYnEnum.y));
 
         //////////////////////////////////
 
@@ -367,7 +367,7 @@ public class BookDAOTests {
         // given
         UpdateBookStateRequestDTO updateBookStateRequestDTO = UpdateBookStateRequestDTO.builder()
                 .bookNo(insertBookInfoRequestDTO.getInsertedBookNo())
-                .bookUseYnEnum(BookUseYnEnum.N)
+                .bookUseYnEnum(BookUseYnEnum.n)
                 .build();
 
         // when

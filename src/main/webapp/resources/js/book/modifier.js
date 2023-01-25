@@ -1,24 +1,17 @@
-let thumbnailImageUrl = ''
-let finalizedStateEnum = ''
+let bookTypeNumber = ''
 let contentsMadeNatureNo = ''
-let broadCastCnt = ''
-let animeRegDt = ''
+let bookRegDt = ''
 
-/** 방영상태를 클릭했을때에 호출되는 메소드입니다. */
-function selectFinalizedState(finalizedYnEnum) {
+/** 책종류를 클릭했을때에 호출되는 메소드입니다. */
+function selectBookType(bookTypeEnglish, bookTypeNo) {
 
- finalizedStateEnum = finalizedYnEnum
+ bookTypeNumber = bookTypeNo
 
- if (finalizedYnEnum === 'y') {
-  $('.finalized-text-y').addClass('font-weight-bold')
-  $('.finalized-text-n').removeClass('font-weight-bold')
- } else {
-  $('.finalized-text-n').addClass('font-weight-bold');
-  $('.finalized-text-y').removeClass('font-weight-bold')
- }
+ $('.'+bookTypeEnglish).addClass('font-weight-bold')
+ $('.'+bookTypeEnglish).parents().siblings().children().removeClass('font-weight-bold')
 }
 
-/** 애니 제작 국가 선택 시 호출하는 메소드 */
+/** 책 제작 국가 선택 시 호출하는 메소드 */
 function selectMadeNature(madeNatureNo, size) {
 
  contentsMadeNatureNo = madeNatureNo
@@ -61,16 +54,12 @@ function validationFormInfo() {
   }
  }
 
- if (finalizedStateEnum === '') {
-  alert("방영상태는 필수 입력사항입니다.")
-  return
+ if ($('.book-reg-dt').val() === '') {
+  bookRegDt = 20000101
+ } else {
+  bookRegDt = $('.book-reg-dt').val()
  }
 
- if ($('.board-cast-cnt-input').val() === '') {
-  broadCastCnt = 0
- } else {
-  broadCastCnt = $('.board-cast-cnt-input').val()
- }
 
  if ($('.anime-reg-dt').val() === '') {
   animeRegDt = 20000101
@@ -92,67 +81,30 @@ function validationFormInfo() {
 /** Jquery 로딩이 끝난 후를 보장합니다 */
 $(function () {
 
- // form 태그 안에서, submit type의 input 태그를 사용하지 않으면
- // 아래와 같이 따로 구현해주어야 합니다.
- // 등록하기
- $(".register-text").click(function () {
-
-  validationFormInfo()
-
-  let insertedAnimeInfoForm = {
-   madeNatureNo: Number(contentsMadeNatureNo)
-   , title: $('.title-input').val()
-   , author: $('.author-input').val()
-   , link: $('.import-link').val()
-   , webThumbnailUrl: thumbnailImageUrl
-   , finalizedYnEnum: finalizedStateEnum
-   , animeBroadcastCnt: Number(broadCastCnt)
-   , animeRegDt: Number(animeRegDt)
-  }
-
-  $.ajax({
-   url: "./info",
-   method: "POST",
-   data: JSON.stringify(insertedAnimeInfoForm),
-   contentType: "application/json",
-   dataType: 'json',
-   processData: false,
-   success: function () {
-    location.href = './main'
-   },
-   error: function (error) {
-    alert("failed! ", error.toString())
-    return
-   }
-  })
- })
-
  // 수정하기
  $(".modify-text").click(function () {
 
   validationFormInfo()
 
-  let updateAnimeInfoForm = {
-   animeNo: Number($('#anime-no').val())
+  let updateBookInfoForm = {
+   bookNo: Number($('#book-no').val())
    , madeNatureNo: Number(contentsMadeNatureNo)
    , title: $('.title-input').val()
+   , bookTypeNo: Number(bookTypeNumber)
    , author: $('.author-input').val()
    , link: $('.import-link').val()
-   , webThumbnailUrl: thumbnailImageUrl
-   , finalizedYnEnum: finalizedStateEnum
-   , animeBroadcastCnt: Number(broadCastCnt)
-   , animeRegDt: Number(animeRegDt)
+   , bookRegDt: Number(bookRegDt)
   }
 
   $.ajax({
-   url: "../../anime/info",
+   url: "../../book/info",
    method: "PUT",
-   data: JSON.stringify(updateAnimeInfoForm),
+   data: JSON.stringify(updateBookInfoForm),
    contentType: "application/json",
    dataType: 'json',
    processData: false,
    success: function () {
-    location.href = '../../anime/main'
+    location.href = '../../book/main'
    },
    error: function (error) {
     alert("failed! ", error)
@@ -164,19 +116,19 @@ $(function () {
  // 삭제하기
  $(".delete-text").click(function () {
 
-  let deleteAnimeInfoForm = {
-   animeNo: Number($('#anime-no').val())
+  let deleteBookInfoForm = {
+   bookNo: Number($('#book-no').val())
   }
 
    $.ajax({
-   url: "../../anime/info",
+   url: "../../book/info",
    method: "DELETE",
-   data: JSON.stringify(deleteAnimeInfoForm),
+   data: JSON.stringify(deleteBookInfoForm),
    contentType: "application/json",
    dataType: 'json',
    processData: false,
    success: function () {
-    location.href = '../../anime/main'
+    location.href = '../../book/main'
    },
    error: function (error) {
     alert("failed! ", error)

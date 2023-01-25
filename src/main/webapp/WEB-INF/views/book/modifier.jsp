@@ -4,8 +4,63 @@
     <%@ page session="false" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="../page_header.jsp" %>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/book/register.css">
-    <script src="${pageContext.request.contextPath}/resources/js/book/register.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/book/modifier.css">
+    <script src="${pageContext.request.contextPath}/resources/js/book/modifier.js"></script>
+    <script type="text/javascript">
+
+     <%-- 수정페이지에만 삽입되면, 수정페이지 최초 진입 시 데이터를 불러오는 로직입니다. --%>
+     $(function () {
+
+      let bookNo = '${bookNo}';
+
+      console.log(bookNo)
+
+      $.ajax({
+       url: `../../book/info?bookNo=${bookNo}`,
+       method: "GET",
+       contentType: "application/json",
+       dataType: 'json',
+       processData: false,
+       success: function (data) {
+
+        console.log("넘어온 data: " + data)
+        console.log("넘어온 bookNo: " + bookNo)
+
+        $('#book-no').attr('value', bookNo)
+
+        $('.title-input').attr('value', data.bookTitle)
+
+        if(data.bookTypeEnglish === 'SCRIPT') {
+         $('.SCRIPT').click()
+        } else if(data.bookTypeEnglish === 'BOOK_SUMMARY') {
+         $('.BOOK_SUMMARY').click()
+        } else if(data.bookTypeEnglish === 'BOOK_PDF') {
+         $('.BOOK_PDF').click()
+        } else if(data.bookTypeEnglish === 'STUDY_SUMMARY') {
+         $('.STUDY_SUMMARY').click()
+        } else if(data.bookTypeEnglish === 'LECTURE_SUMMARY') {
+         $('.LECTURE_SUMMARY').click()
+        } else if(data.bookTypeEnglish === 'NOVEL') {
+         $('.NOVEL').click()
+        }
+
+        $('.author-input').attr('value', data.bookAuthor)
+
+        $('.made-nature-no-text' + data.madeNatureNo).click()
+
+        let bookRegDtToNumber = Number(data.bookRegDt.replace(/-/g, ""))
+
+        $('.book-reg-dt').attr('value', bookRegDtToNumber)
+
+        $('.import-link').attr('value', data.link)
+       },
+       error: function (error) {
+        alert("failed! ", error.toString())
+       }
+      })
+
+     });
+    </script>
 </head>
 <body class="custom-body">
 <!-- 메뉴 시작 -->
@@ -17,14 +72,14 @@
     <%-- 상단의 제목 시작 --%>
     <div class="top">
         <div class="top__left">
-            <p class="title">✍🏼책 등록하기</p>
+            <p class="title">✍🏼책 수정, 삭제하기</p>
         </div>
         <div class="top__right">
+            <input id="book-no" style="display:none">
         </div>
     </div>
 
     <%-- 각각 요소들의 섹션 --%>
-    <%--    <form onsubmit="return false;">--%>
     <div class="item-section">
         <div class="item">
             <div class="item__left">
@@ -86,7 +141,6 @@
             </div>
         </div>
         <div class="item">
-
             <div class="item__left">
                 <p class="title">제작국가<span class="required-symbol">*</span></p>
             </div>
@@ -94,9 +148,7 @@
                 <ul>
                     <c:forEach var="contentsMadeNatureInfoVO" items="${contentsMadeNatureInfoList}">
                         <li onclick="selectMadeNature('${contentsMadeNatureInfoVO.madeNatureNo}', '${contentsMadeNatureInfoList.size()}')">
-                            <p class="content
-                                made-nature-no-text
-                                made-nature-no-text${contentsMadeNatureInfoVO.madeNatureNo}">
+                            <p class="content made-nature-no-text made-nature-no-text${contentsMadeNatureInfoVO.madeNatureNo}">
                                     ${contentsMadeNatureInfoVO.koreanName}
                             </p>
                         </li>
@@ -115,13 +167,18 @@
     </div>
 
     <%-- 하단의 섹션 --%>
-    <div class="register-bottom">
-        <div class="register-bottom__inner">
-            <p class="register-text">등록하기</p>
+    <div class="modifier-bottom">
+        <div class="modifier-bottom__inner">
+            <div class="modifier-bottom__inner__left">
+                <p class="delete-text">삭제하기</p>
+            </div>
+            <div class="modifier-bottom__inner__right">
+                <p class="modify-text">수정하기</p>
+            </div>
         </div>
     </div>
-    <%-- </form> --%>
 </div>
+
 <%-- 메인 끝 --%>
 
 <!-- footer 시작 -->

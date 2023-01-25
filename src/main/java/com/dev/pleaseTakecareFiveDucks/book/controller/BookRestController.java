@@ -85,7 +85,7 @@ public class BookRestController extends BaseController {
     @PutMapping(value = "/info", produces = JSON_FORMAT)
     public ResponseEntity<Integer> updateBookInfo(
             @RequestBody
-                    UpdateBookInfoRequestDTO updateBookInfoRequestDTO
+            UpdateBookInfoRequestDTO updateBookInfoRequestDTO
     ) throws Exception {
 
         bookService.modifyBookInfo(updateBookInfoRequestDTO);

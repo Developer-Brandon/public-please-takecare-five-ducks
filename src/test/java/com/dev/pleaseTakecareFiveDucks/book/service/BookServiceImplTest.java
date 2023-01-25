@@ -120,7 +120,7 @@ public class BookServiceImplTest extends TestCase {
         bookVO.setBookAuthor("테스트_저자");
         bookVO.setBookRegDt("2022-12-30");
         bookVO.setBookTitle("테스트_제목");
-        bookVO.setBookUseYnEnum(BookUseYnEnum.Y);
+        bookVO.setBookUseYnEnum(BookUseYnEnum.y);
         bookVO.setMadeNatureNo(1);
         bookVO.setRegDt("2022-12-30");
 
@@ -129,7 +129,7 @@ public class BookServiceImplTest extends TestCase {
         bookVO2.setBookAuthor("테스트_저자");
         bookVO2.setBookRegDt("2022-12-30");
         bookVO2.setBookTitle("테스트_제목");
-        bookVO2.setBookUseYnEnum(BookUseYnEnum.Y);
+        bookVO2.setBookUseYnEnum(BookUseYnEnum.y);
         bookVO2.setMadeNatureNo(1);
         bookVO2.setRegDt("2022-12-30");
 
@@ -138,7 +138,7 @@ public class BookServiceImplTest extends TestCase {
         bookVO3.setBookAuthor("테스트_저자");
         bookVO3.setBookRegDt("2022-12-30");
         bookVO3.setBookTitle("테스트_제목");
-        bookVO3.setBookUseYnEnum(BookUseYnEnum.Y);
+        bookVO3.setBookUseYnEnum(BookUseYnEnum.y);
         bookVO3.setMadeNatureNo(1);
         bookVO3.setRegDt("2022-12-30");
 
