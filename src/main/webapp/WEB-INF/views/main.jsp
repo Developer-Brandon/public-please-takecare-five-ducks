@@ -126,9 +126,9 @@
                                         <c:when test="${book.bookTypeEnglish == 'NOVEL'}">book-type_novel</c:when>
                                         <c:otherwise>book-type_default</c:otherwise>
                                     </c:choose>">
-                                            <span style="font-weight:800 !important;">[</span>
+                                            <span style="font-weight:800 !important;"></span>
                                             <c:out value="${book.bookTypeEnglish}"/>
-                                            <span style="font-weight:800 !important;">]</span>
+                                            <span style="font-weight:800 !important;"></span>
                                         </p>
                                         <p id="book-reg-dt"><c:out value="${book.bookRegDt}"/></p>
                                     </div>

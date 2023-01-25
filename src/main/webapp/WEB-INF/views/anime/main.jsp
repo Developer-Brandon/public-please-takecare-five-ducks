@@ -108,10 +108,10 @@
                     </a>
                     <c:choose>
                         <c:when test="${animeVO.finalizedYnEnum == 'y'}">
-                            <a class="anime-finalized-yn" style="color:#FF0000;">완결</a>
+                            <a class="anime-finalized-yn" style="color:#FF0000;">완결🔚</a>
                         </c:when>
                         <c:otherwise>
-                            <a class="anime-finalized-yn" style="color:#2400FF;">방영중</a>
+                            <a class="anime-finalized-yn" style="color:#2400FF;">방영중🔄</a>
                         </c:otherwise>
                     </c:choose>
                     <c:choose>

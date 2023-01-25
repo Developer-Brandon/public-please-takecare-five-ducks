@@ -105,13 +105,13 @@
                     </a>
                     <c:choose>
                         <c:when test="${comicVO.comicBookSerialStateEnum.toString() == 'being'}">
-                            <a class="being" style="color:#000AFF;">연재중</a>
+                            <a class="being" style="color:#000AFF;">연재중🔄</a>
                         </c:when>
                         <c:when test="${comicVO.comicBookSerialStateEnum.toString() == 'finished'}">
-                            <a class="finished" style="color:#FF0000;">연재완료</a>
+                            <a class="finished" style="color:#FF0000;">연재완료🔚</a>
                         </c:when>
                         <c:otherwise>
-                            <a class="vacation" style="color:#04CF00;">휴재중</a>
+                            <a class="vacation" style="color:#04CF00;">휴재중⛱</a>
                         </c:otherwise>
                     </c:choose>
                     <a class="comic-author"><c:out value="${comicVO.comicBookAuthor}"/></a>
