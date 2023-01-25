@@ -118,7 +118,7 @@ public class AnimeRestController extends BaseController {
 
     // (당장 사용하지 않는 api입니다) 애니 리스트만 pagination으로 json 형식으로 반환하는 api 입니다.
     @GetMapping(value = "/info/list", produces = JSON_FORMAT)
-    public ResponseEntity<AnimeListResultVO> getNoticeList(
+    public ResponseEntity<AnimeListResultVO> selectAnimeInfoList(
             @RequestParam(required = false, defaultValue = "1")
                     Integer currentPage
             , @RequestParam(required = false, defaultValue = "10")
@@ -134,5 +134,4 @@ public class AnimeRestController extends BaseController {
 
         return ResponseEntity.ok(animeListResultVO);
     }
-
 }

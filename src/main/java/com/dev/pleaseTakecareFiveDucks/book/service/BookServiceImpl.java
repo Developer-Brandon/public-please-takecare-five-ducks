@@ -153,14 +153,14 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public void removeBookInfo(RemoveBookInfoRequestDTO removeBookInfoRequestDTO) throws Exception {
+    public void removeBookInfo(DeleteBookInfoRequestDTO deleteBookInfoRequestDTO) throws Exception {
 
         // fk 문제 때문에, fk의 맨 마지막에 걸려있는 데이터부터 삭제해야 합니다.
-        if(bookDAO.deleteBookThumbnailInfo(removeBookInfoRequestDTO.getBookNo()) != 1) {
+        if(bookDAO.deleteBookThumbnailInfo(deleteBookInfoRequestDTO.getBookNo()) != 1) {
             throw new Exception();
         }
 
-        if(bookDAO.deleteBookInfo(removeBookInfoRequestDTO.getBookNo()) != 1) {
+        if(bookDAO.deleteBookInfo(deleteBookInfoRequestDTO.getBookNo()) != 1) {
             throw new Exception();
         }
     }

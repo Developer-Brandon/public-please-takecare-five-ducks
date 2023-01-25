@@ -9,6 +9,7 @@ import java.util.Date;
 
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class UpdateDramaInfoRequestDTO {
     Integer dramaNo;

@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class InsertDramaViewCntRequestDTO {
     Integer userNo;

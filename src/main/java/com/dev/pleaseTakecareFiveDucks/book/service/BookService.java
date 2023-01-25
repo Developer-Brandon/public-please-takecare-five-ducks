@@ -27,7 +27,7 @@ public interface BookService {
 
     void modifyBookInfo(UpdateBookInfoRequestDTO updateBookInfoRequestDTO) throws Exception;
 
-    void removeBookInfo(RemoveBookInfoRequestDTO removeBookInfoRequestDTO) throws Exception;
+    void removeBookInfo(DeleteBookInfoRequestDTO deleteBookInfoRequestDTO) throws Exception;
 
     List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectBookThumbnailImageUrlDTO selectBookThumbnailImageUrlDTO) throws Exception;
 

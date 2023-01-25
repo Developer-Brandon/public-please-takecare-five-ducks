@@ -41,25 +41,25 @@
             <div class="item__right">
                 <ul>
                     <c:forEach var="bookType" items="${bookTypeList}">
-                        <li onclick="selectFinalizedState('${bookType.bookTypeNo}')">
+                        <li onclick="selectBookType('${bookType.bookTypeEnglish}','${bookType.bookTypeNo}')">
                             <c:choose>
                                 <c:when test="${bookType.bookTypeEnglish == 'SCRIPT'}">
-                                    <p class="content book-type-text" style="color:${bookType.hexCode};">${bookType.bookTypeKorean}</p>
+                                    <p class="content book-type-text ${bookType.bookTypeEnglish}" style="color:${bookType.hexCode};">${bookType.bookTypeKorean}</p>
                                 </c:when>
                                 <c:when test="${bookType.bookTypeEnglish == 'BOOK_SUMMARY'}">
-                                    <p class="content book-type-text" style="color:${bookType.hexCode};">${bookType.bookTypeKorean}</p>
+                                    <p class="content book-type-text ${bookType.bookTypeEnglish}" style="color:${bookType.hexCode};">${bookType.bookTypeKorean}</p>
                                 </c:when>
                                 <c:when test="${bookType.bookTypeEnglish == 'BOOK_PDF'}">
-                                    <p class="content book-type-text" style="color:${bookType.hexCode};">${bookType.bookTypeKorean}</p>
+                                    <p class="content book-type-text ${bookType.bookTypeEnglish}" style="color:${bookType.hexCode};">${bookType.bookTypeKorean}</p>
                                 </c:when>
                                 <c:when test="${bookType.bookTypeEnglish == 'STUDY_SUMMARY'}">
-                                    <p class="content book-type-text" style="color:${bookType.hexCode};">${bookType.bookTypeKorean}</p>
+                                    <p class="content book-type-text ${bookType.bookTypeEnglish}" style="color:${bookType.hexCode};">${bookType.bookTypeKorean}</p>
                                 </c:when>
                                 <c:when test="${bookType.bookTypeEnglish == 'LECTURE_SUMMARY'}">
-                                    <p class="content book-type-text" style="color:${bookType.hexCode};">${bookType.bookTypeKorean}</p>
+                                    <p class="content book-type-text ${bookType.bookTypeEnglish}" style="color:${bookType.hexCode};">${bookType.bookTypeKorean}</p>
                                 </c:when>
                                 <c:otherwise>
-                                    <p class="content book-type-text" style="color:${bookType.hexCode};">
+                                    <p class="content book-type-text NOVEL" style="color:${bookType.hexCode};">
                                             ${bookType.bookTypeKorean}
                                     </p>
                                 </c:otherwise>
@@ -79,7 +79,7 @@
         </div>
         <div class="item">
             <div class="item__left">
-                <p class="title">최초방영일자</p>
+                <p class="title">컨텐츠제작일자</p>
             </div>
             <div class="item__right">
                 <input class="content book-reg-dt" type='number' placeholder="19800922">
