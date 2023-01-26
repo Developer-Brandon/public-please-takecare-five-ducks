@@ -82,22 +82,22 @@
                     </a>
                     <c:choose>
                         <c:when test="${bookVO.bookTypeEnglish == 'SCRIPT'}">
-                            <a class="book-type script">${bookVO.bookTypeKorean}</a>
+                            <a class="book-type script">${bookVO.bookTypeKorean}📖</a>
                         </c:when>
                         <c:when test="${bookVO.bookTypeEnglish == 'BOOK_SUMMARY'}">
-                            <a class="book-type book-summary">${bookVO.bookTypeKorean}</a>
+                            <a class="book-type book-summary">${bookVO.bookTypeKorean}📖</a>
                         </c:when>
                         <c:when test="${bookVO.bookTypeEnglish == 'BOOK_PDF'}">
-                            <a class="book-type book-pdf">${bookVO.bookTypeKorean}</a>
+                            <a class="book-type book-pdf">${bookVO.bookTypeKorean}📖</a>
                         </c:when>
                         <c:when test="${bookVO.bookTypeEnglish == 'STUDY_SUMMARY'}">
-                            <a class="book-type study-summary">${bookVO.bookTypeKorean}</a>
+                            <a class="book-type study-summary">${bookVO.bookTypeKorean}📖</a>
                         </c:when>
                         <c:when test="${bookVO.bookTypeEnglish == 'LECTURE_SUMMARY'}">
-                            <a class="book-type lecture-summary">${bookVO.bookTypeKorean}</a>
+                            <a class="book-type lecture-summary">${bookVO.bookTypeKorean}📖</a>
                         </c:when>
                         <c:otherwise>
-                            <a class="book-type novel">${bookVO.bookTypeKorean}</a>
+                            <a class="book-type novel">${bookVO.bookTypeKorean}📖</a>
                         </c:otherwise>
                     </c:choose>
                     <a class="book-author"><c:out value="${bookVO.bookAuthor}"/></a>
