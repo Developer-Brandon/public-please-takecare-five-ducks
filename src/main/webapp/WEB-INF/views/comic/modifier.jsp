@@ -4,19 +4,19 @@
     <%@ page session="false" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="../page_header.jsp" %>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/anime/modifier.css">
-    <script src="${pageContext.request.contextPath}/resources/js/anime/modifier.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/comic/modifier.css">
+    <script src="${pageContext.request.contextPath}/resources/js/comic/modifier.js"></script>
     <script type="text/javascript">
 
      <%-- 수정페이지에만 삽입되면, 수정페이지 최초 진입 시 데이터를 불러오는 로직입니다. --%>
      $(function () {
 
-      let animeNo = '${animeNo}';
+      let comicBookNo = '${comicBookNo}';
 
-      console.log(animeNo)
+      console.log(comicBookNo)
 
       $.ajax({
-       url: `../../anime/info?animeNo=${animeNo}`,
+       url: `../../comic/info?bookNo=${comicBookNo}`,
        method: "GET",
        contentType: "application/json",
        dataType: 'json',
@@ -24,25 +24,26 @@
        success: function (data) {
 
         console.log("넘어온 data: " + data)
-        console.log("넘어온 animeNo: " + animeNo)
+        console.log("넘어온 comicBookNo: " + comicBookNo)
 
-        $('#anime-no').attr('value', animeNo)
+        $('#comic-book-no').attr('value', comicBookNo)
 
         $('.thumbnail-input').attr('value', data.webThumbnailUrl)
-        $('.title-input').attr('value', data.animeTitle)
-        $('.author-input').attr('value', data.animeAuthor)
+        $('.title-input').attr('value', data.comicBookTitle)
 
-        if(data.finalizedYnEnum === 'y') {
-         $('.finalized-text-y').click()
-        } else {
-         $('.finalized-text-n').click()
+        if (data.comicBookSerialStateEnum === 'finished') {
+         $('.finished').click()
+        } else if (data.comicBookSerialStateEnum === 'being'){
+         $('.being').click()
+        } else if (data.comicBookSerialStateEnum === 'vacation') {
+         $('.vacation').click()
         }
 
-        $('.board-cast-cnt-input').attr('value', data.animeBroadcastCnt)
+        $('.author-input').attr('value', data.comicBookAuthor)
 
-        let animeRegDtToNumber = Number(data.animeRegDt.replace(/-/g, ""))
+        let comicBookRegDtToNumber = Number(data.comicBookRegDt.replace(/-/g, ""))
 
-        $('.anime-reg-dt').attr('value', animeRegDtToNumber)
+        $('.comic-book-reg-dt').attr('value', comicBookRegDtToNumber)
 
         $('.made-nature-no-text' + data.madeNatureNo).click()
 
@@ -52,7 +53,6 @@
         alert("failed! ", error.toString())
        }
       })
-
      });
     </script>
 </head>
@@ -66,13 +66,12 @@
     <%-- 상단의 제목 시작 --%>
     <div class="top">
         <div class="top__left">
-            <p class="title">✍🏼애니 수정, 삭제하기</p>
+            <p class="title">✍🏼만화책 수정, 삭제하기</p>
         </div>
         <div class="top__right">
-            <input id="anime-no" style="display:none"></input>
+            <input id="comic-book-no" style="display:none">
         </div>
     </div>
-
     <%-- 썸네일 자동찾기 섹션 --%>
     <div class="thumbnail-section">
         <div class="thumbnail-section__inner">
@@ -82,6 +81,7 @@
     </div>
 
     <%-- 각각 요소들의 섹션 --%>
+    <%--    <form onsubmit="return false;">--%>
     <div class="item-section">
         <div class="item">
             <div class="item__left">
@@ -96,9 +96,33 @@
                 <p class="title">제목<span class="required-symbol">*</span></p>
             </div>
             <div class="item__right">
-                <input type="text" class="content title-input">
-                <%--                       onkeypress="if(window.event.keyCode===13) enterInputValue()">--%>
-                <%--                <button class="find-thumbnail-button">썸네일 찾기</button>--%>
+                <input type="text" class="content title-input"
+                       onkeypress="if(window.event.keyCode===13) enterInputValue()">
+<%--                <button class="find-thumbnail-button">썸네일 찾기</button>--%>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item__left">
+                <p class="title">연재상태<span class="required-symbol">*</span></p>
+            </div>
+            <div class="item__right">
+                <ul>
+                    <c:forEach var="comicBookSerialStateVO" items="${comicBookSerialStateList}">
+                        <li onclick="selectSerialState('${comicBookSerialStateVO.comicBookSerialStateEnum}')">
+                            <c:choose>
+                                <c:when test="${comicBookSerialStateVO.comicBookSerialStateEnum == 'being'}">
+                                    <p class="content being" style="color:#000AFF;">연재중</p>
+                                </c:when>
+                                <c:when test="${comicBookSerialStateVO.comicBookSerialStateEnum == 'finished'}">
+                                    <p class="content finished" style="color:#FF0000;">연재완료</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <p class="content vacation" style="color:#04CF00;">휴재중</p>
+                                </c:otherwise>
+                            </c:choose>
+                        </li>
+                    </c:forEach>
+                </ul>
             </div>
         </div>
         <div class="item">
@@ -111,53 +135,23 @@
         </div>
         <div class="item">
             <div class="item__left">
-                <p class="title">방영상태<span class="required-symbol">*</span></p>
+                <p class="title">출간일자</p>
             </div>
             <div class="item__right">
-                <ul>
-                    <c:forEach var="finalizedYnEnum" items="${animeFinalizedList}">
-                        <li onclick="selectFinalizedState('${finalizedYnEnum}')">
-                            <c:choose>
-                                <c:when test="${finalizedYnEnum == 'y'}">
-                                    <p class="content finalized-text finalized-text-y" style="color:#FF0000;">완결</p>
-                                </c:when>
-                                <c:otherwise>
-                                    <p class="content finalized-text finalized-text-n" style="color:#2400FF;">
-                                        방영중</p>
-                                </c:otherwise>
-                            </c:choose>
-                        </li>
-                    </c:forEach>
-                </ul>
+                <input class="content comic-book-reg-dt" type='number' placeholder="19800922">
             </div>
         </div>
         <div class="item">
             <div class="item__left">
-                <p class="title">방영회수</p>
-            </div>
-            <div class="item__right">
-                <input class="content board-cast-cnt-input" type='number'>
-                <span class="board-cast-cnt-text">&nbsp;회</span>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item__left">
-                <p class="title">최초방영일자</p>
-            </div>
-            <div class="item__right">
-                <input class="content anime-reg-dt" type='number' placeholder="19800922">
-            </div>
-        </div>
-        <div class="item">
-
-            <div class="item__left">
-                <p class="title">제작국가</p>
+                <p class="title">제작국가<span class="required-symbol">*</span></p>
             </div>
             <div class="item__right">
                 <ul>
                     <c:forEach var="contentsMadeNatureInfoVO" items="${contentsMadeNatureInfoList}">
                         <li onclick="selectMadeNature('${contentsMadeNatureInfoVO.madeNatureNo}', '${contentsMadeNatureInfoList.size()}')">
-                            <p class="content made-nature-no-text made-nature-no-text${contentsMadeNatureInfoVO.madeNatureNo}">
+                            <p class="content
+                                made-nature-no-text
+                                made-nature-no-text${contentsMadeNatureInfoVO.madeNatureNo}">
                                     ${contentsMadeNatureInfoVO.koreanName}
                             </p>
                         </li>
@@ -167,7 +161,7 @@
         </div>
         <div class="item">
             <div class="item__left">
-                <p class="title">importLink</p>
+                <p class="title">importLink<span class="required-symbol">*</span></p>
             </div>
             <div class="item__right">
                 <input type="text" class="content import-link">

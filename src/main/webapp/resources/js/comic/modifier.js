@@ -1,24 +1,33 @@
-let thumbnailImageUrl = ''
-let finalizedStateEnum = ''
+let bookTypeNumber = ''
+let serialStateEnum = ''
 let contentsMadeNatureNo = ''
-let broadCastCnt = ''
-let animeRegDt = ''
+let bookRegDt = ''
+
+function enterInputValue() {
+ // $(".find-thumbnail-button").click();
+}
 
 /** 방영상태를 클릭했을때에 호출되는 메소드입니다. */
-function selectFinalizedState(finalizedYnEnum) {
+function selectSerialState(serialState) {
 
- finalizedStateEnum = finalizedYnEnum
+ serialStateEnum = serialState
 
- if (finalizedYnEnum === 'y') {
-  $('.finalized-text-y').addClass('font-weight-bold')
-  $('.finalized-text-n').removeClass('font-weight-bold')
- } else {
-  $('.finalized-text-n').addClass('font-weight-bold');
-  $('.finalized-text-y').removeClass('font-weight-bold')
+ if (serialStateEnum === 'being') {
+  $('.being').addClass('font-weight-bold')
+  $('.finished').removeClass('font-weight-bold')
+  $('.vacation').removeClass('font-weight-bold')
+ } else if(serialStateEnum === 'finished') {
+  $('.finished').addClass('font-weight-bold')
+  $('.being').removeClass('font-weight-bold')
+  $('.vacation').removeClass('font-weight-bold')
+ } else if(serialStateEnum === 'vacation') {
+  $('.vacation').addClass('font-weight-bold')
+  $('.finished').removeClass('font-weight-bold')
+  $('.being').removeClass('font-weight-bold')
  }
 }
 
-/** 애니 제작 국가 선택 시 호출하는 메소드 */
+/** 만화책 제작 국가 선택 시 호출하는 메소드 */
 function selectMadeNature(madeNatureNo, size) {
 
  contentsMadeNatureNo = madeNatureNo
@@ -61,21 +70,10 @@ function validationFormInfo() {
   }
  }
 
- if (finalizedStateEnum === '') {
-  alert("방영상태는 필수 입력사항입니다.")
-  return
- }
-
- if ($('.board-cast-cnt-input').val() === '') {
-  broadCastCnt = 0
+ if ($('.comic-book-reg-dt').val() === '') {
+  bookRegDt = 20000101
  } else {
-  broadCastCnt = $('.board-cast-cnt-input').val()
- }
-
- if ($('.anime-reg-dt').val() === '') {
-  animeRegDt = 20000101
- } else {
-  animeRegDt = $('.anime-reg-dt').val()
+  bookRegDt = $('.comic-book-reg-dt').val()
  }
 
  if (contentsMadeNatureNo === '') {
@@ -92,67 +90,31 @@ function validationFormInfo() {
 /** Jquery 로딩이 끝난 후를 보장합니다 */
 $(function () {
 
- // form 태그 안에서, submit type의 input 태그를 사용하지 않으면
- // 아래와 같이 따로 구현해주어야 합니다.
- // 등록하기
- $(".register-text").click(function () {
-
-  validationFormInfo()
-
-  let insertedAnimeInfoForm = {
-   madeNatureNo: Number(contentsMadeNatureNo)
-   , title: $('.title-input').val()
-   , author: $('.author-input').val()
-   , link: $('.import-link').val()
-   , webThumbnailUrl: thumbnailImageUrl
-   , finalizedYnEnum: finalizedStateEnum
-   , animeBroadcastCnt: Number(broadCastCnt)
-   , animeRegDt: Number(animeRegDt)
-  }
-
-  $.ajax({
-   url: "./info",
-   method: "POST",
-   data: JSON.stringify(insertedAnimeInfoForm),
-   contentType: "application/json",
-   dataType: 'json',
-   processData: false,
-   success: function () {
-    location.href = './main'
-   },
-   error: function (error) {
-    alert("failed! ", error.toString())
-    return
-   }
-  })
- })
-
  // 수정하기
  $(".modify-text").click(function () {
 
   validationFormInfo()
 
-  let updateAnimeInfoForm = {
-   animeNo: Number($('#anime-no').val())
+  let updateComicBookInfoForm = {
+   bookNo: Number($('#comic-book-no').val())
    , madeNatureNo: Number(contentsMadeNatureNo)
    , title: $('.title-input').val()
    , author: $('.author-input').val()
    , link: $('.import-link').val()
-   , webThumbnailUrl: thumbnailImageUrl
-   , finalizedYnEnum: finalizedStateEnum
-   , animeBroadcastCnt: Number(broadCastCnt)
-   , animeRegDt: Number(animeRegDt)
+   , comicBookSerialStateEnum: serialStateEnum
+   , webThumbnailUrl: $('.thumbnail-input').val()
+   , comicBookRegDt: Number(bookRegDt)
   }
 
   $.ajax({
-   url: "../../anime/info",
+   url: "../../comic/info",
    method: "PUT",
-   data: JSON.stringify(updateAnimeInfoForm),
+   data: JSON.stringify(updateComicBookInfoForm),
    contentType: "application/json",
    dataType: 'json',
    processData: false,
    success: function () {
-    location.href = '../../anime/main'
+    location.href = '../../comic/main'
    },
    error: function (error) {
     alert("failed! ", error)
@@ -164,19 +126,19 @@ $(function () {
  // 삭제하기
  $(".delete-text").click(function () {
 
-  let deleteAnimeInfoForm = {
-   animeNo: Number($('#anime-no').val())
+  let deleteBookInfoForm = {
+   bookNo: Number($('#comic-book-no').val())
   }
 
-   $.ajax({
-   url: "../../anime/info",
+  $.ajax({
+   url: "../../comic/info",
    method: "DELETE",
-   data: JSON.stringify(deleteAnimeInfoForm),
+   data: JSON.stringify(deleteBookInfoForm),
    contentType: "application/json",
    dataType: 'json',
    processData: false,
    success: function () {
-    location.href = '../../anime/main'
+    location.href = '../../comic/main'
    },
    error: function (error) {
     alert("failed! ", error)

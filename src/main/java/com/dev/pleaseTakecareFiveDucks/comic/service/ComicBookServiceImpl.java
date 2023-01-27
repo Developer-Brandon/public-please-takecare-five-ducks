@@ -169,14 +169,13 @@ public class ComicBookServiceImpl implements ComicBookService{
     public void removeComicBookInfo(DeleteComicBookInfoRequestDTO deleteComicBookInfoRequestDTO) throws Exception {
 
         // fk 문제 때문에, fk의 맨 마지막에 걸려있는 데이터부터 삭제해야 합니다.
-        if(comicBookDAO.deleteComicBookInfo(deleteComicBookInfoRequestDTO.getBookNo()) != 1) {
-            throw new Exception();
-        }
-
         if(comicBookDAO.deleteComicBookThumbnailInfo(deleteComicBookInfoRequestDTO.getBookNo()) != 1) {
             throw new Exception();
         }
 
+        if(comicBookDAO.deleteComicBookInfo(deleteComicBookInfoRequestDTO.getBookNo()) != 1) {
+            throw new Exception();
+        }
     }
 
     @Override

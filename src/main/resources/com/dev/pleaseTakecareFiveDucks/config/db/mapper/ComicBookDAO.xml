@@ -218,8 +218,7 @@
         update web_app_test2.tb_comic_book_thumbnail_img
         set web_thumbnail_url = #{webThumbnailUrl}
           , mod_dt    = now()
-        where use_yn = 'y'
-        and r_book_no = #{bookNo}
+        where r_book_no = #{bookNo}
         ]]>
     </update>
 
