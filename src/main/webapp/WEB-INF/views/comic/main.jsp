@@ -41,7 +41,7 @@
 
       // todo: 추후 로그인의 개념이 잡히면 userNo를 교체할 예정입니다 .
 
-      let data = {userNo: 100, comicBookNo: comicBookNo};
+      let data = {userNo: 100, bookNo: comicBookNo};
 
       $.ajax({
        url: "./info/view",

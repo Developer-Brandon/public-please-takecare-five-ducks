@@ -5,8 +5,10 @@ import com.dev.pleaseTakecareFiveDucks.config.db.mapper.DramaDAO;
 import com.dev.pleaseTakecareFiveDucks.config.util.PageHandler;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.SelectDramaThumbnailImageUrlDTO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.*;
+import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaSerialStateVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.result.DramaListResultVO;
+import com.dev.pleaseTakecareFiveDucks.drama.util.DramaSerialStateEnum;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -49,21 +51,21 @@ public class DramaServiceImpl implements DramaService{
     }
 
     @Override
-    public DramaListResultVO selectDramaPaginationList(SelectDramaPaginationDTO selectDramaPaginationDTO) throws Exception {
+    public DramaListResultVO selectDramaPaginationList(SelectDramaPaginationRequestDTO selectDramaPaginationRequestDTO) throws Exception {
 
-        int totalCnt = dramaDAO.getTotalCntByCondition(selectDramaPaginationDTO);
+        int totalCnt = dramaDAO.getTotalCntByCondition(selectDramaPaginationRequestDTO);
 
-        PageHandler pageHandler = new PageHandler(totalCnt, selectDramaPaginationDTO.getCurrentPage(), selectDramaPaginationDTO.getTitle());
+        PageHandler pageHandler = new PageHandler(totalCnt, selectDramaPaginationRequestDTO.getCurrentPage(), selectDramaPaginationRequestDTO.getTitle());
 
         // 만약 현재의 페이지가.. 1 -> 0, 2 -> 1, 3 -> 2, 4 -> 3 대로 오프셋 설정
-        Integer offset = selectDramaPaginationDTO.getCurrentPage() - 1;
+        Integer offset = selectDramaPaginationRequestDTO.getCurrentPage() - 1;
 
         // PageSize는 DTO에서 기본으로 10으로 처리되어 있습니다.
-        selectDramaPaginationDTO.setOffset(offset * selectDramaPaginationDTO.getPageSize());
+        selectDramaPaginationRequestDTO.setOffset(offset * selectDramaPaginationRequestDTO.getPageSize());
 
-        selectDramaPaginationDTO.setPageSize(selectDramaPaginationDTO.getPageSize());
+        selectDramaPaginationRequestDTO.setPageSize(selectDramaPaginationRequestDTO.getPageSize());
 
-        List<DramaVO> dramaVOList = dramaDAO.selectDramaPaginationList(selectDramaPaginationDTO);
+        List<DramaVO> dramaVOList = dramaDAO.selectDramaPaginationList(selectDramaPaginationRequestDTO);
 
         return DramaListResultVO.builder()
                 .pageHandler(pageHandler)
@@ -258,5 +260,17 @@ public class DramaServiceImpl implements DramaService{
         if(dramaDAO.insertDramaViewCnt(insertDramaViewCntRequestDTO) != 1) {
             throw new Exception();
         }
+    }
+
+    @Override
+    public List<DramaSerialStateVO> selectDramaSerialStateList() {
+
+        List<DramaSerialStateVO> dramaSerialStateVOList = new ArrayList<>();
+
+        dramaSerialStateVOList.add(DramaSerialStateVO.builder().dramaSerialStateEnum(DramaSerialStateEnum.end).build());
+        dramaSerialStateVOList.add(DramaSerialStateVO.builder().dramaSerialStateEnum(DramaSerialStateEnum.early_end).build());
+        dramaSerialStateVOList.add(DramaSerialStateVO.builder().dramaSerialStateEnum(DramaSerialStateEnum.yet).build());
+
+        return dramaSerialStateVOList;
     }
 }

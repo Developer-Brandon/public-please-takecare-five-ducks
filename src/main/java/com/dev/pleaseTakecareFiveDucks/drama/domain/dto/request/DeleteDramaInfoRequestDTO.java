@@ -9,15 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SelectDramaPaginationDTO {
-
-    @Builder.Default
-    Integer currentPage = 1;
-
-    Integer offset;
-
-    @Builder.Default
-    Integer pageSize = 10;
-
-    String title;
+public class DeleteDramaInfoRequestDTO {
+    Integer dramaNo;
 }

@@ -1,6 +1,7 @@
 package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.*;
+import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaSerialStateVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.MainDramaVO;
@@ -13,11 +14,11 @@ public interface DramaDAO {
 
     int getDramaTotalCnt();
 
-    int getTotalCntByCondition(SelectDramaPaginationDTO selectDramaPaginationDTO);
+    int getTotalCntByCondition(SelectDramaPaginationRequestDTO selectDramaPaginationRequestDTO);
 
     List<DramaVO> selectAllDramaList();
 
-    List<DramaVO> selectDramaPaginationList(SelectDramaPaginationDTO selectDramaPaginationDTO);
+    List<DramaVO> selectDramaPaginationList(SelectDramaPaginationRequestDTO selectDramaPaginationRequestDTO);
 
     List<DramaThumbnailVO> selectDramaThumbnailImageListByDramaNo(SelectDramaThumbnailImageListRequestDTO selectDramaThumbnailImageListRequestDTO);
 
@@ -42,4 +43,6 @@ public interface DramaDAO {
     int deleteDramaInfo(Integer bookNo);
 
     int deleteDramaThumbnailInfo(Integer bookNo);
+
+    List<DramaSerialStateVO> selectDramaSerialStateList();
 }
