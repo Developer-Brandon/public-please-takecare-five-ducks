@@ -40,7 +40,7 @@ public class DramaRestController extends BaseController {
                 .build();
     }
 
-    // 만화책 단일 조회 api 입니다.
+    // 드라마 단일 조회 api 입니다.
     @GetMapping(value = "/info", produces = JSON_FORMAT)
     public ResponseEntity<DramaVO> selectDramaInfo(
             @RequestParam
@@ -56,7 +56,7 @@ public class DramaRestController extends BaseController {
         return ResponseEntity.ok(dramaVO);
     }
 
-    // 만화책 단일 삽입 api 입니다.
+    // 드라마 단일 삽입 api 입니다.
     @PostMapping(value = "/info", produces = JSON_FORMAT)
     public ResponseEntity<Integer> insertDramaInfo(
             @RequestBody
@@ -68,7 +68,7 @@ public class DramaRestController extends BaseController {
         return ResponseEntity.ok(insertDramaInfoRequestDTO.getInsertedDramaNo());
     }
 
-    // 만화책 단일 업데이트 api 입니다.
+    // 드라마 단일 업데이트 api 입니다.
     @PutMapping(value = "/info", produces = JSON_FORMAT)
     public ResponseEntity<Integer> updateDramaInfo(
             @RequestBody
@@ -80,7 +80,7 @@ public class DramaRestController extends BaseController {
         return ResponseEntity.ok(updateDramaInfoRequestDTO.getDramaNo());
     }
 
-    // 만화책 단일 삭제 api 입니다.
+    // 드라마 단일 삭제 api 입니다.
     @DeleteMapping(value = "/info", produces = JSON_FORMAT)
     public ResponseEntity<Integer> deleteDramaInfo(
             @RequestBody
@@ -92,7 +92,7 @@ public class DramaRestController extends BaseController {
         return ResponseEntity.ok(deleteDramaInfoRequestDTO.getDramaNo());
     }
 
-    // 만화책 조회수 삽입 api 입니다.
+    // 드라마 조회수 삽입 api 입니다.
     @PostMapping(value = "/info/view", produces = JSON_FORMAT)
     public ResponseEntity<Integer> insertDramaInfoView(
             @RequestBody

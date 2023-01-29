@@ -170,7 +170,6 @@
     width: 120px;
 }
 
-
 .item > .item__right > ul > li > a {
     font-size: 17px;
     line-height: 21px;
@@ -183,18 +182,7 @@
     font-weight: 900!important;
 }
 
-.item > .item__right > .board-cast-cnt-text{
-    font-size: 17px;
-}
-
-.item > .item__right > .board-cast-cnt-input {
-    width: 58px;
-}
-
-.item > .item__right > .drama-reg-dt {
-    width: 88px;
-}
-
+/* 제작국가 */
 .item > .item__right > ul > li > .made-nature-no-text {
     font-size: 17px;
     line-height: 21px;
@@ -207,10 +195,18 @@
     font-weight: 900!important;
 }
 
+/* 방영일자 */
+.item > .item__right > .drama-reg-dt {
+    width: 88px;
+}
+
+/* 링크 */
 .item > .item__right > .import-link {
     width: 300px;
 }
 
+
+/* 등록하기 */
 .register-bottom {
     display: flex;
     flex-direction: row;
@@ -242,7 +238,6 @@
     flex-wrap: wrap;
     transition: 0.2s;
 }
-
 
 .thumbnail-preview-list > .thumbnail {
     width: 200px;

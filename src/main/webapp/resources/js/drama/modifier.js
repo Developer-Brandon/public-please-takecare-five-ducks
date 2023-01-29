@@ -4,16 +4,20 @@ let contentsMadeNatureNo = ''
 let broadCastCnt = ''
 let dramaRegDt = ''
 
+function enterInputValue() {
+ $(".find-thumbnail-button").click();
+}
+
 /** 방영상태를 클릭했을때에 호출되는 메소드입니다. */
-function selectSerialState(broadCastStateEnumValue) {
+function selectBroadcastState(broadCastStateEnumValue) {
 
  broadCastStateEnum = broadCastStateEnumValue
 
- if (broadCastStateEnumValue === 'end') {
+ if (broadCastStateEnum === 'end') {
   $('.end').addClass('font-weight-bold')
   $('.yet').removeClass('font-weight-bold')
   $('.early_end').removeClass('font-weight-bold')
- } else if(broadCastStateEnumValue === 'yet') {
+ } else if(broadCastStateEnum === 'yet') {
   $('.end').removeClass('font-weight-bold')
   $('.yet').addClass('font-weight-bold')
   $('.early_end').removeClass('font-weight-bold')
@@ -94,39 +98,6 @@ $(function () {
 
  // form 태그 안에서, submit type의 input 태그를 사용하지 않으면
  // 아래와 같이 따로 구현해주어야 합니다.
- // 등록하기
- $(".register-text").click(function () {
-
-  validationFormInfo()
-
-  let insertedDramaInfoForm = {
-   madeNatureNo: Number(contentsMadeNatureNo)
-   , title: $('.title-input').val()
-   , author: $('.author-input').val()
-   , link: $('.import-link').val()
-   , webThumbnailUrl: thumbnailImageUrl
-   , finalizedYnEnum: broadCastStateEnum
-   , dramaBroadcastCnt: Number(broadCastCnt)
-   , dramaRegDt: Number(dramaRegDt)
-  }
-
-  $.ajax({
-   url: "./info",
-   method: "POST",
-   data: JSON.stringify(insertedDramaInfoForm),
-   contentType: "application/json",
-   dataType: 'json',
-   processData: false,
-   success: function () {
-    location.href = './main'
-   },
-   error: function (error) {
-    alert("failed! ", error.toString())
-    return
-   }
-  })
- })
-
  // 수정하기
  $(".modify-text").click(function () {
 

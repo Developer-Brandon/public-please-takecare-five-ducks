@@ -1,20 +1,33 @@
+// todo: drama 랑 헷갈려서 잘못 표기했었음
+
 let thumbnailImageUrl = ''
-let finalizedStateEnum = ''
+let broadcastStateEnum = ''
 let contentsMadeNatureNo = ''
-let broadCastCnt = ''
-let animeRegDt = ''
+let dramaRegDt = ''
+
+function enterInputValue() {
+ $(".find-thumbnail-button").click();
+}
 
 /** 방영상태를 클릭했을때에 호출되는 메소드입니다. */
-function selectFinalizedState(finalizedYnEnum) {
+function selectBroadcastState(broadcastStateEnumValue) {
 
- finalizedStateEnum = finalizedYnEnum
+ broadcastStateEnum = broadcastStateEnumValue
 
- if (finalizedYnEnum === 'y') {
-  $('.finalized-text-y').addClass('font-weight-bold')
-  $('.finalized-text-n').removeClass('font-weight-bold')
+ if (broadCastStateEnum === 'end') {
+  $('.end').addClass('font-weight-bold')
+  $('.yet').removeClass('font-weight-bold')
+  $('.early_end').removeClass('font-weight-bold')
+
+ } else if(broadCastStateEnum === 'yet') {
+  $('.end').removeClass('font-weight-bold')
+  $('.yet').addClass('font-weight-bold')
+  $('.early_end').removeClass('font-weight-bold')
+
  } else {
-  $('.finalized-text-n').addClass('font-weight-bold');
-  $('.finalized-text-y').removeClass('font-weight-bold')
+  $('.end').removeClass('font-weight-bold')
+  $('.yet').removeClass('font-weight-bold')
+  $('.early_end').addClass('font-weight-bold')
  }
 }
 
@@ -61,21 +74,15 @@ function validationFormInfo() {
   }
  }
 
- if (finalizedStateEnum === '') {
+ if (broadcastStateEnum === '') {
   alert("방영상태는 필수 입력사항입니다.")
   return
  }
 
- if ($('.board-cast-cnt-input').val() === '') {
-  broadCastCnt = 0
- } else {
-  broadCastCnt = $('.board-cast-cnt-input').val()
- }
-
  if ($('.anime-reg-dt').val() === '') {
-  animeRegDt = 20000101
+  dramaRegDt = 20000101
  } else {
-  animeRegDt = $('.anime-reg-dt').val()
+  dramaRegDt = $('.anime-reg-dt').val()
  }
 
  if (contentsMadeNatureNo === '') {
@@ -105,9 +112,9 @@ $(function () {
    , author: $('.author-input').val()
    , link: $('.import-link').val()
    , webThumbnailUrl: thumbnailImageUrl
-   , finalizedYnEnum: finalizedStateEnum
+   , finalizedYnEnum: broadcastStateEnum
    , animeBroadcastCnt: Number(broadCastCnt)
-   , animeRegDt: Number(animeRegDt)
+   , dramaRegDt: Number(dramaRegDt)
   }
 
   $.ajax({
@@ -132,22 +139,22 @@ $(function () {
 
   validationFormInfo()
 
-  let updateAnimeInfoForm = {
+  let updateDramaInfoForm = {
    animeNo: Number($('#anime-no').val())
    , madeNatureNo: Number(contentsMadeNatureNo)
    , title: $('.title-input').val()
    , author: $('.author-input').val()
    , link: $('.import-link').val()
    , webThumbnailUrl: thumbnailImageUrl
-   , finalizedYnEnum: finalizedStateEnum
+   , broadcastStateEnum: broadcastStateEnum
    , animeBroadcastCnt: Number(broadCastCnt)
-   , animeRegDt: Number(animeRegDt)
+   , dramaRegDt: Number(dramaRegDt)
   }
 
   $.ajax({
    url: "../../anime/info",
    method: "PUT",
-   data: JSON.stringify(updateAnimeInfoForm),
+   data: JSON.stringify(updateDramaInfoForm),
    contentType: "application/json",
    dataType: 'json',
    processData: false,

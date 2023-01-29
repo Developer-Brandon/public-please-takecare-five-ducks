@@ -23,19 +23,16 @@
        processData: false,
        success: function (data) {
 
-        console.log("넘어온 data: " + data)
-        console.log("넘어온 dramaNo: " + dramaNo)
-
         $('#drama-no').attr('value', dramaNo)
 
         $('.thumbnail-input').attr('value', data.webThumbnailUrl)
         $('.title-input').attr('value', data.dramaTitle)
 
-        if (data.broadcastStateEnum === 'end') {
+        if (data.broadcastStateEnum.toString() === 'end') {
          $('.end').click()
-        } else if (data.broadcastStateEnum === 'yet'){
+        } else if (data.broadcastStateEnum.toString() === 'yet'){
          $('.yet').click()
-        } else if (data.broadcastStateEnum === 'early_end') {
+        } else if (data.broadcastStateEnum.toString() === 'early_end') {
          $('.early_end').click()
         }
 
@@ -101,17 +98,17 @@
         </div>
         <div class="item">
             <div class="item__left">
-                <p class="title">연재상태<span class="required-symbol">*</span></p>
+                <p class="title">방영상태<span class="required-symbol">*</span></p>
             </div>
             <div class="item__right">
                 <ul>
-                    <c:forEach var="dramaSerialStateVO" items="${dramaSerialStateList}">
-                        <li onclick="selectSerialState('${dramaSerialStateVO.dramaSerialStateEnum}')">
+                    <c:forEach var="broadcastStateVO" items="${broadcastStateList}">
+                        <li onclick="selectBroadcastState('${broadcastStateVO.broadcastStateEnum}')">
                             <c:choose>
-                                <c:when test="${dramaSerialStateVO.dramaSerialStateEnum == 'end'}">
+                                <c:when test="${broadcastStateVO.broadcastStateEnum.toString() == 'end'}">
                                     <p class="content end" style="color:#000AFF;">종영</p>
                                 </c:when>
-                                <c:when test="${dramaSerialStateVO.dramaSerialStateEnum == 'yet'}">
+                                <c:when test="${broadcastStateVO.broadcastStateEnum.toString() == 'yet'}">
                                     <p class="content yet" style="color:#FF0000;">미종영</p>
                                 </c:when>
                                 <c:otherwise>

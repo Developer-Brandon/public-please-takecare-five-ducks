@@ -92,7 +92,7 @@ public class DramaController extends BaseController {
             , Model model
     ) throws Exception {
 
-        model.addAttribute("dramaSerialStateList", dramaService.selectDramaSerialStateList());
+        model.addAttribute("broadcastStateList", dramaService.selectBroadCastStateList());
 
         model.addAttribute("contentsMadeNatureInfoList", contentsMadeNatureService.selectContentsMadeNatureInfoList());
 
@@ -109,7 +109,7 @@ public class DramaController extends BaseController {
 
         model.addAttribute("dramaNo", dramaNo);
 
-        model.addAttribute("dramaSerialStateList", dramaService.selectDramaSerialStateList());
+        model.addAttribute("broadcastStateList", dramaService.selectBroadCastStateList());
 
         model.addAttribute("contentsMadeNatureInfoList", contentsMadeNatureService.selectContentsMadeNatureInfoList());
 

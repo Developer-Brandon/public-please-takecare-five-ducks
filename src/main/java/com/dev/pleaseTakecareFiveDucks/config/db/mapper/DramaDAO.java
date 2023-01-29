@@ -1,7 +1,7 @@
 package com.dev.pleaseTakecareFiveDucks.config.db.mapper;
 
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.*;
-import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaSerialStateVO;
+import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.BroadcastStateVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.MainDramaVO;
@@ -44,5 +44,5 @@ public interface DramaDAO {
 
     int deleteDramaThumbnailInfo(Integer bookNo);
 
-    List<DramaSerialStateVO> selectDramaSerialStateList();
+    List<BroadcastStateVO> selectDramaSerialStateList();
 }

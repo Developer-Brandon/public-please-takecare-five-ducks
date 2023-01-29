@@ -5,10 +5,10 @@ import com.dev.pleaseTakecareFiveDucks.config.db.mapper.DramaDAO;
 import com.dev.pleaseTakecareFiveDucks.config.util.PageHandler;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.SelectDramaThumbnailImageUrlDTO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.*;
-import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaSerialStateVO;
+import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.BroadcastStateVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.result.DramaListResultVO;
-import com.dev.pleaseTakecareFiveDucks.drama.util.DramaSerialStateEnum;
+import com.dev.pleaseTakecareFiveDucks.drama.util.BroadcastStateEnum;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -263,14 +263,14 @@ public class DramaServiceImpl implements DramaService{
     }
 
     @Override
-    public List<DramaSerialStateVO> selectDramaSerialStateList() {
+    public List<BroadcastStateVO> selectBroadCastStateList() {
 
-        List<DramaSerialStateVO> dramaSerialStateVOList = new ArrayList<>();
+        List<BroadcastStateVO> dramaBroadcastStateVOList = new ArrayList<>();
 
-        dramaSerialStateVOList.add(DramaSerialStateVO.builder().dramaSerialStateEnum(DramaSerialStateEnum.end).build());
-        dramaSerialStateVOList.add(DramaSerialStateVO.builder().dramaSerialStateEnum(DramaSerialStateEnum.early_end).build());
-        dramaSerialStateVOList.add(DramaSerialStateVO.builder().dramaSerialStateEnum(DramaSerialStateEnum.yet).build());
+        dramaBroadcastStateVOList.add(BroadcastStateVO.builder().broadcastStateEnum(BroadcastStateEnum.end).build());
+        dramaBroadcastStateVOList.add(BroadcastStateVO.builder().broadcastStateEnum(BroadcastStateEnum.early_end).build());
+        dramaBroadcastStateVOList.add(BroadcastStateVO.builder().broadcastStateEnum(BroadcastStateEnum.yet).build());
 
-        return dramaSerialStateVOList;
+        return dramaBroadcastStateVOList;
     }
 }

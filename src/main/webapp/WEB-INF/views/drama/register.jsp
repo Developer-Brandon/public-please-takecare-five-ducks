@@ -83,14 +83,14 @@
             </div>
             <div class="item__right">
                 <ul>
-                    <c:forEach var="dramaSerialStateVO" items="${dramaSerialStateList}">
-                        <li onclick="selectSerialState('${dramaSerialStateVO.dramaSerialStateEnum}')">
+                    <c:forEach var="broadcastStateVO" items="${broadcastStateList}">
+                        <li onclick="selectBroadcastState('${broadcastStateVO.broadcastStateEnum.toString()}')">
                             <c:choose>
-                                <c:when test="${dramaSerialStateVO.dramaSerialStateEnum.toString() == 'end'}">
-                                    <a class="being" style="color:#000AFF;">종영🔚</a>
+                                <c:when test="${broadcastStateVO.broadcastStateEnum.toString() == 'end'}">
+                                    <a class="end" style="color:#000AFF;">종영🔚</a>
                                 </c:when>
-                                <c:when test="${dramaSerialStateVO.dramaSerialStateEnum.toString() == 'yet'}">
-                                    <a class="finished" style="color:#FF0000;">미종영🔄</a>
+                                <c:when test="${broadcastStateVO.broadcastStateEnum.toString() == 'yet'}">
+                                    <a class="yet" style="color:#FF0000;">미종영🔄</a>
                                 </c:when>
                                 <c:otherwise>
                                     <a class="early_end" style="color:#04CF00;">조기종영⛱</a>

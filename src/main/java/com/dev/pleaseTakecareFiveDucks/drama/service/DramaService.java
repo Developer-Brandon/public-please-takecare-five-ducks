@@ -4,7 +4,7 @@ package com.dev.pleaseTakecareFiveDucks.drama.service;
 import com.dev.pleaseTakecareFiveDucks.anime.domain.vo.RawImageThumbnailVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.SelectDramaThumbnailImageUrlDTO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.*;
-import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaSerialStateVO;
+import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.BroadcastStateVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.DramaVO;
 import com.dev.pleaseTakecareFiveDucks.drama.domain.vo.result.DramaListResultVO;
 
@@ -34,5 +34,5 @@ public interface DramaService {
 
     void registerDramaViewCnt(InsertDramaViewCntRequestDTO insertDramaViewCntRequestDTO) throws Exception;
 
-    List<DramaSerialStateVO> selectDramaSerialStateList();
+    List<BroadcastStateVO> selectBroadCastStateList();
 }

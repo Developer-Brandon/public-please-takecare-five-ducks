@@ -9,18 +9,20 @@ function enterInputValue() {
 }
 
 /** 방영상태를 클릭했을때에 호출되는 메소드입니다. */
-function selectSerialState(broadCastStateEnumValue) {
+function selectBroadcastState(broadCastStateEnumValue) {
 
  broadCastStateEnum = broadCastStateEnumValue
 
- if (broadCastStateEnumValue === 'end') {
+ if (broadCastStateEnum === 'end') {
   $('.end').addClass('font-weight-bold')
   $('.yet').removeClass('font-weight-bold')
   $('.early_end').removeClass('font-weight-bold')
- } else if(broadCastStateEnumValue === 'yet') {
+
+ } else if(broadCastStateEnum === 'yet') {
   $('.end').removeClass('font-weight-bold')
   $('.yet').addClass('font-weight-bold')
   $('.early_end').removeClass('font-weight-bold')
+
  } else {
   $('.end').removeClass('font-weight-bold')
   $('.yet').removeClass('font-weight-bold')
