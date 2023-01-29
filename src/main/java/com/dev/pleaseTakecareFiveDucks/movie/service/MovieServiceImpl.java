@@ -252,7 +252,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public void registerDramaViewCnt(InsertMovieViewCntRequestDTO insertMovieViewCntRequestDTO) throws Exception {
+    public void registerMovieViewCnt(InsertMovieViewCntRequestDTO insertMovieViewCntRequestDTO) throws Exception {
 
         if (movieDAO.insertMovieViewCnt(insertMovieViewCntRequestDTO) != 1) {
             throw new Exception();

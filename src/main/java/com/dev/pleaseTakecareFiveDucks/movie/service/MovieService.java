@@ -32,5 +32,5 @@ public interface MovieService {
 
     List<RawImageThumbnailVO> selectImageThumbnailVOList(SelectMovieThumbnailImageUrlDTO selectMovieThumbnailImageUrlDTO) throws Exception;
 
-    void registerDramaViewCnt(InsertMovieViewCntRequestDTO insertMovieViewCntRequestDTO) throws Exception;
+    void registerMovieViewCnt(InsertMovieViewCntRequestDTO insertMovieViewCntRequestDTO) throws Exception;
 }
