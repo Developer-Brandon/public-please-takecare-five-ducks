@@ -4,19 +4,19 @@
     <%@ page session="false" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="../page_header.jsp" %>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/comic/modifier.css">
-    <script src="${pageContext.request.contextPath}/resources/js/comic/modifier.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/drama/modifier.css">
+    <script src="${pageContext.request.contextPath}/resources/js/drama/modifier.js"></script>
     <script type="text/javascript">
 
      <%-- 수정페이지에만 삽입되면, 수정페이지 최초 진입 시 데이터를 불러오는 로직입니다. --%>
      $(function () {
 
-      let comicBookNo = '${comicBookNo}';
+      let dramaNo = '${dramaNo}';
 
-      console.log(comicBookNo)
+      console.log(dramaNo)
 
       $.ajax({
-       url: `../../comic/info?bookNo=${comicBookNo}`,
+       url: `../../drama/info?dramaNo=${dramaNo}`,
        method: "GET",
        contentType: "application/json",
        dataType: 'json',
@@ -24,26 +24,26 @@
        success: function (data) {
 
         console.log("넘어온 data: " + data)
-        console.log("넘어온 comicBookNo: " + comicBookNo)
+        console.log("넘어온 dramaNo: " + dramaNo)
 
-        $('#comic-book-no').attr('value', comicBookNo)
+        $('#drama-no').attr('value', dramaNo)
 
         $('.thumbnail-input').attr('value', data.webThumbnailUrl)
-        $('.title-input').attr('value', data.comicBookTitle)
+        $('.title-input').attr('value', data.dramaTitle)
 
-        if (data.comicBookSerialStateEnum === 'finished') {
-         $('.finished').click()
-        } else if (data.comicBookSerialStateEnum === 'being'){
-         $('.being').click()
-        } else if (data.comicBookSerialStateEnum === 'vacation') {
-         $('.vacation').click()
+        if (data.broadcastStateEnum === 'end') {
+         $('.end').click()
+        } else if (data.broadcastStateEnum === 'yet'){
+         $('.yet').click()
+        } else if (data.broadcastStateEnum === 'early_end') {
+         $('.early_end').click()
         }
 
-        $('.author-input').attr('value', data.comicBookAuthor)
+        $('.author-input').attr('value', data.dramaAuthor)
 
-        let comicBookRegDtToNumber = Number(data.comicBookRegDt.replace(/-/g, ""))
+        let dramaRegDtToNumber = Number(data.dramaRegDt.replace(/-/g, ""))
 
-        $('.comic-book-reg-dt').attr('value', comicBookRegDtToNumber)
+        $('.drama-reg-dt').attr('value', dramaRegDtToNumber)
 
         $('.made-nature-no-text' + data.madeNatureNo).click()
 
@@ -66,10 +66,10 @@
     <%-- 상단의 제목 시작 --%>
     <div class="top">
         <div class="top__left">
-            <p class="title">✍🏼만화책 수정, 삭제하기</p>
+            <p class="title">✍🏼드라마 수정, 삭제하기</p>
         </div>
         <div class="top__right">
-            <input id="comic-book-no" style="display:none">
+            <input id="drama-no" style="display:none">
         </div>
     </div>
     <%-- 썸네일 자동찾기 섹션 --%>
@@ -81,7 +81,6 @@
     </div>
 
     <%-- 각각 요소들의 섹션 --%>
-    <%--    <form onsubmit="return false;">--%>
     <div class="item-section">
         <div class="item">
             <div class="item__left">
@@ -98,7 +97,6 @@
             <div class="item__right">
                 <input type="text" class="content title-input"
                        onkeypress="if(window.event.keyCode===13) enterInputValue()">
-<%--                <button class="find-thumbnail-button">썸네일 찾기</button>--%>
             </div>
         </div>
         <div class="item">
@@ -107,17 +105,17 @@
             </div>
             <div class="item__right">
                 <ul>
-                    <c:forEach var="comicBookSerialStateVO" items="${comicBookSerialStateList}">
-                        <li onclick="selectSerialState('${comicBookSerialStateVO.comicBookSerialStateEnum}')">
+                    <c:forEach var="dramaSerialStateVO" items="${dramaSerialStateList}">
+                        <li onclick="selectSerialState('${dramaSerialStateVO.dramaSerialStateEnum}')">
                             <c:choose>
-                                <c:when test="${comicBookSerialStateVO.comicBookSerialStateEnum == 'being'}">
-                                    <p class="content being" style="color:#000AFF;">연재중</p>
+                                <c:when test="${dramaSerialStateVO.dramaSerialStateEnum == 'end'}">
+                                    <p class="content end" style="color:#000AFF;">종영</p>
                                 </c:when>
-                                <c:when test="${comicBookSerialStateVO.comicBookSerialStateEnum == 'finished'}">
-                                    <p class="content finished" style="color:#FF0000;">연재완료</p>
+                                <c:when test="${dramaSerialStateVO.dramaSerialStateEnum == 'yet'}">
+                                    <p class="content yet" style="color:#FF0000;">미종영</p>
                                 </c:when>
                                 <c:otherwise>
-                                    <p class="content vacation" style="color:#04CF00;">휴재중</p>
+                                    <p class="content early_end" style="color:#04CF00;">조기종영</p>
                                 </c:otherwise>
                             </c:choose>
                         </li>
@@ -138,7 +136,7 @@
                 <p class="title">출간일자</p>
             </div>
             <div class="item__right">
-                <input class="content comic-book-reg-dt" type='number' placeholder="19800922">
+                <input class="content drama-reg-dt" type='number' placeholder="19800922">
             </div>
         </div>
         <div class="item">
@@ -181,7 +179,6 @@
         </div>
     </div>
 </div>
-
 <%-- 메인 끝 --%>
 
 <!-- footer 시작 -->
