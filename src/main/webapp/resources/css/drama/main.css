@@ -83,26 +83,33 @@
     color: #000000;
 }
 
-.list-section > ul > .item > .anime-no {
+.list-section > ul > .item > .drama-no {
     width: 55px;
     text-align: center;
 }
 
-.list-section > ul > .item > .anime-title {
+.list-section > ul > .item > .drama-title {
     width: 302px;
+    text-align: left;
 }
 
-.list-section > ul > .item > .anime-finalized-yn {
-    width: 161px;
+.list-section > ul > .item > .drama-board-state {
+    width: 60px;
     text-align: center;
-    font-weight: 900!important;
 }
 
-.list-section > ul > .item > .anime-cnt {
+.list-section > ul > .item > .drama-author {
     width: 95px;
+    text-align: center;
 }
 
-.list-section > ul > .item > .anime-reg-dt {
+
+.list-section > ul > .item > .drama-contents-made-nature {
+    width: 95px;
+    text-align: center;
+}
+
+.list-section > ul > .item > .drama-reg-dt {
     width: 87px;
     text-align: center;
     padding-right: 3px;

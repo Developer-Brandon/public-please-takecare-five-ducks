@@ -15,12 +15,13 @@ import java.util.Date;
 @AllArgsConstructor
 public class DramaVO {
     Integer dramaNo;
-    Integer madeNatureNo;
     String dramaTitle;
     String dramaAuthor;
     String link;
     BroadcastStateEnum broadcastStateEnum;
     DramaUseYnEnum dramaUseYnEnum;
+    Integer madeNatureNo;
+    String madeKoreanName;
     Integer viewCnt;
     String webThumbnailUrl;
     String dramaRegDt;

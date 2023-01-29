@@ -90,10 +90,14 @@
              , tb_d.link as link
              , tb_d.broadcast_state as broadcastStateEnum
              , tb_d_t_i.web_thumbnail_url as webThumbnailUrl
+             , tb_c_m_n.m_n_no as madeNatureNo
+             , tb_c_m_n.korean_name as madeKoreanName
              , ifnull(tb_d_v.viewCnt, 0) as viewCnt
              , date_format(tb_d.drama_reg_dt, '%Y-%m-%d') as dramaRegDt
              , date_format(tb_d.reg_dt, '%Y-%m-%d') as regDt
         from web_app_test2.tb_drama as tb_d
+        inner join web_app_test2.tb_contents_made_nature as tb_c_m_n
+        on tb_d.m_n_no = tb_c_m_n.m_n_no
         inner join web_app_test2.tb_drama_thumbnail_img as tb_d_t_i
         on tb_d.r_drama_no = tb_d_t_i.r_drama_no
         left outer join (<include refid="selectMainDramaViewCnt"/>) as tb_d_v

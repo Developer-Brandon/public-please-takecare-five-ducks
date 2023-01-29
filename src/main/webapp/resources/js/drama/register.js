@@ -1,28 +1,34 @@
 let thumbnailImageUrl = ''
-let finalizedStateEnum = ''
+let broadCastStateEnum = ''
 let contentsMadeNatureNo = ''
 let broadCastCnt = ''
-let animeRegDt = ''
+let dramaRegDt = ''
 
 function enterInputValue() {
  $(".find-thumbnail-button").click();
 }
 
 /** 방영상태를 클릭했을때에 호출되는 메소드입니다. */
-function selectFinalizedState(finalizedYnEnum) {
+function selectSerialState(broadCastStateEnumValue) {
 
- finalizedStateEnum = finalizedYnEnum
+ broadCastStateEnum = broadCastStateEnumValue
 
- if (finalizedYnEnum === 'y') {
-  $('.finalized-text-y').addClass('font-weight-bold')
-  $('.finalized-text-n').removeClass('font-weight-bold')
+ if (broadCastStateEnumValue === 'end') {
+  $('.end').addClass('font-weight-bold')
+  $('.yet').removeClass('font-weight-bold')
+  $('.early_end').removeClass('font-weight-bold')
+ } else if(broadCastStateEnumValue === 'yet') {
+  $('.end').removeClass('font-weight-bold')
+  $('.yet').addClass('font-weight-bold')
+  $('.early_end').removeClass('font-weight-bold')
  } else {
-  $('.finalized-text-n').addClass('font-weight-bold');
-  $('.finalized-text-y').removeClass('font-weight-bold')
+  $('.end').removeClass('font-weight-bold')
+  $('.yet').removeClass('font-weight-bold')
+  $('.early_end').addClass('font-weight-bold')
  }
 }
 
-/** 애니 제작 국가 선택 시 호출하는 메소드 */
+/** 드라마 제작 국가 선택 시 호출하는 메소드 */
 function selectMadeNature(madeNatureNo, size) {
 
  contentsMadeNatureNo = madeNatureNo
@@ -53,6 +59,11 @@ function validationFormInfo() {
   }
  }
 
+ if (contentsMadeNatureNo === '') {
+  alert("제작국가는 필수 입력사항입니다.")
+  return
+ }
+
  if ($('.author-input').val() === '') {
   alert("작가이름은 필수 입력 사항입니다.")
   return
@@ -63,31 +74,20 @@ function validationFormInfo() {
   }
  }
 
- if (finalizedStateEnum === '') {
+ if (broadCastStateEnum === '') {
   alert("방영상태는 필수 입력사항입니다.")
   return
  }
 
- if ($('.board-cast-cnt-input').val() === '') {
-  broadCastCnt = 0
+ if ($('.drama-reg-dt').val() === '') {
+  dramaRegDt = 20000101
  } else {
-  broadCastCnt = $('.board-cast-cnt-input').val()
- }
-
- if ($('.anime-reg-dt').val() === '') {
-  animeRegDt = 20000101
- } else {
-  if($('.anime-reg-dt').val().length !== 8) {
+  if($('.drama-reg-dt').val().length !== 8) {
    alert("8글자 형식으로 입력해주셔야합니다\n(Example)19911220")
    return
   } else {
-   animeRegDt = $('.anime-reg-dt').val()
+   dramaRegDt = $('.drama-reg-dt').val()
   }
- }
-
- if (contentsMadeNatureNo === '') {
-  alert("제작국가는 필수 입력사항입니다.")
-  return
  }
 
  if ($('.import-link').val() === '') {
@@ -105,21 +105,21 @@ $(function () {
 
   validationFormInfo()
 
-  let insertedAnimeInfoForm = {
-   madeNatureNo: Number(contentsMadeNatureNo)
+  let insertedDramaInfoForm = {
+   webThumbnailUrl: thumbnailImageUrl
    , title: $('.title-input').val()
+   , madeNatureNo: Number(contentsMadeNatureNo)
    , author: $('.author-input').val()
    , link: $('.import-link').val()
-   , webThumbnailUrl: thumbnailImageUrl
-   , finalizedYnEnum: finalizedStateEnum
-   , animeBroadcastCnt: Number(broadCastCnt)
-   , animeRegDt: Number(animeRegDt)
+   , broadcastStateEnum: broadCastStateEnum
+   , dramaBroadcastCnt: Number(broadCastCnt)
+   , dramaRegDt: Number(dramaRegDt)
   }
 
   $.ajax({
    url: "./info",
    method: "POST",
-   data: JSON.stringify(insertedAnimeInfoForm),
+   data: JSON.stringify(insertedDramaInfoForm),
    contentType: "application/json",
    dataType: 'json',
    processData: false,
@@ -138,7 +138,7 @@ $(function () {
   let insertedTitle = $('.title-input').val()
 
   if (insertedTitle === '') {
-   window.alert("애니 제목을 입력해주세요")
+   window.alert("드라마 제목을 입력해주세요")
    return
   }
 
@@ -148,7 +148,7 @@ $(function () {
 
   $.ajax({
    url: "./search/image/thumbnail",
-   data: {animeName: insertedTitle},
+   data: {dramaName: insertedTitle},
    method: "GET",
    // contentType: "application/json",
    dataType: "json",

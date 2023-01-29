@@ -51,16 +51,16 @@ public class DramaRestController extends BaseController {
                 .dramaNo(dramaNo)
                 .build();
 
-        DramaVO comicBookVO = dramaService.selectDramaInfo(selectDramaInfoRequestDTO);
+        DramaVO dramaVO = dramaService.selectDramaInfo(selectDramaInfoRequestDTO);
 
-        return ResponseEntity.ok(comicBookVO);
+        return ResponseEntity.ok(dramaVO);
     }
 
     // 만화책 단일 삽입 api 입니다.
     @PostMapping(value = "/info", produces = JSON_FORMAT)
     public ResponseEntity<Integer> insertDramaInfo(
             @RequestBody
-                    InsertDramaInfoRequestDTO insertDramaInfoRequestDTO
+            InsertDramaInfoRequestDTO insertDramaInfoRequestDTO
     ) throws Exception {
 
         dramaService.registerDramaInfo(insertDramaInfoRequestDTO);
@@ -72,7 +72,7 @@ public class DramaRestController extends BaseController {
     @PutMapping(value = "/info", produces = JSON_FORMAT)
     public ResponseEntity<Integer> updateDramaInfo(
             @RequestBody
-                    UpdateDramaInfoRequestDTO updateDramaInfoRequestDTO
+            UpdateDramaInfoRequestDTO updateDramaInfoRequestDTO
     ) throws Exception {
 
         dramaService.modifyDramaInfo(updateDramaInfoRequestDTO);
@@ -96,7 +96,7 @@ public class DramaRestController extends BaseController {
     @PostMapping(value = "/info/view", produces = JSON_FORMAT)
     public ResponseEntity<Integer> insertDramaInfoView(
             @RequestBody
-                    InsertDramaViewCntRequestDTO insertDramaViewCntRequestDTO
+            InsertDramaViewCntRequestDTO insertDramaViewCntRequestDTO
     ) throws Exception {
 
         dramaService.registerDramaViewCnt(insertDramaViewCntRequestDTO);
@@ -108,9 +108,9 @@ public class DramaRestController extends BaseController {
     @GetMapping(value = "/info/list", produces = JSON_FORMAT)
     public ResponseEntity<DramaListResultVO> selectDramaInfoList(
             @RequestParam(required = false, defaultValue = "1")
-                    Integer currentPage
+            Integer currentPage
             , @RequestParam(required = false, defaultValue = "10")
-                    Integer pageSize
+            Integer pageSize
     ) throws Exception {
 
         SelectDramaPaginationRequestDTO selectDramaPaginationRequestDTO = SelectDramaPaginationRequestDTO.builder()
@@ -118,8 +118,8 @@ public class DramaRestController extends BaseController {
                 .pageSize(pageSize)
                 .build();
 
-        DramaListResultVO comicBookListResultVO = dramaService.selectDramaPaginationList(selectDramaPaginationRequestDTO);
+        DramaListResultVO dramaListResultVO = dramaService.selectDramaPaginationList(selectDramaPaginationRequestDTO);
 
-        return ResponseEntity.ok(comicBookListResultVO);
+        return ResponseEntity.ok(dramaListResultVO);
     }
 }
