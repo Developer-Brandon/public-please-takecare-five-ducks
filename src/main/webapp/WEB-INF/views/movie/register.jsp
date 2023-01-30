@@ -4,8 +4,8 @@
     <%@ page session="false" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="../page_header.jsp" %>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/drama/register.css">
-    <script src="${pageContext.request.contextPath}/resources/js/drama/register.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/movie/register.css">
+    <script src="${pageContext.request.contextPath}/resources/js/movie/register.js"></script>
 </head>
 <body class="custom-body">
 <!-- 메뉴 시작 -->
@@ -17,7 +17,7 @@
     <%-- 상단의 제목 시작 --%>
     <div class="top">
         <div class="top__left">
-            <p class="title">✍🏼드라마 등록하기</p>
+            <p class="title">✍🏼영화 등록하기</p>
         </div>
         <div class="top__right">
         </div>
@@ -71,34 +71,18 @@
         </div>
         <div class="item">
             <div class="item__left">
-                <p class="title">작가이름<span class="required-symbol">*</span></p>
+                <p class="title">감독이름<span class="required-symbol">*</span></p>
             </div>
             <div class="item__right">
-                <input type="text" class="content author-input">
+                <input type="text" class="content director-name-input">
             </div>
         </div>
         <div class="item">
             <div class="item__left">
-                <p class="title">방영상태<span class="required-symbol">*</span></p>
+                <p class="title">총 회차<span class="required-symbol">*</span></p>
             </div>
             <div class="item__right">
-                <ul>
-                    <c:forEach var="broadcastStateVO" items="${broadcastStateList}">
-                        <li onclick="selectBroadcastState('${broadcastStateVO.broadcastStateEnum.toString()}')">
-                            <c:choose>
-                                <c:when test="${broadcastStateVO.broadcastStateEnum.toString() == 'end'}">
-                                    <a class="end" style="color:#000AFF;">종영🔚</a>
-                                </c:when>
-                                <c:when test="${broadcastStateVO.broadcastStateEnum.toString() == 'yet'}">
-                                    <a class="yet" style="color:#FF0000;">미종영🔄</a>
-                                </c:when>
-                                <c:otherwise>
-                                    <a class="early_end" style="color:#04CF00;">조기종영⛱</a>
-                                </c:otherwise>
-                            </c:choose>
-                        </li>
-                    </c:forEach>
-                </ul>
+                <input type="text" class="content movie-total-number-of-episode" maxlength="1">회
             </div>
         </div>
         <div class="item">
@@ -106,10 +90,9 @@
                 <p class="title">방영일자</p>
             </div>
             <div class="item__right">
-                <input class="content drama-reg-dt" type='number' placeholder="19800922">
+                <input class="content movie-reg-dt" type='number' placeholder="19800922">
             </div>
         </div>
-
         <div class="item">
             <div class="item__left">
                 <p class="title">importLink<span class="required-symbol">*</span></p>
@@ -120,14 +103,12 @@
         </div>
     </div>
 
-
     <%-- 하단의 섹션 --%>
     <div class="register-bottom">
         <div class="register-bottom__inner">
             <p class="register-text">등록하기</p>
         </div>
     </div>
-    <%--    </form>--%>
 </div>
 
 <%-- 메인 끝 --%>

@@ -4,43 +4,38 @@
     <%@ page session="false" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="../page_header.jsp" %>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/drama/modifier.css">
-    <script src="${pageContext.request.contextPath}/resources/js/drama/modifier.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/movie/modifier.css">
+    <script src="${pageContext.request.contextPath}/resources/js/movie/modifier.js"></script>
     <script type="text/javascript">
 
      <%-- 수정페이지에만 삽입되면, 수정페이지 최초 진입 시 데이터를 불러오는 로직입니다. --%>
      $(function () {
 
-      let dramaNo = '${dramaNo}';
+      let movieNo = '${movieNo}';
 
-      console.log(dramaNo)
+      console.log(movieNo)
 
       $.ajax({
-       url: `../../drama/info?dramaNo=${dramaNo}`,
+       url: `../../movie/info?movieNo=${movieNo}`,
        method: "GET",
        contentType: "application/json",
        dataType: 'json',
        processData: false,
        success: function (data) {
 
-        $('#drama-no').attr('value', dramaNo)
+        $('#movie-no').attr('value', movieNo)
 
         $('.thumbnail-input').attr('value', data.webThumbnailUrl)
-        $('.title-input').attr('value', data.dramaTitle)
 
-        if (data.broadcastStateEnum.toString() === 'end') {
-         $('.end').click()
-        } else if (data.broadcastStateEnum.toString() === 'yet'){
-         $('.yet').click()
-        } else if (data.broadcastStateEnum.toString() === 'early_end') {
-         $('.early_end').click()
-        }
+        $('.title-input').attr('value', data.title)
 
-        $('.author-input').attr('value', data.dramaAuthor)
+        $('.director-name-input').attr('value', data.directorName)
 
-        let dramaRegDtToNumber = Number(data.dramaRegDt.replace(/-/g, ""))
+        $('.movie-total-number-of-episode').attr('value', data.totalNumberOfEpisode)
 
-        $('.drama-reg-dt').attr('value', dramaRegDtToNumber)
+        let movieRegDtToNumber = Number(data.movieRegDt.replace(/-/g, ""))
+
+        $('.movie-reg-dt').attr('value', movieRegDtToNumber)
 
         $('.made-nature-no-text' + data.madeNatureNo).click()
 
@@ -63,10 +58,10 @@
     <%-- 상단의 제목 시작 --%>
     <div class="top">
         <div class="top__left">
-            <p class="title">✍🏼드라마 수정, 삭제하기</p>
+            <p class="title">✍🏼영화 수정, 삭제하기</p>
         </div>
         <div class="top__right">
-            <input id="drama-no" style="display:none">
+            <input id="movie-no" style="display:none">
         </div>
     </div>
     <%-- 썸네일 자동찾기 섹션 --%>
@@ -94,46 +89,7 @@
             <div class="item__right">
                 <input type="text" class="content title-input"
                        onkeypress="if(window.event.keyCode===13) enterInputValue()">
-            </div>
-        </div>
-        <div class="item">
-            <div class="item__left">
-                <p class="title">방영상태<span class="required-symbol">*</span></p>
-            </div>
-            <div class="item__right">
-                <ul>
-                    <c:forEach var="broadcastStateVO" items="${broadcastStateList}">
-                        <li onclick="selectBroadcastState('${broadcastStateVO.broadcastStateEnum}')">
-                            <c:choose>
-                                <c:when test="${broadcastStateVO.broadcastStateEnum.toString() == 'end'}">
-                                    <p class="content end" style="color:#000AFF;">종영</p>
-                                </c:when>
-                                <c:when test="${broadcastStateVO.broadcastStateEnum.toString() == 'yet'}">
-                                    <p class="content yet" style="color:#FF0000;">미종영</p>
-                                </c:when>
-                                <c:otherwise>
-                                    <p class="content early_end" style="color:#04CF00;">조기종영</p>
-                                </c:otherwise>
-                            </c:choose>
-                        </li>
-                    </c:forEach>
-                </ul>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item__left">
-                <p class="title">작가<span class="required-symbol">*</span></p>
-            </div>
-            <div class="item__right">
-                <input type="text" class="content author-input">
-            </div>
-        </div>
-        <div class="item">
-            <div class="item__left">
-                <p class="title">출간일자</p>
-            </div>
-            <div class="item__right">
-                <input class="content drama-reg-dt" type='number' placeholder="19800922">
+                <button class="find-thumbnail-button">썸네일 찾기</button>
             </div>
         </div>
         <div class="item">
@@ -152,6 +108,30 @@
                         </li>
                     </c:forEach>
                 </ul>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item__left">
+                <p class="title">감독이름<span class="required-symbol">*</span></p>
+            </div>
+            <div class="item__right">
+                <input type="text" class="content director-name-input">
+            </div>
+        </div>
+        <div class="item">
+            <div class="item__left">
+                <p class="title">총 회차<span class="required-symbol">*</span></p>
+            </div>
+            <div class="item__right">
+                <input type="text" class="content movie-total-number-of-episode" maxlength="1">회
+            </div>
+        </div>
+        <div class="item">
+            <div class="item__left">
+                <p class="title">방영일자</p>
+            </div>
+            <div class="item__right">
+                <input class="content movie-reg-dt" type='number' placeholder="19800922">
             </div>
         </div>
         <div class="item">

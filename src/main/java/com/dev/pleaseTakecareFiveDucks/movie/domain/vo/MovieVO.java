@@ -14,13 +14,13 @@ import java.util.Date;
 @AllArgsConstructor
 public class MovieVO {
     Integer movieNo;
-    Integer madeNatureNo;
+    String webThumbnailUrl;
     String title;
+    Integer madeNatureNo;
     String directorName;
     String link;
     Integer totalNumberOfEpisode;
     Integer viewCnt;
-    String webThumbnailUrl;
     MovieUseYnEnum movieUseYnEnum;
     String movieRegDt;
     String regDt;

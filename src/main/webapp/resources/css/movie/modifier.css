@@ -8,8 +8,6 @@
 }
 
 /**/
-
-
 .body__inner {
     width: 704px;
     height: auto;
@@ -17,13 +15,13 @@
     padding: 25px 0;
 }
 
-.anime-banner {
+.movie-banner {
     width:100%;
     height:190px;
     background-color: #D9D9D9;
 }
 
-.anime-banner > .anime-banner__inner {
+.movie-banner > .movie-banner__inner {
 }
 
 .top {
@@ -167,33 +165,16 @@
     border: 1px solid white;
 }
 
-
-.item > .item__right > .author-input {
+.item > .item__right > .director-name-input {
     width: 120px;
 }
 
-
-.item > .item__right > ul > li >.finalized-text {
-    font-size: 17px;
-    line-height: 21px;
-    letter-spacing: -0.2px !important;
-    cursor: pointer;
-    transition: 0.4s;
+.item > .item__right > .movie-total-number-of-episode {
+    width: 30px;
+    margin-right: 10px;
 }
 
-.item > .item__right > ul > li >.finalized-text:hover{
-    font-weight: 900!important;
-}
-
-.item > .item__right > .board-cast-cnt-text{
-    font-size: 17px;
-}
-
-.item > .item__right > .board-cast-cnt-input {
-    width: 58px;
-}
-
-.item > .item__right > .anime-reg-dt {
+.item > .item__right > .movie-reg-dt {
     width: 88px;
 }
 
@@ -220,7 +201,6 @@
     flex-wrap: wrap;
     transition: 0.2s;
 }
-
 
 .thumbnail-preview-list > .thumbnail {
     width: 200px;

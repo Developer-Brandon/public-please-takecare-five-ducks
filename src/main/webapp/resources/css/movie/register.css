@@ -172,29 +172,12 @@
     width: 120px;
 }
 
-
-.item > .item__right > ul > li >.finalized-text {
-    font-size: 17px;
-    line-height: 21px;
-    letter-spacing: -0.2px !important;
-    cursor: pointer;
-    transition: 0.4s;
+.item > .item__right > .movie-total-number-of-episode {
+    width: 30px;
+    margin-right: 10px;
 }
 
-.item > .item__right > ul > li >.finalized-text:hover{
-    font-weight: 900!important;
-}
-
-.item > .item__right > .board-cast-cnt-text{
-    font-size: 17px;
-}
-
-.item > .item__right > .board-cast-cnt-input {
-    width: 58px;
-}
-
-.item > .item__right > .anime-reg-dt {
-    width: 88px;
+.item > .item__right > .movie-reg-dt {
 }
 
 .item > .item__right > ul > li > .made-nature-no-text {
@@ -244,7 +227,6 @@
     flex-wrap: wrap;
     transition: 0.2s;
 }
-
 
 .thumbnail-preview-list > .thumbnail {
     width: 200px;
