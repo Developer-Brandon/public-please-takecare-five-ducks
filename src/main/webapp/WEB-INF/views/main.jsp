@@ -81,7 +81,7 @@
                                         <div class="book-item__right">
                                             <div class="top-title">
                                                 <p class="book-title"><c:out value="${book.bookTitle}"/></p>
-                                                <p class="book-type
+                                                <p id="book-type" class="
                                             <c:choose>
                                                 <c:when test="${book.bookTypeEnglish == 'SCRIPT'}">book-type_script</c:when>
                                                 <c:when test="${book.bookTypeEnglish == 'STUDY_SUMMARY'}">book-type_study-summary</c:when>

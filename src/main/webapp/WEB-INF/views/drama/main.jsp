@@ -48,46 +48,56 @@
 
     <%-- list section 시작 --%>
     <div class="list-section">
-        <ul>
-            <c:forEach var="dramaVO" items="${dramaListResultVO.dramaVOList}">
-                <li class="item" onclick="goDramaDetailPage('${dramaVO.dramaNo}', '${dramaVO.link}')">
-                    <a class="drama-no"><c:out value="${dramaVO.dramaNo}"/></a>
-                    <a class="drama-title">
-                        <c:out value="${dramaVO.dramaTitle}"/>
-                        <span style="display:inline-block;"
-                              onclick="goDramaModifierPage('${dramaVO.dramaNo}')">&nbsp;✍🏻
+        <c:choose>
+            <c:when test="${dramaListResultVO.dramaVOList.size()} != 0">
+                <ul>
+                    <c:forEach var="dramaVO" items="${dramaListResultVO.dramaVOList}">
+                        <li class="item" onclick="goDramaDetailPage('${dramaVO.dramaNo}', '${dramaVO.link}')">
+                            <a class="drama-no"><c:out value="${dramaVO.dramaNo}"/></a>
+                            <a class="drama-title">
+                                <c:out value="${dramaVO.dramaTitle}"/>
+                                <span style="display:inline-block;"
+                                      onclick="goDramaModifierPage('${dramaVO.dramaNo}')">&nbsp;✍🏻
                         </span>
-                    </a>
-                    <c:choose>
-                        <c:when test="${dramaVO.broadcastStateEnum.toString() == 'end'}">
-                            <a class="drama-board-state being" style="color:#000AFF;">종영🔚</a>
-                        </c:when>
-                        <c:when test="${dramaVO.broadcastStateEnum.toString() == 'yet'}">
-                            <a class="drama-board-state finished" style="color:#FF0000;">미종영🔄</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a class="drama-board-state vacation" style="color:#04CF00;">조기종영⛱</a>
-                        </c:otherwise>
-                    </c:choose>
-                    <a class="drama-contents-made-nature"><c:out value="${dramaVO.madeKoreanName}"/></a>
-                    <a class="drama-author"><c:out value="${dramaVO.dramaAuthor}"/></a>
-                    <a class="drama-reg-dt"><c:out value="${dramaVO.dramaRegDt}"/></a>
-                </li>
-            </c:forEach>
-        </ul>
+                            </a>
+                            <c:choose>
+                                <c:when test="${dramaVO.broadcastStateEnum.toString() == 'end'}">
+                                    <a class="drama-board-state being" style="color:#000AFF;">종영🔚</a>
+                                </c:when>
+                                <c:when test="${dramaVO.broadcastStateEnum.toString() == 'yet'}">
+                                    <a class="drama-board-state finished" style="color:#FF0000;">미종영🔄</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="drama-board-state vacation" style="color:#04CF00;">조기종영⛱</a>
+                                </c:otherwise>
+                            </c:choose>
+                            <a class="drama-contents-made-nature"><c:out value="${dramaVO.madeKoreanName}"/></a>
+                            <a class="drama-author"><c:out value="${dramaVO.dramaAuthor}"/></a>
+                            <a class="drama-reg-dt"><c:out value="${dramaVO.dramaRegDt}"/></a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </c:when>
+            <c:otherwise>
+                <div class="wrap-drama-default">
+                    <p class="drama-default-word">등록된 드라마가 없습니다</p>
+                </div>
+            </c:otherwise>
+        </c:choose>
     </div>
 
     <%-- search section 시작 --%>
-    <div class="search-section">
-        <div class="wrap-search-input">
-            <p class="search-text">👆🏼제목</p>
-            <input type="text"
-                   class="search-input"
-                   onkeypress="if(window.event.keyCode===13) enterSearchInputValue()"
-                   value="${oldSearchTitle}"/>
-
+    <c:if test="${dramaListResultVO.dramaVOList.size()} != 0">
+        <div class="search-section">
+            <div class="wrap-search-input">
+                <p class="search-text">👆🏼제목</p>
+                <input type="text"
+                       class="search-input"
+                       onkeypress="if(window.event.keyCode===13) enterSearchInputValue()"
+                       value="${oldSearchTitle}"/>
+            </div>
         </div>
-    </div>
+    </c:if>
 
     <%-- pagination section 시작 --%>
     <div class="pagination-section">

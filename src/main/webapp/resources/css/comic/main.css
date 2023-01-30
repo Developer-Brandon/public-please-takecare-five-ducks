@@ -48,6 +48,18 @@
 }
 
 /* list section 시작 */
+.wrap-comic-default {
+    width: 100%;
+}
+
+.wrap-comic-default > .comic-default-word{
+    text-align: center;
+    margin-top:10px;
+    margin-bottom:10px;
+    cursor:default;
+}
+
+
 .list-section {
     margin-bottom: 10px;
 }

@@ -48,39 +48,51 @@
 
     <%-- list section 시작 --%>
     <div class="list-section">
-        <ul>
-            <c:forEach var="movieVO" items="${movieListResultVO.movieVOList}">
-                <li class="item" onclick="goMovieDetailPage('${movieVO.movieNo}', '${movieVO.link}')">
-                    <a class="movie-no"><c:out value="${movieVO.movieNo}"/></a>
-                    <a class="movie-title">
-                        <c:out value="${movieVO.title}"/>
-                        <span style="display:inline-block;"
-                              onclick="goMovieModifierPage('${movieVO.movieNo}')">&nbsp;✍🏻
+        <c:choose>
+            <c:when test="${movieListResultVO.movieVOList.size()} != 0">
+                <ul>
+                    <c:forEach var="movieVO" items="${movieListResultVO.movieVOList}">
+                        <li class="item" onclick="goMovieDetailPage('${movieVO.movieNo}', '${movieVO.link}')">
+                            <a class="movie-no"><c:out value="${movieVO.movieNo}"/></a>
+                            <a class="movie-title">
+                                <c:out value="${movieVO.title}"/>
+                                <span style="display:inline-block;"
+                                      onclick="goMovieModifierPage('${movieVO.movieNo}')">&nbsp;✍🏻
                         </span>
-                    </a>
-                    <a class="movie-total-number-of-episode">
-                        <c:if test="movieVO.totalNumberOfEpisode != 1">
-                            <span>총 ${movieVO.totalNumberOfEpisode}부작</span>
-                        </c:if>
-                    </a>
-                    <a class="movie-director"><c:out value="${movieVO.directorName}"/></a>
-                    <a class="movie-reg-dt"><c:out value="${movieVO.movieRegDt}"/></a>
-                </li>
-            </c:forEach>
-        </ul>
+                            </a>
+                            <a class="movie-total-number-of-episode">
+                                <c:if test="movieVO.totalNumberOfEpisode != 1">
+                                    <span>총 ${movieVO.totalNumberOfEpisode}부작</span>
+                                </c:if>
+                            </a>
+                            <a class="movie-director"><c:out value="${movieVO.directorName}"/></a>
+                            <a class="movie-reg-dt"><c:out value="${movieVO.movieRegDt}"/></a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </c:when>
+            <c:otherwise>
+                <div class="wrap-movie-default">
+                    <p class="movie-default-word">등록된 영화가 없습니다</p>
+                </div>
+            </c:otherwise>
+        </c:choose>
     </div>
 
     <%-- search section 시작 --%>
-    <div class="search-section">
-        <div class="wrap-search-input">
-            <p class="search-text">👆🏼제목</p>
-            <input type="text"
-                   class="search-input"
-                   onkeypress="if(window.event.keyCode===13) enterSearchInputValue()"
-                   value="${oldSearchTitle}"/>
+    <c:if test="${movieListResultVO.movieVOList.size()} != 0">
+        <div class="search-section">
+            <div class="wrap-search-input">
+                <p class="search-text">👆🏼제목</p>
+                <input type="text"
+                       class="search-input"
+                       onkeypress="if(window.event.keyCode===13) enterSearchInputValue()"
+                       value="${oldSearchTitle}"/>
 
+            </div>
         </div>
-    </div>
+
+    </c:if>
 
     <%-- pagination section 시작 --%>
     <div class="pagination-section">

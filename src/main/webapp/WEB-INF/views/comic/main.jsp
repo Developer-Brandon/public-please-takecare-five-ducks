@@ -48,45 +48,56 @@
 
     <%-- list section 시작 --%>
     <div class="list-section">
-        <ul>
-            <c:forEach var="comicVO" items="${comicBookListResultVO.comicBookVOList}">
-                <li class="item" onclick="goComicBookDetailPage('${comicVO.bookNo}', '${comicVO.link}')">
-                    <a class="comic-no"><c:out value="${comicVO.bookNo}"/></a>
-                    <a class="comic-title">
-                        <c:out value="${comicVO.comicBookTitle}"/>
-                        <span style="display:inline-block;"
-                              onclick="goComicBookModifierPage('${comicVO.bookNo}')">&nbsp;✍🏻
+        <c:choose>
+            <c:when test="${comicBookListResultVO.comicBookVOList.size()} != 0">
+                <ul>
+                    <c:forEach var="comicVO" items="${comicBookListResultVO.comicBookVOList}">
+                        <li class="item" onclick="goComicBookDetailPage('${comicVO.bookNo}', '${comicVO.link}')">
+                            <a class="comic-no"><c:out value="${comicVO.bookNo}"/></a>
+                            <a class="comic-title">
+                                <c:out value="${comicVO.comicBookTitle}"/>
+                                <span style="display:inline-block;"
+                                      onclick="goComicBookModifierPage('${comicVO.bookNo}')">&nbsp;✍🏻
                         </span>
-                    </a>
-                    <c:choose>
-                        <c:when test="${comicVO.comicBookSerialStateEnum.toString() == 'being'}">
-                            <a class="being" style="color:#000AFF;">연재중🔄</a>
-                        </c:when>
-                        <c:when test="${comicVO.comicBookSerialStateEnum.toString() == 'finished'}">
-                            <a class="finished" style="color:#FF0000;">연재완료🔚</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a class="vacation" style="color:#04CF00;">휴재중⛱</a>
-                        </c:otherwise>
-                    </c:choose>
-                    <a class="comic-author"><c:out value="${comicVO.comicBookAuthor}"/></a>
-                    <a class="comic-reg-dt"><c:out value="${comicVO.comicBookRegDt}"/></a>
-                </li>
-            </c:forEach>
-        </ul>
+                            </a>
+                            <c:choose>
+                                <c:when test="${comicVO.comicBookSerialStateEnum.toString() == 'being'}">
+                                    <a class="being" style="color:#000AFF;">연재중🔄</a>
+                                </c:when>
+                                <c:when test="${comicVO.comicBookSerialStateEnum.toString() == 'finished'}">
+                                    <a class="finished" style="color:#FF0000;">연재완료🔚</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="vacation" style="color:#04CF00;">휴재중⛱</a>
+                                </c:otherwise>
+                            </c:choose>
+                            <a class="comic-author"><c:out value="${comicVO.comicBookAuthor}"/></a>
+                            <a class="comic-reg-dt"><c:out value="${comicVO.comicBookRegDt}"/></a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </c:when>
+            <c:otherwise>
+                <div class="wrap-comic-default">
+                    <p class="comic-default-word">등록된 만화책이 없습니다</p>
+                </div>
+            </c:otherwise>
+        </c:choose>
     </div>
 
     <%-- search section 시작 --%>
-    <div class="search-section">
-        <div class="wrap-search-input">
-            <p class="search-text">👆🏼제목</p>
-            <input type="text"
-                   class="search-input"
-                   onkeypress="if(window.event.keyCode===13) enterSearchInputValue()"
-                   value="${oldSearchTitle}"/>
+    <c:if test="${comicBookListResultVO.comicBookVOList.size()} != 0">
+        <div class="search-section">
+            <div class="wrap-search-input">
+                <p class="search-text">👆🏼제목</p>
+                <input type="text"
+                       class="search-input"
+                       onkeypress="if(window.event.keyCode===13) enterSearchInputValue()"
+                       value="${oldSearchTitle}"/>
 
+            </div>
         </div>
-    </div>
+    </c:if>
 
     <%-- pagination section 시작 --%>
     <div class="pagination-section">

@@ -306,14 +306,14 @@
     width: 100px;
     font-size: 13px;
     line-height: 18px;
-    #FFFFFF-space: nowrap;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 600 !important;
     text-align: right;
 }
 
-.book-type {
+#book-type {
     font-size: 10px;
     line-height: 12px;
     margin-bottom: 13px;
