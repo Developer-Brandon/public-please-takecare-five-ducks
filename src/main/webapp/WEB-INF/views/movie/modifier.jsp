@@ -89,7 +89,7 @@
             <div class="item__right">
                 <input type="text" class="content title-input"
                        onkeypress="if(window.event.keyCode===13) enterInputValue()">
-                <button class="find-thumbnail-button">썸네일 찾기</button>
+                <%--                <button class="find-thumbnail-button">썸네일 찾기</button>--%>
             </div>
         </div>
         <div class="item">

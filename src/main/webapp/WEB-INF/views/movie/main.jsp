@@ -83,7 +83,7 @@
     <%-- 상단의 제목 시작 --%>
     <div class="top">
         <div class="top__left">
-            <p class="title">드라마 모음</p>
+            <p class="title">영화 모음</p>
         </div>
         <div class="top__right">
             <p class="register-text" onclick="goMovieRegisterPage()">등록하기</p>

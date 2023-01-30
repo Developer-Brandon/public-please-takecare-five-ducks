@@ -60,36 +60,31 @@ public class MainServiceImpl implements MainService{
         dramaDAO.selectMainDramaList()
                 .forEach(e -> mainEntertainVOList.add(
                     MainEntertainVO.builder()
-                    .title(e.getDramaTitle())
-                    .link(e.getLink())
-                    .webThumbnailUrl(e.getWebThumbnailUrl())
-                    .viewCnt(e.getViewCnt())
-                    .build()
+                            .title(e.getDramaTitle())
+                            .link(e.getLink())
+                            .webThumbnailUrl(e.getWebThumbnailUrl())
+                            .viewCnt(e.getViewCnt())
+                            .build()
                 )
             );
-
 
         movieDAO.selectMainMovieList()
                 .forEach(e -> mainEntertainVOList.add(
                     MainEntertainVO.builder()
-                    .title(e.getTitle())
-                    .link(e.getLink())
-                    .webThumbnailUrl(e.getWebThumbnailUrl())
-                    .viewCnt(e.getViewCnt())
-                    .build()
+                            .title(e.getTitle())
+                            .link(e.getLink())
+                            .webThumbnailUrl(e.getWebThumbnailUrl())
+                            .viewCnt(e.getViewCnt())
+                            .build()
                 )
             );
-
-        mainEntertainVOList
-                .stream()
-                .limit(3);
 
         return MainPageVO.builder()
                 .mainBannerVOList(mainDAO.selectMainBannerList())
                 .mainAnimeVOList(animeDAO.selectMainAnimationList())
                 .mainBookVOList(bookDAO.selectMainBookList())
                 .mainComicBookVOMap(mainComicBookMap)
-                .mainEntertainVOList(mainEntertainVOList)
+                .mainEntertainVOList(mainEntertainVOList.stream().limit(3).collect(Collectors.toList()))
                 .build();
     }
 }

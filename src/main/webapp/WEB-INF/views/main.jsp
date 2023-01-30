@@ -19,6 +19,10 @@
       location.href = './book/main'
      }
 
+     function goComicPage() {
+      location.href = './comic/main'
+     }
+
      function goDramaPage() {
       location.href = './drama/main'
      }
@@ -157,65 +161,76 @@
                 </div>
                 <div class="comic-book-cover">
                     <div class="comic-book-cover__inner">
-                        <c:forEach var="comic" items="${mainComicBookVOMap}">
-                            <c:if test="${comic.key == '1990'}">
-                                <div class="comic-book-section">
-                                    <p class="gen-title">📆1990~</p>
-                                    <c:forEach var="innerComic" items="${comic.value}">
-                                        <div class="wrap-thumbnail-item">
-                                            <c:choose>
-                                                <c:when test="${innerComic.webThumbnailUrl != ''}">
-                                                    <div class="thumbnail__default"></div>
-                                                    <!-- 추후 썸네일 준비 끝나면 개발 예정 -->
-                                                    <!-- <img src="${innerComic.webThumbnailUrl}" alt="" class="thumbnail"> -->
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <div class="thumbnail__default"></div>
-                                                </c:otherwise>
-                                            </c:choose>
-                                            <div class="introduce">
-                                                <div class="introduce__inner">
-                                                    <div class="title">${innerComic.comicBookTitle}</div>
-                                                    <div class="author">${innerComic.comicBookAuthor}</div>
+                        <c:choose>
+                            <c:when test="${ainComicBookVOMap.size().get(0).size() > 1}">
+                                <c:forEach var="comic" items="${mainComicBookVOMap}">
+                                    <%-- 1990 시작 --%>
+                                    <c:if test="${comic.key == '1990'}">
+                                        <div class="comic-book-section">
+                                            <p class="gen-title">📆&nbsp;1990~</p>
+                                            <c:forEach var="innerComic" items="${comic.value}">
+                                                <div class="wrap-thumbnail-item">
+                                                    <c:choose>
+                                                        <c:when test="${innerComic.webThumbnailUrl != ''}">
+                                                            <div class="thumbnail__default"></div>
+                                                            <!-- 추후 썸네일 준비 끝나면 개발 예정 -->
+                                                            <!-- <img src="${innerComic.webThumbnailUrl}" alt="" class="thumbnail"> -->
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <div class="thumbnail__default"></div>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    <div class="introduce">
+                                                        <div class="introduce__inner">
+                                                            <div class="title">${innerComic.comicBookTitle}</div>
+                                                            <div class="author">${innerComic.comicBookAuthor}</div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </c:forEach>
                                         </div>
-                                    </c:forEach>
-                                </div>
-                            </c:if>
-                            <c:if test="${comic.key == '2000'}">
-                                <div class="comic-book-section">
-                                    <p class="gen-title">📆2000~</p>
-                                    <img src="" alt="" class="comic-thumbnail"/>
-                                    <c:forEach var="innerComic" items="${comic.value}">
-                                        <div class="introduce">
-                                            <div class="introduce__inner">
-                                                <div class="title">${innerComic.comicBookTitle}</div>
-                                                <div class="author">${innerComic.comicBookAuthor}</div>
-                                            </div>
+                                    </c:if>
+                                    <%-- 2000 시작 --%>
+                                    <c:if test="${comic.key == '2000'}">
+                                        <div class="comic-book-section">
+                                            <p class="gen-title">📆&nbsp;2000~</p>
+                                            <img src="" alt="" class="comic-thumbnail"/>
+                                            <c:forEach var="innerComic" items="${comic.value}">
+                                                <div class="introduce">
+                                                    <div class="introduce__inner">
+                                                        <div class="title">${innerComic.comicBookTitle}</div>
+                                                        <div class="author">${innerComic.comicBookAuthor}</div>
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
                                         </div>
-                                    </c:forEach>
-                                </div>
-                            </c:if>
-                            <c:if test="${comic.key == '2010'}">
-                                <div class="comic-book-section">
-                                    <p class="gen-title">📆2010~</p>
-                                    <img src="" alt="" class="comic-thumbnail"/>
-                                    <c:forEach var="innerComic" items="${comic.value}">
-                                        <div class="introduce">
-                                            <div class="introduce__inner">
-                                                <div class="title">innerComic.comicBookTitle</div>
-                                                <div class="author">innerComic.comicBookAuthor</div>
-                                            </div>
+                                    </c:if>
+                                    <%-- 2010 시작 --%>
+                                    <c:if test="${comic.key == '2010'}">
+                                        <div class="comic-book-section">
+                                            <p class="gen-title">📆&nbsp;2010~</p>
+                                            <img src="" alt="" class="comic-thumbnail"/>
+                                            <c:forEach var="innerComic" items="${comic.value}">
+                                                <div class="introduce">
+                                                    <div class="introduce__inner">
+                                                        <div class="title">innerComic.comicBookTitle</div>
+                                                        <div class="author">innerComic.comicBookAuthor</div>
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
                                         </div>
-                                    </c:forEach>
-                                </div>
-                            </c:if>
-                        </c:forEach>
+                                    </c:if>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <p class="comic-book-cover__inner__default">등록된 만화책이 없습니다</p>
+                            </c:otherwise>
+                        </c:choose>
+
                     </div>
                 </div>
                 <div class="wrap-more-comic-book-button">
-                    <div class="see-more-comic-book-button">만화책 더보기👉🏻</div>
+                    <div class="see-more-comic-book-button" onclick="goComicPage()">만화책 더보기👉🏻</div>
                 </div>
             </div>
             <!--  -->
@@ -233,22 +248,28 @@
                     <p class="sub-title">인기 드라마와 영화를 보러 출바알~!</p>
                 </div>
                 <div class="drama-and-movie-list__inner">
-                    <c:forEach var="entertain" items="${mainEntertainVOList}">
-                        <div class="dam-item" onclick="goNotionPage('${entertain.link}')">
-                            <c:choose>
-                                <c:when test="${entertain.webThumbnailUrl} != null || ${entertain.webThumbnailUrl} != ''">
-                                    <img src="${entertain.webThumbnailUrl}"
-                                         alt="영화썸네일입니다."
-                                         class="thumbnail"/>
-                                </c:when>
-                                <c:otherwise>
-                                    <div class="thumbnail" style="background-color: #D9D9D9;"></div>
-                                </c:otherwise>
-                            </c:choose>
-
-                            <p class="title">${entertain.title}</p>
-                        </div>
-                    </c:forEach>
+                    <c:choose>
+                        <c:when test="${mainEntertainVOList.size() > 0}">
+                            <c:forEach var="entertain" items="${mainEntertainVOList}">
+                                <div class="dam-item" onclick="goNotionPage('${entertain.link}')">
+                                    <c:choose>
+                                        <c:when test="${entertain.webThumbnailUrl} != null || ${entertain.webThumbnailUrl} != ''">
+                                            <img src="${entertain.webThumbnailUrl}"
+                                                 alt="영화, 드라마썸네일입니다."
+                                                 class="thumbnail"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="thumbnail" style="background-color: #D9D9D9;"></div>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <p class="title">${entertain.title}</p>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <p class="drama-and-movie-list__inner__default">등록된 영화가 없습니다</p>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
                 <div class="wrap-dam-buttons">
                     <button class="dam-button" onclick="goDramaPage()">드라마 더보기👉🏻</button>
