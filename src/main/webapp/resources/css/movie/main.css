@@ -48,7 +48,6 @@
 }
 
 /* list section 시작 */
-
 .list-section {
     margin-bottom: 10px;
 }
@@ -83,26 +82,27 @@
     color: #000000;
 }
 
-.list-section > ul > .item > .anime-no {
+.list-section > ul > .item > .movie-no {
     width: 55px;
     text-align: center;
 }
 
-.list-section > ul > .item > .anime-title {
-    width: 302px;
+.list-section > ul > .item > .movie-title {
+    width: 202px;
 }
 
-.list-section > ul > .item > .anime-finalized-yn {
+.list-section > ul > .item > .movie-total-number-of-episode{
     width: 161px;
     text-align: center;
     font-weight: 900!important;
 }
 
-.list-section > ul > .item > .anime-cnt {
-    width: 95px;
+.list-section > ul > .item > .movie-director {
+    width: 195px;
+    text-align: center;
 }
 
-.list-section > ul > .item > .anime-reg-dt {
+.list-section > ul > .item > .movie-reg-dt {
     width: 87px;
     text-align: center;
     padding-right: 3px;
