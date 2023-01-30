@@ -6,31 +6,7 @@
     <%@ include file="page_header.jsp" %>
     <!-- -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
-    <script type="text/javascript">
-     function goNotionPage(link) {
-      window.open(link)
-     }
-
-     function goAnimePage() {
-      location.href = './anime/main'
-     }
-
-     function goBookPage() {
-      location.href = './book/main'
-     }
-
-     function goComicPage() {
-      location.href = './comic/main'
-     }
-
-     function goDramaPage() {
-      location.href = './drama/main'
-     }
-
-     function goMoviePage() {
-      location.href = './movie/main'
-     }
-    </script>
+    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 </head>
 <body class="custom-body">
 <!-- 메뉴 시작 -->
@@ -39,32 +15,10 @@
 
 <!-- 메인 시작 -->
 <div class="image-box">
-    <%--    --%>
+    <%--  메인 배너 사진 --%>
     <img class="evangalion"
          src="${pageContext.request.contextPath}/resources/images/evangalion.png"
          alt="에반게리온 초호기">
-    <%--    <img class="goku"--%>
-    <%--         src="${pageContext.request.contextPath}/resources/images/goku.png"--%>
-    <%--         alt="손오공 유년시절">--%>
-    <%--    <img class="zoro"--%>
-    <%--         src="${pageContext.request.contextPath}/resources/images/zoro.png"--%>
-    <%--         alt="조로">--%>
-    <%--    --%>
-    <%--    <img class="vmon"--%>
-    <%--         src="${pageContext.request.contextPath}/resources/images/vmon.png"--%>
-    <%--         alt="브이몬">--%>
-    <%--    --%>
-    <%--    <img class="kiu"--%>
-    <%--         src="${pageContext.request.contextPath}/resources/images/kiu.png"--%>
-    <%--         alt="기유">--%>
-    <%--    &lt;%&ndash;    &ndash;%&gt;--%>
-    <%--    <img class="itachi"--%>
-    <%--         src="${pageContext.request.contextPath}/resources/images/itachi.png"--%>
-    <%--         alt="이타치">--%>
-    <%--    &lt;%&ndash;    &ndash;%&gt;--%>
-    <%--    <img class="bashu"--%>
-    <%--         src="${pageContext.request.contextPath}/resources/images/trigun.png"--%>
-    <%--         alt="밧슈">--%>
 </div>
 <div class="body__inner">
 
@@ -79,17 +33,20 @@
                 </div>
                 <div class="anime-thumbnail-list">
                     <c:forEach var="anime" items="${mainAnimeVOList}">
-                        <div class="thumbnail-box">
-                            <div class="thumbnail-box__inner"
-                                 style="background-image: url('<c:out value="${anime.webThumbnailUrl}"/>')"
-                                 onclick="goNotionPage('${anime.link}')">
-                                    <%--                        <div class="thumbnail">--%>
-                                    <%--                            <p><c:out value="${anime.animeTitle}"/></p>--%>
-                                    <%--                            <p><c:out value="${anime.animeAuthor}"/></p>--%>
-                                    <%--                            <p><c:out value="${anime.animeRegDt}"/></p>--%>
-                                    <%--                        </div>--%>
-                            </div>
-                        </div>
+                        <c:choose>
+                            <c:when test="${mainAnimeVOList.size() != 0}">
+                                <div class="thumbnail-box">
+                                    <div class="thumbnail-box__inner"
+                                         style="background-image: url('<c:out value="${anime.webThumbnailUrl}"/>')"
+                                         onclick="goNotionPage('${anime.link}')">
+                                    </div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <p class="thumbnail-box__default">등록된 애니가 없습니다</p>
+                            </c:otherwise>
+                        </c:choose>
+
                     </c:forEach>
                 </div>
                 <div class="wrap-more-anime-button">
@@ -113,31 +70,40 @@
                 <div class="some-book-list">
                     <div class="some-book-list__inner">
                         <c:forEach var="book" items="${mainBookVOList}">
-                            <div class="book-item" onclick="goNotionPage('${book.link}')">
-                                <div class="book-item__left">
-                                    <img src="${pageContext.request.contextPath}/resources/images/book-icon.png"
-                                         alt="책 아이콘"
-                                         class="book-icon">
-                                </div>
-                                <div class="book-item__right">
-                                    <div class="top-title">
-                                        <p id="book-title"><c:out value="${book.bookTitle}"/></p>
-                                        <p id="book-type" class="<c:choose>
-                                        <c:when test="${book.bookTypeEnglish == 'SCRIPT'}">book-type_script</c:when>
-                                        <c:when test="${book.bookTypeEnglish == 'STUDY_SUMMARY'}">book-type_study-summary</c:when>
-                                        <c:when test="${book.bookTypeEnglish == 'BOOK_SUMMARY'}">book-type_book-summary</c:when>
-                                        <c:when test="${book.bookTypeEnglish == 'LECTURE_SUMMARY'}">book-type_lecture_summary</c:when>
-                                        <c:when test="${book.bookTypeEnglish == 'NOVEL'}">book-type_novel</c:when>
-                                        <c:otherwise>book-type_default</c:otherwise>
-                                    </c:choose>">
-                                            <span style="font-weight:800 !important;"></span>
-                                            <c:out value="${book.bookTypeEnglish}"/>
-                                            <span style="font-weight:800 !important;"></span>
-                                        </p>
-                                        <p id="book-reg-dt"><c:out value="${book.bookRegDt}"/></p>
+                            <c:choose>
+                                <c:when test="${mainBookVOList.size() != 0}">
+                                    <div class="book-item" onclick="goNotionPage('${book.link}')">
+                                        <div class="book-item__left">
+                                            <img src="${pageContext.request.contextPath}/resources/images/book-icon.png"
+                                                 alt="책 아이콘"
+                                                 class="book-icon">
+                                        </div>
+                                        <div class="book-item__right">
+                                            <div class="top-title">
+                                                <p class="book-title"><c:out value="${book.bookTitle}"/></p>
+                                                <p class="book-type
+                                            <c:choose>
+                                                <c:when test="${book.bookTypeEnglish == 'SCRIPT'}">book-type_script</c:when>
+                                                <c:when test="${book.bookTypeEnglish == 'STUDY_SUMMARY'}">book-type_study-summary</c:when>
+                                                <c:when test="${book.bookTypeEnglish == 'BOOK_SUMMARY'}">book-type_book-summary</c:when>
+                                                <c:when test="${book.bookTypeEnglish == 'LECTURE_SUMMARY'}">book-type_lecture_summary</c:when>
+                                                <c:when test="${book.bookTypeEnglish == 'NOVEL'}">book-type_novel</c:when>
+                                                <c:otherwise>book-type_default</c:otherwise>
+                                            </c:choose>
+                                            ">
+                                                    <span style="font-weight:800 !important;"></span>
+                                                    <c:out value="${book.bookTypeEnglish}"/>
+                                                    <span style="font-weight:800 !important;"></span>
+                                                </p>
+                                                <p id="book-reg-dt"><c:out value="${book.bookRegDt}"/></p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <p class="some-book-list__inner__default">등록된 책이 없습니다</p>
+                                </c:otherwise>
+                            </c:choose>
                         </c:forEach>
                     </div>
                     <div class="wrap-more-book-button">
@@ -251,23 +217,16 @@
                     <c:choose>
                         <c:when test="${mainEntertainVOList.size() > 0}">
                             <c:forEach var="entertain" items="${mainEntertainVOList}">
-                                <div class="dam-item" onclick="goNotionPage('${entertain.link}')">
-                                    <c:choose>
-                                        <c:when test="${entertain.webThumbnailUrl} != null || ${entertain.webThumbnailUrl} != ''">
-                                            <img src="${entertain.webThumbnailUrl}"
-                                                 alt="영화, 드라마썸네일입니다."
-                                                 class="thumbnail"/>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <div class="thumbnail" style="background-color: #D9D9D9;"></div>
-                                        </c:otherwise>
-                                    </c:choose>
+                                <div class="drama-item" onclick="goNotionPage('${entertain.link}')">
+                                    <img src="${entertain.webThumbnailUrl}"
+                                         alt="영화, 드라마썸네일입니다."
+                                         class="thumbnail"/>
                                     <p class="title">${entertain.title}</p>
                                 </div>
                             </c:forEach>
                         </c:when>
                         <c:otherwise>
-                            <p class="drama-and-movie-list__inner__default">등록된 영화가 없습니다</p>
+                            <p class="drama-and-movie-list__inner__default">등록된 드라마, 영화가 없습니다</p>
                         </c:otherwise>
                     </c:choose>
                 </div>

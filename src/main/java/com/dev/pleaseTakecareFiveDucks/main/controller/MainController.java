@@ -25,12 +25,10 @@ public class MainController{
         MainPageVO mainPageVO = mainService.selectMainPageData();
 
         model.addAttribute("mainBannerVOList", mainPageVO.getMainBannerVOList());
-
-        // 메인의 ui에 따라서 조정될 수 있지만 우선적으로 15개로 지정합니다.
         model.addAttribute("mainAnimeVOList", mainPageVO.getMainAnimeVOList().stream().limit(15).collect(Collectors.toList()));
         model.addAttribute("mainBookVOList", mainPageVO.getMainBookVOList());
         model.addAttribute("mainComicBookVOMap", mainPageVO.getMainComicBookVOMap());
-        model.addAttribute("mainEntertainVOList", mainPageVO.getMainEntertainVOList());
+        model.addAttribute("mainEntertainVOList", mainPageVO.getMainEntertainVOList().stream().limit(3).collect(Collectors.toList()));
 
         return "main";
     }

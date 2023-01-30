@@ -54,7 +54,7 @@
 .body__inner {
     width: 100%;
     margin: 0 auto;
-    background-color: white;
+    background-color: #FFFFFF;
 }
 
 .body__inner > .wrap-hot-anime-list {
@@ -119,10 +119,25 @@
     cursor: pointer;
     transition: 0.4s;
     opacity: 0.5;
+    /**/
+    display: flex;
+    flex-direction: column;
 }
 
 .anime-thumbnail-list > .thumbnail-box:hover {
     opacity: 1;
+}
+
+.anime-thumbnail-list > .thumbnail-box__default {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* */
+    margin-top: 21px;
+    margin-bottom: 15px;
 }
 
 /* 세번째 선택자에 해당하는 자식 요소에게만 margin-right를 0으로 설정합니다. */
@@ -175,13 +190,13 @@
     border: 1px solid #6F6D6D;
     border-radius: 15px;
     color: #6F6D6D;
-    background-color: white;
+    background-color: #FFFFFF;
     cursor: pointer;
     transition-duration: 0.4s;
 }
 
 .see-more-anime-button:hover {
-    color: white;
+    color: #FFFFFF;
     background-color: #6F6D6D;
 }
 
@@ -191,12 +206,27 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: #FFFFFF;
 }
 
 .body__inner > .wrap-some-book-list > .wrap-some-book-list__inner {
     width: 724px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.some-book-list__inner__default{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 21px;
+    margin-bottom: 15px;
 }
 
 .some-book-list {
@@ -272,18 +302,18 @@
     flex-direction: column;
 }
 
-#book-title {
+.book-title {
     width: 100px;
     font-size: 13px;
     line-height: 18px;
-    white-space: nowrap;
+    #FFFFFF-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 600 !important;
     text-align: right;
 }
 
-#book-type {
+.book-type {
     font-size: 10px;
     line-height: 12px;
     margin-bottom: 13px;
@@ -337,13 +367,13 @@
     border: 1px solid #6F6D6D;
     border-radius: 15px;
     color: #6F6D6D;
-    background-color: white;
+    background-color: #FFFFFF;
     cursor: pointer;
     transition-duration: 0.4s;
 }
 
 .see-more-book-button:hover {
-    color: white;
+    color: #FFFFFF;
     background-color: #6F6D6D;
 }
 
@@ -395,7 +425,7 @@
     height: 183px;
     border-radius: 50px;
     box-shadow: 4.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
-    background-color: white;
+    background-color: #FFFFFF;
     margin-bottom: 20px;
 }
 
@@ -448,7 +478,7 @@
 
 .comic-book-section > .wrap-thumbnail-item:hover {
     background-color: #6F6D6D;
-    color: white;
+    color: #FFFFFF;
     border-radius: 15px;
 }
 
@@ -496,7 +526,7 @@
     border: 1px solid #6F6D6D;
     border-radius: 15px;
     color: #6F6D6D;
-    background-color: white;
+    background-color: #FFFFFF;
     text-align: center;
     line-height: 28px;
     cursor: pointer;
@@ -504,7 +534,7 @@
 }
 
 .see-more-comic-book-button:hover {
-    color: white;
+    color: #FFFFFF;
     background-color: #6F6D6D;
 }
 
@@ -565,9 +595,10 @@
     width: 100%;
     text-align: center;
     padding-bottom: 15px;
+    cursor: default;
 }
 
-.dam-item {
+.drama-item {
     width: 119px;
     height: 110px;
     margin-right: 66px;
@@ -576,11 +607,11 @@
     align-items: center;
 }
 
-.dam-item:nth-child(3n) {
+.drama-item:nth-child(3n) {
     margin-right: 0;
 }
 
-.dam-item > .thumbnail {
+.drama-item > .thumbnail {
     display: block;
     width: 75px;
     height: 75px;
@@ -590,16 +621,16 @@
     transition: 0.4s;
 }
 
-.dam-item > .thumbnail:hover {
+.drama-item > .thumbnail:hover {
     width: 65px;
     height: 65px;
 }
 
-.dam-item:nth-child(2n) > .thumbnail {
+.drama-item:nth-child(2n) > .thumbnail {
     border: 3px solid green;
 }
 
-.dam-item > .title {
+.drama-item > .title {
     font-size: 17px;
     font-weight: 600 !important;
 }
@@ -616,13 +647,13 @@
     border: 1px solid #6F6D6D;
     border-radius: 15px;
     color: #6F6D6D;
-    background-color: white;
+    background-color: #FFFFFF;
     cursor: pointer;
     transition-duration: 0.4s;
 }
 
 .wrap-dam-buttons > .dam-button:hover {
-    color: white;
+    color: #FFFFFF;
     background-color: #6F6D6D;
 }
 

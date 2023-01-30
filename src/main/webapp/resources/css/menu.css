@@ -2,7 +2,7 @@
 .menu-bar {
     width: auto;
     height: 72px;
-    background-color: white;
+    background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
     justify-content: center;

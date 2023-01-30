@@ -60,7 +60,7 @@ public class MainServiceImpl implements MainService{
         dramaDAO.selectMainDramaList()
                 .forEach(e -> mainEntertainVOList.add(
                     MainEntertainVO.builder()
-                            .title(e.getDramaTitle())
+                            .title(e.getTitle())
                             .link(e.getLink())
                             .webThumbnailUrl(e.getWebThumbnailUrl())
                             .viewCnt(e.getViewCnt())
@@ -79,12 +79,15 @@ public class MainServiceImpl implements MainService{
                 )
             );
 
+        // 3. entertainVOList만 섞어줍니다.
+        Collections.shuffle(mainEntertainVOList);
+
         return MainPageVO.builder()
                 .mainBannerVOList(mainDAO.selectMainBannerList())
                 .mainAnimeVOList(animeDAO.selectMainAnimationList())
                 .mainBookVOList(bookDAO.selectMainBookList())
                 .mainComicBookVOMap(mainComicBookMap)
-                .mainEntertainVOList(mainEntertainVOList.stream().limit(3).collect(Collectors.toList()))
+                .mainEntertainVOList(mainEntertainVOList)
                 .build();
     }
 }
