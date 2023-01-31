@@ -17,7 +17,7 @@ public class MainController{
     private final MainService mainService;
 
     @GetMapping(value = "/")
-    public String goMainJsp(Locale locale, Model model) throws Exception {
+    public String goMainJsp(Model model) throws Exception {
 
         // TODO: 로그인 화면으로 이동하는 api입니다.
         // 만약 session이 물려있으면 메인화면으로 이동, session이 물려있지 않으면 로그인 화면으로 이동하게끔 개발합니다.
@@ -30,6 +30,12 @@ public class MainController{
         model.addAttribute("mainComicBookVOMap", mainPageVO.getMainComicBookVOMap());
         model.addAttribute("mainEntertainVOList", mainPageVO.getMainEntertainVOList().stream().limit(3).collect(Collectors.toList()));
 
-        return "main";
+        return "login";
+    }
+
+    @GetMapping(value = "/login")
+    public String goLoginPage(Model model) throws Exception {
+
+        return "login";
     }
 }
