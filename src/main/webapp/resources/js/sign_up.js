@@ -1,6 +1,7 @@
-let checkAuthLoginOrNot = false;
-let emailValue;
-let passwordValue;
+let checkAuthLoginOrNot = false
+let emailValue
+let passwordValue
+let userNameValue
 
 function init() {
 
@@ -34,6 +35,13 @@ function validationForm() {
  } else {
   passwordValue = $('.password-input').val()
  }
+
+ if($('.username-input').val() === '') {
+  alert('유저이름은 필수 입력 값입니다.')
+  return
+ } else {
+  userNameValue = $('.password-input').val()
+ }
 }
 
 $(function () {
@@ -41,7 +49,7 @@ $(function () {
  init()
 
  // 자동로그인 element 클릭 시
- $('.auto-login-section').click(function () {
+ $('.sign-up-button').click(function () {
 
   if(checkAuthLoginOrNot) {
    $('.uncheck-auto-login').css({"display": 'inline-block'})
@@ -54,8 +62,8 @@ $(function () {
   }
  })
 
- // 로그인 버튼
- $('.login-button').click(function() {
+ // 회원가입 버튼
+ $('.sign-up-button').click(function() {
   validationForm()
 
   // TODO: session 관련 처리 후 로그인 체크 예정입니다.

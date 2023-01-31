@@ -5,6 +5,7 @@ import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.MainComicBookDetailVO;
 import com.dev.pleaseTakecareFiveDucks.config.db.mapper.*;
 import com.dev.pleaseTakecareFiveDucks.main.domain.vo.MainEntertainVO;
 import com.dev.pleaseTakecareFiveDucks.main.domain.vo.MainPageVO;
+import com.dev.pleaseTakecareFiveDucks.main.domain.vo.UserTypeVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -89,5 +90,10 @@ public class MainServiceImpl implements MainService{
                 .mainComicBookVOMap(mainComicBookMap)
                 .mainEntertainVOList(mainEntertainVOList)
                 .build();
+    }
+
+    @Override
+    public List<UserTypeVO> selectUserTypeList() throws Exception {
+        return mainDAO.selectUserTypeList();
     }
 }

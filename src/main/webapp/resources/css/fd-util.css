@@ -9,6 +9,7 @@
     /* color */
     --main-yellow-color: #FFBE40;
     --main-gray-color: #979494;
+    --main-gray-color2: #D9D9D9;
     --main-black-color: #000000;
     --main-red-color: red;
     --main-white-color: #FFFFFF;
@@ -27,6 +28,7 @@ and (max-device-width: 1024px) {
     }
 }
 
+/* For custom class */
 #ptcfd-border {
     width: auto;
     border-bottom: 1px solid var(--main-black-color);
@@ -38,4 +40,26 @@ and (max-device-width: 1024px) {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none
+}
+
+.ptcfd-block-drag-with-out-text {
+    -webkit-user-select:text;
+    -moz-user-select:text;
+    -ms-user-select:text;
+    user-select:text
+}
+
+.ptcfd-main-input {
+    border: none;
+    border-bottom: 1px solid var(--main-black-color);
+}
+
+.ptcfd-part-input {
+    border: none;
+    border-bottom: 1px solid var(--main-black-color);
+    /* 추후 확장성을 위해 만들었습니다 */
+}
+
+.pdcfd-required-symbol {
+    color: var(--main-red-color);
 }

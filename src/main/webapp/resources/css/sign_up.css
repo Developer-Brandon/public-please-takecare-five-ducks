@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
 }
 
 .logo-and-wording > .main-logo {
@@ -30,12 +30,48 @@
     font-family: var(--part-font) !important;
 }
 
+/* 프로필 사진 시작 */
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 25px;
+}
+
+.profile-section > .default {
+    width: 128px;
+    height: 132px;
+    background-color: var(--main-gray-color2);
+    /*    */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-section > .default > .default-wording {
+    color: var(--main-white-color);
+    text-align: center;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.profile-section > .default > .default-wording:hover {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.profile-section > .real {
+    width: 128px;
+    height: 132px;
+}
+
 /* 로그인 섹션 시작 */
 .login-section {
     background-color: var(--login-section-background-color);
     border-radius: 30px;
     width: 327px;
-    height: 398px;
     margin-top: -40px;
 }
 
@@ -76,8 +112,6 @@
 .email-section > .email-input {
     width: var(--input-width);
     height: var(--input-height);
-    border: none;
-    border-bottom: 1px solid var(--main-black-color);
     font-family: var(--part-font) !important;
 }
 
@@ -100,12 +134,49 @@
 .password-section > .password-input {
     width: var(--input-width);
     height: var(--input-height);
-    border: none;
-    border-bottom: 1px solid var(--main-black-color);
     font-family: var(--part-font) !important;
 }
 
-.input-section > .input-section__inner > .login-button {
+/* 유저타입 섹션 시작 */
+.user-type-call-warning {
+    font-size: 12px;
+    line-height: 12px;
+    color: var(--main-red-color);
+}
+
+/*.user-type-section {*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    margin-bottom: 20px;*/
+/*}*/
+
+.username-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.username-section > .username{
+    font-size: 20px;
+    line-height: 24px;
+    font-family: var(--part-font) !important;
+}
+
+.username-section > .username-input {
+    width: var(--input-width);
+    height: var(--input-height);
+    font-family: var(--part-font) !important;
+}
+
+
+
+.input-section > .input-section__inner > .sign-up-button {
     /*display: inline-flex;*/
     /*flex-direction: column;*/
     /*align-items: center; !* 가로 - 중앙으로 *!*/
@@ -167,4 +238,12 @@
     color: var(--main-red-color);
     line-height: 17px;
     font-size: 14px;
+}
+
+.username-section {
+    margin-bottom: 25px;
+}
+
+.warning-announce-when-sign-up {
+    margin-bottom: 69px;
 }

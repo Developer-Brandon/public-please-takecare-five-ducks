@@ -43,7 +43,7 @@
         </div>
         <div class="item">
             <div class="item__left">
-                <p class="title">제목<span class="required-symbol">*</span></p>
+                <p class="title">제목<span class="pdcfd-required-symbol">*</span></p>
             </div>
             <div class="item__right">
                 <input type="text" class="content title-input"
@@ -53,7 +53,7 @@
         </div>
         <div class="item">
             <div class="item__left">
-                <p class="title">제작국가<span class="required-symbol">*</span></p>
+                <p class="title">제작국가<span class="pdcfd-required-symbol">*</span></p>
             </div>
             <div class="item__right">
                 <ul>
@@ -71,7 +71,7 @@
         </div>
         <div class="item">
             <div class="item__left">
-                <p class="title">작가이름<span class="required-symbol">*</span></p>
+                <p class="title">작가이름<span class="pdcfd-required-symbol">*</span></p>
             </div>
             <div class="item__right">
                 <input type="text" class="content author-input">
@@ -79,7 +79,7 @@
         </div>
         <div class="item">
             <div class="item__left">
-                <p class="title">방영상태<span class="required-symbol">*</span></p>
+                <p class="title">방영상태<span class="pdcfd-required-symbol">*</span></p>
             </div>
             <div class="item__right">
                 <ul>
@@ -112,7 +112,7 @@
 
         <div class="item">
             <div class="item__left">
-                <p class="title">importLink<span class="required-symbol">*</span></p>
+                <p class="title">importLink<span class="pdcfd-required-symbol">*</span></p>
             </div>
             <div class="item__right">
                 <input type="text" class="content import-link">

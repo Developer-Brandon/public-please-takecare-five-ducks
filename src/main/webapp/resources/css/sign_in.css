@@ -1,0 +1,166 @@
+.body__inner {
+    background-color: var(--login-background-color);
+    width: 100%;
+    height: 100%;
+    /**/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 로고와 워딩 시작 */
+.logo-and-wording {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.logo-and-wording > .main-logo {
+    width: 51px;
+    height: 53px;
+    margin-bottom: 15px;
+}
+
+.logo-and-wording > .main-logo-wording {
+    font-size: 40px;
+    line-height: 44px;
+    cursor: default;
+    font-family: var(--part-font) !important;
+}
+
+/* 로그인 섹션 시작 */
+.login-section {
+    background-color: var(--login-section-background-color);
+    border-radius: 30px;
+    width: 327px;
+    height: 398px;
+    margin-top: -40px;
+}
+
+.login-section > .login-section__inner {
+    padding: 25px 40px;
+}
+
+/* 인풋 섹션 시작 */
+.input-section {
+    width: 100%;
+}
+
+.input-section > .input-section__inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 이메일 섹션 시작 */
+.email-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-family: var(--part-font) !important;
+}
+
+.email-section > .email {
+    font-size: 20px;
+    line-height: 24px;
+    font-family: var(--part-font) !important;
+}
+
+.email-section > .email-input {
+    width: var(--input-width);
+    height: var(--input-height);
+    font-family: var(--part-font) !important;
+}
+
+/* 패스워드 섹션 시작 */
+.password-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.password-section > .password {
+    font-size: 20px;
+    line-height: 24px;
+    font-family: var(--part-font) !important;
+}
+
+.password-section > .password-input {
+    width: var(--input-width);
+    height: var(--input-height);
+    font-family: var(--part-font) !important;
+}
+
+.input-section > .input-section__inner > .login-button {
+    /*display: inline-flex;*/
+    /*flex-direction: column;*/
+    /*align-items: center; !* 가로 - 중앙으로 *!*/
+    /*justify-content: center; !* 세로 - 중앙으로 *!*/
+    font-family: var(--part-font) !important;
+    background-color: var(--main-yellow-color);
+    font-size: 25px;
+    line-height: 28px;
+    width: 210px;
+    height: 34px;
+    cursor: pointer;
+    vertical-align: middle;
+    /* border */
+    border: none;
+    border-radius: 20px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-bottom: 9px;
+}
+
+.input-section > .input-section__inner > .auto-login-section > .auto-login-section__inner {
+}
+
+.input-section > .input-section__inner > .auto-login-section > .auto-login-section__inner:hover {
+    cursor: pointer;
+}
+
+.auto-login-wording {
+    display: inline-block;
+    font-family: var(--part-font) !important;
+}
+
+.join-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.join-section > .join-wording {
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--main-gray-color);
+    transition: 0.2s;
+    font-family: var(--part-font) !important;
+}
+
+.join-section > .join-wording:hover {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.warning-announce-when-login {
+    margin-bottom: 24px;
+    height: 17px;
+    font-family: var(--part-font) !important;
+}
+
+.warning-announce-when-login > li {
+    color: var(--main-red-color);
+    line-height: 17px;
+    font-size: 14px;
+}

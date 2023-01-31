@@ -5,8 +5,8 @@
     <%@ page session="false" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="page_header.jsp" %>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
-    <script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sign_in.css">
+    <script src="${pageContext.request.contextPath}/resources/js/sign_in.js"></script>
 </head>
 <body>
 <div class="body__inner ptcfd-block-drag">
@@ -33,16 +33,18 @@
 
                     <!-- email -->
                     <div class="email-section">
-                        <p class="email">Email</p>
-                        <input type="text" class="email-input">
+                        <p class="email">이메일</p>
+                        <input type="text" class="email-input ptcfd-main-input">
                     </div>
                     <!-- password -->
                     <div class="password-section">
-                        <p class="password">Password</p>
-                        <input type="text" class="password-input">
+                        <p class="password">비밀번호</p>
+                        <input type="text" class="password-input ptcfd-main-input">
                     </div>
+
                     <!-- login button -->
                     <button class="login-button">로&nbsp;&nbsp;그&nbsp;&nbsp;인</button>
+
                     <!-- auto login check button -->
                     <div class="auto-login-section">
                         <div class="auto-login-section__inner">
@@ -55,7 +57,7 @@
             </div>
         </div>
         <div class="join-section">
-            <!-- 회원가입하기 -->
+            <!-- 회원가입하기 버튼 -->
             <p class="join-wording">회원가입하기</p>
         </div>
     </div>
