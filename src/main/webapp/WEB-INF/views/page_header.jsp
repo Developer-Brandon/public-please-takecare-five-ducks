@@ -14,9 +14,6 @@
 <!-- component reset css(first) -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/google-reset-elements.css">
 
-<!-- component reset css(second) -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/component/reset.css">
-
 <!-- component util -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fd-util.css">
 
@@ -28,6 +25,9 @@
 
 <!-- footer css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css">
+
+<!-- component reset css(second) -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/component/reset.css">
 
 <%-- jquery --%>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.3.min.js"></script>

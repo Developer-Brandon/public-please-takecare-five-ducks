@@ -15,3 +15,14 @@ and (max-device-width: 1024px) {
   width: auto;
   border-bottom: 1px solid black;
 }
+
+:root {
+    --root-font: 'establishRetrosansOTF';
+    --login-background-color: #D9D9D9;
+    --login-section-background-color: #FFFFFF;
+    --input-width: 120px;
+    --input-height: 21px;
+    --main-yellow-color: #FFBE40;
+    --main-gray-color: #979494;
+    --main-black-color: #000000;
+}

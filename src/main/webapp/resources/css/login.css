@@ -1,13 +1,3 @@
-:root {
-    --root-font: 'establishRetrosansOTF';
-    --login-background-color: #D9D9D9;
-    --login-section-background-color: #FFFFFF;
-    --input-width: 120px;
-    --input-height: 21px;
-    --main-yellow-color: #FFBE40;
-    --main-gray-color: #979494;
-}
-
 .body__inner {
     background-color: var(--login-background-color);
     width: 100%;
@@ -36,7 +26,6 @@
 .logo-and-wording > .main-logo-wording {
     font-size: 40px;
     line-height: 44px;
-    font-family: var(--root-font) !important;
     cursor: default;
 }
 
@@ -77,7 +66,6 @@
 }
 
 .email-section > .email {
-    font-family: var(--root-font) !important;
     font-size: 20px;
     line-height: 24px;
 }
@@ -85,6 +73,8 @@
 .email-section > .email-input {
     width: var(--input-width);
     height: var(--input-height);
+    border: none;
+    border-bottom: 1px solid var(--main-black-color)
 }
 
 /* 패스워드 섹션 시작 */
@@ -98,7 +88,6 @@
 }
 
 .password-section > .password {
-    font-family: var(--root-font) !important;
     font-size: 20px;
     line-height: 24px;
 }
@@ -106,6 +95,8 @@
 .password-section > .password-input {
     width: var(--input-width);
     height: var(--input-height);
+    border: none;
+    border-bottom: 1px solid var(--main-black-color)
 }
 
 .input-section > .input-section__inner > .login-button {
@@ -119,7 +110,6 @@
     line-height: 28px;
     width: 210px;
     height: 34px;
-    font-family: var(--root-font) !important;
     cursor: pointer;
     vertical-align: middle;
     /* border */
