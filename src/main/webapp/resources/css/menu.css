@@ -2,7 +2,7 @@
 .menu-bar {
     width: auto;
     height: 72px;
-    background-color: #FFFFFF;
+    background-color: var(--main-white-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -70,9 +70,10 @@
 }
 
 .menu-list-li > a {
-    color: black;
+    color: var(--main-black-color);
     opacity: 0.7;
     transition: 0.3s;
+    font-family: var(--part-font) !important;
 }
 
 .menu-list-li > a:hover {
@@ -101,9 +102,10 @@
 }
 
 .my-page-menu-list-li > a {
-    color: black;
+    color: var(--main-black-color);
     opacity: 0.7;
     transition: 0.3s;
+    font-family: var(--part-font) !important;
 }
 
 .my-page-menu-list-li > a:hover {

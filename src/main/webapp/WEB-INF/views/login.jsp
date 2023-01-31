@@ -9,7 +9,7 @@
     <script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
 </head>
 <body>
-<div class="body__inner">
+<div class="body__inner ptcfd-block-drag">
     <div class="login-section">
         <div class="login-section__inner">
             <!-- 입력창 시작 -->

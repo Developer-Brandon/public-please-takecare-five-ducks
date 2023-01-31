@@ -27,6 +27,7 @@
     font-size: 40px;
     line-height: 44px;
     cursor: default;
+    font-family: var(--part-font) !important;
 }
 
 /* 로그인 섹션 시작 */
@@ -63,18 +64,21 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
+    font-family: var(--part-font) !important;
 }
 
 .email-section > .email {
     font-size: 20px;
     line-height: 24px;
+    font-family: var(--part-font) !important;
 }
 
 .email-section > .email-input {
     width: var(--input-width);
     height: var(--input-height);
     border: none;
-    border-bottom: 1px solid var(--main-black-color)
+    border-bottom: 1px solid var(--main-black-color);
+    font-family: var(--part-font) !important;
 }
 
 /* 패스워드 섹션 시작 */
@@ -90,13 +94,15 @@
 .password-section > .password {
     font-size: 20px;
     line-height: 24px;
+    font-family: var(--part-font) !important;
 }
 
 .password-section > .password-input {
     width: var(--input-width);
     height: var(--input-height);
     border: none;
-    border-bottom: 1px solid var(--main-black-color)
+    border-bottom: 1px solid var(--main-black-color);
+    font-family: var(--part-font) !important;
 }
 
 .input-section > .input-section__inner > .login-button {
@@ -104,7 +110,7 @@
     /*flex-direction: column;*/
     /*align-items: center; !* 가로 - 중앙으로 *!*/
     /*justify-content: center; !* 세로 - 중앙으로 *!*/
-
+    font-family: var(--part-font) !important;
     background-color: var(--main-yellow-color);
     font-size: 25px;
     line-height: 28px;
@@ -129,6 +135,7 @@
 
 .auto-login-wording {
     display: inline-block;
+    font-family: var(--part-font) !important;
 }
 
 .join-section {
@@ -142,6 +149,7 @@
     line-height: 24px;
     color: var(--main-gray-color);
     transition: 0.2s;
+    font-family: var(--part-font) !important;
 }
 
 .join-section > .join-wording:hover {
@@ -152,10 +160,11 @@
 .warning-announce-when-login {
     margin-bottom: 24px;
     height: 17px;
+    font-family: var(--part-font) !important;
 }
 
 .warning-announce-when-login > li {
-    color: red;
+    color: var(--main-red-color);
     line-height: 17px;
     font-size: 14px;
 }

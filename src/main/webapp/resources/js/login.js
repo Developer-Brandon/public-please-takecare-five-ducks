@@ -54,11 +54,6 @@ $(function () {
   }
  })
 
- // 몇몇 element draggable disable 처리
- $('.auto-login-section').draggable( 'disable' )
- $('.auto-login-section__inner').draggable( 'disable' )
- $('.auto-login-wording').draggable( 'disable' )
-
  // 로그인 버튼
  $('.login-button').click(function() {
   validationForm()

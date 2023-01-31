@@ -1,3 +1,19 @@
+/* For root value */
+:root {
+    --root-font: 'SDSamliphopangcheTTFOutline';
+    --part-font: 'establishRetrosansOTF';
+    --login-background-color: #D9D9D9;
+    --login-section-background-color: #FFFFFF;
+    --input-width: 120px;
+    --input-height: 21px;
+    /* color */
+    --main-yellow-color: #FFBE40;
+    --main-gray-color: #979494;
+    --main-black-color: #000000;
+    --main-red-color: red;
+    --main-white-color: #FFFFFF;
+}
+
 /* For desktop View */
 body {
     zoom: 115%;
@@ -12,17 +28,14 @@ and (max-device-width: 1024px) {
 }
 
 #ptcfd-border {
-  width: auto;
-  border-bottom: 1px solid black;
+    width: auto;
+    border-bottom: 1px solid var(--main-black-color);
 }
 
-:root {
-    --root-font: 'establishRetrosansOTF';
-    --login-background-color: #D9D9D9;
-    --login-section-background-color: #FFFFFF;
-    --input-width: 120px;
-    --input-height: 21px;
-    --main-yellow-color: #FFBE40;
-    --main-gray-color: #979494;
-    --main-black-color: #000000;
+
+.ptcfd-block-drag {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
 }
