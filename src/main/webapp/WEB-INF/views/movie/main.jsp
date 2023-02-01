@@ -50,7 +50,7 @@
     <%-- list section 시작 --%>
     <div class="list-section">
         <c:choose>
-            <c:when test="${movieListResultVO.movieVOList.size()} != 0">
+            <c:when test="${movieListResultVO.movieVOList.size() != 0}">
                 <ul>
                     <c:forEach var="movieVO" items="${movieListResultVO.movieVOList}">
                         <li class="item" onclick="goMovieDetailPage('${movieVO.movieNo}', '${movieVO.link}')">
@@ -81,7 +81,7 @@
     </div>
 
     <%-- search section 시작 --%>
-    <c:if test="${movieListResultVO.movieVOList.size()} != 0">
+    <c:if test="${movieListResultVO.movieVOList.size() != 0}">
         <div class="search-section">
             <div class="wrap-search-input">
                 <p class="search-text">👆🏼제목</p>
@@ -92,7 +92,6 @@
 
             </div>
         </div>
-
     </c:if>
 
     <%-- pagination section 시작 --%>

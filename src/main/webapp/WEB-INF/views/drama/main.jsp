@@ -49,7 +49,7 @@
     <%-- list section 시작 --%>
     <div class="list-section">
         <c:choose>
-            <c:when test="${dramaListResultVO.dramaVOList.size()} != 0">
+            <c:when test="${dramaListResultVO.dramaVOList.size() != 0}">
                 <ul>
                     <c:forEach var="dramaVO" items="${dramaListResultVO.dramaVOList}">
                         <li class="item" onclick="goDramaDetailPage('${dramaVO.dramaNo}', '${dramaVO.link}')">

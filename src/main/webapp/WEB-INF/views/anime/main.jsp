@@ -49,52 +49,63 @@
 
     <%-- list section 시작 --%>
     <div class="list-section">
-        <ul>
-            <c:forEach var="animeVO" items="${animeListResultVO.animeVOList}">
-                <li class="item" onclick="goAnimeDetailPage('${animeVO.animeNo}', '${animeVO.link}')">
-                    <a class="anime-no"><c:out value="${animeVO.animeNo}"/></a>
-                    <a class="anime-title">
-                        <c:out value="${animeVO.animeTitle}"/>
-                        <img style="width:13px;height:13px;border-radius:5px;"
-                             src="${animeVO.webThumbnailUrl}"
-                             alt="웹 썸네일 URL 입니다">
-                        <span style="display:inline-block;"
-                              onclick="goAnimeModifierPage('${animeVO.animeNo}')">&nbsp;✍🏻
-                        </span>
-                    </a>
-                    <c:choose>
-                        <c:when test="${animeVO.finalizedYnEnum == 'y'}">
-                            <a class="anime-finalized-yn" style="color:#FF0000;">완결🔚</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a class="anime-finalized-yn" style="color:#2400FF;">방영중🔄</a>
-                        </c:otherwise>
-                    </c:choose>
-                    <c:choose>
-                        <c:when test="${animeVO.finalizedYnEnum == 'y'}">
-                            <a class="anime-cnt">총 <c:out value="${animeVO.animeBroadcastCnt}"/> 화</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a class="anime-cnt"><c:out value="${animeVO.animeBroadcastCnt}"/> 화</a>
-                        </c:otherwise>
-                    </c:choose>
-                    <a class="anime-reg-dt"><c:out value="${animeVO.animeRegDt}"/></a>
-                </li>
-            </c:forEach>
-        </ul>
+        <c:choose>
+            <c:when test="${animeListResultVO.animeVOList.size() != 0}">
+                <ul>
+                    <c:forEach var="animeVO" items="${animeListResultVO.animeVOList}">
+                        <li class="item" onclick="goAnimeDetailPage('${animeVO.animeNo}', '${animeVO.link}')">
+                            <a class="anime-no"><c:out value="${animeVO.animeNo}"/></a>
+                            <a class="anime-title">
+                                <c:out value="${animeVO.animeTitle}"/>
+                                <img style="width:13px;height:13px;border-radius:5px;"
+                                     src="${animeVO.webThumbnailUrl}"
+                                     alt="웹 썸네일 URL 입니다">
+                                <span style="display:inline-block;"
+                                      onclick="goAnimeModifierPage('${animeVO.animeNo}')">&nbsp;✍🏻
+                                </span>
+                            </a>
+                            <c:choose>
+                                <c:when test="${animeVO.finalizedYnEnum == 'y'}">
+                                    <a class="anime-finalized-yn" style="color:#FF0000;">완결🔚</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="anime-finalized-yn" style="color:#2400FF;">방영중🔄</a>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${animeVO.finalizedYnEnum == 'y'}">
+                                    <a class="anime-cnt">총 <c:out value="${animeVO.animeBroadcastCnt}"/> 화</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="anime-cnt"><c:out value="${animeVO.animeBroadcastCnt}"/> 화</a>
+                                </c:otherwise>
+                            </c:choose>
+                            <a class="anime-reg-dt"><c:out value="${animeVO.animeRegDt}"/></a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </c:when>
+            <c:otherwise>
+                <div class="wrap-anime-default">
+                    <p class="anime-default-word">❌<br><br>등록된 애니가 없습니다</p>
+                </div>
+            </c:otherwise>
+        </c:choose>
     </div>
 
     <%-- search section 시작 --%>
-    <div class="search-section">
-        <div class="wrap-search-input">
-            <p class="search-text">👆🏼제목</p>
-            <input type="text"
-                   class="search-input"
-                   onkeypress="if(window.event.keyCode===13) enterSearchInputValue()"
-                   value="${oldSearchTitle}"/>
+    <c:if test="${animeListResultVO.animeVOList != 0}">
+        <div class="search-section">
+            <div class="wrap-search-input">
+                <p class="search-text">👆🏼제목</p>
+                <input type="text"
+                       class="search-input"
+                       onkeypress="if(window.event.keyCode===13) enterSearchInputValue()"
+                       value="${oldSearchTitle}"/>
 
+            </div>
         </div>
-    </div>
+    </c:if>
 
     <%-- pagination section 시작 --%>
     <div class="pagination-section">

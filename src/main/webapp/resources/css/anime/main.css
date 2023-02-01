@@ -41,6 +41,16 @@
 }
 
 /* list section 시작 */
+.wrap-anime-default {
+    width: 100%;
+}
+
+.wrap-anime-default > .anime-default-word {
+    text-align: center;
+    margin-top:10px;
+    margin-bottom:10px;
+    cursor:default;
+}
 
 .list-section {
     margin-bottom: 10px;
