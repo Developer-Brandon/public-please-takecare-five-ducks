@@ -10,7 +10,7 @@
     <!-- -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/index.css">
 </head>
-<body class="ptcfd-body">
+<body class="ptcfd-body ptcfd-block-drag">
 <%-- bootstrap은 기본 margin이 있어서 style로 margin을 0으로 지정 --%>
 
 <!-- 메뉴 시작 -->

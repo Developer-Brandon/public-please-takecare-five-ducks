@@ -17,7 +17,7 @@
         </script>
         <script src="${pageContext.request.contextPath}/resources/js/menu.js"></script>
     </head>
-    <body class="ptcfd-body">
+    <body class="ptcfd-body ptcfd-block-drag">
         <nav class="menu-bar">
             <div class="menu-bar__inner">
                 <div class="wrap-logo">

@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/comic/main.css">
     <script src="${pageContext.request.contextPath}/resources/js/comic/main.js"></script>
 </head>
-<body class="ptcfd-body">
+<body class="ptcfd-body ptcfd-block-drag">
 <!-- 메뉴 시작 -->
 <%@ include file="../menu.jsp" %>
 <!-- 메뉴 끝 -->
@@ -49,7 +49,7 @@
     <%-- list section 시작 --%>
     <div class="list-section">
         <c:choose>
-            <c:when test="${comicBookListResultVO.comicBookVOList.size()} != 0">
+            <c:when test="${comicBookListResultVO.comicBookVOList.size() != 0}">
                 <ul>
                     <c:forEach var="comicVO" items="${comicBookListResultVO.comicBookVOList}">
                         <li class="item" onclick="goComicBookDetailPage('${comicVO.bookNo}', '${comicVO.link}')">
@@ -79,7 +79,7 @@
             </c:when>
             <c:otherwise>
                 <div class="wrap-comic-default">
-                    <p class="comic-default-word">등록된 만화책이 없습니다</p>
+                    <p class="comic-default-word">❌<br><br>등록된 만화책이 없습니다</p>
                 </div>
             </c:otherwise>
         </c:choose>

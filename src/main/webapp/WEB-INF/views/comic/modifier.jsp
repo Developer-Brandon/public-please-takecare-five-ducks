@@ -56,7 +56,7 @@
      });
     </script>
 </head>
-<body class="ptcfd-body">
+<body class="ptcfd-body ptcfd-block-drag">
 <!-- 메뉴 시작 -->
 <%@ include file="../menu.jsp" %>
 <!-- 메뉴 끝 -->

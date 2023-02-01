@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
     <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 </head>
-<body class="ptcfd-body">
+<body class="ptcfd-body ptcfd-block-drag">
 <!-- 메뉴 시작 -->
 <%@ include file="menu.jsp" %>
 <!-- 메뉴 끝 -->

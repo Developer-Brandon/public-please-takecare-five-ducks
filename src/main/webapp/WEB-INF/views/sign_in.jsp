@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sign_in.css">
     <script src="${pageContext.request.contextPath}/resources/js/sign_in.js"></script>
 </head>
-<body class="ptcfd-body">
+<body class="ptcfd-body ptcfd-block-drag">
 <div class="ptcfd-body__inner ptcfd-block-drag">
     <div class="login-section">
         <div class="login-section__inner">

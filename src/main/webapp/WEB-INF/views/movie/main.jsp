@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/movie/main.css">
     <script src="${pageContext.request.contextPath}/resources/js/movie/main.js"></script>
 </head>
-<body class="ptcfd-body">
+<body class="ptcfd-body ptcfd-block-drag">
 <!-- 메뉴 시작 -->
 <%@ include file="../menu.jsp" %>
 <!-- 메뉴 끝 -->
@@ -74,7 +74,7 @@
             </c:when>
             <c:otherwise>
                 <div class="wrap-movie-default">
-                    <p class="movie-default-word">등록된 영화가 없습니다</p>
+                    <p class="movie-default-word">❌<br><br>등록된 영화가 없습니다</p>
                 </div>
             </c:otherwise>
         </c:choose>
