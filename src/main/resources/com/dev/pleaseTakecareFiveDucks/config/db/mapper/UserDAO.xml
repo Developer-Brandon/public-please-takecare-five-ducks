@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dev.pleaseTakecareFiveDucks.config.db.mapper.UserDAO">
+
+    <select id="selectUserTypeList"
+            resultType="com.dev.pleaseTakecareFiveDucks.user.domain.vo.UserTypeVO">
+         <![CDATA[
+        /* 유저 타입 조회 쿼리 */
+        ]]>
+        select user_type_no as userTypeNo
+        , type as userType
+        from web_app_test2.tb_user_type
+        where use_yn = 'y'
+        and type != 'SUPER_ADMIN'
+    </select>
+</mapper>

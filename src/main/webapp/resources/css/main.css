@@ -1,8 +1,3 @@
-.custom-body {
-    /*  추후 배경을 투명바둑으로 도배하고싶을때 ... */
-    /*background-image: url("../images/transparency-pattern.jpg");*/
-}
-
 .image-box {
     text-align: center;
     background-color: #202124;
@@ -51,13 +46,13 @@
 }
 
 /* 이미지 박스 아래 body inner 시작 */
-.body__inner {
+.ptcfd-body__inner {
+    /* 원래는 전역선언 되어있지만, 이곳에서는 회색 음영 관련된 처리 때문에 특별하게 아래와 같이 처리합니다. */
     width: 100%;
-    margin: 0 auto;
-    background-color: #FFFFFF;
+    padding-top: 0;
 }
 
-.body__inner > .wrap-hot-anime-list {
+.ptcfd-body__inner > .wrap-hot-anime-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -65,7 +60,7 @@
     background-color: #f2f3f4;
 }
 
-.body__inner > .wrap-hot-anime-list > .wrap-hot-anime-list__inner {
+.ptcfd-body__inner > .wrap-hot-anime-list > .wrap-hot-anime-list__inner {
     width: 724px;
     height: 100%;
 }
@@ -201,7 +196,7 @@
 }
 
 /* 각종(책)모음 보기 시작 */
-.body__inner > .wrap-some-book-list {
+.ptcfd-body__inner > .wrap-some-book-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -209,7 +204,7 @@
     background-color: #FFFFFF;
 }
 
-.body__inner > .wrap-some-book-list > .wrap-some-book-list__inner {
+.ptcfd-body__inner > .wrap-some-book-list > .wrap-some-book-list__inner {
     width: 724px;
     height: 100%;
     display: flex;
@@ -378,7 +373,7 @@
 }
 
 /* 내가 찾던 바로 그 만화책 */
-.body__inner > .wrap-comic-book-list {
+.ptcfd-body__inner > .wrap-comic-book-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -386,7 +381,7 @@
     background-color: #f2f3f4;
 }
 
-.body__inner > .wrap-comic-book-list > .wrap-comic-book-list__inner {
+.ptcfd-body__inner > .wrap-comic-book-list > .wrap-comic-book-list__inner {
     width: 724px;
     height: 100%;
 }
@@ -542,14 +537,14 @@
 /* 베스트 영화, 드라마 시작 */
 
 /* 내가 찾던 바로 그 만화책 */
-.body__inner > .wrap-drama-and-movie-list {
+.ptcfd-body__inner > .wrap-drama-and-movie-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.body__inner > .wrap-drama-and-movie-list > .wrap-drama-and-movie-list__inner {
+.ptcfd-body__inner > .wrap-drama-and-movie-list > .wrap-drama-and-movie-list__inner {
     width: 724px;
     height: 100%;
 }

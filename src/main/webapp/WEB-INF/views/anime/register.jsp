@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/anime/register.css">
     <script src="${pageContext.request.contextPath}/resources/js/anime/register.js"></script>
 </head>
-<body class="custom-body">
+<body class="ptcfd-body">
 <!-- 메뉴 시작 -->
 <%@ include file="../menu.jsp" %>
 <!-- 메뉴 끝 -->
 
 <%-- 메인 시작 --%>
-<div class="body__inner">
+<div class="ptcfd-body__inner">
     <%-- 상단의 제목 시작 --%>
     <div class="top">
         <div class="top__left">

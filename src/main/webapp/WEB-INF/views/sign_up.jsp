@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sign_up.css">
     <script src="${pageContext.request.contextPath}/resources/js/sign_up.js"></script>
 </head>
-<body>
-<div class="body__inner ptcfd-block-drag">
+<body class="ptcfd-body">
+<div class="ptcfd-body__inner ptcfd-block-drag">
     <div class="login-section">
         <div class="login-section__inner">
             <!-- 입력창 시작 -->

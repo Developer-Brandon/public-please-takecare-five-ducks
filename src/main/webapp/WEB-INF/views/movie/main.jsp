@@ -30,12 +30,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/movie/main.css">
     <script src="${pageContext.request.contextPath}/resources/js/movie/main.js"></script>
 </head>
-<body>
+<body class="ptcfd-body">
 <!-- 메뉴 시작 -->
 <%@ include file="../menu.jsp" %>
 <!-- 메뉴 끝 -->
 
-<div class="body__inner">
+<%-- 메인 시작 --%>
+<div class="ptcfd-body__inner">
     <%-- 상단의 제목 시작 --%>
     <div class="top">
         <div class="top__left">

@@ -1,4 +1,4 @@
-package com.dev.pleaseTakecareFiveDucks.main.domain.vo;
+package com.dev.pleaseTakecareFiveDucks.user.domain.vo;
 
 import lombok.Getter;
 import lombok.Setter;

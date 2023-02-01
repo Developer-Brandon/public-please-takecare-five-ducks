@@ -16,7 +16,7 @@
             }
         </script>
     </head>
-    <body>
+    <body class="ptcfd-body">
         <nav class="menu-bar">
             <div class="menu-bar__inner">
                 <div class="wrap-logo">
@@ -52,9 +52,9 @@
                     </div>
                     <div class="auth-menu">
                         <ul class="my-page-menu-list-ul">
-                            <li class="my-page-menu-list-li">
-                                <a href="${pageContext.request.contextPath}/mypage/main">내정보</a>
-                            </li>
+                            <%--                            <li class="my-page-menu-list-li">--%>
+                            <%--                                <a href="${pageContext.request.contextPath}/mypage/main">내정보</a>--%>
+                            <%--                            </li>--%>
                             <li class="my-page-menu-list-li">
                                 <a href="${pageContext.request.contextPath}/logout">로그아웃</a>
                             </li>

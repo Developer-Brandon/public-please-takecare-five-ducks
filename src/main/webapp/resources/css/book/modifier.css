@@ -4,15 +4,6 @@
 }
 
 /**/
-
-
-.body__inner {
-    width: 704px;
-    height: auto;
-    margin: 0 auto;
-    padding: 25px 0;
-}
-
 .top {
     width: 100%;
     display: flex;

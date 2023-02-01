@@ -5,12 +5,11 @@ import com.dev.pleaseTakecareFiveDucks.comic.domain.vo.MainComicBookDetailVO;
 import com.dev.pleaseTakecareFiveDucks.config.db.mapper.*;
 import com.dev.pleaseTakecareFiveDucks.main.domain.vo.MainEntertainVO;
 import com.dev.pleaseTakecareFiveDucks.main.domain.vo.MainPageVO;
-import com.dev.pleaseTakecareFiveDucks.main.domain.vo.UserTypeVO;
+import com.dev.pleaseTakecareFiveDucks.user.domain.vo.UserTypeVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

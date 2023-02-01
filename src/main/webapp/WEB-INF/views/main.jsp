@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
     <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 </head>
-<body class="custom-body">
+<body class="ptcfd-body">
 <!-- 메뉴 시작 -->
 <%@ include file="menu.jsp" %>
 <!-- 메뉴 끝 -->
@@ -20,7 +20,9 @@
          src="${pageContext.request.contextPath}/resources/images/evangalion.png"
          alt="에반게리온 초호기">
 </div>
-<div class="body__inner">
+
+<%-- 메인 시작 --%>
+<div class="ptcfd-body__inner">
 
     <!-- 가장 핫한 애니 시작 -->
     <div class="wrap-hot-anime-list">

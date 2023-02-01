@@ -63,3 +63,19 @@ and (max-device-width: 1024px) {
 .pdcfd-required-symbol {
     color: var(--main-red-color);
 }
+
+.ptcfd-body {
+    /*  추후 배경을 투명바둑으로 도배하고싶을때 ... */
+    /*background-image: url("../images/transparency-pattern.jpg");*/
+    height: 100%;
+}
+
+.ptcfd-body__inner {
+    background-color: #FFFFFF;
+    margin: 0 auto;
+    height: auto;
+    min-height: 100%;
+    width: 704px;
+    padding-top: 25px;
+    padding-bottom: 400px;
+}

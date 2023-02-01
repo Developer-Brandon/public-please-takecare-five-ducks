@@ -1,7 +1,7 @@
 package com.dev.pleaseTakecareFiveDucks.main.service;
 
 import com.dev.pleaseTakecareFiveDucks.main.domain.vo.MainPageVO;
-import com.dev.pleaseTakecareFiveDucks.main.domain.vo.UserTypeVO;
+import com.dev.pleaseTakecareFiveDucks.user.domain.vo.UserTypeVO;
 
 import java.util.List;
 
