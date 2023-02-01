@@ -11,10 +11,11 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/util/component/reset.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/menu.css">
         <script>
-            function goMainPage() {
-             location.href = '${pageContext.request.contextPath}/'
+            function getRootUrl() {
+             return '${pageContext.request.contextPath}'
             }
         </script>
+        <script src="${pageContext.request.contextPath}/resources/js/menu.js"></script>
     </head>
     <body class="ptcfd-body">
         <nav class="menu-bar">
@@ -22,7 +23,7 @@
                 <div class="wrap-logo">
                     <div class="wrap-logo__inner">
                         <img id="logo"
-                             onclick="goMainPage()"
+                             onclick="goMainPage(getRootUrl())"
                              src="${pageContext.request.contextPath}/resources/images/main-logo-icon.png"
                              alt="로고 이미지입니다" />
                     </div>
@@ -45,18 +46,18 @@
                             <li class="menu-list-li">
                                 <a href="${pageContext.request.contextPath}/movie/main">영화</a>
                             </li>
-                            <%--                            <li class="menu-list-li">--%>
-                            <%--                                <a href="/util/main">유틸</a>--%>
-                            <%--                            </li>--%>
+                            <%--<li class="menu-list-li">--%>
+                            <%--    <a href="/util/main">유틸</a>--%>
+                            <%--</li>--%>
                         </ul>
                     </div>
                     <div class="auth-menu">
                         <ul class="my-page-menu-list-ul">
-                            <%--                            <li class="my-page-menu-list-li">--%>
-                            <%--                                <a href="${pageContext.request.contextPath}/mypage/main">내정보</a>--%>
-                            <%--                            </li>--%>
+                            <%--<li class="my-page-menu-list-li">--%>
+                            <%--    <a href="${pageContext.request.contextPath}/mypage/main">내정보</a>--%>
+                            <%--</li>--%>
                             <li class="my-page-menu-list-li">
-                                <a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+                                <a class="logout">로그아웃</a>
                             </li>
                         </ul>
                     </div>
