@@ -86,7 +86,7 @@ public class MovieController extends BaseController {
         return "/movie/main";
     }
 
-    @GetMapping(value = "/register")
+    @GetMapping(value = "/register", produces = TEXT_HTML_FORMAT)
     public String goRegisterPage(
             HttpServletRequest request
             , Model model
@@ -97,7 +97,7 @@ public class MovieController extends BaseController {
         return "/movie/register";
     }
 
-    @GetMapping(value = "/modifier/{movieNo}")
+    @GetMapping(value = "/modifier/{movieNo}", produces = TEXT_HTML_FORMAT)
     public String goModifierPage(
             HttpServletRequest request
             , Model model

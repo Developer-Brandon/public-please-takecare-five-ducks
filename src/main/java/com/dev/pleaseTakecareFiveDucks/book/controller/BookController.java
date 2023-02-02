@@ -58,7 +58,7 @@ public class BookController extends BaseController {
         return "/book/main";
     }
 
-    @GetMapping(value = "/register")
+    @GetMapping(value = "/register", produces = TEXT_HTML_FORMAT)
     public String goRegisterPage(
             HttpServletRequest request
             , Model model
@@ -71,7 +71,7 @@ public class BookController extends BaseController {
         return "/book/register";
     }
 
-    @GetMapping(value = "/modifier/{bookNo}")
+    @GetMapping(value = "/modifier/{bookNo}", produces = TEXT_HTML_FORMAT)
     public String goModifierPage(
             HttpServletRequest request
             , Model model

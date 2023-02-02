@@ -87,7 +87,7 @@
     </div>
 
     <%-- search section 시작 --%>
-    <c:if test="${dramaListResultVO.dramaVOList.size()} != 0">
+    <c:if test="${dramaListResultVO.dramaVOList.size() != 0}">
         <div class="search-section">
             <div class="wrap-search-input">
                 <p class="search-text">👆🏼제목</p>

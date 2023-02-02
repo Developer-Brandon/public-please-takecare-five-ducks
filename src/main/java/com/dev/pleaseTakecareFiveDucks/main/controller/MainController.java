@@ -1,5 +1,6 @@
 package com.dev.pleaseTakecareFiveDucks.main.controller;
 
+import com.dev.pleaseTakecareFiveDucks.config.controller.BaseController;
 import com.dev.pleaseTakecareFiveDucks.main.domain.vo.MainPageVO;
 import com.dev.pleaseTakecareFiveDucks.main.service.MainService;
 import lombok.RequiredArgsConstructor;
@@ -11,11 +12,11 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
-public class MainController{
+public class MainController extends BaseController {
 
     private final MainService mainService;
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/", produces = TEXT_HTML_FORMAT)
     public String goMainJsp(Model model) throws Exception {
 
         // TODO: 로그인 화면으로 이동하는 api입니다.

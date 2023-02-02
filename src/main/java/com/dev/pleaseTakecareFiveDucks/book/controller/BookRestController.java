@@ -29,7 +29,7 @@ public class BookRestController extends BaseController {
 
     // 등록페이지에서 썸네일을 찾는 api입니다.
     @GetMapping(value = "/search/image/thumbnail", produces = JSON_FORMAT)
-    public RawImageThumbnailResultVO selectImageThumbnailList(
+    public ResponseEntity<RawImageThumbnailResultVO> selectImageThumbnailList(
             @RequestParam
                     String bookName
     ) throws Exception {
@@ -38,19 +38,23 @@ public class BookRestController extends BaseController {
                 .bookName(bookName)
                 .build();
 
-        return RawImageThumbnailResultVO.builder()
+        return ResponseEntity.ok(
+                RawImageThumbnailResultVO.builder()
                 .rawImageThumbnailVOArrayList((ArrayList<RawImageThumbnailVO>) bookService.selectImageThumbnailVOList(selectBookThumbnailDTO))
-                .build();
+                .build()
+        );
     }
 
     // 책의 종류에 대해서 조회하는 api입니다.
     @GetMapping(value = "/type/list", produces = JSON_FORMAT)
-    public RawBookTypeResultVO selectBookTypeList(
+    public ResponseEntity<RawBookTypeResultVO> selectBookTypeList(
     ) throws Exception {
 
-        return RawBookTypeResultVO.builder()
+        return ResponseEntity.ok(
+                RawBookTypeResultVO.builder()
                 .bookTypeVOArrayList((ArrayList<BookTypeVO>) bookService.selectBookTypeList())
-                .build();
+                .build()
+        );
     }
 
     // 책 단일 조회 api 입니다.

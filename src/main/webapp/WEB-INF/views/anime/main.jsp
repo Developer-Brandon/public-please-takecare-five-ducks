@@ -94,7 +94,7 @@
     </div>
 
     <%-- search section 시작 --%>
-    <c:if test="${animeListResultVO.animeVOList != 0}">
+    <c:if test="${animeListResultVO.animeVOList.size() != 0}">
         <div class="search-section">
             <div class="wrap-search-input">
                 <p class="search-text">👆🏼제목</p>

@@ -130,7 +130,7 @@
                 <div class="comic-book-cover">
                     <div class="comic-book-cover__inner">
                         <c:choose>
-                            <c:when test="${ainComicBookVOMap.size().get(0).size() > 1}">
+                            <c:when test="${mainComicBookVOMap.get(0).size() > 1}">
                                 <c:forEach var="comic" items="${mainComicBookVOMap}">
                                     <%-- 1990 시작 --%>
                                     <c:if test="${comic.key == '1990'}">

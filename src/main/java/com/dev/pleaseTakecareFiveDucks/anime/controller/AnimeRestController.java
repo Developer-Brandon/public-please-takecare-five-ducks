@@ -28,7 +28,7 @@ public class AnimeRestController extends BaseController {
 
     // 등록페이지에서 썸네일을 찾는 api입니다.
     @GetMapping(value = "/search/image/thumbnail", produces = JSON_FORMAT)
-    public RawImageThumbnailResultVO selectImageThumbnailVOList(
+    public ResponseEntity<RawImageThumbnailResultVO> selectImageThumbnailVOList(
             @RequestParam
             String animeName
     ) throws Exception {
@@ -37,19 +37,23 @@ public class AnimeRestController extends BaseController {
                 .animeName(animeName)
                 .build();
 
-        return RawImageThumbnailResultVO.builder()
+        return ResponseEntity.ok(
+                RawImageThumbnailResultVO.builder()
                 .rawImageThumbnailVOArrayList((ArrayList<RawImageThumbnailVO>) animeService.selectImageThumbnailVOList(selectAnimeThumbnailImageUrlDTO))
-                .build();
+                .build()
+        );
     }
 
     // 애니의 완결여부의 종류에 대해서 조회하는 api입니다.
     @GetMapping(value = "/finalized/list", produces = JSON_FORMAT)
-    public RawAnimeFinalizedResultVO selectAnimeFinalizedList(
+    public ResponseEntity<RawAnimeFinalizedResultVO> selectAnimeFinalizedList(
     ) throws Exception {
 
-        return RawAnimeFinalizedResultVO.builder()
+        return ResponseEntity.ok(
+                RawAnimeFinalizedResultVO.builder()
                 .finalizedYnEnumArrayList((ArrayList<FinalizedYnEnum>) animeService.selectAnimeFinalizedList())
-                .build();
+                .build()
+        );
     }
 
     // 애니 단일 조회 api 입니다.

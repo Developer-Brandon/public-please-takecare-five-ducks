@@ -26,7 +26,7 @@ public class DramaRestController extends BaseController {
 
     // 등록페이지에서 썸네일을 찾는 api입니다.
     @GetMapping(value = "/search/image/thumbnail", produces = JSON_FORMAT)
-    public RawImageThumbnailResultVO selectImageThumbnailVOList(
+    public ResponseEntity<RawImageThumbnailResultVO> selectImageThumbnailVOList(
             @RequestParam
             String dramaName
     ) throws Exception {
@@ -35,9 +35,11 @@ public class DramaRestController extends BaseController {
                 .dramaName(dramaName)
                 .build();
 
-        return RawImageThumbnailResultVO.builder()
+        return ResponseEntity.ok(
+                RawImageThumbnailResultVO.builder()
                 .rawImageThumbnailVOArrayList((ArrayList<RawImageThumbnailVO>) dramaService.selectImageThumbnailVOList(selectDramaThumbnailImageUrlDTO))
-                .build();
+                .build()
+        );
     }
 
     // 드라마 단일 조회 api 입니다.

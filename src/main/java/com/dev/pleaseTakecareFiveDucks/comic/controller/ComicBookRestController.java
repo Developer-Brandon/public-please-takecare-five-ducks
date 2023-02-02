@@ -23,7 +23,7 @@ public class ComicBookRestController extends BaseController {
 
     // 등록페이지에서 썸네일을 찾는 api입니다.
     @GetMapping(value = "/search/image/thumbnail", produces = JSON_FORMAT)
-    public RawImageThumbnailResultVO selectImageThumbnailVOList(
+    public ResponseEntity<RawImageThumbnailResultVO> selectImageThumbnailVOList(
             @RequestParam
             String comicBookName
     ) throws Exception {
@@ -32,9 +32,11 @@ public class ComicBookRestController extends BaseController {
                 .comicBookName(comicBookName)
                 .build();
 
-        return RawImageThumbnailResultVO.builder()
+        return ResponseEntity.ok(
+                RawImageThumbnailResultVO.builder()
                 .rawImageThumbnailVOArrayList(comicBookService.selectImageThumbnailVOList(selectComicBookThumbnailDTO))
-                .build();
+                .build()
+        );
     }
 
     // 만화책 단일 조회 api 입니다.

@@ -86,7 +86,7 @@
     </div>
 
     <%-- search section 시작 --%>
-    <c:if test="${comicBookListResultVO.comicBookVOList.size()} != 0">
+    <c:if test="${comicBookListResultVO.comicBookVOList.size() != 0}">
         <div class="search-section">
             <div class="wrap-search-input">
                 <p class="search-text">👆🏼제목</p>

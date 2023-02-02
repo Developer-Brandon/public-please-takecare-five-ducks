@@ -62,7 +62,7 @@
                         </span>
                             </a>
                             <a class="movie-total-number-of-episode">
-                                <c:if test="movieVO.totalNumberOfEpisode != 1">
+                                <c:if test="${movieVO.totalNumberOfEpisode != 1}">
                                     <span>총 ${movieVO.totalNumberOfEpisode}부작</span>
                                 </c:if>
                             </a>

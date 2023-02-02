@@ -89,7 +89,7 @@ public class ComicBookController extends BaseController {
         return "/comic/main";
     }
 
-    @GetMapping(value = "/register")
+    @GetMapping(value = "/register", produces = TEXT_HTML_FORMAT)
     public String goRegisterPage(
             HttpServletRequest request
             , Model model
@@ -102,7 +102,7 @@ public class ComicBookController extends BaseController {
         return "/comic/register";
     }
 
-    @GetMapping(value = "/modifier/{comicBookNo}")
+    @GetMapping(value = "/modifier/{comicBookNo}", produces = TEXT_HTML_FORMAT)
     public String goModifierPage(
             HttpServletRequest request
             , Model model
