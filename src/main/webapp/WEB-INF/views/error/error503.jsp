@@ -18,8 +18,8 @@
                         <span class="logo">⚔️</span>
                         <h1 class="main-logo-wording">503<br>ERROR</h1>
                         <p class="wording">서버가 일시적으로 서비스를 제공할 수 없습니다.<br><br><br>
-                            Error Type : ${exception.getClass().getName()}<br>
-                            Error Message : ${exception.getMessage()}</p>
+<%--                            <span class="pdcfd-required-symbol">*</span>Error Type <br> <%= exception.getClass().getName() %><br><br>--%>
+<%--                            <span class="pdcfd-required-symbol">*</span>Error Message <br> <%= exception.getMessage() %></p>--%>
                     </div>
                 </div>
             </div>

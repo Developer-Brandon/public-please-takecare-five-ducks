@@ -18,8 +18,8 @@
                         <span class="logo">⚔️</span>
                         <h1 class="main-logo-wording">500<br>SERVER<br>INNER<br>ERROR</h1>
                         <p class="wording">JSP포함 서버 내부 에러입니다.<br><br><br>
-                            Error Type : ${exception.getClass().getName()}<br>
-                            Error Message : ${exception.getMessage()}</p>
+<%--                            <span class="pdcfd-required-symbol">*</span>Error Type <br> <%= exception.getClass().getName() %><br><br>--%>
+<%--                            <span class="pdcfd-required-symbol">*</span>Error Message <br> <%= exception.getMessage() %></p>--%>
                     </div>
                 </div>
             </div>

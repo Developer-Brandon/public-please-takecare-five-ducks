@@ -61,7 +61,7 @@
 		<url-pattern>/</url-pattern><!-- 모든 요청을 받는 pattern 입니다 -->
 	</servlet-mapping>
 
-    <!-- error page -->
+    <!-- error page - http error code -->
     <error-page>
         <error-code>307</error-code>
         <location>/error307</location>
@@ -96,4 +96,11 @@
         <error-code>503</error-code>
         <location>/error503</location>
     </error-page>
+
+    <!-- error page - exception -->
+    <!-- 전역에서 붙잡아서 error page로 보내버리기 때문에, 전역에서 처리하면 비동기 처리에 대해 대응을 못하게 됩니다 -->
+    <!--    <error-page>-->
+    <!--        <exception-type>java.lang.Exception</exception-type>-->
+    <!--        <location>/exception</location>-->
+    <!--    </error-page>-->
 </web-app>

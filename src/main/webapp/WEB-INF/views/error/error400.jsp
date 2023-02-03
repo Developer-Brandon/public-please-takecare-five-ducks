@@ -18,8 +18,8 @@
                         <span class="logo">🪚</span>
                         <h1 class="main-logo-wording">400<br>ERROR</h1>
                         <p class="wording">클라이언트의 요청이 잘못된 구문으로 구성되었습니다.<br><br><br>
-                            Error Type : ${exception.getClass().getName()}<br>
-                            Error Message : ${exception.getMessage()}</p>
+<%--                            <span class="pdcfd-required-symbol">*</span>Error Type <br> <%= exception.getClass().getName() %><br><br>--%>
+<%--                            <span class="pdcfd-required-symbol">*</span>Error Message <br> <%= exception.getMessage() %></p>--%>
                     </div>
                 </div>
             </div>
