@@ -1,11 +1,10 @@
-<%@ page import="java.net.URLDecoder" %>
-<%@ page isErrorPage="true" %>
 <html>
 <head>
     <%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
     <%@ page session="false" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ include file="../page_header.jsp" %>
+    <%@ page isErrorPage="true" %>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/error/error503.css">
 </head>
 <body class="ptcfd-body ptcfd-block-drag">
