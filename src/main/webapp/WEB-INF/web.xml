@@ -60,4 +60,40 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern><!-- 모든 요청을 받는 pattern 입니다 -->
 	</servlet-mapping>
+
+    <!-- error page -->
+    <error-page>
+        <error-code>307</error-code>
+        <location>/error307</location>
+    </error-page>
+
+    <error-page>
+        <error-code>400</error-code>
+        <location>/error400</location>
+    </error-page>
+
+    <error-page>
+        <error-code>401</error-code>
+        <location>/error401</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error404</location>
+    </error-page>
+
+    <error-page>
+        <error-code>405</error-code>
+        <location>/error405</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error500</location>
+    </error-page>
+
+    <error-page>
+        <error-code>503</error-code>
+        <location>/error503</location>
+    </error-page>
 </web-app>

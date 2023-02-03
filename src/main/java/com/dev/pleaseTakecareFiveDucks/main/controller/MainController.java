@@ -32,4 +32,46 @@ public class MainController extends BaseController {
 
         return "main";
     }
+
+    @GetMapping(value = "/error307", produces = TEXT_HTML_FORMAT)
+    public String goError307(Model model) throws Exception {
+
+        return "error/error307";
+    }
+
+    @GetMapping(value = "/error400", produces = TEXT_HTML_FORMAT)
+    public String goError400(Model model) throws Exception {
+
+        return "error/error400";
+    }
+
+    @GetMapping(value = "/error401", produces = TEXT_HTML_FORMAT)
+    public String goError401(Model model) throws Exception {
+
+        return "error/error401";
+    }
+
+    @GetMapping(value = "/error404", produces = TEXT_HTML_FORMAT)
+    public String goError404(Model model) throws Exception {
+
+        return "error/error404";
+    }
+
+    @GetMapping(value = "/error405", produces = TEXT_HTML_FORMAT)
+    public String goError405(Model model) throws Exception {
+
+        return "error/error405";
+    }
+
+    @GetMapping(value = "/error500", produces = TEXT_HTML_FORMAT)
+    public String goError500(Model model) throws Exception {
+
+        return "error/error500";
+    }
+
+    @GetMapping(value = "/error503", produces = TEXT_HTML_FORMAT)
+    public String goError503(Model model) throws Exception {
+
+        return "error/error503";
+    }
 }
