@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.stream.Collectors;
 
@@ -17,10 +18,13 @@ public class MainController extends BaseController {
     private final MainService mainService;
 
     @GetMapping(value = "/", produces = TEXT_HTML_FORMAT)
-    public String goMainPage(Model model) throws Exception {
+    public String goSignInPage(Model model) throws Exception {
 
-        // TODO: 로그인 화면으로 이동하는 api입니다.
-        // 만약 session이 물려있으면 메인화면으로 이동, session이 물려있지 않으면 로그인 화면으로 이동하게끔 개발합니다.
+        return "sign_in";
+    }
+
+    @GetMapping(value = "/main", produces = TEXT_HTML_FORMAT)
+    public String goMainPage(Model model) throws Exception {
 
         MainPageVO mainPageVO = mainService.selectMainPageData();
 
@@ -31,6 +35,11 @@ public class MainController extends BaseController {
         model.addAttribute("mainEntertainVOList", mainPageVO.getMainEntertainVOList().stream().limit(3).collect(Collectors.toList()));
 
         return "main";
+    }
+
+    @PostMapping(value = "/login", produces = TEXT_HTML_FORMAT)
+    public String goLoginOkLogic(Model model) throws Exception {
+        return "sign_in_request";
     }
 
     @GetMapping(value = "/error307", produces = TEXT_HTML_FORMAT)

@@ -55,11 +55,12 @@ $(function () {
  })
 
  // 로그인 버튼
- $('.login-button').click(function() {
-  validationForm()
-
-  // TODO: session 관련 처리 후 로그인 체크 예정입니다.
- })
+ // jsp에서 처리 예정입니다.
+ // $('.login-button').click(function() {
+ //  validationForm()
+ //
+ //  // TODO: session 관련 처리 후 로그인 체크 예정입니다.
+ // })
 
  // 회원가입 이벤트
  $('.join-wording').click(function() {
