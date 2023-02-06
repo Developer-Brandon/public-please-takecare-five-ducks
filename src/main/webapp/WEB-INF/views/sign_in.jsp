@@ -46,7 +46,7 @@
                         </div>
 
                         <!-- login button -->
-                        <button type="submit" class="login-button">로&nbsp;&nbsp;그&nbsp;&nbsp;인</button>
+                        <input type="submit" class="login-button" value="로&nbsp;&nbsp;그&nbsp;&nbsp;인">
 
                         <!-- auto login check button -->
                         <div class="auto-login-section">
