@@ -10,6 +10,7 @@
 
     // 사례를 더 찾아보기
     // https://daspace.tistory.com/260
+    // https://jinseok12.tistory.com/13
 
     String redirectUrl = "/login";
 
