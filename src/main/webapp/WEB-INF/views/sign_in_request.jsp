@@ -6,6 +6,11 @@
     String email = request.getParameter("email");
     String password = request.getParameter("password");
 
+    // 만약 기본적인 validation에서 막히면 다시 login page로 이동시킵니다.
+
+    // 사례를 더 찾아보기
+    // https://daspace.tistory.com/260
+
     String redirectUrl = "/login";
 
     if(!email.isEmpty() && !password.isEmpty()) {
