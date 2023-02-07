@@ -97,10 +97,10 @@
         <location>/error503</location>
     </error-page>
 
-    <!-- error page - exception -->
-    <!-- 전역에서 붙잡아서 error page로 보내버리기 때문에, 전역에서 처리하면 비동기 처리에 대해 대응을 못하게 됩니다 -->
-    <!--    <error-page>-->
-    <!--        <exception-type>java.lang.Exception</exception-type>-->
-    <!--        <location>/exception</location>-->
-    <!--    </error-page>-->
+<!--    &lt;!&ndash; error page - exception &ndash;&gt;-->
+<!--     전역에서 붙잡아서 error page로 보내버리기 때문에, 전역에서 처리하면 비동기 처리에 대해 대응을 못하게 됩니다 -->
+<!--        <error-page>-->
+<!--            <exception-type>java.lang.Exception</exception-type>-->
+<!--            <location>/exception</location>-->
+<!--        </error-page>-->
 </web-app>
