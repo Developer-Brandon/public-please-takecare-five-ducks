@@ -14,7 +14,7 @@
            http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- Root Context: defines shared resources visible to all other web components -->
-    <context:property-placeholder location="classpath:config/application.properties" />
+    <context:property-placeholder location="classpath:config/local.properties" />
 
     <!-- 1. hikariConfig를 bean으로 등록합니다 -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
