@@ -2,74 +2,78 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
-       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring
            http://mybatis.org/schema/mybatis-spring-1.2.xsd
            http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
-           http://www.springframework.org/schema/context
-           http://www.springframework.org/schema/context/spring-context-4.3.xsd
            http://www.springframework.org/schema/tx
-           http://www.springframework.org/schema/tx/spring-tx.xsd">
+           http://www.springframework.org/schema/tx/spring-tx.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
     <!-- Root Context: defines shared resources visible to all other web components -->
-    <context:property-placeholder location="classpath:config/local.properties" />
+    <!-- <context:property-placeholder>를 여러개 사용 하는 경우 첫번째 것만 인식이 된다 -->
+    <!-- <context:property-placeholder location="classpath:config/local.properties" />-->
+
+    <!-- 위에처럼 해도되고, 아래처럼 해도되고, class명이 명시적으로 되어있어서 아래방법으로... -->
+    <!--    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+    <!--        <property name="locations" value="classpath:${spring.profiles.active}.properties"/>-->
+    <!--    </bean>-->
+
+    <util:properties id="config" location="classpath:${spring.profiles.active}.properties"/>
 
     <!-- 1. hikariConfig를 bean으로 등록합니다 -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-        <property name="idleTimeout" value="30000" />
-        <property name="connectionTimeout" value="3000" />
-        <property name="maxLifetime" value="400000" />
-        <property name="maximumPoolSize" value="300" />
-        <property name="minimumIdle" value="20" />
-        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+        <property name="idleTimeout" value="30000"/>
+        <property name="connectionTimeout" value="3000"/>
+        <property name="maxLifetime" value="400000"/>
+        <property name="maximumPoolSize" value="300"/>
+        <property name="minimumIdle" value="20"/>
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
 
         <!-- <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />-->
-        <property name="jdbcUrl" value="${db.url}" />
-        <property name="username" value="${db.username}" />
-        <property name="password" value="${db.password}" />
+        <property name="jdbcUrl" value="#{config['url']}"/>
+        <property name="username" value="#{config['username']}"/>
+        <property name="password" value="#{config['password']}"/>
     </bean>
 
     <!-- 2. data source를 등록합니다(hikariCP configuration) -->
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
-        <constructor-arg ref="hikariConfig" />
+        <constructor-arg ref="hikariConfig"/>
     </bean>
 
     <!-- 3. sqlSessionFactory를 등록합니다 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <!-- 4. mybatis 관련 annotation 처리를 위해 scan 등록을 합니다 -->
     <mybatis:scan
             base-package="com.dev.pleaseTakecareFiveDucks.config.db.mapper"/>
 
-    <!-- 5. component를 scan할(조사하도록 할) base-package를 등록합니다 -->
-    <context:component-scan
-            base-package="com.dev.pleaseTakecareFiveDucks"/>
-
-    <!-- 6. flyway 관련 bean 생성 -->
+    <!-- 5. flyway 관련 bean 생성 -->
     <bean id="flyway" class="com.googlecode.flyway.core.Flyway" init-method="migrate">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
         <property name="locations" value="db/migration"/>
         <property name="validateOnMigrate" value="true"/>
         <property name="initOnMigrate" value="true"/>
         <property name="outOfOrder" value="true"/>
-        <property name="encoding"  value="UTF-8"/>
-        <property name="initVersion"  value="1.1.0"/>
+        <property name="encoding" value="UTF-8"/>
+        <property name="initVersion" value="1.1.0"/>
     </bean>
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" depends-on="flyway">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!-- 7. Transaction 설정 -->
-    <!-- 7-1. transactionManager를 등록해줍니다 -->
+    <!-- 6. Transaction 설정 -->
+    <!-- 6-1. transactionManager를 등록해줍니다 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    <!-- 7-2. annotation-driven을 추가하면, class와 method에 @Transactional annotation을 사용할 수 있습니다 -->
+    <!-- 6-2. annotation-driven을 추가하면, class와 method에 @Transactional annotation을 사용할 수 있습니다 -->
     <!-- 즉, @Transactional 애노테이션을 이용한 트랜잭션을 관리합니다 -->
-    <tx:annotation-driven />
+    <tx:annotation-driven/>
 </beans>

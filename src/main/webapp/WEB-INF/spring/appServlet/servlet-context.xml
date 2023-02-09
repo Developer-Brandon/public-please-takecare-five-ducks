@@ -14,6 +14,7 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 
 	<!-- Enables the Spring MVC @Controller programming model -->
+    <!-- 스캔한 패키지 내부의 클래스 중 Controller 어노테이션을 가지고 있는 클래스들을 Controller로 로딩하도록 한다. -->
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
@@ -25,6 +26,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
+    <!-- 스캔할 bean들이 모여있는 패키지를 지정한다. -->
+    <!-- 서블릿을 운영하기 위한 정보를 가지고 있는 파일 -->
+    <!-- component를 scan할(조사하도록 할) base-package를 등록합니다 -->
     <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks" />
 	<context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.anime" />
     <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.book" />

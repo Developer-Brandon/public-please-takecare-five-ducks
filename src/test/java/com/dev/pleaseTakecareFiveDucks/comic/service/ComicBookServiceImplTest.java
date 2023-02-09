@@ -12,6 +12,7 @@ import org.junit.runners.MethodSorters;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,9 @@ import static org.mockito.Mockito.times;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @Transactional
 @RunWith(MockitoJUnitRunner.class)
+//@PropertySource({
+//        "classpath:config/local.properties"
+//})
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class ComicBookServiceImplTest extends TestCase {
 
