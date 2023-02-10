@@ -4,16 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          https://maven.apache.org/maven-v4_0_0.xsd">
 
-    <!-- maven에서 사용되는 기본 정보 -->
+    <!-- maven에서 사용되는 기본 정보들 목록 -->
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.dev</groupId>
+    <!-- war 파일이 만들어질때 표시될 이름(artifactId) -->
     <artifactId>pleaseTakecareFiveDucks</artifactId>
+    <!-- 프로젝트 이름 -->
     <name>pleaseTakecareFiveDucks</name>
+    <!-- war파일이 만들어질때 이름 옆에 표시될 version -->
+    <version>1.0.0</version>
+    <!-- 어떤 종류의 파일로 packagin할건지 정의 -->
     <packaging>war</packaging>
-    <version>1.0.0-BUILD-SNAPSHOT</version>
 
+    <!-- maven에서 사용되는 properties 정보들 목록 -->
     <properties>
-        <!-- maven에서 사용되는 properties 정보 -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <java-version>1.11</java-version>
@@ -29,6 +33,7 @@
         <maven.test.skip>true</maven.test.skip>
     </properties>
 
+    <!-- maven에서 사용되는 library 정보들 목록 -->
     <dependencies>
         <!-- Spring -->
         <dependency>
@@ -321,6 +326,7 @@
                         </configuration>
                     </plugin>
                 </plugins>
+<!--                <finalName>${project.name}</finalName>-->
                 <!--
                     local 에서 사용될 resources
                     1. mvn package -P 프로파일명 으로 패키징 시에 위에서 정의한 profile로 packaging 됩니다

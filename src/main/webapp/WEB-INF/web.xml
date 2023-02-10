@@ -22,7 +22,7 @@
     </context-param>
 
     <!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
-	<!-- 스프링프레임 워크가 동작하기 위한 설정파일의 위치를 알려주는 파라미터 -->
+	<!-- 스프링프레임 워크가 동작하기 위한 설정파일(context파일)의 위치를 알려주는 파라미터 -->
     <context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
@@ -33,7 +33,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-    <!-- UTF8 처리-->
+    <!-- 한글 깨짐 방지(UTF8 처리) -->
     <filter>
         <filter-name>encoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
