@@ -30,12 +30,4 @@
     <!-- 서블릿을 운영하기 위한 정보를 가지고 있는 파일 -->
     <!-- component를 scan할(조사하도록 할) base-package를 등록합니다 -->
     <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks" />
-	<context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.anime" />
-    <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.book" />
-    <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.comic" />
-    <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.contents" />
-    <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.drama" />
-    <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.movie" />
-    <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.mp3" />
-    <context:component-scan base-package="com.dev.pleaseTakecareFiveDucks.youtube" />
 </beans:beans>
