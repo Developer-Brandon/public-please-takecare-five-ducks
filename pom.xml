@@ -12,16 +12,21 @@
     <packaging>war</packaging>
     <version>1.0.0-BUILD-SNAPSHOT</version>
 
-    <!-- maven에서 사용되는 properties 정보 -->
     <properties>
+        <!-- maven에서 사용되는 properties 정보 -->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <java-version>1.11</java-version>
         <org.springframework-version>5.0.7.RELEASE</org.springframework-version>
         <org.aspectj-version>1.9.0</org.aspectj-version>
         <org.slf4j-version>1.5.6</org.slf4j-version>
         <junit-version>4.12</junit-version>
-        <!-- 기본 encoding -->
+
+        <!-- 기본 encoding 관련 setting -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- maven build시에 test code가 skip되도록 설정합니다. -->
+        <maven.test.skip>true</maven.test.skip>
     </properties>
 
     <dependencies>
@@ -106,6 +111,12 @@
             <scope>runtime</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.bgee.log4jdbc-log4j2</groupId>
+            <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+            <version>1.16</version>
+        </dependency>
+
         <!-- @Inject -->
         <dependency>
             <groupId>javax.inject</groupId>
@@ -113,7 +124,7 @@
             <version>1</version>
         </dependency>
 
-        <!-- Servlet -->
+        <!-- Servlet 시작 -->
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <!-- javax.servlet-api -->
         <!-- 웹  관련 요청에 대하여 동적인 처리를 도와주는 기술 -->
@@ -123,6 +134,7 @@
             <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
+
         <!-- jsp-api -->
         <!-- java 언어를 기반으로 웹 서비스를 제공하기 위해 만든 기술 -->
         <dependency>
@@ -131,12 +143,14 @@
             <version>2.3.3</version>
             <scope>provided</scope>
         </dependency>
+
         <!-- jslt -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <!-- Servlet 끝 -->
 
         <!-- taglibs -->
         <dependency>
@@ -179,7 +193,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.26</version>
+            <version>1.18.22</version>
         </dependency>
 
         <!-- MyBatis -->
@@ -255,105 +269,205 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.14.1</version>
         </dependency>
-
-        <!-- 9. maven-resources-plugin -->
-        <!-- maven resource를 활용하기 위한 의존성 추가 -->
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-resources-plugin</artifactId>
-            <version>2.7</version>
-        </dependency>
     </dependencies>
 
-    <!-- profiles 정의 -->
+    <!-- maven의 profiles에서 사용할 profiles 정의 -->
     <profiles>
         <!-- mvn package -P 로 명시하지 않을 경우 기본 프로파일 -->
         <profile>
+            <id>local</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <id>local</id>
             <properties>
                 <!-- 로컬환경 또는 개발환경을 판단하는 정보 -->
                 <env>local</env>
             </properties>
+            <build>
+                <!-- local 에서 사용될 plugins -->
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-eclipse-plugin</artifactId>
+                        <version>2.9</version>
+                        <configuration>
+                            <additionalProjectnatures>
+                                <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+                            </additionalProjectnatures>
+                            <additionalBuildcommands>
+                                <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+                            </additionalBuildcommands>
+                            <downloadSources>true</downloadSources>
+                            <downloadJavadocs>true</downloadJavadocs>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>2.5.1</version>
+                        <configuration>
+                            <source>8</source>
+                            <target>8</target>
+                            <compilerArgument>-Xlint:all</compilerArgument>
+                            <showWarnings>true</showWarnings>
+                            <showDeprecation>true</showDeprecation>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.2.1</version>
+                        <configuration>
+                            <mainClass>org.test.int1.Main</mainClass>
+                        </configuration>
+                    </plugin>
+                </plugins>
+                <!--
+                    local 에서 사용될 resources
+                    1. mvn package -P 프로파일명 으로 패키징 시에 위에서 정의한 profile로 packaging 됩니다
+                    2. Resource 파일명으로 구분하여 관리하는 경우, 빌드 시 target 디렉토리로 대상 환경파일만 copy 되도록 include 설정
+                 -->
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources/${env}</directory>
+                        <includes>
+                            <include>**/*.properties</include>
+                        </includes>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
         </profile>
+
+        <!-- dev phase -->
         <profile>
             <id>dev</id>
             <properties>
+                <!-- 개발환경 또는 개발환경을 판단하는 정보 -->
                 <env>dev</env>
             </properties>
+            <build>
+                <!-- dev 에서 사용될 plugins -->
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-eclipse-plugin</artifactId>
+                        <version>2.9</version>
+                        <configuration>
+                            <additionalProjectnatures>
+                                <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+                            </additionalProjectnatures>
+                            <additionalBuildcommands>
+                                <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+                            </additionalBuildcommands>
+                            <downloadSources>true</downloadSources>
+                            <downloadJavadocs>true</downloadJavadocs>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>2.5.1</version>
+                        <configuration>
+                            <source>8</source>
+                            <target>8</target>
+                            <compilerArgument>-Xlint:all</compilerArgument>
+                            <showWarnings>true</showWarnings>
+                            <showDeprecation>true</showDeprecation>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.2.1</version>
+                        <configuration>
+                            <mainClass>org.test.int1.Main</mainClass>
+                        </configuration>
+                    </plugin>
+                </plugins>
+                <!--
+                    dev 에서 사용될 resources
+                    1. mvn package -P 프로파일명 으로 패키징 시에 위에서 정의한 profile로 packaging 됩니다
+                    2. Resource 파일명으로 구분하여 관리하는 경우, 빌드 시 target 디렉토리로 대상 환경파일만 copy 되도록 include 설정
+                 -->
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources/${env}</directory>
+                        <includes>
+                            <include>**/*.properties</include>
+                        </includes>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
         </profile>
+
+        <!-- prod phase -->
         <profile>
             <id>prod</id>
             <properties>
+                <!-- 운영환경 또는 개발환경을 판단하는 정보 -->
                 <env>prod</env>
             </properties>
+            <build>
+                <!-- prod 에서 사용될 plugins -->
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-eclipse-plugin</artifactId>
+                        <version>2.9</version>
+                        <configuration>
+                            <additionalProjectnatures>
+                                <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+                            </additionalProjectnatures>
+                            <additionalBuildcommands>
+                                <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+                            </additionalBuildcommands>
+                            <downloadSources>true</downloadSources>
+                            <downloadJavadocs>true</downloadJavadocs>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>2.5.1</version>
+                        <configuration>
+                            <source>8</source>
+                            <target>8</target>
+                            <compilerArgument>-Xlint:all</compilerArgument>
+                            <showWarnings>true</showWarnings>
+                            <showDeprecation>true</showDeprecation>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.2.1</version>
+                        <configuration>
+                            <mainClass>org.test.int1.Main</mainClass>
+                        </configuration>
+                    </plugin>
+                </plugins>
+                <!--
+                    prod 에서 사용될 resources
+                    1. mvn package -P 프로파일명 으로 패키징 시에 위에서 정의한 profile로 packaging 됩니다
+                    2. Resource 파일명으로 구분하여 관리하는 경우, 빌드 시 target 디렉토리로 대상 환경파일만 copy 되도록 include 설정
+                 -->
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/</directory>
+                        <includes>
+                            <include>**/${env}.properties</include>
+                        </includes>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
         </profile>
     </profiles>
-
-    <build>
-        <!-- mvn package -P 프로파일명 으로 패키징 시에 위에서 정의한 profile로 packaging 됩니다 -->
-<!--        <resources>-->
-<!--            <resource>-->
-<!--                <directory>src/main/resources/${env}.properties</directory>-->
-<!--            </resource>-->
-<!--        </resources>-->
-<!--        <testResources>-->
-<!--            <testResource>-->
-<!--                <directory>src/test/resources/${env}.properties</directory>-->
-<!--            </testResource>-->
-<!--        </testResources>-->
-
-        <!--
-            Resource 파일명으로 구분하여 관리하는 경우
-            빌드 시 target 디렉토리로 대상 환경파일만 copy 되도록 include 설정
-         -->
-        <resources>
-            <resource>
-                <directory>src/main/resources/</directory>
-                <includes>
-                    <include>**/${env}.properties</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-
-        <plugins>
-            <plugin>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <version>2.9</version>
-                <configuration>
-                    <additionalProjectnatures>
-                        <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-                    </additionalProjectnatures>
-                    <additionalBuildcommands>
-                        <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
-                    </additionalBuildcommands>
-                    <downloadSources>true</downloadSources>
-                    <downloadJavadocs>true</downloadJavadocs>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                    <compilerArgument>-Xlint:all</compilerArgument>
-                    <showWarnings>true</showWarnings>
-                    <showDeprecation>true</showDeprecation>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
-                <configuration>
-                    <mainClass>org.test.int1.Main</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

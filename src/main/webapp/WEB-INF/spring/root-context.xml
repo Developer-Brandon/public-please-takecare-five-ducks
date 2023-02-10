@@ -4,6 +4,7 @@
        xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring
            http://mybatis.org/schema/mybatis-spring-1.2.xsd
            http://www.springframework.org/schema/beans
@@ -11,18 +12,21 @@
            http://www.springframework.org/schema/tx
            http://www.springframework.org/schema/tx/spring-tx.xsd
            http://www.springframework.org/schema/util
-           http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+           http://www.springframework.org/schema/util/spring-util-4.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- Root Context: defines shared resources visible to all other web components -->
     <!-- <context:property-placeholder>를 여러개 사용 하는 경우 첫번째 것만 인식이 된다 -->
-    <!-- <context:property-placeholder location="classpath:config/local.properties" />-->
+    <!--    <context:property-placeholder location="classpath:local.properties" />-->
 
     <!-- 위에처럼 해도되고, 아래처럼 해도되고, class명이 명시적으로 되어있어서 아래방법으로... -->
     <!--    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
     <!--        <property name="locations" value="classpath:${spring.profiles.active}.properties"/>-->
     <!--    </bean>-->
 
-    <util:properties id="config" location="classpath:${spring.profiles.active}.properties"/>
+    <!-- spring-util 의 spring profile을 이용합니다 -->
+    <util:properties id="customConfig" location="classpath:${spring.profiles.active}.properties"/>
 
     <!-- 1. hikariConfig를 bean으로 등록합니다 -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
@@ -31,12 +35,11 @@
         <property name="maxLifetime" value="400000"/>
         <property name="maximumPoolSize" value="300"/>
         <property name="minimumIdle" value="20"/>
-        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
-
         <!-- <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />-->
-        <property name="jdbcUrl" value="#{config['url']}"/>
-        <property name="username" value="#{config['username']}"/>
-        <property name="password" value="#{config['password']}"/>
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+        <property name="jdbcUrl" value="#{customConfig['db.url']}"/>
+        <property name="username" value="#{customConfig['db.username']}"/>
+        <property name="password" value="#{customConfig['db.password']}"/>
     </bean>
 
     <!-- 2. data source를 등록합니다(hikariCP configuration) -->
