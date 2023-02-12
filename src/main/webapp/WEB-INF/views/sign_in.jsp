@@ -20,7 +20,7 @@
                         <!-- logo and wording -->
                         <div class="logo-and-wording">
                             <img class="main-logo"
-                                 src="${pageContext.request.contextPath}/resources/images/rubber-duck.png"
+                                 src="${pageContext.request.contextPath}/resources/images/rubber-duck-admin.png"
                                  alt="메인로고와 워딩입니다">
                             <h1 class="main-logo-wording">오덕을<br>부탁해</h1>
                         </div>

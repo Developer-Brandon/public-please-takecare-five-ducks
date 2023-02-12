@@ -23,6 +23,12 @@ public class MainController extends BaseController {
         return "sign_in";
     }
 
+    @GetMapping(value = "/sign-up", produces = TEXT_HTML_FORMAT)
+    public String goSignUpPage(Model model) throws Exception {
+
+        return "sign_up";
+    }
+
     @GetMapping(value = "/main", produces = TEXT_HTML_FORMAT)
     public String goMainPage(Model model) throws Exception {
 

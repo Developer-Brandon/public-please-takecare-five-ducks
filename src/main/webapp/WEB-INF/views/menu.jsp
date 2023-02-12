@@ -24,7 +24,7 @@
                     <div class="wrap-logo__inner">
                         <img id="logo"
                              onclick="goMainPage(getRootUrl())"
-                             src="${pageContext.request.contextPath}/resources/images/main-logo-icon.png"
+                             src="${pageContext.request.contextPath}/resources/images/main-logo-icon-admin.png"
                              alt="로고 이미지입니다" />
                     </div>
                 </div>
