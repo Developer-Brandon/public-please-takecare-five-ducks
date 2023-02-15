@@ -41,6 +41,8 @@
 }
 
 .thumbnail-section {
+    width: 704px;
+    height: 260px;
 }
 
 .thumbnail-section > .thumbnail-section__inner {

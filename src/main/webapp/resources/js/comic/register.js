@@ -140,10 +140,6 @@ $(function () {
    return
   }
 
-  if ($('.thumbnail-preview-list').children().hasClass('.thumbnail')) {
-   $('.thumbnail-preview-list').empty();
-  }
-
   $.ajax({
    url: "./search/image/thumbnail",
    data: {comicBookName: insertedTitle},

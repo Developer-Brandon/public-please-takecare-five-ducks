@@ -79,3 +79,19 @@ and (max-device-width: 1024px) {
     padding-top: 25px;
     padding-bottom: 400px;
 }
+
+.ptcfd-default-thumbnail {
+    width: 704px;
+    height: 235px;
+    margin-bottom: 25px;
+    background-color: #D9D9D9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ptcfd-default-thumbnail > div > p:first-child{
+    text-align: center;
+    margin-bottom:5px;
+}

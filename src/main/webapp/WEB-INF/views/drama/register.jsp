@@ -26,6 +26,13 @@
     <%-- 썸네일 자동찾기 섹션 --%>
     <div class="thumbnail-section">
         <div class="thumbnail-section__inner">
+            <!-- 썸네일이 없다면 이곳의 dom으로... -->
+            <div class="ptcfd-default-thumbnail">
+                <div>
+                    <p>❌</p>
+                    <p>검색된 썸네일이 없습니다</p>
+                </div>
+            </div>
             <%-- 썸네일이 있다면 이곳의 dom으로... --%>
             <div class="thumbnail-preview-list"></div>
         </div>
