@@ -133,6 +133,11 @@ $(function () {
 
  /** 썸네일을 찾는(구글로부터) 버튼을 클릭했을때에 호출되는 메소드입니다. */
  $(".find-thumbnail-button").click(function () {
+
+  $('.ptcfd-default-thumbnail').hide()
+  $('.thumbnail-preview-list').children().remove()
+  $('.thumbnail-preview-list').show()
+
   let insertedTitle = $('.title-input').val()
 
   if (insertedTitle === '') {
