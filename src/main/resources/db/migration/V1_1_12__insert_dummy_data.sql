@@ -13,11 +13,11 @@ BEGIN
 
         # tb_anime
         insert into plz_tc_fd.tb_anime(r_anime_no, m_n_no, title, author, link, finalized_yn, anime_broadcast_cnt, anime_reg_dt)
-        values(100, 2,'디지몬 어드벤쳐 1~10화','혼고 아키요시','https://pond-play-786.notion.site/1-10-04e9ae6de0ae44d0b2b0679f4d5f5dbe','y','54','1997-06-26')
-             ,(101, 2, '디지몬 어드벤쳐 11~20화','혼고 아키요시','https://pond-play-786.notion.site/11-20-cc15ad1d77144b63a1e5ad5b2184772c','y','54','1997-06-26')
-             ,(102, 2, '디지몬 어드벤쳐 21~30화','혼고 아키요시','https://pond-play-786.notion.site/21-30-87515e28ebfd4bf8a6fcd5d60509ca8a','y','54','1997-06-26')
-             ,(103, 2, '디지몬 어드벤쳐 31~40화','혼고 아키요시','https://pond-play-786.notion.site/31-40-5787bed9656845e8a120500654cdda82','y','54','1997-06-26')
-             ,(104, 2, '디지몬 어드벤쳐 41~54화','혼고 아키요시','https://pond-play-786.notion.site/41-54-66dda09a637641f4b19ec5bb1422e2f5','y','54','1997-06-26');
+        values(100, 2,'디지몬 어드벤쳐 1~10화','혼고 아키요시','https://www.naver.com','y','54','1997-06-26')
+             ,(101, 2, '디지몬 어드벤쳐 11~20화','혼고 아키요시','https://www.naver.com','y','54','1997-06-26')
+             ,(102, 2, '디지몬 어드벤쳐 21~30화','혼고 아키요시','https://www.naver.com','y','54','1997-06-26')
+             ,(103, 2, '디지몬 어드벤쳐 31~40화','혼고 아키요시','https://www.naver.com','y','54','1997-06-26')
+             ,(104, 2, '디지몬 어드벤쳐 41~54화','혼고 아키요시','https://www.naver.com','y','54','1997-06-26');
 
         # tb_anime_view
         insert into plz_tc_fd.tb_anime_view(view_no, user_no, r_anime_no)
@@ -50,11 +50,11 @@ BEGIN
 
         # tb_book
         insert into plz_tc_fd.tb_book(r_book_no, m_n_no, r_book_type_no, title, author, link)
-        values(100, 1, 4, '스프링 용어/개념 및 어노테이션 정리', '이도겸', 'https://pond-play-786.notion.site/00862c50454c417c92e4853974ce1173')
-             , (101, 1, 4, 'JSP의 모든것', '이도겸', 'https://pond-play-786.notion.site/JSP-054e852f13d04205be427569134f0899')
-             , (102, 1, 4, 'Spring 오류/에러 정리', '이도겸', 'https://pond-play-786.notion.site/Spring-c8d3904a2a414c7da1f5186060420b1d')
-             , (103, 1, 4, 'Client/Server pagination 총정리', '이도겸', 'https://pond-play-786.notion.site/Client-Server-Pagination-7e029e1152ff499f8713a6718804b385')
-             , (104, 1, 4, 'Mybatis 개념/정리/태그 모음', '이도겸', 'https://pond-play-786.notion.site/Mybatis-0aa267a91c794da797f4aa88e42fde32');
+        values(100, 1, 4, '스프링 용어/개념 및 어노테이션 정리', '이도겸', 'https://www.naver.com')
+             , (101, 1, 4, 'JSP의 모든것', '이도겸', 'https://www.naver.com')
+             , (102, 1, 4, 'Spring 오류/에러 정리', '이도겸', 'https://www.naver.com')
+             , (103, 1, 4, 'Client/Server pagination 총정리', '이도겸', 'https://www.naver.com')
+             , (104, 1, 4, 'Mybatis 개념/정리/태그 모음', '이도겸', 'https://www.naver.com');
 
         # tb_book_view
         insert into plz_tc_fd.tb_book_view(view_no, user_no, r_book_no)
@@ -94,8 +94,8 @@ BEGIN
 
         # tb_movie
         insert into plz_tc_fd.tb_movie(r_movie_no, m_n_no, title, director, link, total_number_of_episode, movie_reg_dt)
-        values(100, 1, '8마일', '커티스핸슨', 'https://pond-play-786.notion.site/8-e2c903ed56134f1398a3ebce83a03869', 1, '2003-02-21')
-             ,(101, 1, '가위손', '팀버튼', 'https://pond-play-786.notion.site/770dd86a90f34e89b6cd9250a72c6f36', 1, '1991-06-29');
+        values(100, 1, '8마일', '커티스핸슨', 'https://www.naver.com', 1, '2003-02-21')
+             ,(101, 1, '가위손', '팀버튼', 'https://www.naver.com', 1, '1991-06-29');
 
         # tb_movie_view
         insert into plz_tc_fd.tb_movie_view(view_no, user_no, r_movie_no)
