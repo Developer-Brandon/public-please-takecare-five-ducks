@@ -15,7 +15,7 @@
             , file_name as fileName
             , date_format(reg_dt, '%Y-%m-%d') as regDt
             , date_format(mod_dt, '%Y-%m-%d') as modDt
-    from web_app_test2.tb_main_banner_img
+    from plz_tc_fd.tb_main_banner_img
     where use_yn = 'y'
     </select>
 </mapper>

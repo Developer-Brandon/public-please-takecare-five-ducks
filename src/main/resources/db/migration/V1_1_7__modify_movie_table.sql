@@ -8,9 +8,9 @@ BEGIN
     IF EXISTS((SELECT *
                    FROM INFORMATION_SCHEMA.COLUMNS
                    WHERE table_name = 'tb_movie'
-                     AND table_schema = 'web_app_test2'
+                     AND table_schema = 'plz_tc_fd'
                      AND column_name = 'page_per_movie_cnt')) THEN
-        alter table web_app_test2.tb_movie drop column page_per_movie_cnt;
+        alter table plz_tc_fd.tb_movie drop column page_per_movie_cnt;
 
     END IF;
 

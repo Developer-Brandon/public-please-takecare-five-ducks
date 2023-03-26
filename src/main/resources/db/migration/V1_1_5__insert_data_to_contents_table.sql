@@ -8,10 +8,10 @@ CREATE PROCEDURE validate_data()
 BEGIN
 
     IF NOT EXISTS((SELECT *
-                   FROM web_app_test2.tb_contents_made_nature
+                   FROM plz_tc_fd.tb_contents_made_nature
                    WHERE m_n_no= 1)) THEN
 
-        insert web_app_test2.tb_contents_made_nature(english_name, korean_name)
+        insert plz_tc_fd.tb_contents_made_nature(english_name, korean_name)
         values('korea', '한국'), ('japan', '일본');
 
 END IF;

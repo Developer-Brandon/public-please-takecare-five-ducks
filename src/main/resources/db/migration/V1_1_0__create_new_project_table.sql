@@ -1,8 +1,8 @@
-# 1. web_app_test2 스키마 생성
-create schema if not exists web_app_test2;
+# 1. plz_tc_fd 스키마 생성
+create schema if not exists plz_tc_fd;
 
 #2. 테이블 생성
-create table if not exists web_app_test2.tb_book(
+create table if not exists plz_tc_fd.tb_book(
     r_book_no int unsigned not null auto_increment comment '책 번호' primary key,
     m_n_no int unsigned not null comment '제작 국가 번호',
     title text not null comment '책 제목',
@@ -12,7 +12,7 @@ create table if not exists web_app_test2.tb_book(
     reg_dt datetime not null default current_timestamp comment '등록일자'
 ) engine=innodb default charset=utf8mb4 comment '책';
 
-create table if not exists web_app_test2.tb_comic_book(
+create table if not exists plz_tc_fd.tb_comic_book(
     r_book_no int unsigned not null auto_increment comment '책 번호' primary key,
     m_n_no int unsigned not null comment '제작 국가 번호',
     title text not null comment '책 제목',
@@ -22,7 +22,7 @@ create table if not exists web_app_test2.tb_comic_book(
     reg_dt datetime not null default current_timestamp comment '등록일자'
 ) engine=innodb default charset=utf8mb4 comment '만화책';
 
-create table if not exists web_app_test2.tb_anime(
+create table if not exists plz_tc_fd.tb_anime(
     r_anime_no int unsigned not null auto_increment comment '애니 번호' primary key,
     m_n_no int unsigned not null comment '제작 국가 번호',
     title text not null comment '애니 제목',
@@ -33,7 +33,7 @@ create table if not exists web_app_test2.tb_anime(
     reg_dt datetime not null default current_timestamp comment '등록일자'
 ) engine=innodb default charset=utf8mb4 comment '애니';
 
-create table if not exists web_app_test2.tb_drama(
+create table if not exists plz_tc_fd.tb_drama(
     r_drama_no int unsigned not null auto_increment comment '드라마 번호' primary key,
     m_n_no int unsigned not null comment '제작 국가 번호',
     title text not null comment '드라마 제목',
@@ -44,7 +44,7 @@ create table if not exists web_app_test2.tb_drama(
     reg_dt datetime not null default current_timestamp comment '등록일자'
 ) engine=innodb default charset=utf8mb4 comment '드라마';
 
-create table if not exists web_app_test2.tb_movie(
+create table if not exists plz_tc_fd.tb_movie(
     r_movie_no int unsigned not null auto_increment comment '영화 번호' primary key,
     m_n_no int unsigned not null comment '제작 국가 번호',
     title text not null comment '영화 제목',
@@ -55,7 +55,7 @@ create table if not exists web_app_test2.tb_movie(
     reg_dt datetime not null default current_timestamp comment '등록일자'
 ) engine=innodb default charset=utf8mb4 comment '영화';
 
-create table if not exists web_app_test2.tb_contents_made_nature(
+create table if not exists plz_tc_fd.tb_contents_made_nature(
     m_n_no int unsigned not null auto_increment comment '제작 국가 번호' primary key,
     english_name varchar(30) not null default '?' comment '(영문)제작 국가 이름',
     korean_name varchar(30) not null default '?' comment '(국문)제작 국가 이름',
@@ -64,23 +64,23 @@ create table if not exists web_app_test2.tb_contents_made_nature(
 ) engine=innodb default charset=utf8mb4 comment '컨텐츠 제작 국가';
 
 # 3. FK 처리
-alter table web_app_test2.tb_book add foreign key(m_n_no)
-    references web_app_test2.tb_contents_made_nature(m_n_no) on delete cascade;
+alter table plz_tc_fd.tb_book add foreign key(m_n_no)
+    references plz_tc_fd.tb_contents_made_nature(m_n_no) on delete cascade;
 
-alter table web_app_test2.tb_comic_book add foreign key(m_n_no)
-    references web_app_test2.tb_contents_made_nature(m_n_no) on delete cascade;
+alter table plz_tc_fd.tb_comic_book add foreign key(m_n_no)
+    references plz_tc_fd.tb_contents_made_nature(m_n_no) on delete cascade;
 
-alter table web_app_test2.tb_anime add foreign key(m_n_no)
-    references web_app_test2.tb_contents_made_nature(m_n_no) on delete cascade;
+alter table plz_tc_fd.tb_anime add foreign key(m_n_no)
+    references plz_tc_fd.tb_contents_made_nature(m_n_no) on delete cascade;
 
-alter table web_app_test2.tb_drama add foreign key(m_n_no)
-    references web_app_test2.tb_contents_made_nature(m_n_no) on delete cascade;
+alter table plz_tc_fd.tb_drama add foreign key(m_n_no)
+    references plz_tc_fd.tb_contents_made_nature(m_n_no) on delete cascade;
 
-alter table web_app_test2.tb_movie add foreign key(m_n_no)
-    references web_app_test2.tb_contents_made_nature(m_n_no) on delete cascade;
+alter table plz_tc_fd.tb_movie add foreign key(m_n_no)
+    references plz_tc_fd.tb_contents_made_nature(m_n_no) on delete cascade;
 
 # 4. FK 처리가  필요없는 테이블
-create table if not exists web_app_test2.tb_mp3(
+create table if not exists plz_tc_fd.tb_mp3(
     r_mp3_no int unsigned not null auto_increment comment 'mp3 번호' primary key,
     title text not null comment 'mp3 제목',
     singer varchar(30) not null default 'noname' comment '가수',
@@ -89,7 +89,7 @@ create table if not exists web_app_test2.tb_mp3(
     reg_dt datetime not null default current_timestamp comment '등록일자'
 ) engine=innodb default charset=utf8mb4 comment 'mp3';
 
-create table if not exists web_app_test2.tb_youtube(
+create table if not exists plz_tc_fd.tb_youtube(
     r_youtube_no int unsigned not null auto_increment comment 'youtube 번호' primary key,
     title text not null comment 'youtube 영상 제목',
     youtuber_name varchar(30) not null default 'noname' comment '유투버 이름',
@@ -103,7 +103,7 @@ create table if not exists web_app_test2.tb_youtube(
 
 
 # 5. 회원가입 관련 테이블
-create table if not exists web_app_test2.tb_user(
+create table if not exists plz_tc_fd.tb_user(
     user_no int unsigned not null auto_increment comment '유저 번호' primary key,
     user_type_no int unsigned not null comment '유저 타입 번호',
     email varchar(40) not null comment '유저 이메일',
@@ -114,7 +114,7 @@ create table if not exists web_app_test2.tb_user(
     mod_dt datetime not null default current_timestamp comment '수정일자'
 ) engine=innodb default charset=utf8mb4 comment '유저';
 
-create table if not exists web_app_test2.tb_user_type(
+create table if not exists plz_tc_fd.tb_user_type(
     user_type_no int unsigned not null auto_increment comment '유저 타입 번호' primary key,
     type varchar(40) not null comment '유저 타입명',
     use_yn enum('Y','N') not null default 'Y' comment '사용여부',
@@ -122,5 +122,5 @@ create table if not exists web_app_test2.tb_user_type(
     mod_dt datetime not null default current_timestamp comment '수정일자'
 ) engine=innodb default charset=utf8mb4 comment '유저타입';
 
-alter table web_app_test2.tb_user add foreign key(user_type_no)
-    references web_app_test2.tb_user_type(user_type_no) on delete cascade;
+alter table plz_tc_fd.tb_user add foreign key(user_type_no)
+    references plz_tc_fd.tb_user_type(user_type_no) on delete cascade;

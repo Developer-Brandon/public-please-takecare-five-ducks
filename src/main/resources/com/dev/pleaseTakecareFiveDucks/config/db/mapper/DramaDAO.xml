@@ -7,7 +7,7 @@
     <sql id="selectMainDramaViewCnt">
         select r_drama_no
                , count(r_drama_no) as viewCnt
-        from web_app_test2.tb_drama_view
+        from plz_tc_fd.tb_drama_view
         group by r_drama_no
     </sql>
 
@@ -16,7 +16,7 @@
         /* 전체 드라마 개수 조회 쿼리 */
         ]]>
         select count(*)
-        from web_app_test2.tb_drama
+        from plz_tc_fd.tb_drama
         where use_yn = 'y'
     </select>
 
@@ -27,7 +27,7 @@
         /* (조건을 기반해서)전체 드라마 개수 조회 쿼리 */
         ]]>
         select count(*)
-        from web_app_test2.tb_drama as tb_d
+        from plz_tc_fd.tb_drama as tb_d
         where tb_d.use_yn = 'y'
         <if test="title != '' and title != null">
             and tb_d.title like concat('%',#{title}, '%')
@@ -43,8 +43,8 @@
             , tb_d.link as link
             , tb_d_t_i.web_thumbnail_url as webThumbnailUrl
             , ifnull(tb_d_v.viewCnt, 0) as viewCnt
-        from web_app_test2.tb_drama as tb_d
-            inner join web_app_test2.tb_drama_thumbnail_img as tb_d_t_i
+        from plz_tc_fd.tb_drama as tb_d
+            inner join plz_tc_fd.tb_drama_thumbnail_img as tb_d_t_i
                 on tb_d.r_drama_no = tb_d_t_i.r_drama_no
             left outer join (<include refid="selectMainDramaViewCnt"/>) as tb_d_v
                 on tb_d.r_drama_no = tb_d_v.r_drama_no
@@ -68,8 +68,8 @@
              , ifnull(tb_d_v.viewCnt, 0) as viewCnt
              , date_format(tb_d.drama_reg_dt, '%Y-%m-%d') as dramaRegDt
              , date_format(tb_d.reg_dt, '%Y-%m-%d') as regDt
-        from web_app_test2.tb_drama as tb_d
-        inner join web_app_test2.tb_drama_thumbnail_img as tb_d_t_i
+        from plz_tc_fd.tb_drama as tb_d
+        inner join plz_tc_fd.tb_drama_thumbnail_img as tb_d_t_i
         on tb_d.r_drama_no = tb_d_t_i.r_drama_no
         left outer join (<include refid="selectMainDramaViewCnt"/>) as tb_d_v
         on tb_d.r_drama_no = tb_d_v.r_drama_no
@@ -95,10 +95,10 @@
              , ifnull(tb_d_v.viewCnt, 0) as viewCnt
              , date_format(tb_d.drama_reg_dt, '%Y-%m-%d') as dramaRegDt
              , date_format(tb_d.reg_dt, '%Y-%m-%d') as regDt
-        from web_app_test2.tb_drama as tb_d
-        inner join web_app_test2.tb_contents_made_nature as tb_c_m_n
+        from plz_tc_fd.tb_drama as tb_d
+        inner join plz_tc_fd.tb_contents_made_nature as tb_c_m_n
         on tb_d.m_n_no = tb_c_m_n.m_n_no
-        inner join web_app_test2.tb_drama_thumbnail_img as tb_d_t_i
+        inner join plz_tc_fd.tb_drama_thumbnail_img as tb_d_t_i
         on tb_d.r_drama_no = tb_d_t_i.r_drama_no
         left outer join (<include refid="selectMainDramaViewCnt"/>) as tb_d_v
         on tb_d.r_drama_no = tb_d_v.r_drama_no
@@ -121,7 +121,7 @@
         ]]>
         select r_drama_no as dramaNo
                 , web_thumbnail_url as webThumbnailUrl
-        from web_app_test2.tb_drama_thumbnail_img
+        from plz_tc_fd.tb_drama_thumbnail_img
         where r_drama_no in (
             <foreach item="item" collection="dramaNoList" separator=",">
                 #{item}
@@ -138,7 +138,7 @@
         */
         ]]>
         select count(*)
-        from web_app_test2.tb_drama_thumbnail_img
+        from plz_tc_fd.tb_drama_thumbnail_img
         where r_drama_no = #{dramaNo}
     </select>
 
@@ -158,10 +158,10 @@
              , tb_d_t_i.web_thumbnail_url as webThumbnailUrl
              , date_format(tb_d.drama_reg_dt, '%Y-%m-%d') as dramaRegDt
              , date_format(tb_d.reg_dt, '%Y-%m-%d') as regDt
-        from web_app_test2.tb_drama as tb_d
+        from plz_tc_fd.tb_drama as tb_d
             left outer join (<include refid="selectMainDramaViewCnt"/>)as tb_d_v
                 on tb_d.r_drama_no = tb_d_v.r_drama_no
-            left outer join web_app_test2.tb_drama_thumbnail_img as tb_d_t_i
+            left outer join plz_tc_fd.tb_drama_thumbnail_img as tb_d_t_i
                     on tb_d.r_drama_no = tb_d_t_i.r_drama_no
         where tb_d.use_yn =  'y'
         and tb_d.r_drama_no = #{dramaNo}
@@ -172,7 +172,7 @@
         <![CDATA[
         /* 드라마 조회수 증가 쿼리 */
         ]]>
-        insert into web_app_test2.tb_drama_view(user_no, r_drama_no)
+        insert into plz_tc_fd.tb_drama_view(user_no, r_drama_no)
         value(#{userNo},#{dramaNo})
     </insert>
 
@@ -180,7 +180,7 @@
             parameterType="com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.InsertDramaInfoRequestDTO">
         <![CDATA[
         /* 드라마 정보 삽입 쿼리 */
-        insert into web_app_test2.tb_drama(m_n_no, title, author, link, broadcast_state, drama_reg_dt)
+        insert into plz_tc_fd.tb_drama(m_n_no, title, author, link, broadcast_state, drama_reg_dt)
         value (#{madeNatureNo}, #{title}, #{author}, #{link}, #{broadcastStateEnum}, #{dramaRegDt})
         ]]>
         <selectKey
@@ -189,7 +189,7 @@
                 resultType="Integer">
             /* 드라마 dramaNo 반환 쿼리 */
             select max(r_drama_no)
-            from web_app_test2.tb_drama
+            from plz_tc_fd.tb_drama
         </selectKey>
     </insert>
 
@@ -197,7 +197,7 @@
             parameterType="com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.InsertDramaThumbnailInfoRequestDTO">
         <![CDATA[
         /* 드라마 썸네일 정보 삽입 쿼리 */
-        insert into web_app_test2.tb_drama_thumbnail_img(r_drama_no, web_thumbnail_url)
+        insert into plz_tc_fd.tb_drama_thumbnail_img(r_drama_no, web_thumbnail_url)
             value(#{dramaNo}, #{webThumbnailUrl})
         ]]>
     </insert>
@@ -206,7 +206,7 @@
             parameterType="com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.UpdateDramaInfoRequestDTO">
         <![CDATA[
         /* 단일 드라마 정보 수정 쿼리 */
-        update web_app_test2.tb_drama
+        update plz_tc_fd.tb_drama
         set m_n_no = #{madeNatureNo}
             ,title = #{title}
             ,author = #{author}
@@ -223,7 +223,7 @@
             parameterType="com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.UpdateDramaThumbnailInfoRequestDTO">
         <![CDATA[
         /* 드라마 썸네일 수정 쿼리 */
-        update web_app_test2.tb_drama_thumbnail_img
+        update plz_tc_fd.tb_drama_thumbnail_img
         set web_thumbnail_url = #{webThumbnailUrl}
           , mod_dt = now()
         where r_drama_no = #{dramaNo}
@@ -234,7 +234,7 @@
             parameterType="com.dev.pleaseTakecareFiveDucks.drama.domain.dto.request.UpdateDramaStateRequestDTO">
         <![CDATA[
         /* 단일 드라마 상태 수정 쿼리 */
-        update web_app_test2.tb_drama
+        update plz_tc_fd.tb_drama
         set use_yn = #{dramaUseYnEnum}
           , mod_dt = now()
         where r_drama_no = #{dramaNo}
@@ -245,14 +245,14 @@
         <![CDATA[
         /* 디비에 쌓여있는 전체 드라마 삭제 쿼리 */
         ]]>
-        delete from web_app_test2.tb_drama
+        delete from plz_tc_fd.tb_drama
     </delete>
 
     <delete id="deleteDramaInfo"
             parameterType="Integer">
         <![CDATA[
         /* 단일 드라마 삭제 쿼리 */
-        delete from web_app_test2.tb_drama
+        delete from plz_tc_fd.tb_drama
         where r_drama_no = #{dramaNo}
         ]]>
     </delete>
@@ -261,7 +261,7 @@
             parameterType="Integer">
         <![CDATA[
         /* 단일 드라마 썸네일 삭제 쿼리 */
-        delete from web_app_test2.tb_drama_thumbnail_img
+        delete from plz_tc_fd.tb_drama_thumbnail_img
         where r_drama_no = #{dramaNo}
         ]]>
     </delete>

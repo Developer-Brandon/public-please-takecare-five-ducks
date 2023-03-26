@@ -8,9 +8,9 @@ BEGIN
     IF NOT EXISTS((SELECT *
                    FROM INFORMATION_SCHEMA.COLUMNS
                    WHERE table_name = 'tb_movie'
-                     AND table_schema = 'web_app_test2'
+                     AND table_schema = 'plz_tc_fd'
                      AND column_name = 'mod_dt')) THEN
-        alter table web_app_test2.tb_movie add mod_dt datetime not null default current_timestamp comment '수정일자' after reg_dt;
+        alter table plz_tc_fd.tb_movie add mod_dt datetime not null default current_timestamp comment '수정일자' after reg_dt;
 
     END IF;
 

@@ -5,9 +5,9 @@ create procedure update_data()
 begin
 
     if exists((select use_yn
-               from web_app_test2.tb_user_type
+               from plz_tc_fd.tb_user_type
                where use_yn = 'y')) then
-    update web_app_test2.tb_user_type
+    update plz_tc_fd.tb_user_type
     set use_yn = 'y'
     where use_yn = 'Y';
 

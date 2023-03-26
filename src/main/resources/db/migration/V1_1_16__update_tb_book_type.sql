@@ -7,34 +7,34 @@ BEGIN
     IF NOT EXISTS((SELECT *
                FROM INFORMATION_SCHEMA.COLUMNS
                WHERE table_name = 'tb_book_type'
-                 AND table_schema = 'web_app_test2'
+                 AND table_schema = 'plz_tc_fd'
                  AND column_name = 'hex_code')) THEN
 
             # 1. tb_book_type에 hex_code 컬럼 추가
-            alter table web_app_test2.tb_book_type add hex_code varchar(15) not null after tag_english_name;
+            alter table plz_tc_fd.tb_book_type add hex_code varchar(15) not null after tag_english_name;
 
             # 2. hex_code에 관한 데이터 추가
-            update web_app_test2.tb_book_type
+            update plz_tc_fd.tb_book_type
             set hex_code = '#FF0000'
             where tag_english_name = 'SCRIPT';
 
-            update web_app_test2.tb_book_type
+            update plz_tc_fd.tb_book_type
             set hex_code = '#0500FF'
             where tag_english_name = 'BOOK_SUMMARY';
 
-            update web_app_test2.tb_book_type
+            update plz_tc_fd.tb_book_type
             set hex_code = '#FFF500'
             where tag_english_name = 'BOOK_PDF';
 
-            update web_app_test2.tb_book_type
+            update plz_tc_fd.tb_book_type
             set hex_code = '#04CF00'
             where tag_english_name = 'STUDY_SUMMARY';
 
-            update web_app_test2.tb_book_type
+            update plz_tc_fd.tb_book_type
             set hex_code = '#7CA800'
             where tag_english_name = 'LECTURE_SUMMARY';
 
-            update web_app_test2.tb_book_type
+            update plz_tc_fd.tb_book_type
             set hex_code = '#CF0095'
             where tag_english_name = 'NOVEL';
     END IF;

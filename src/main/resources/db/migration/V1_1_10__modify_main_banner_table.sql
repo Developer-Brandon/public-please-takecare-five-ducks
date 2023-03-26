@@ -8,9 +8,9 @@ BEGIN
     IF NOT EXISTS((SELECT *
                    FROM INFORMATION_SCHEMA.COLUMNS
                    WHERE table_name = 'tb_main_banner_img'
-                     AND table_schema = 'web_app_test2'
+                     AND table_schema = 'plz_tc_fd'
                      AND column_name = 'use_yn')) THEN
-        alter table web_app_test2.tb_main_banner_img add use_yn enum('y','n') not null default 'y' comment '사용여부' after file_name;
+        alter table plz_tc_fd.tb_main_banner_img add use_yn enum('y','n') not null default 'y' comment '사용여부' after file_name;
     END IF;
 
 END $$

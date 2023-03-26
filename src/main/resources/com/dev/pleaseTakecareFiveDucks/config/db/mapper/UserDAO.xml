@@ -11,7 +11,7 @@
         ]]>
         select user_type_no as userTypeNo
         , type as userType
-        from web_app_test2.tb_user_type
+        from plz_tc_fd.tb_user_type
         where use_yn = 'y'
         and type != 'SUPER_ADMIN'
     </select>
