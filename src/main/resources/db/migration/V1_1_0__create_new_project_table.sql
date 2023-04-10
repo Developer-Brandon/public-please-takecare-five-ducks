@@ -1,7 +1,4 @@
-# 1. plz_tc_fd 스키마 생성
-create schema if not exists plz_tc_fd;
-
-#2. 테이블 생성
+#1. 테이블 생성
 create table if not exists plz_tc_fd.tb_book(
     r_book_no int unsigned not null auto_increment comment '책 번호' primary key,
     m_n_no int unsigned not null comment '제작 국가 번호',

@@ -4,40 +4,37 @@
 
 ### anime 관련 설정들 ####
 # tb_anime 테이블 수정
-DELIMITER $$
+delimiter $$
 
-DROP PROCEDURE IF EXISTS modify_table $$
-CREATE PROCEDURE modify_table()
-BEGIN
+drop procedure if exists modify_table $$
+create procedure modify_table()
+begin
+    if not exists((select *
+                   from information_schema.columns
+                   where table_name = 'tb_anime'
+                     and table_schema = 'plz_tc_fd'
+                     and column_name = 'anime_broadcast_cnt')) then
+        alter table plz_tc_fd.tb_anime modify title text not null comment '제목';
+        alter table plz_tc_fd.tb_anime modify author varchar(30) not null default 'noname' comment '작가이름';
+        alter table plz_tc_fd.tb_anime drop column page_per_anime_cnt;
+        alter table plz_tc_fd.tb_anime add link text not null comment '링크' after author;
+        alter table plz_tc_fd.tb_anime add finalized_yn enum('y','n') not null comment '완결여부' after link;
+        alter table plz_tc_fd.tb_anime add anime_broadcast_cnt int unsigned comment '방영회수' after finalized_yn;
+end if;
+end $$
+call modify_table() $$
 
-    IF NOT EXISTS((SELECT *
-                   FROM INFORMATION_SCHEMA.COLUMNS
-                   WHERE table_name = 'tb_anime'
-                     AND table_schema = 'plz_tc_fd'
-                     AND column_name = 'anime_broadcast_cnt')) THEN
-alter table plz_tc_fd.tb_anime modify title text not null comment '제목';
-alter table plz_tc_fd.tb_anime modify author varchar(30) not null default 'noname' comment '작가이름';
-alter table plz_tc_fd.tb_anime drop column page_per_anime_cnt;
-alter table plz_tc_fd.tb_anime add link text not null comment '링크' after author;
-alter table plz_tc_fd.tb_anime add finalized_yn enum('y','n') not null comment '완결여부' after link;
-alter table plz_tc_fd.tb_anime add anime_broadcast_cnt int unsigned comment '방영회수' after finalized_yn;
-END IF;
-
-END $$
-
-CALL modify_table() $$
-
-DELIMITER ;
+delimiter ;
 
 # tb_anime_thumbnail_img 테이블 추가
 create table if not exists plz_tc_fd.tb_anime_thumbnail_img(
-                                                                   anime_img_no int unsigned not null auto_increment comment '프로필 이미지 번호' primary key,
-                                                                   r_anime_no int unsigned not null comment '애니 번호',
-                                                                   file_path varchar(50) not null comment '파일 경로',
+    anime_img_no int unsigned not null auto_increment comment '프로필 이미지 번호' primary key,
+    r_anime_no int unsigned not null comment '애니 번호',
+    file_path varchar(50) not null comment '파일 경로',
     file_name varchar(50) not null comment '파일 명',
     reg_dt datetime not null default current_timestamp comment '등록일자',
     mod_dt datetime not null default current_timestamp comment '수정일자'
-    ) engine=innodb default charset=utf8mb4 comment '유저 프로필(썸네일) 이미지';
+) engine=innodb default charset=utf8mb4 comment '유저 프로필(썸네일) 이미지';
 
 # tb_anime_thumbnail_img 외래키 설정
 alter table plz_tc_fd.tb_anime_thumbnail_img add foreign key(r_anime_no)
@@ -45,11 +42,11 @@ alter table plz_tc_fd.tb_anime_thumbnail_img add foreign key(r_anime_no)
 
 # tb_anime_view 테이블 추가
 create table if not exists plz_tc_fd.tb_anime_view(
-                                                          view_no int unsigned not null auto_increment comment '조회수 번호' primary key,
-                                                          user_no int unsigned not null comment '유저 번호',
-                                                          r_anime_no int unsigned not null comment '애니 번호',
-                                                          reg_dt datetime not null default current_timestamp comment '등록일자'
-                                                      ) engine=innodb default charset=utf8mb4 comment '유저 프로필(썸네일) 이미지';
+    view_no int unsigned not null auto_increment comment '조회수 번호' primary key,
+    user_no int unsigned not null comment '유저 번호',
+    r_anime_no int unsigned not null comment '애니 번호',
+    reg_dt datetime not null default current_timestamp comment '등록일자'
+) engine=innodb default charset=utf8mb4 comment '유저 프로필(썸네일) 이미지';
 
 # tb_anime_view 외래키 설정
 alter table plz_tc_fd.tb_anime_view add foreign key(user_no)
@@ -60,11 +57,11 @@ alter table plz_tc_fd.tb_anime_view add foreign key(r_anime_no)
 
 # tb_anime_searching_keyword 테이블 추가
 create table if not exists plz_tc_fd.tb_anime_searching_keyword(
-                                                                       anime_keyword_no int unsigned not null auto_increment comment '애니 키워드 번호' primary key,
-                                                                       user_no int unsigned not null comment '유저 번호',
-                                                                       keyword varchar(40) not null comment '키워드',
+    anime_keyword_no int unsigned not null auto_increment comment '애니 키워드 번호' primary key,
+    user_no int unsigned not null comment '유저 번호',
+    keyword varchar(40) not null comment '키워드',
     reg_dt datetime not null default current_timestamp comment '등록일자'
-    ) engine=innodb default charset=utf8mb4 comment '유저 프로필(썸네일) 이미지';
+) engine=innodb default charset=utf8mb4 comment '유저 프로필(썸네일) 이미지';
 
 # tb_anime_searching_keyword 외래키 설정
 alter table plz_tc_fd.tb_anime_searching_keyword add foreign key(user_no)
@@ -73,12 +70,12 @@ alter table plz_tc_fd.tb_anime_searching_keyword add foreign key(user_no)
 ### book 관련 설정들 ####
 # tb_book_type 테이블 추가
 create table if not exists plz_tc_fd.tb_book_type(
-                                                         r_book_type_no int unsigned not null auto_increment comment '책의 종류 번호' primary key,
-                                                         tag_korean_name varchar(30) not null comment '책의종류(한글)',
+    r_book_type_no int unsigned not null auto_increment comment '책의 종류 번호' primary key,
+    tag_korean_name varchar(30) not null comment '책의종류(한글)',
     tag_english_name varchar(30) not null comment '책의종류(영어)',
     reg_dt datetime not null default current_timestamp comment '등록일자',
     mod_dt datetime not null default current_timestamp comment '수정일자'
-    ) engine=innodb default charset=utf8mb4 comment '책의 종류';
+) engine=innodb default charset=utf8mb4 comment '책의 종류';
 
 # tb_book 테이블 수정
 alter table plz_tc_fd.tb_book modify title text not null comment '제목';
@@ -89,13 +86,13 @@ alter table plz_tc_fd.tb_book add mod_dt datetime not null default current_times
 
 # tb_book_thumbnail_img 테이블 추가
 create table if not exists plz_tc_fd.tb_book_thumbnail_img(
-                                                                  book_img_no int unsigned not null auto_increment comment '책 이미지 번호' primary key,
-                                                                  r_book_no int unsigned not null comment '책 번호',
-                                                                  file_path varchar(50) not null comment '파일 경로',
+    book_img_no int unsigned not null auto_increment comment '책 이미지 번호' primary key,
+    r_book_no int unsigned not null comment '책 번호',
+    file_path varchar(50) not null comment '파일 경로',
     file_name varchar(50) not null comment '파일 명',
     reg_dt datetime not null default current_timestamp comment '등록일자',
     mod_dt datetime not null default current_timestamp comment '수정일자'
-    ) engine=innodb default charset=utf8mb4 comment '책 썸네일 이미지';
+) engine=innodb default charset=utf8mb4 comment '책 썸네일 이미지';
 
 # tb_book_thumbnail_img 외래키 설정
 alter table plz_tc_fd.tb_book_thumbnail_img add foreign key(r_book_no)
@@ -103,11 +100,11 @@ alter table plz_tc_fd.tb_book_thumbnail_img add foreign key(r_book_no)
 
 # tb_book_view 테이블 추가
 create table if not exists plz_tc_fd.tb_book_view(
-                                                         view_no int unsigned not null auto_increment comment '조회수 번호' primary key,
-                                                         user_no int unsigned not null comment '유저 번호',
-                                                         r_book_no int unsigned not null comment '책 번호',
-                                                         reg_dt datetime not null default current_timestamp comment '등록일자'
-                                                     ) engine=innodb default charset=utf8mb4 comment '책 조회수';
+    view_no int unsigned not null auto_increment comment '조회수 번호' primary key,
+    user_no int unsigned not null comment '유저 번호',
+    r_book_no int unsigned not null comment '책 번호',
+    reg_dt datetime not null default current_timestamp comment '등록일자'
+) engine=innodb default charset=utf8mb4 comment '책 조회수';
 
 # tb_book_view 외래키 설정
 alter table plz_tc_fd.tb_book_view add foreign key(user_no)
@@ -118,11 +115,11 @@ alter table plz_tc_fd.tb_book_view add foreign key(r_book_no)
 
 # tb_book_searching_keyword 테이블 추가
 create table if not exists plz_tc_fd.tb_book_searching_keyword(
-                                                                      book_keyword_no int unsigned not null auto_increment comment '책 키워드 번호' primary key,
-                                                                      user_no int unsigned not null comment '유저 번호',
-                                                                      keyword varchar(40) not null comment '키워드',
+    book_keyword_no int unsigned not null auto_increment comment '책 키워드 번호' primary key,
+    user_no int unsigned not null comment '유저 번호',
+    keyword varchar(40) not null comment '키워드',
     reg_dt datetime not null default current_timestamp comment '등록일자'
-    ) engine=innodb default charset=utf8mb4 comment '책 검색 키워드';
+) engine=innodb default charset=utf8mb4 comment '책 검색 키워드';
 
 # tb_book_searching_keyword 외래키 설정
 alter table plz_tc_fd.tb_book_searching_keyword add foreign key(user_no)
@@ -130,38 +127,35 @@ alter table plz_tc_fd.tb_book_searching_keyword add foreign key(user_no)
 
 ### comic book 관련 설정들 ####
 # tb_comic_book 테이블 수정
-DELIMITER $$
+delimiter $$
 
-DROP PROCEDURE IF EXISTS modify_table $$
-CREATE PROCEDURE modify_table()
-BEGIN
+drop procedure if exists modify_table $$
+create procedure modify_table()
+begin
+    if not exists((select *
+                   from information_schema.columns
+                   where table_name = 'tb_comic_book'
+                     and table_schema = 'plz_tc_fd'
+                     and column_name = 'serial_state')) then
+        alter table plz_tc_fd.tb_comic_book modify author varchar(30) not null default 'noname' comment '작가이름';
+        alter table plz_tc_fd.tb_comic_book add link text not null comment '링크' after author;
+        alter table plz_tc_fd.tb_comic_book add serial_state enum('finished','being','vacation') not null default 'finished' comment '연재상태' after link;
+        alter table plz_tc_fd.tb_comic_book add mod_dt datetime not null default current_timestamp comment '수정일자' after reg_dt;
+end if;
+end $$
+call modify_table() $$
 
-    IF NOT EXISTS((SELECT *
-                   FROM INFORMATION_SCHEMA.COLUMNS
-                   WHERE table_name = 'tb_comic_book'
-                     AND table_schema = 'plz_tc_fd'
-                     AND column_name = 'serial_state')) THEN
-alter table plz_tc_fd.tb_comic_book modify author varchar(30) not null default 'noname' comment '작가이름';
-alter table plz_tc_fd.tb_comic_book add link text not null comment '링크' after author;
-alter table plz_tc_fd.tb_comic_book add serial_state enum('finished','being','vacation') not null default 'finished' comment '연재상태' after link;
-alter table plz_tc_fd.tb_comic_book add mod_dt datetime not null default current_timestamp comment '수정일자' after reg_dt;
-END IF;
-
-END $$
-
-CALL modify_table() $$
-
-DELIMITER ;
+delimiter ;
 
 # tb_comic_book_thumbnail_img 테이블 추가
 create table if not exists plz_tc_fd.tb_comic_book_thumbnail_img(
-                                                                        book_img_no int unsigned not null auto_increment comment '책 이미지 번호' primary key,
-                                                                        r_book_no int unsigned not null comment '책 번호',
-                                                                        file_path varchar(50) not null comment '파일 경로',
+    book_img_no int unsigned not null auto_increment comment '책 이미지 번호' primary key,
+    r_book_no int unsigned not null comment '책 번호',
+    file_path varchar(50) not null comment '파일 경로',
     file_name varchar(50) not null comment '파일 명',
     reg_dt datetime not null default current_timestamp comment '등록일자',
     mod_dt datetime not null default current_timestamp comment '수정일자'
-    ) engine=innodb default charset=utf8mb4 comment '만화책 썸네일 이미지';
+) engine=innodb default charset=utf8mb4 comment '만화책 썸네일 이미지';
 
 # tb_comic_book_thumbnail_img 외래키 설정
 alter table plz_tc_fd.tb_comic_book_thumbnail_img add foreign key(r_book_no)
@@ -169,11 +163,11 @@ alter table plz_tc_fd.tb_comic_book_thumbnail_img add foreign key(r_book_no)
 
 # tb_comic_book_view 테이블 추가
 create table if not exists plz_tc_fd.tb_comic_book_view(
-                                                               view_no int unsigned not null auto_increment comment '조회수 번호' primary key,
-                                                               user_no int unsigned not null comment '유저 번호',
-                                                               r_book_no int unsigned not null comment '책 번호',
-                                                               reg_dt datetime not null default current_timestamp comment '등록일자'
-                                                           ) engine=innodb default charset=utf8mb4 comment '만화책 조회수';
+    view_no int unsigned not null auto_increment comment '조회수 번호' primary key,
+    user_no int unsigned not null comment '유저 번호',
+    r_book_no int unsigned not null comment '책 번호',
+    reg_dt datetime not null default current_timestamp comment '등록일자'
+) engine=innodb default charset=utf8mb4 comment '만화책 조회수';
 
 # tb_comic_book_view 외래키 설정
 alter table plz_tc_fd.tb_comic_book_view add foreign key(user_no)
@@ -184,11 +178,11 @@ alter table plz_tc_fd.tb_comic_book_view add foreign key(r_book_no)
 
 # tb_comic_book_searching_keyword 테이블 추가
 create table if not exists plz_tc_fd.tb_comic_book_searching_keyword(
-                                                                            comic_book_keyword_no int unsigned not null auto_increment comment '만화책 키워드 번호' primary key,
-                                                                            user_no int unsigned not null comment '유저 번호',
-                                                                            keyword varchar(40) not null comment '키워드',
+    comic_book_keyword_no int unsigned not null auto_increment comment '만화책 키워드 번호' primary key,
+    user_no int unsigned not null comment '유저 번호',
+    keyword varchar(40) not null comment '키워드',
     reg_dt datetime not null default current_timestamp comment '등록일자'
-    ) engine=innodb default charset=utf8mb4 comment '책 검색 키워드';
+) engine=innodb default charset=utf8mb4 comment '책 검색 키워드';
 
 # tb_comic_book_searching_keyword 외래키 설정
 alter table plz_tc_fd.tb_comic_book_searching_keyword add foreign key(user_no)
@@ -196,39 +190,36 @@ alter table plz_tc_fd.tb_comic_book_searching_keyword add foreign key(user_no)
 
 ### drama 관련 설정들 ####
 ### tb_drama 관련 설정들(수정사항) ####
-DELIMITER $$
+delimiter $$
 
-DROP PROCEDURE IF EXISTS modify_table $$
-CREATE PROCEDURE modify_table()
-BEGIN
-
-    IF NOT EXISTS((SELECT *
-                   FROM INFORMATION_SCHEMA.COLUMNS
-                   WHERE table_name = 'tb_drama'
-                     AND table_schema = 'plz_tc_fd'
-                     AND column_name = 'broadcast_state')) THEN
+drop procedure if exists modify_table $$
+create procedure modify_table()
+begin
+    if not exists((select *
+                   from information_schema.columns
+                   where table_name = 'tb_drama'
+                     and table_schema = 'plz_tc_fd'
+                     and column_name = 'broadcast_state')) then
 alter table plz_tc_fd.tb_drama modify title text not null comment '제목';
 alter table plz_tc_fd.tb_drama modify author varchar(30) not null comment '작가이름';
 alter table plz_tc_fd.tb_drama add link text not null comment '링크' after author;
 alter table plz_tc_fd.tb_drama add broadcast_state enum('end','yet','early_end') not null default 'end' comment '방영상태';
 alter table plz_tc_fd.tb_drama add mod_dt datetime not null default current_timestamp comment '수정일자' after reg_dt;
-END IF;
+end if;
+end $$
+call modify_table() $$
 
-END $$
-
-CALL modify_table() $$
-
-DELIMITER ;
+delimiter ;
 
 # tb_drama_book_thumbnail_img 테이블 추가
 create table if not exists plz_tc_fd.tb_drama_book_thumbnail_img(
-                                                                        drama_img_no int unsigned not null auto_increment comment '드라마 이미지 번호' primary key,
-                                                                        r_drama_no int unsigned not null comment '드라마 번호',
-                                                                        file_path varchar(50) not null comment '파일 경로',
+    drama_img_no int unsigned not null auto_increment comment '드라마 이미지 번호' primary key,
+    r_drama_no int unsigned not null comment '드라마 번호',
+    file_path varchar(50) not null comment '파일 경로',
     file_name varchar(50) not null comment '파일 명',
     reg_dt datetime not null default current_timestamp comment '등록일자',
     mod_dt datetime not null default current_timestamp comment '수정일자'
-    ) engine=innodb default charset=utf8mb4 comment '만화책 썸네일 이미지';
+) engine=innodb default charset=utf8mb4 comment '만화책 썸네일 이미지';
 
 # tb_drama_book_thumbnail_img 외래키 설정
 alter table plz_tc_fd.tb_drama_book_thumbnail_img add foreign key(r_drama_no)
@@ -236,11 +227,11 @@ alter table plz_tc_fd.tb_drama_book_thumbnail_img add foreign key(r_drama_no)
 
 # tb_comic_book_view 테이블 추가
 create table if not exists plz_tc_fd.tb_drama_view(
-                                                          view_no int unsigned not null auto_increment comment '조회수 번호' primary key,
-                                                          user_no int unsigned not null comment '유저 번호',
-                                                          r_drama_no int unsigned not null comment '드라마 번호',
-                                                          reg_dt datetime not null default current_timestamp comment '등록일자'
-                                                      ) engine=innodb default charset=utf8mb4 comment '만화책 조회수';
+    view_no int unsigned not null auto_increment comment '조회수 번호' primary key,
+    user_no int unsigned not null comment '유저 번호',
+    r_drama_no int unsigned not null comment '드라마 번호',
+    reg_dt datetime not null default current_timestamp comment '등록일자'
+) engine=innodb default charset=utf8mb4 comment '만화책 조회수';
 
 # tb_comic_book_view 외래키 설정
 alter table plz_tc_fd.tb_drama_view add foreign key(user_no)
@@ -251,11 +242,11 @@ alter table plz_tc_fd.tb_drama_view add foreign key(r_drama_no)
 
 # tb_drama_searching_keyword 테이블 추가
 create table if not exists plz_tc_fd.tb_drama_searching_keyword(
-                                                                       drama_keyword_no int unsigned not null auto_increment comment '드라마 키워드 번호' primary key,
-                                                                       user_no int unsigned not null comment '유저 번호',
-                                                                       keyword varchar(40) not null comment '키워드',
+    drama_keyword_no int unsigned not null auto_increment comment '드라마 키워드 번호' primary key,
+    user_no int unsigned not null comment '유저 번호',
+    keyword varchar(40) not null comment '키워드',
     reg_dt datetime not null default current_timestamp comment '등록일자'
-    ) engine=innodb default charset=utf8mb4 comment '책 검색 키워드';
+) engine=innodb default charset=utf8mb4 comment '책 검색 키워드';
 
 # tb_drama_searching_keyword 외래키 설정
 alter table plz_tc_fd.tb_drama_searching_keyword add foreign key(user_no)
@@ -263,38 +254,35 @@ alter table plz_tc_fd.tb_drama_searching_keyword add foreign key(user_no)
 
 ### movie 관련 설정들 ####
 ### tb_movie 관련 설정들(수정사항) ####
-DELIMITER $$
+delimiter $$
 
-DROP PROCEDURE IF EXISTS modify_table $$
-CREATE PROCEDURE modify_table()
-BEGIN
-
-    IF NOT EXISTS((SELECT *
-                   FROM INFORMATION_SCHEMA.COLUMNS
-                   WHERE table_name = 'tb_movie'
-                     AND table_schema = 'plz_tc_fd'
-                     AND column_name = 'total_number_of_episode')) THEN
+drop procedure if exists modify_table $$
+create procedure modify_table()
+begin
+    if not exists((select *
+                   from information_schema.columns
+                   where table_name = 'tb_movie'
+                     and table_schema = 'plz_tc_fd'
+                     and column_name = 'total_number_of_episode')) then
 alter table plz_tc_fd.tb_movie modify title text not null comment '제목';
 alter table plz_tc_fd.tb_movie modify director varchar(30) not null default 'noname' comment '감독이름';
 alter table plz_tc_fd.tb_movie add link text not null comment '링크' after director;
 alter table plz_tc_fd.tb_movie add total_number_of_episode tinyint(3) not null comment '총회차' after link;
-END IF;
+end if;
+end $$
+call modify_table() $$
 
-END $$
-
-CALL modify_table() $$
-
-DELIMITER ;
+delimiter ;
 
 # tb_movie_thumbnail_img 테이블 추가
 create table if not exists plz_tc_fd.tb_movie_thumbnail_img(
-                                                                   movie_img_no int unsigned not null auto_increment comment '영화 이미지 번호' primary key,
-                                                                   r_movie_no int unsigned not null comment '영화 번호',
-                                                                   file_path varchar(50) not null comment '파일 경로',
+    movie_img_no int unsigned not null auto_increment comment '영화 이미지 번호' primary key,
+    r_movie_no int unsigned not null comment '영화 번호',
+    file_path varchar(50) not null comment '파일 경로',
     file_name varchar(50) not null comment '파일 명',
     reg_dt datetime not null default current_timestamp comment '등록일자',
     mod_dt datetime not null default current_timestamp comment '수정일자'
-    ) engine=innodb default charset=utf8mb4 comment '영화 썸네일 이미지';
+) engine=innodb default charset=utf8mb4 comment '영화 썸네일 이미지';
 
 # tb_movie_thumbnail_img 외래키 설정
 alter table plz_tc_fd.tb_movie_thumbnail_img add foreign key(r_movie_no)
@@ -302,11 +290,11 @@ alter table plz_tc_fd.tb_movie_thumbnail_img add foreign key(r_movie_no)
 
 # tb_movie_view 테이블 추가
 create table if not exists plz_tc_fd.tb_movie_view(
-                                                          view_no int unsigned not null auto_increment comment '조회수 번호' primary key,
-                                                          user_no int unsigned not null comment '유저 번호',
-                                                          r_movie_no int unsigned not null comment '영화 번호',
-                                                          reg_dt datetime not null default current_timestamp comment '등록일자'
-                                                      ) engine=innodb default charset=utf8mb4 comment '만화책 조회수';
+    view_no int unsigned not null auto_increment comment '조회수 번호' primary key,
+    user_no int unsigned not null comment '유저 번호',
+    r_movie_no int unsigned not null comment '영화 번호',
+    reg_dt datetime not null default current_timestamp comment '등록일자'
+) engine=innodb default charset=utf8mb4 comment '만화책 조회수';
 
 # tb_movie_view 외래키 설정
 alter table plz_tc_fd.tb_movie_view add foreign key(user_no)
@@ -317,11 +305,11 @@ alter table plz_tc_fd.tb_movie_view add foreign key(r_movie_no)
 
 # tb_movie_searching_keyword 테이블 추가
 create table if not exists plz_tc_fd.tb_movie_searching_keyword(
-                                                                       movie_keyword_no int unsigned not null auto_increment comment '영화 키워드 번호' primary key,
-                                                                       user_no int unsigned not null comment '유저 번호',
-                                                                       keyword varchar(40) not null comment '키워드',
+    movie_keyword_no int unsigned not null auto_increment comment '영화 키워드 번호' primary key,
+    user_no int unsigned not null comment '유저 번호',
+    keyword varchar(40) not null comment '키워드',
     reg_dt datetime not null default current_timestamp comment '등록일자'
-    ) engine=innodb default charset=utf8mb4 comment '영화 검색 키워드';
+) engine=innodb default charset=utf8mb4 comment '영화 검색 키워드';
 
 # tb_movie_searching_keyword 외래키 설정
 alter table plz_tc_fd.tb_movie_searching_keyword add foreign key(user_no)
@@ -329,13 +317,13 @@ alter table plz_tc_fd.tb_movie_searching_keyword add foreign key(user_no)
 
 # 2. tb_user에 딸린 각종 테이블 추가
 create table if not exists plz_tc_fd.tb_user_profile_img(
-                                                                profile_img_no int unsigned not null auto_increment comment '프로필 이미지 번호' primary key,
-                                                                user_no int unsigned not null comment '유저 번호',
-                                                                file_path varchar(50) not null comment '파일 경로',
+    profile_img_no int unsigned not null auto_increment comment '프로필 이미지 번호' primary key,
+    user_no int unsigned not null comment '유저 번호',
+    file_path varchar(50) not null comment '파일 경로',
     file_name varchar(50) not null comment '파일 명',
     reg_dt datetime not null default current_timestamp comment '등록일자',
     mod_dt datetime not null default current_timestamp comment '수정일자'
-    ) engine=innodb default charset=utf8mb4 comment '유저 프로필(썸네일) 이미지';
+) engine=innodb default charset=utf8mb4 comment '유저 프로필(썸네일) 이미지';
 
 alter table plz_tc_fd.tb_user_profile_img add foreign key(user_no)
     references plz_tc_fd.tb_user (user_no) on delete cascade;

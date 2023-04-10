@@ -4,7 +4,6 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS validate_data $$
 CREATE PROCEDURE validate_data()
 BEGIN
-
     IF NOT EXISTS((SELECT *
                    FROM plz_tc_fd.tb_user_type
                    WHERE type = 'GUEST')) THEN
@@ -13,9 +12,7 @@ BEGIN
         values('GUEST')
              ,('ADMIN')
              ,('SUPER_ADMIN');
-
     END IF;
-
 END $$
 
 CALL validate_data() $$
