@@ -1,34 +1,34 @@
 # user_type 삽입
-DELIMITER $$
+delimiter $$
 
-DROP PROCEDURE IF EXISTS validate_data $$
-CREATE PROCEDURE validate_data()
-BEGIN
-    IF NOT EXISTS((SELECT *
-                   FROM plz_tc_fd.tb_user_type
-                   WHERE type = 'GUEST')) THEN
+drop procedure if exists validate_data $$
+create procedure validate_data()
+begin
+    if not exists((select *
+                   from plz_tc_fd.tb_user_type
+                   where type = 'GUEST')) then
 
         insert plz_tc_fd.tb_user_type(type)
         values('GUEST')
              ,('ADMIN')
              ,('SUPER_ADMIN');
-    END IF;
-END $$
+    end if;
+end $$
 
-CALL validate_data() $$
+call validate_data() $$
 
-DELIMITER ;
+delimiter ;
 
 # book_type 삽입
-DELIMITER $$
+delimiter $$
 
-DROP PROCEDURE IF EXISTS validate_data $$
-CREATE PROCEDURE validate_data()
-BEGIN
+drop procedure if exists validate_data $$
+create procedure validate_data()
 
-    IF NOT EXISTS((SELECT *
-                   FROM plz_tc_fd.tb_book_type
-                   WHERE tag_korean_name = '스크립트')) THEN
+begin
+    if not exists((select *
+                   from plz_tc_fd.tb_book_type
+                   where tag_korean_name = '스크립트')) then
 
         insert plz_tc_fd.tb_book_type(tag_korean_name, tag_english_name)
         values('스크립트', 'SCRIPT')
@@ -37,11 +37,9 @@ BEGIN
              ,('공부요약본', 'STUDY_SUMMARY')
              ,('강의요약본', 'LECTURE_SUMMARY')
              ,('소설', 'NOVEL');
+    end if;
+end $$
 
-    END IF;
+call validate_data() $$
 
-END $$
-
-CALL validate_data() $$
-
-DELIMITER ;
+delimiter ;

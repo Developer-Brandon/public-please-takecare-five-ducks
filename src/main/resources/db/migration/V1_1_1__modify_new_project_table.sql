@@ -22,6 +22,7 @@ begin
         alter table plz_tc_fd.tb_anime add anime_broadcast_cnt int unsigned comment '방영회수' after finalized_yn;
 end if;
 end $$
+
 call modify_table() $$
 
 delimiter ;
@@ -143,6 +144,7 @@ begin
         alter table plz_tc_fd.tb_comic_book add mod_dt datetime not null default current_timestamp comment '수정일자' after reg_dt;
 end if;
 end $$
+
 call modify_table() $$
 
 delimiter ;
@@ -207,6 +209,7 @@ alter table plz_tc_fd.tb_drama add broadcast_state enum('end','yet','early_end')
 alter table plz_tc_fd.tb_drama add mod_dt datetime not null default current_timestamp comment '수정일자' after reg_dt;
 end if;
 end $$
+
 call modify_table() $$
 
 delimiter ;
@@ -270,6 +273,7 @@ alter table plz_tc_fd.tb_movie add link text not null comment '링크' after dir
 alter table plz_tc_fd.tb_movie add total_number_of_episode tinyint(3) not null comment '총회차' after link;
 end if;
 end $$
+
 call modify_table() $$
 
 delimiter ;
