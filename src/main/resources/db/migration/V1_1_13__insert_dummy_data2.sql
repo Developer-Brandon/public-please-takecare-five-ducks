@@ -1,12 +1,12 @@
-DELIMITER $$
+delimiter $$
 
-DROP PROCEDURE IF EXISTS validate_data $$
-CREATE PROCEDURE validate_data()
-BEGIN
+drop procedure if exists validate_data $$
+create procedure validate_data()
 
-    IF NOT EXISTS((SELECT *
-                   FROM plz_tc_fd.tb_comic_book
-                   WHERE r_book_no = 100)) THEN
+begin
+    if not exists((select *
+                   from plz_tc_fd.tb_comic_book
+                   where r_book_no = 100)) then
 
         # 만화책 가짜 데이터 삽입
 
@@ -30,10 +30,9 @@ BEGIN
         values(100, 100, '원피')
              ,(101, 100, '헌터')
              ,(102, 100, '원');
-    END IF;
+    end if;
+end $$
 
-END $$
+call validate_data() $$
 
-CALL validate_data() $$
-
-DELIMITER ;
+delimiter ;

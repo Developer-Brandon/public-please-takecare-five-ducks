@@ -1,26 +1,25 @@
 # 1. tb_contents_made_nature table의 컬럼 몇개를 수정합니다.
-DELIMITER $$
+delimiter $$
 
-DROP PROCEDURE IF EXISTS modify_table $$
-CREATE PROCEDURE modify_table()
-BEGIN
+drop procedure if exists modify_table $$
+create procedure modify_table()
 
-    IF NOT EXISTS((SELECT *
-                   FROM INFORMATION_SCHEMA.COLUMNS
-                   WHERE table_name = 'tb_contents_made_nature'
-                     AND table_schema = 'plz_tc_fd'
-                     AND column_name = 'public_code_number')) THEN
+begin
+    if not exists((select *
+                   from information_schema.columns
+                   where table_name = 'tb_contents_made_nature'
+                     and table_schema = 'plz_tc_fd'
+                     and column_name = 'public_code_number')) then
         alter table plz_tc_fd.tb_contents_made_nature add public_code_number int unsigned not null comment '실제 국가 코드 숫자' after m_n_no;
         alter table plz_tc_fd.tb_contents_made_nature add public_code_alphabet int unsigned not null comment '실제 국가 코드 영문(2자리)' after public_code_number;
         alter table plz_tc_fd.tb_contents_made_nature modify english_name varchar(30) not null comment '제작 국가 이름 영문';
         alter table plz_tc_fd.tb_contents_made_nature modify korean_name varchar(30) not null comment '제작 국가 이름 국문';
-    END IF;
+    end if;
+end $$
 
-END $$
+call modify_table() $$
 
-CALL modify_table() $$
-
-DELIMITER ;
+delimiter ;
 
 # 2. tb_main_banner_img 테이블을 추가합니다.
 create table if not exists plz_tc_fd.tb_main_banner_img(

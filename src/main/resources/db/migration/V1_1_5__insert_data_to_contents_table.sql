@@ -5,6 +5,7 @@ delimiter $$
 
 drop procedure if exists validate_data $$
 create procedure validate_data()
+
 begin
 
     if not exists((select *

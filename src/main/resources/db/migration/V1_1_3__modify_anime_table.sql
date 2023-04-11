@@ -3,6 +3,7 @@ delimiter $$
 
 drop procedure if exists modify_table $$
 create procedure modify_table()
+
 begin
 
     if not exists((select *

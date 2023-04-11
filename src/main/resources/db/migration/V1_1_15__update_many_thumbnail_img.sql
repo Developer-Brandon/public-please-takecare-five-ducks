@@ -1,14 +1,14 @@
-DELIMITER $$
+delimiter $$
 
-DROP PROCEDURE IF EXISTS update_table $$
-CREATE PROCEDURE update_table()
-BEGIN
+drop procedure if exists update_table $$
+create procedure update_table()
 
-    IF EXISTS((SELECT *
-               FROM INFORMATION_SCHEMA.COLUMNS
-               WHERE table_name = 'tb_book_thumbnail_img'
-                 AND table_schema = 'plz_tc_fd'
-                 AND column_name = 'file_path')) THEN
+begin
+    if exists((select *
+               from information_schema.columns
+               where table_name = 'tb_book_thumbnail_img'
+                 and table_schema = 'plz_tc_fd'
+                 and column_name = 'file_path')) then
         # 1. tb_book_thumbnail_img
         alter table plz_tc_fd.tb_book_thumbnail_img drop column file_path;
         alter table plz_tc_fd.tb_book_thumbnail_img drop column file_name;
@@ -28,10 +28,9 @@ BEGIN
         alter table plz_tc_fd.tb_movie_thumbnail_img drop column file_path;
         alter table plz_tc_fd.tb_movie_thumbnail_img drop column file_name;
         alter table plz_tc_fd.tb_movie_thumbnail_img add web_thumbnail_url text not null comment '웹 썸네일 주소' after r_movie_no;
+    end if;
+end $$
 
-    END IF;
-END $$
+call update_table() $$
 
-CALL update_table() $$
-
-DELIMITER ;
+delimiter ;

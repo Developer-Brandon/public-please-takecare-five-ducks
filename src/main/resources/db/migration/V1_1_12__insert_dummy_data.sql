@@ -1,12 +1,12 @@
-DELIMITER $$
+delimiter $$
 
-DROP PROCEDURE IF EXISTS validate_data $$
-CREATE PROCEDURE validate_data()
-BEGIN
+drop procedure if exists validate_data $$
+create procedure validate_data()
 
-    IF NOT EXISTS((SELECT *
-                   FROM plz_tc_fd.tb_user
-                   WHERE user_no = 100)) THEN
+begin
+    if not exists((select *
+                   from plz_tc_fd.tb_user
+                   where user_no = 100)) then
         # tb_anime
         insert into plz_tc_fd.tb_user(user_no, user_type_no, email, password, user_name)
             value(100, 3, 'brandon5959somi@gmail.com', 'test123', '이도겸');
@@ -112,10 +112,9 @@ BEGIN
         values(100, 100, '가위')
              ,(101, 100, '손')
              ,(102, 100, '8');
-    END IF;
+    end if;
+end $$
 
-END $$
+call validate_data() $$
 
-CALL validate_data() $$
-
-DELIMITER ;
+delimiter ;

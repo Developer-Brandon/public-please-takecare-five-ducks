@@ -3,6 +3,7 @@ delimiter $$
 
 drop procedure if exists modify_table $$
 create procedure modify_table()
+
 begin
     if exists((select *
                    from information_schema.columns
@@ -25,6 +26,7 @@ delimiter $$
 
 drop procedure if exists modify_table $$
 create procedure modify_table()
+
 begin
     if exists((select *
                    from information_schema.columns

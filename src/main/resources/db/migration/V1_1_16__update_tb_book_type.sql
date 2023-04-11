@@ -1,14 +1,14 @@
-DELIMITER $$
+delimiter $$
 
-DROP PROCEDURE IF EXISTS update_table $$
-CREATE PROCEDURE update_table()
-BEGIN
+drop procedure if exists update_table $$
+create procedure update_table()
+begin
 
-    IF NOT EXISTS((SELECT *
-               FROM INFORMATION_SCHEMA.COLUMNS
-               WHERE table_name = 'tb_book_type'
-                 AND table_schema = 'plz_tc_fd'
-                 AND column_name = 'hex_code')) THEN
+    if not exists((select *
+               from information_schema.columns
+               where table_name = 'tb_book_type'
+                 and table_schema = 'plz_tc_fd'
+                 and column_name = 'hex_code')) then
 
             # 1. tb_book_type에 hex_code 컬럼 추가
             alter table plz_tc_fd.tb_book_type add hex_code varchar(15) not null after tag_english_name;
@@ -37,9 +37,9 @@ BEGIN
             update plz_tc_fd.tb_book_type
             set hex_code = '#CF0095'
             where tag_english_name = 'NOVEL';
-    END IF;
-END $$
+    end if;
+end $$
 
-CALL update_table() $$
+call update_table() $$
 
-DELIMITER ;
+delimiter ;

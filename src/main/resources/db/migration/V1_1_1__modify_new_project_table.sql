@@ -132,6 +132,7 @@ delimiter $$
 
 drop procedure if exists modify_table $$
 create procedure modify_table()
+
 begin
     if not exists((select *
                    from information_schema.columns
@@ -196,17 +197,18 @@ delimiter $$
 
 drop procedure if exists modify_table $$
 create procedure modify_table()
+
 begin
     if not exists((select *
                    from information_schema.columns
                    where table_name = 'tb_drama'
                      and table_schema = 'plz_tc_fd'
                      and column_name = 'broadcast_state')) then
-alter table plz_tc_fd.tb_drama modify title text not null comment '제목';
-alter table plz_tc_fd.tb_drama modify author varchar(30) not null comment '작가이름';
-alter table plz_tc_fd.tb_drama add link text not null comment '링크' after author;
-alter table plz_tc_fd.tb_drama add broadcast_state enum('end','yet','early_end') not null default 'end' comment '방영상태';
-alter table plz_tc_fd.tb_drama add mod_dt datetime not null default current_timestamp comment '수정일자' after reg_dt;
+        alter table plz_tc_fd.tb_drama modify title text not null comment '제목';
+        alter table plz_tc_fd.tb_drama modify author varchar(30) not null comment '작가이름';
+        alter table plz_tc_fd.tb_drama add link text not null comment '링크' after author;
+        alter table plz_tc_fd.tb_drama add broadcast_state enum('end','yet','early_end') not null default 'end' comment '방영상태';
+        alter table plz_tc_fd.tb_drama add mod_dt datetime not null default current_timestamp comment '수정일자' after reg_dt;
 end if;
 end $$
 
@@ -261,16 +263,17 @@ delimiter $$
 
 drop procedure if exists modify_table $$
 create procedure modify_table()
+
 begin
     if not exists((select *
                    from information_schema.columns
                    where table_name = 'tb_movie'
                      and table_schema = 'plz_tc_fd'
                      and column_name = 'total_number_of_episode')) then
-alter table plz_tc_fd.tb_movie modify title text not null comment '제목';
-alter table plz_tc_fd.tb_movie modify director varchar(30) not null default 'noname' comment '감독이름';
-alter table plz_tc_fd.tb_movie add link text not null comment '링크' after director;
-alter table plz_tc_fd.tb_movie add total_number_of_episode tinyint(3) not null comment '총회차' after link;
+        alter table plz_tc_fd.tb_movie modify title text not null comment '제목';
+        alter table plz_tc_fd.tb_movie modify director varchar(30) not null default 'noname' comment '감독이름';
+        alter table plz_tc_fd.tb_movie add link text not null comment '링크' after director;
+        alter table plz_tc_fd.tb_movie add total_number_of_episode tinyint(3) not null comment '총회차' after link;
 end if;
 end $$
 
